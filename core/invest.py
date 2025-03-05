@@ -1,4 +1,4 @@
-import data as dt
+from core import data as dt
 
 def cal_annual_return(returns:list[float], end_num):
     total_return=1

@@ -1,15 +1,15 @@
 
 # A very simple Flask Hello World app for you to get started with...
-#flask run --host=0.0.0.0 --port=5002 --debug
+#FLASK_DEBUG=1 FLASK_APP=app.py flask run --host=0.0.0.0 --port=5000
 
 from flask import Flask, render_template,request,jsonify, send_file, Response
 from classes.web.helper import Helper
 from classes.web.json import json_data as j
 import json
-import input_json as ij
+from classes.web.json import input_json as ij
 import os
-import output as op
-import plan as pl
+from core import output as op
+from core import plan as pl
 
 app = Flask(__name__)
 app.config["DEBUG"] = True

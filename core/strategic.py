@@ -1,7 +1,7 @@
-import account as ac
-import expenses as mf
-import invest as iv
-import data as dt
+from core import account as ac
+from core import expenses as mf
+from core import invest as iv
+from core import data as dt
 #to execute accounts handling strategic
 class Strategic:
 

@@ -1,4 +1,4 @@
-import pojo
+from core import pojo
 
 class MoneyFlow:
     

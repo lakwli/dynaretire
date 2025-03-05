@@ -1,6 +1,6 @@
 import xlsxwriter
-import expenses as mf
-import account as la
+from core import expenses as mf
+from core import account as la
 from classes import util as ut
 
 class Output():    

@@ -1,6 +1,5 @@
-import pojo
-import data
-import pojo as pj
+from core import pojo as pj
+from core import data  
 
 #NOTES: had taken out priority. The array is already according to priority. Can handle from the input side to arrange.
 #one account could have multiple type of income. e.g. House: rental, selling

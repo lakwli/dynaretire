@@ -10,6 +10,7 @@ services:
       - temp_volume:/app/temp
     environment:
       - FLASK_ENV=production
+      - PYTHONDONTWRITEBYTECODE=1 
     restart: unless-stopped
     networks:
       - app-network

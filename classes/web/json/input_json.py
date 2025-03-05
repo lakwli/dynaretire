@@ -1,8 +1,8 @@
-import expenses as mf
-import account as ac
-import pojo as pj
-import data as dt
-import strategic as st
+from core import expenses as mf
+from core import account as ac
+from core import pojo as pj
+from core import data as dt
+from core import strategic as st
 import datetime
 from classes.web.json import json_data as j
 

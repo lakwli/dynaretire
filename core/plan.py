@@ -1,7 +1,7 @@
-import account as la
-import output as op
-import strategic as st
-import expenses as mf
+from core import account as la
+from core import output as op
+from core import strategic as st
+from core import expenses as mf
 
 class Plan():
 
