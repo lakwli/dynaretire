@@ -1,6 +1,10 @@
 {
-  "dependencies": {
+  "devDependencies": {
     "bulma-o-steps": "^1.1.0",
     "sass": "^1.77.5"
+  },
+  "scripts": {
+    "sass": "sass static/css/my-bulma-steps.scss static/css/my-bulma-steps.css",
+    "clean": "rm -rf node_modules/.cache"
   }
 }

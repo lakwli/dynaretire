@@ -15,10 +15,14 @@ A dynamic retirement planning application that helps users plan and manage their
 ## Prerequisites
 
 - Python 3.x
-- Node.js and npm
+- Node.js and npm (development only)
 - Docker (optional)
 
+Note: Node.js is only required during development for compiling SCSS files. The compiled CSS files are committed to the repository, so end users don't need Node.js to run the application.
+
 ## Installation
+
+### Production Setup
 
 1. Clone the repository:
 ```bash
@@ -31,10 +35,26 @@ cd dynaretire
 pip install -r requirements.txt
 ```
 
-3. Install Node.js dependencies:
+### Development Setup
+
+If you need to modify SCSS files or work on the frontend:
+
+1. Install Node.js dependencies (clean install recommended):
 ```bash
-npm install
+npm ci
 ```
+
+2. Compile SCSS files (when making style changes):
+```bash
+npm run sass
+```
+
+3. Clean up cache files when needed:
+```bash
+npm run clean
+```
+
+Note: We use `npm ci` instead of `npm install` for a cleaner, more reproducible installation. This ensures exact versions from package-lock.json are used and removes old/redundant files.
 
 ## Running the Application
 
