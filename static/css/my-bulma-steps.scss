@@ -1,0 +1,10 @@
+@import "../../node_modules/bulma-o-steps/bulma-steps";
+@import "../../node_modules/bulma/bulma";
+
+.my-step-style {
+  @include steps-active-segment {
+    .steps-content {
+      font-weight: bold;
+    }
+  }
+}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeSpendManager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .is-hidden { display: none; }
+        .expense-item, .amount-item { margin-bottom: 1.5rem; }
+        .delete-button { margin-top: 0.5rem; }
+        .section { padding: 3rem 1.5rem; }
+        .container { max-width: 800px; margin: auto; }
+        .columns.is-multiline > .column { flex: 1; max-width: calc(33% - 0.75rem); }
+        .delete-amount { background: none; border: none; color: red; font-size: 1.2em; }
+        .button-row { display: flex; justify-content: space-between; align-items: center; }
+        @media screen and (max-width: 768px) {
+            .columns.is-multiline > .column { max-width: 100%; }
+        }
+
+        .expense-item {
+            position: relative; /* This makes it a reference for absolutely positioned children */
+        }
+
+        .delete-expense {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: none;
+            border: none;
+            font-size: 16px; /* Adjust the size as needed */
+            color: #ff3860; /* Adjust the color as needed */
+            cursor: pointer;
+        }
+
+        .delete-expense i {
+            pointer-events: none; /* Prevents the icon from interfering with the button's click event */
+        }
+        .icon-button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0 5px; /* Adds padding to the left and right of the icon */
+            vertical-align: middle; /* Aligns the icon vertically with the input field */
+        }
+
+        /* Styles for the add button */
+        .add-amount .fas {
+            font-size: 16px; /* Adjust the size as needed */
+            color: #23d160; /* This should make the icon green */
+        }
+
+        /* Styles for the delete button */
+        .delete-amount .fas {
+            font-size: 16px; /* Adjust the size as needed */
+            color: #ff3860; /* This should make the icon red */
+        }
+        .icon-placeholder {
+            visibility: hidden;
+            pointer-events: none;
+        }
+        
+    </style>
+</head>
+<body>
+
+<section class="section">
+    <div class="container">
+        <!-- <h1 class="title has-text-centered">Expense Tracker</h1>-->
+        <div id="expense-container">
+            <!-- Expense Template -->
+            <div class="box expense-item">
+                <!--<button class="button is-danger delete-expense is-hidden delete-button">Delete Expense</button>-->
+                <button class="delete-expense is-hidden is-danger" aria-label="Delete Expense" >
+                    <i class="fas fa-times"></i> <!-- Font Awesome icon -->
+                  </button>
+                <!-- <h2 class="subtitle">Expense Details</h2>-->
+                <div class="columns is-multiline">
+                    <div class="column is-5">
+                        <div class="field">
+                            <label class="label">Expense Name</label>
+                            <div class="control">
+                                <input class="input exp-name is-primary" type="text" name="exp-name"  placeholder="e.g. Food, Bills" required onchange="validateExpNameDuplicated(this)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-3">
+                        <div class="field">
+                            <label class="label">Inflation Rate %                                                         
+                                <span class="icon">
+                                    <i class="fa-solid fa-circle-question" title="'Inflation' Rate refer to a measure of how much things might get more expensive each year. For example, if the inflation rate is 2%, it’s like saying a loaf of bread that costs $1 this year might cost $1.02 next year. In real life, not all expenses increase at the same rate. Some things might get more expensive faster than others. For example, the cost of healthcare or education might go up faster than the cost of transport or clothing. This means they have a higher inflation rate"></i>
+                                </span>
+                            </label>
+                            <div class="control">
+                                <input class="input exp-inflation is-primary" type="number" name="exp-inflation" min="0" step="5" placeholder="e.g. 3%" required onchange="window.addValidationIfNeeded(this)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-3">
+                        <div class="field">
+                            <label class="label">Reduction Rate%                                                                                     
+                                <span class="icon">
+                                    <i class="fa-solid fa-circle-question" title="'Expense Reduction Rate' refer to feature that works similar to a battery saving mode. In case of a downturn in the market, the system projects that you will spend less on your expenses based on the rate you set here. For example, if you set 80, it means that during a market downturn, you would only spend 80% of the originally allocated amount for your expenses. However, when the market turns good, the system will revert to projecting expenses based on the original amount. Please note that inflation continues to be calculated on the original amount and does not pause during a market downturn. This feature allows you to see how adjusting your spending during market downturns can help your retirement savings."></i>
+                                </span>
+                            </label>
+                            <div class="control">
+                                <input class="input exp-minspend is-info" type="number" name="exp-minspend" step="5" min="0" placeholder="e.g. 80" onchange="window.addValidationIfNeeded(this)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="amounts-container">
+                    <!-- Amounts Template -->
+                    <div class="columns is-multiline amount-item">
+                        <div class="column is-1 is-hidden">
+                            <label class="label">Fix Age</label>
+                            <input  id="exp-tied-to-age" type="checkbox"/>
+                        </div>
+                        <div class="column">
+                            <label class="label">Total Yearly Expenditure                                                                               
+                                <span class="icon">
+                                    <i class="fa-solid fa-circle-question" title="‘Yearly Spending Amount’ refers to the total amount you expect to spend in one year.  Please note that this amount should be in today’s dollars, and this app will adjust it for inflation over time."></i>
+                                </span>
+                            </label>
+                            <input class="input exp-amt-amt is-primary" name="exp-amt-amt" type="text" placeholder="Amount" onchange="window.addValidationIfNeeded(this)" onkeyup="callKeyUpAmountFunction(this)">
+                        </div>
+                        <div class="column">
+                            <label class="label">Start Age for Expense Period                                                                       
+                                <span class="icon">
+                                    <i class="fa-solid fa-circle-question" title="'Start Age for Expense Period' refers to your age at the beginning of a period when you expect to have a certain level of expenses. For example, if you expect to spend $30k/year on food from the age of 55, you would enter ‘55’ here. The amount should be in today’s dollars, and the tool will adjust it for inflation over time."></i>
+                                </span>
+                            </label>
+                            <input class="input exp-amt-starting-age is-primary" name="exp-amt-starting-age" type="number" min="1" placeholder="When the expenses start?" required onchange="validateExpStartingYearFromPage(this)">
+                        </div>
+                        <div class="column">
+                            <label class="label">End Age for Expense Period                                                                                                       
+                                <span class="icon">
+                                    <i class="fa-solid fa-circle-question" title="'End Age for Expense Period' refers to your age at the end of a period when you expect to have a certain level of expenses. For example, if you expect to spend $30k/year on food until the age of 65, you would enter ‘65’ here. Starting from the next year, you can enter a different amount for your expenses"></i>
+                                </span>
+                            </label>
+                            <input class="input exp-amt-until-age is-info " name="exp-amt-until-age" type="number" placeholder="When the expenses end?" value="100" onchange="validateExpFirstUntilYear(this)">
+                        </div>
+                        <div class="column">
+                            <label class="label">Occurrence Interval                                                                                                       
+                                <span class="icon">
+                                    <i class="fa-solid fa-circle-question" title="'Occurrence Interval' refers to the frequency at which certain expenses occur. For example, if you plan to buy a new car every 10 years during your retirement, you would enter ‘10’ in this field. This allows the tool to account for these periodic large expenses in your retirement plan. It’s important to note that large withdrawals from your retirement fund can impact the fund’s ability to generate returns. Therefore, accurately accounting for these expenses can help provide a more realistic projection of your retirement savings."></i>
+                                </span>
+                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                            </label>
+                            <div class="field has-addons">
+                                <div class="control">
+                                    <input class="input exp-amt-every-few-years is-primary" name="exp-amt-every-few-years" type="number" placeholder="Occur once for few years e.g 10 " value="1" onchange="validateExpIntervalFromPage(this)">
+                                </div>
+                                <div class="control">
+                                    <button class="icon-button add-amount " aria-label="Add Amount"  title="Add a different amount for another period">
+                                        <i class="fas fa-plus"></i>
+                                      </button>
+                                </div>
+                                <div class="control">
+                                    <button class="icon-button delete-amount is-hidden" aria-label="Delete Amount">
+                                      <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="button is-primary add-expense">Add Expense</button>
+    </div>
+</section>
+
+<script type="text/javascript" src="{{ url_for('static', filename='expenses.js') }}">
+
+
+</script>
+</body>
+</html>

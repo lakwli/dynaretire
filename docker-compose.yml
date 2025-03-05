@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+      - temp_volume:/app/temp
+    environment:
+      - FLASK_ENV=production
+    restart: unless-stopped
+    networks:
+      - app-network
+
+volumes:
+  temp_volume:
+
+networks:
+  app-network:
+    driver: bridge

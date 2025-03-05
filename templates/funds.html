@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retirement Funds</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .is-hidden { display: none; }
+        .fund-item { margin-bottom: 1.5rem; }
+        .delete-button { margin-top: 0.5rem; }
+        .delete-fund { background: none; border: none; color: red; font-size: 1.2em; }
+        .section { padding: 3rem 1.5rem; }
+        .container { max-width: 800px; margin: auto; }
+        .columns.is-multiline > .column { flex: 1; max-width: calc(33% - 0.75rem); }
+        .button-row { display: flex; justify-content: space-between; align-items: center; }
+        @media screen and (max-width: 768px) {
+            .columns.is-multiline > .column { max-width: 100%; }
+        }
+
+        .draggable {cursor: move;}
+        .align-middle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .fund-item {
+            position: relative; /* This makes it a reference for absolutely positioned children */
+        }
+
+        .delete-fund {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: none;
+            border: none;
+            font-size: 16px; /* Adjust the size as needed */
+            color: #ff3860; /* Adjust the color as needed */
+            cursor: pointer;
+        }
+
+        .delete-fund i {
+            pointer-events: none; /* Prevents the icon from interfering with the button's click event */
+        }
+        .icon-button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0 5px; /* Adds padding to the left and right of the icon */
+            vertical-align: middle; /* Aligns the icon vertically with the input field */
+        }
+
+        .icon-placeholder {
+            visibility: hidden;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+<section class="section">
+    <div class="container">
+        <!-- <h1 class="title has-text-centered">Fund Tracker</h1>-->
+        <div id="fund-container"> <!--
+            <div class="columns is-multiline">
+                <div class="align-middle">                    
+                </div>
+               
+                <div class="column is-4">
+                    <label class="label">  Fund Name</label>
+                </div>
+                <div class="column is-2">
+                    <label class="label">Description</label>
+                </div>
+                <div class="column is-2">
+                    <label class="label">Amount</label>
+                </div>
+                <div class="column is-2">
+                    <label class="label">Return %</label>
+                </div>
+                <div class="column is-2">
+                    <label class="label">Eligible Withdraw Year</label>
+                </div>
+                <div class="column is-1">
+                </div>
+            </div>
+            -->
+            <div class="box" >
+                <!-- <h2 class="subtitle">Fund Details</h2>-->
+                <div class="columns is-multiline">
+                    <div class="icon-placeholder">
+                        ::
+                    </div>
+    
+                    <div class="column  is-2 is-hidden">
+                        <label class="label">Current Calendar Year</label>
+                        <div class="field">
+                            <div class="control">
+                                <input name="curr-cal-yr" id="curr-cal-yr"class="input curr-cal-yr is-primary" type="number" step="1" min=1900 placeholder="e.g. 2024" onchange="validateCurrentYear(this)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column  is-2">
+                        <label class="label">Current Age</label>
+                        <div class="field">
+                            <div class="control">
+                                <input name="curr-age" id="curr-age" class="input curr-age is-primary"type="number" step="1" min=15 max="80" placeholder="e.g. 30" onchange="changeCurrentAge(this)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column  is-2">
+                        <label class="label">Retirement Age
+                            <span class="icon">
+                                <i class="fa-solid fa-circle-question" title="'Retirement Age' refers to the age at which you plan to stop working and start your retirement"></i>
+                              </span>
+                        </label>
+                        <div class="field">
+                            <div class="control">
+                                <input name="retire-age" id="retire-age" class="input retire-age is-primary"type="number" step="1" min=15 max="80" placeholder="e.g. 31" onchange="validateRetireAge(this)">                                         
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column  is-2">
+                        <label class="label">
+                            Full Retirement Year
+                            <span class="icon">
+                                <i class="fa-solid fa-circle-question" title="'Full Retirement Year' Year refers to the first full year of your retirement. If you retire in the middle of a year, that year is considered as your last working year, and the following year is your Retirement Commencement Year. This is the year when you start living fully on your retirement savings and investments."></i>
+                              </span>
+                        </label>
+                        <label id="retired-Calendar-Year"></label>
+                    </div>
+                </div>
+            </div>
+            <!-- Funds Template -->
+            <div class="box fund-item draggable" draggable="true">
+                
+                <!--<button class="button is-danger delete-expense is-hidden delete-button">Delete Expense</button>-->
+                <button class="delete-fund is-hidden is-danger" aria-label="Delete Expense">
+                    <i class="fas fa-times"></i> <!-- Font Awesome icon -->
+                  </button>
+                <!-- <h2 class="subtitle">Fund Details</h2>-->
+                <div class="columns is-multiline">
+                    <div class="align-middle">
+                        ::
+                    </div>
+    
+                    <div class="column  is-2">
+                        <label class="label">Saving Name</label>
+                        <div class="field">
+                            <div class="control">
+                                <input name="fundname" class="input fundname is-primary" type="text" placeholder="Unit Trust, EPF" onchange="validateFundNameDuplicated(this)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column  is-1 is-hidden">
+                        <label class="label">Description</label>
+                        <div class="field">
+                            <div class="control">
+                                <input name="funddesc" class="input funddesc is-info" type="text" placeholder="For Retirement" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-1">
+                        <label class="label">
+                            Saving Amount
+                            <span class="icon">
+                                <i class="fa-solid fa-circle-question" title="'Saving Amount' refers to the total amount of money you have saved"></i>
+                              </span>
+                        </label>
+                        <div class="field">
+                            <div class="control">
+                                <input name="fundamount" class="input fundamount is-normal is-primary" type="text" placeholder="Amount" required onchange="window.addValidationIfNeeded(this)" onkeyup="callKeyUpAmountFunction(this)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-7">
+                        <label class="label">Return%                            
+                            <span class="icon">
+                                <i class="fa-solid fa-circle-question" title="'Expected Return' refer to estimated growth rate of your savings. You can choose a flat rate (e.g., 5.5%) for consistent growth over time, or link your return to an index fund’s performance from a specific year to simulate potential market-based growth."></i>
+                              </span>
+                        </label>
+                        <div class="field">
+                            <div class="control is-expanded">
+                                <div class="field has-addons has-addons-centered">
+                                  <p class="control">
+                                    <span class="select is-primary">
+                                      <select class='funds-return-type' name='funds-return-type' onchange="changeReturnType(this)">
+                                        <option>Flat</option>
+                                        <option>Index</option>
+                                      </select>
+                                    </span>
+                                  </p>
+                                  <p class="control select is-primary is-hidden funds-index-ref-wrap" name="funds-index-ref-wrap">
+                                        <select class="funds-index-ref" name="funds-index-ref">
+                                            <option value="S&P500">S&P500</option>
+                                      </select>
+                                  </p>
+                                  <p class="control funds-return-rate-wrap" name="funds-return-rate-wrap">
+                                    <input class="input is-primary funds-return-rate" name="funds-return-rate" type="number" min="1" step="0.01" placeholder="e.g. 5.5" onchange="validateFundFlatReturnRate(this)">
+                                  </p>
+                                </div>                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-1 funds-default-return-wrap is-hidden " name="funds-default-return-wrap">
+                        <label class="label">Default Rate%</label>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input is-primary funds-default-return" name="funds-default-return" type="number" min="1" max="100" step="0.1" placeholder="e.g. 9" onchange="validateFundDefaultReturnRate(this)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-1 funds-mimic-year-wrap is-hidden" name="funds-mimic-year-wrap">
+                        <label class="label">Backtest Year                            
+                            <span class="icon">
+                                <i class="fa-solid fa-circle-question" title="'Backtest Year' refers to the year used to backtest your retirement plan with an index fund such as S&P500. If you enter 1998, for example, the system will backtest assuming your Retirement Commencement Year would happen in 1998. This allows you to see how your retirement plan would have performed if you had retired in a specific past year"></i>
+                              </span>
+                        </label>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input is-primary funds-mimic-year" name="funds-mimic-year" type="number" min="1981" max="2024" step="1" placeholder="e.g. 1981" onchange="validateFundMimicYear(this)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-1">
+                        <div class="field">
+                            <label class="label">WithdrawalAge                            
+                                <span class="icon">
+                                    <i class="fa-solid fa-circle-question" title="'Withdrawal Age' refers to the age at the beginning of the year when you start withdrawing from your saving. If your eligible withdrawal age is, for example, 55, you should enter 56 here"></i>
+                                </span>
+                            </label>
+                            <div class="control">
+                                <input name="fundwithdrawage" class="input is-primary fundwithdrawage" type="number" step="1" min=1 placeholder="e.g. 1" value=1 max="80" required onchange="window.addValidationIfNeeded(this)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <!--
+                <div class="button-row">
+                    <button class="button is-danger delete-fund is-hidden delete-button">Delete Fund</button>
+                </div>-->
+            </div>
+        </div>
+        <button class="button is-primary add-fund">Add Fund</button>
+    </div>
+</section>
+
+<script type="text/javascript" src="{{ url_for('static', filename='funds.js') }}">
+
+
+</script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>

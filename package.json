@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "bulma-o-steps": "^1.1.0",
+    "sass": "^1.77.5"
+  }
+}

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeSpendManager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .is-hidden { display: none; }
+        .income-item, .growth-item { margin-bottom: 1.5rem; }
+        .delete-button { margin-top: 0.5rem; }
+        .section { padding: 3rem 1.5rem; }
+        .container { max-width: 800px; margin: auto; }
+        .columns.is-multiline > .column { flex: 1; max-width: calc(33% - 0.75rem); }
+        .delete-growth { background: none; border: none; color: red; font-size: 1.2em; }
+        .button-row { display: flex; justify-content: space-between; align-items: center; }
+        @media screen and (max-width: 768px) {
+            .columns.is-multiline > .column { max-width: 100%; }
+        }
+        .icon-button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0 5px; /* Adds padding to the left and right of the icon */
+            vertical-align: middle; /* Aligns the icon vertically with the input field */
+        }
+        .icon-placeholder {
+            visibility: hidden;
+            pointer-events: none;
+        }
+        
+        .income-item {
+            position: relative; /* This makes it a reference for absolutely positioned children */
+        }
+
+        .delete-income {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: none;
+            border: none;
+            font-size: 16px; /* Adjust the size as needed */
+            color: #ff3860; /* Adjust the color as needed */
+            cursor: pointer;
+        }
+
+        .delete-income i {
+            pointer-events: none; /* Prevents the icon from interfering with the button's click event */
+        }
+        .add-growth .fas {
+            font-size: 16px; /* Adjust the size as needed */
+            color: #23d160; /* This should make the icon green */
+        }
+
+        /* Styles for the delete button */
+        .delete-growth .fas {
+            font-size: 16px; /* Adjust the size as needed */
+            color: #ff3860; /* This should make the icon red */
+        }
+    </style>
+</head>
+<body>
+
+<section class="section">
+    <div class="container">
+        <!-- <h1 class="title has-text-centered">Income Tracker</h1>-->
+        <div id="income-container">
+            <!-- income Template -->
+            <div class="box income-item">
+                <button class="delete-income is-danger" aria-label="Delete Income" >
+                    <i class="fas fa-times"></i> <!-- Font Awesome icon -->
+                  </button>
+                <!-- <h2 class="subtitle">Income Details</h2>-->
+                <div class="columns is-multiline">
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Income Name</label>
+                            <div class="control">
+                                <input class="input inc-name is-primary" name="inc-name" type="text" placeholder="e.g. Rental" required onchange="validateIncomeNameDuplicated(this)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Yearly Income
+                                <span class="icon">
+                                    <i class="fa-solid fa-circle-question" title="'Yearly Income' refer to income you receive before retiring. It includes contributions or savings you make toward your retirement fund.It can be passive income sources you may have during retirement, such as rental income or other ongoing earnings. Unlike expenses, income is often estimated based on specific contracts or expectations. Users input the FUTURE VALUE directly based on the 1st starting age, considering factors like promised returns, house sales, or other anticipated income. The system then calculates growth rates accordingly"></i>
+                                </span>
+                            </label>
+                            <div class="control">
+                                <input class="input inc-amount is-primary" name="inc-amount" type="text" placeholder="e.g. 1000" required onchange="window.addValidationIfNeeded(this)"  onkeyup="callKeyUpAmountFunction(this)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Deposit To Fund                                
+                                <span class="icon">
+                                    <i class="fa-solid fa-circle-question" title="'Deposit To Fund' allows you to specify which fund your income should be deposited into. If you don’t specify a fund, the system will default to the first fund you entered. 
+If your income is related to pension contributions, select the pension fund. or income allocated from monthly savings, choose the appropriate fund, such as stocks, unit trusts, or any other fund you’ve selected. 
+If you sell a house, you might split the income into few part and put into different fund subject to your comfortable level"></i>
+                                </span>
+                            </label>
+                            <div class="control">
+                                <div class="select is-info is-fullwidth">
+                                    <select id="fundSelect-inc-dep" class="fundSelect-inc-dep" onchange="changeFundSelectIncDep(this)">
+                                        <!-- Options will be populated by JavaScript -->
+                                      </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="growths-container">
+                    <!-- Amounts Template -->
+                    <div class="columns is-multiline growth-item" >
+                        <div class="column">
+                            <label class="label">Growth Rate for Income Period%                                                              
+                                <span class="icon">
+                                    <i class="fa-solid fa-circle-question" title="'Growth Rate %'' represents the expected annual growth rate for your income. You can customize it based on different periods or scenarios. For example, if you anticipate higher growth during certain years, adjust the rate accordingly"></i>
+                                </span>
+                            </label>
+                            <input class="input inc-growth-rate is-primary" name="inc-growth-rate" min=1 type="number" step="0.01"  placeholder="e.g. 3%" required onchange="window.addValidationIfNeeded(this)">
+                        </div>
+                        <div class="column">
+                            <label class="label">Start Age for Income Period                                                             
+                                <span class="icon">
+                                    <i class="fa-solid fa-circle-question" title="'Start Age for Income Period' refers to your age at the beginning of a period when you expect to have a certain level of income"></i>
+                                </span>
+                            </label>
+                            <input class="input inc-growth-starting-age is-primary" name="inc-growth-starting-age" min=1 type="number" placeholder="First year income" required onchange="validateStartingYearFromPage(this)">
+                        </div>
+                        <div class="column">
+                            <label class="label">End Age for Income Period &nbsp;                                                                                     
+                             <span class="icon">
+                                <i class="fa-solid fa-circle-question" title="'End Age for Income Period' refers to your age at the end of a period when you expect to have a certain level of income"></i>
+                            </span>
+                            </label>
+                            <div class="field has-addons">
+                                <div class="control is-expanded" >
+                                    <input class="input inc-growth-until-age is-info" name="inc-growth-until-age" type="number" placeholder="Last year income" value="50" onchange="validateFirstUntilYear(this)">
+                                </div>
+                                <div class="control" >
+                                    <button class="icon-button add-growth " aria-label="Add Growth"  title="Add a different growth rate for another period">
+                                        <i class="fas fa-plus"></i>
+                                      </button>
+                                </div>
+                                <div class="control" >
+                                    <button class="icon-button delete-growth icon-placeholder" aria-label="Delete Growth" title="Remove this growth rate">
+                                      <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>                       
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="button is-primary add-income">Add Income</button>
+    </div>
+</section>
+
+<script type="text/javascript" src="{{ url_for('static', filename='income.js') }}">
+
+
+</script>
+</body>
+</html>
