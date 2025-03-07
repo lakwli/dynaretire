@@ -2,54 +2,100 @@
 
 $(document).ready(function() {
     var content = {}; // Object to store the content for each tab
+    var loadingStatus = {
+        funds: false,
+        expenses: false,
+        income: false,
+        strategic: false
+    };
 
-    // Function to load content for a tab
-    function loadTabContent(tabName) {
-        if (!content[tabName]) { // Check if content is not already loaded
-            $.get('/' + tabName, function(data) {
-                content[tabName] = data; // Store the loaded content
-                $('#' + tabName + '-content').html(data); // Insert content into the tab
-            });
-        }
+    // Function to show loading indicator
+    function showLoadingIndicator(tabName) {
+        $('#' + tabName + '-content').html('<div class="is-flex is-justify-content-center is-align-items-center" style="height: 200px;"><div class="button is-loading is-large">Loading</div></div>');
     }
 
-    // Preload content for all tabs
-    loadTabContent('funds');
-    loadTabContent('expenses');
-    loadTabContent('income');
-    loadTabContent('strategic');
+    // Function to load content for a tab with Promise
+    function loadTabContent(tabName) {
+        return new Promise((resolve, reject) => {
+            if (!content[tabName]) {
+                showLoadingIndicator(tabName);
+                $.get('/' + tabName)
+                    .done(function(data) {
+                        content[tabName] = data;
+                        loadingStatus[tabName] = true;
+                        $('#' + tabName + '-content').html(data);
+                        resolve();
+                    })
+                    .fail(function(error) {
+                        console.error('Error loading ' + tabName + ':', error);
+                        reject(error);
+                    });
+            } else {
+                resolve();
+            }
+        });
+    }
+
+    // Load funds content first, then load others in background
+    loadTabContent('funds').then(() => {
+        // Show funds content immediately
+        $('#funds-content').show();
+        
+        // Load other content in background
+        Promise.all([
+            loadTabContent('expenses'),
+            loadTabContent('income'),
+            loadTabContent('strategic')
+        ]).catch(error => {
+            console.error('Error loading background content:', error);
+        });
+    });
 
     // Handle clicking on tabs
     $('#steps-plan .steps-segment a').click(function(e) {
-        //console.log('----------------------')
         e.preventDefault();
         
         var activeStep = $('.steps .steps-segment.is-active');
         var activeStepContent = $('.content-tab').eq(activeStep.index());
-        if (! isTabValid(activeStepContent)) {
-            return
+        if (!isTabValid(activeStepContent)) {
+            return;
         }
-        updateSuccessStepIcon(activeStep.attr('id'))
-        removeErrorMessageIfAllTabsCorrect()
+
+        updateSuccessStepIcon(activeStep.attr('id'));
+        removeErrorMessageIfAllTabsCorrect();
         $('#steps-plan .steps-segment').removeClass('is-active');
         $('#tab-content .content-tab').hide();
 
         $(this).parent().addClass('is-active');
         var target = $(this).parent().data('target');
-        $('#' + target + '-content').show();
 
-        updateStepButtons()
-
-        if(target == 'expenses'){
-            window.onExpTabLoad()
-        }
-        else if (target == 'income'){
-            window.onIncomeTabLoad()
-        }
-        else if(target == 'strategic'){
-            window.onStgTabLoad()
+        // Check if content is loaded
+        if (!loadingStatus[target]) {
+            showLoadingIndicator(target);
+            loadTabContent(target).then(() => {
+                $('#' + target + '-content').show();
+                updateStepButtons();
+                triggerTabLoadEvents(target);
+            }).catch(() => {
+                $('#' + target + '-content').html('<div class="notification is-danger">Error loading content. Please try again.</div>');
+            });
+        } else {
+            $('#' + target + '-content').show();
+            updateStepButtons();
+            triggerTabLoadEvents(target);
         }
     });
+
+    // Function to trigger tab-specific load events
+    function triggerTabLoadEvents(target) {
+        if (target === 'expenses') {
+            window.onExpTabLoad();
+        } else if (target === 'income') {
+            window.onIncomeTabLoad();
+        } else if (target === 'strategic') {
+            window.onStgTabLoad();
+        }
+    }
   
 /** CONTROL PREV and NEXT button start */
     $('#prev-btn').click(function(e) {
@@ -506,5 +552,3 @@ function areAllStepsCompleted() {
         messageDiv.remove(); // Remove the message when delete button is clicked
     });
 }
-
-  
