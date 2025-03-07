@@ -1,7 +1,7 @@
 # A very simple Flask Hello World app for you to get started with...
 #FLASK_DEBUG=1 FLASK_APP=app.py flask run --host=0.0.0.0 --port=5000
 
-from flask import Flask, render_template, request, jsonify, send_file, Response, session, send_from_directory
+from flask import Flask, render_template, request, jsonify, send_file, Response, session, send_from_directory, redirect,url_for
 from classes.web.helper import Helper
 from classes.web.json import json_data as j
 import json
@@ -23,9 +23,12 @@ def inject_year():
     return {'current_year': datetime.now().year}
 
 
-@app.route('/home.html') 
-@app.route('/')
+@app.route('/home.html')
 @app.route('/home')
+def redirect_to_home():
+    return redirect(url_for('home', _external=True), code=301)
+
+@app.route('/')
 def home():
     return render_template('marketing/landing.html')
 
@@ -33,7 +36,7 @@ def home():
 def test1():
     return 'test'
 
-@app.route('/plans')
+
 @app.route('/plans.html')
 def plans():
     return render_template('plans.html')
