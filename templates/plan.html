@@ -65,39 +65,21 @@
 	</style> 
 </head> 
 
-<body class="has-text-centered"> 
-	<h1 class="is-size-2 has-text-success"> 
-		<img src="{{ url_for('static', filename='logo.png') }}" alt="Simulator Icon" style="vertical-align: middle; margin-right: 5px;width:70px;height:70px;">
-        <!--Retirement Funds Sustainability Simulation Tool -->
-		<!-- LifeSpendWell LifeSpendCare- Planner -->
-		<!-- LifeSpendHarmony Tracker-->
-		<!-- LifeSpendCare Tracker-->
-		DynaRetire Simulator
-	</h1> <!--
-	<h2 class="is-size-3 has-text-success"> 
-		Plan Your Money For Your Life Journey
-		, Age Wisely,Live Richly
-	</h2> -->
-		<!-- anxious about the potential costs of healthcare as you age? Do you yearn for the freedom to explore the world while you’re still in 
-			good health? It’s a struggle many of us face, and it’s why we need a solution - a financial planning tool that can help us navigate our financial journey throughout our lives.”-->
-		<!--, Worried sickness cost when old? Desire to travel more when healthy? -->
-		<!-- Well Distribute Your Money For Resilience, While Living Richly-->
-		<!--Distribute your income for a balanced and fulfilling life at every stage-->
-		<!--Avoid underspend for regret later, nor overspend to risk your old age,-->
-		<!-- plan how you spend your money, not plan how much you need to survive, die with zero. it is more than that with 
-		  It’s about intentional financial planning throughout life – understanding income, expenses, growth, and even backtesting scenarios. 
-		  By projecting how money flows over time, you empower yourself to make informed decisions-->
-	<!-- <h3 class="is-size-4"> 
-		Live Richly, Age Wisely.  , Know your number, Plan your life
-	</h3> -->
-	<h2>Strategic Allocation For Preferred Lifestyle & Peace Of Mind</h2>
-	
-	<div class="link-container"><a href="https://findinggoodlife.com/dynaretire-plan-retirement-realistic/" target="_blank" rel="noopener noreferrer">Features</a></div>
-	<div class="link-container"><a href="https://findinggoodlife.com/dynaretire-stepbystep-show/" target="_blank" rel="noopener noreferrer">Show Case</a></div>
-	<div class="link-container"><a href="https://findinggoodlife.com/wp-content/uploads/2024/07/dynaRetire-1.xlsx">Sample Result</a></div>
-	<br>
-	<br>
-	<br>
+<body class="has-text-centered">
+{% block header %}
+<h1 class="is-size-2 has-text-success"> 
+<img src="{{ url_for('static', filename='logo.png') }}" alt="Simulator Icon" style="vertical-align: middle; margin-right: 5px;width:70px;height:70px;">
+DynaRetire Simulator
+</h1>
+<h2>Strategic Allocation For Preferred Lifestyle & Peace Of Mind</h2>
+
+<div class="link-container"><a href="https://findinggoodlife.com/dynaretire-plan-retirement-realistic/" target="_blank" rel="noopener noreferrer">Features</a></div>
+<div class="link-container"><a href="https://findinggoodlife.com/dynaretire-stepbystep-show/" target="_blank" rel="noopener noreferrer">Show Case</a></div>
+<div class="link-container"><a href="https://findinggoodlife.com/wp-content/uploads/2024/07/dynaRetire-1.xlsx">Sample Result</a></div>
+<br>
+<br>
+<br>
+{% endblock %}
 	<div class="container"> 	
 		<div id="message-container"></div>
 <div class="steps my-step-style has-content-centered" id="steps-plan">
@@ -135,12 +117,6 @@
 			</div>
 		</div>		 
 		
-		<!--
-		<div class="buttons-container">
-			<button class="button is-info"  disabled id="prev-btn"></button>Previous</button>
-			<button class="button is-info is-hidden" id="submit-btn">Submit</button>
-			<button class="button is-info"  id="next-btn">Next</button>
-		</div>	-->
 		<div class="buttons-container">
 			<button class="button is-info is-light" id="prev-btn" disabled><i class="fas fa-arrow-left"></i></button></>
 			
