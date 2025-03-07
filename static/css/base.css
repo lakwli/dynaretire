@@ -1,0 +1,22 @@
+.is-hidden { display: none; }
+.section { padding: 3rem 1.5rem; }
+.container { max-width: 800px; margin: auto; }
+.columns.is-multiline > .column { flex: 1; max-width: calc(33% - 0.75rem); }
+.button-row { display: flex; justify-content: space-between; align-items: center; }
+@media screen and (max-width: 768px) {
+    .columns.is-multiline > .column { max-width: 100%; }
+}
+.icon-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0 5px; /* Adds padding to the left and right of the icon */
+    vertical-align: middle; /* Aligns the icon vertically with the input field */
+}
+.icon-placeholder {
+    visibility: hidden;
+    pointer-events: none;
+}
+.delete-button {
+    margin-top: 0.5rem;
+}

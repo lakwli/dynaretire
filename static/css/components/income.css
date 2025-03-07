@@ -1,0 +1,7 @@
+.income-item, .growth-item { margin-bottom: 1.5rem; }
+.delete-income { background: none; border: none; color: red; font-size: 1.2em; }
+.income-item { position: relative; }
+.delete-income { position: absolute; top: 0; right: 0; font-size: 16px; color: #ff3860; cursor: pointer; }
+.delete-income i { pointer-events: none; }
+.add-growth .fas { font-size: 16px; color: #23d160; }
+.delete-growth .fas { font-size: 16px; color: #ff3860; }

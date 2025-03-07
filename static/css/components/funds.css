@@ -1,0 +1,7 @@
+.fund-item { margin-bottom: 1.5rem; }
+.delete-fund { background: none; border: none; color: red; font-size: 1.2em; }
+.draggable { cursor: move; }
+.align-middle { display: flex; align-items: center; justify-content: center; }
+.fund-item { position: relative; }
+.delete-fund { position: absolute; top: 0; right: 0; font-size: 16px; color: #ff3860; cursor: pointer; }
+.delete-fund i { pointer-events: none; }

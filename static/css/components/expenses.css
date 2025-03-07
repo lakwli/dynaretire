@@ -1,0 +1,7 @@
+.expense-item, .amount-item { margin-bottom: 1.5rem; }
+.delete-expense { background: none; border: none; color: red; font-size: 1.2em; }
+.expense-item { position: relative; }
+.delete-expense { position: absolute; top: 0; right: 0; font-size: 16px; color: #ff3860; cursor: pointer; }
+.delete-expense i { pointer-events: none; }
+.add-amount .fas { font-size: 16px; color: #23d160; }
+.delete-amount .fas { font-size: 16px; color: #ff3860; }
