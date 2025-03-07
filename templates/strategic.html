@@ -6,46 +6,7 @@
     <title>Strategic</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        .is-hidden { display: none; }
-        .strategic-item, .rebal-item { margin-bottom: 1.5rem; }
-        .delete-button { margin-top: 0.5rem; }
-        .section { padding: 3rem 1.5rem; }
-        .container { max-width: 800px; margin: auto; }
-        .columns.is-multiline > .column { flex: 1; max-width: calc(33% - 0.75rem); }
-        .delete-rebal { background: none; border: none; color: red; font-size: 1.2em; }
-        .button-row { display: flex; justify-content: space-between; align-items: center; }
-        @media screen and (max-width: 768px) {
-            .columns.is-multiline > .column { max-width: 100%; }
-        }
-
-        .icon-button {
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 0 5px; /* Adds padding to the left and right of the icon */
-            vertical-align: middle; /* Aligns the icon vertically with the input field */
-        }
-        .icon-placeholder {
-            visibility: hidden;
-            pointer-events: none;
-        }
-        
-        .strategic-item {
-            position: relative; /* This makes it a reference for absolutely positioned children */
-        }
-
-        .add-rebal .fas {
-            font-size: 16px; /* Adjust the size as needed */
-            color: #23d160; /* This should make the icon green */
-        }
-
-        /* Styles for the delete button */
-        .delete-rebal .fas {
-            font-size: 16px; /* Adjust the size as needed */
-            color: #ff3860; /* This should make the icon red */
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
 </head>
 <body>
 
