@@ -11,10 +11,11 @@ import os
 from core import output as op
 from core import plan as pl
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static', static_folder='static')
 app.config["DEBUG"] = True
 app.config["SECRET_KEY"] = "lkmaslkdsldsamdlsdmaseewe2ldsmkdd"
 app.config["TEMPLATES_AUTO_RELOAD"] = True
+app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0  # Disable caching for development
 
 @app.route('/')
 def hello_world():
