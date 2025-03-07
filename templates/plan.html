@@ -34,10 +34,6 @@
 		margin: 20px 0;
 		}
 
-		.main-content {
-			padding-top: 3rem; /* Adjust this value based on the actual height of your steps */
-		}
-
 		.buttons-container {
 			position: fixed;
 			bottom: 0;
@@ -82,7 +78,7 @@ DynaRetire Simulator
 {% endblock %}
 	<div class="container"> 	
 		<div id="message-container"></div>
-<div class="steps my-step-style has-content-centered" id="steps-plan">
+<div class="steps my-step-style has-content-centered" id="steps-plan" style="margin-bottom: 1rem;">
 			<div class="steps-segment  is-active " id="funds" data-target="funds">
 				<a href="#">
 					<span class="steps-marker is-primary">1</span>
@@ -134,7 +130,7 @@ DynaRetire Simulator
 		
 
 		
-		<div class="content-container" style="padding-bottom: 50px;">
+		<div class="content-container" style="padding-bottom: 60px; margin-top: 0;">
 			<div id="tab-content">
 				<form id="rform" novalidate> 
 					<!-- Content will be loaded here -->
