@@ -3,6 +3,12 @@
 
 <head> 
 	<title>DynaRetire Simulator</title>
+<meta name="description" content="DynaRetire Simulator helps you plan your retirement with advanced tools and strategies. Model your expenses, income, and investments for a secure future.">
+<meta name="keywords" content="retirement planning, retirement simulator, financial planning, investment strategies, retirement tools">
+<meta property="og:title" content="DynaRetire Simulator">
+<meta property="og:description" content="DynaRetire Simulator helps you plan your retirement with advanced tools and strategies. Model your expenses, income, and investments for a secure future.">
+<meta property="og:image" content="{{ url_for('static', filename='logo.png') }}">
+<meta property="og:url" content="{{ url_for('plans') }}">
 	<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css'> 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" /> 
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/bulma-steps.min.css') }}">
@@ -65,8 +71,9 @@
 			<div class="steps-segment  is-active " id="funds" data-target="funds">
 				<a href="#">
 					<span class="steps-marker is-primary">1</span>
+<img src="../static/logo.png" alt="DynaRetire Logo">
 					<div class="steps-content">
-					  <p class="is-size-6">Nest Egg</p>
+					  <h2 class="is-size-6">Nest Egg</h2>
 					</div>
 				</a>
 			</div>
@@ -74,7 +81,7 @@
 				<a href="#">
 					<span class="steps-marker is-primary">2</span>
 					<div class="steps-content">
-					  <p class="is-size-6">Expenses</p>
+					  <h2 class="is-size-6">Expenses</h2>
 					</div>
 				</a>					
 			</div>
@@ -82,7 +89,7 @@
 				<a href="#">
 					<span class="steps-marker is-info">?</span>
 					<div class="steps-content">
-					  <p class="is-size-6">Income</p>
+					  <h2 class="is-size-6">Income</h2>
 					</div>
 				</a>
 			</div>
@@ -90,7 +97,7 @@
 				<a href="#">
 					<span class="steps-marker is-info">?</span>
 					<div class="steps-content">
-					  <p class="is-size-6">Resilient Strategy</p>
+					  <h2 class="is-size-6">Resilient Strategy</h2>
 					</div>
 				</a>
 			</div>

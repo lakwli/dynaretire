@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello World Page</title>
+    <meta name="description" content="DynaRetire offers enterprise-grade retirement planning solutions tailored to your unique needs. Plan for real-life scenarios with advanced tools and strategies.">
+    <meta name="keywords" content="retirement planning, enterprise retirement solutions, financial planning, investment strategies, retirement tools">
+    <meta property="og:title" content="DynaRetire - Enterprise Retirement Planning Solutions">
+    <meta property="og:description" content="DynaRetire offers enterprise-grade retirement planning solutions tailored to your unique needs. Plan for real-life scenarios with advanced tools and strategies.">
+    <meta property="og:image" content="{{ url_for('static', filename='logo.png') }}">
+    <meta property="og:url" content="{{ url_for('index') }}">
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <!-- Add Bulma CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
@@ -24,7 +30,8 @@
     <!-- Bulma styled content -->
     <section class="section">
         <div class="container">
-            <h1 class="title">Hello, World! e</h1>
+            <h1 class="title">Hello, World!</h1>
+            <img src="../static/logo.png" alt="DynaRetire Logo" style="max-height: 36px;">
         </div>
         <button class="delete-button" >
             <i class="fas fa-trash-alt"></i>
