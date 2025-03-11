@@ -1,8 +1,7 @@
-
 # A very simple Flask Hello World app for you to get started with...
 #FLASK_DEBUG=1 FLASK_APP=app.py flask run --host=0.0.0.0 --port=5000
 
-from flask import Flask, render_template,request,jsonify, send_file, Response
+from flask import Flask, render_template, request, jsonify, send_file, Response, session
 from classes.web.helper import Helper
 from classes.web.json import json_data as j
 import json
@@ -10,6 +9,7 @@ from classes.web.json import input_json as ij
 import os
 from core import output as op
 from core import plan as pl
+from datetime import datetime
 
 app = Flask(__name__, static_url_path='/static', static_folder='static')
 app.config["DEBUG"] = True
@@ -17,10 +17,14 @@ app.config["SECRET_KEY"] = "lkmaslkdsldsamdlsdmaseewe2ldsmkdd"
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0  # Disable caching for development
 
-@app.route('/')
-def hello_world():
-    return render_template('plan.html')
+# Add context processor for current year
+@app.context_processor
+def inject_year():
+    return {'current_year': datetime.now().year}
 
+@app.route('/')
+def home():
+    return render_template('marketing/index2.html')
 
 @app.route('/test1')
 def test1():
@@ -70,8 +74,6 @@ def planSubmit():
         print(f"   exception: {str(e)}")
         return jsonify({'error': str(e)})
 
-
-
 @app.route('/expenses')
 def expenses():
     return render_template('expenses.html')
@@ -88,45 +90,9 @@ def funds():
 def strategic():
     return render_template('strategic.html')
 
-@app.route('/page', methods=["GET", "POST"])
-def adder_page():
-    errors = ""
-    if "inputs" not in session:
-        session["inputs"] = []
-    if request.method == "POST":
-        number1 = None
-        number2 = None
-        try:
-            number1 = float(request.form["number1"])
-            session["inputs"].append(number1)
-            session.modified = True
-        except:
-            errors += "<p>{!r} is not a number.</p>\n".format(request.form["number1"])
-        try:
-            number2 = float(request.form["number2"])
-        except:
-            errors += "<p>{!r} is not a number.</p>\n".format(request.form["number2"])
+@app.route('/showcase')
+def showcase():
+    return render_template('marketing/showcase.html')
 
-        if number1 is not None and number2 is not None:
-            result = session["inputs"]
-            return '''
-                <html>
-                    <body>
-                        <p>The result is {result}</p>
-                        <p><a href="/page">Click here to calculate again</a>
-                    </body>
-                </html>
-            '''.format(result=result)
-    return '''
-        <html>
-            <body>
-                <p>Enter your numbers:</p>
-                <form method="post" action="./page">
-                    <p><input name="number1" /></p>
-                    <p><input name="number2" /></p>
-                    <p><input type="submit" value="Do calculation" /></p>
-                </form>
-            </body>
-
-        </html>
-        '''
+if __name__ == '__main__':
+    app.run(debug=True)

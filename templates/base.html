@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Search Console Verification - Replace with your actual verification code -->
+    <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
+    <!-- Simple favicon setup -->
+    <link rel="icon" href="/static/logo.png">
+    <title>{% block title %}DynaRetire{% endblock %}</title>
+    {% block meta %}{% endblock %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0ea5e9;      /* Modern sky blue */
+            --secondary-color: #38bdf8;    /* Lighter sky blue */
+            --accent-color: #0284c7;       /* Deep sky blue */
+            --bg-light: #f0f9ff;           /* Very light sky blue */
+            --text-dark: #0f172a;          /* Slate dark */
+            --gradient-start: #0284c7;     /* Deep sky blue */
+            --gradient-end: #38bdf8;       /* Light sky blue */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+            color: white;
+            padding: 1.2rem 0;
+            text-align: left;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.1);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-container img {
+            max-height: 36px;
+            width: auto;
+            height: auto;
+            display: block;
+        }
+
+        .logo-container h1 {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            opacity: 0.9;
+            transition: opacity 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        .nav-link-primary {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 600 !important;
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-link-primary:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .nav-link-subtle {
+            opacity: 0.8;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        main {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+        }
+
+        .hero {
+            padding: 10rem 0 8rem;
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%), url('https://images.unsplash.com/photo-1532275672750-588178586a50') center/cover;
+            background-blend-mode: soft-light;  /* Softer blend */
+            text-align: center;
+            color: white;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 1.5rem auto;
+            position: relative;
+            z-index: 1;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: white;
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.15);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.95rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.2);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        @media (max-width: 768px) {
+            .logo-container h1 {
+                font-size: 1.2rem;
+            }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: var(--gradient-start);
+                padding: 1rem 0;
+                gap: 1rem;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .mobile-menu-toggle {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+            }
+            .mobile-menu-toggle span {
+                display: block;
+                width: 25px;
+                height: 3px;
+                background: white;
+                transition: all 0.3s;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero {
+                padding: 8rem 0 6rem;
+                clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            }
+        }
+
+        /* Footer Styles */
+        .site-footer {
+            background: #0f172a;  /* Slate dark background */
+            color: #e0f2fe;      /* Light sky blue text */
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            width: 32px;
+            height: 32px;
+        }
+
+        .footer-logo h3 {
+            color: white;
+            font-size: 1.25rem;
+            margin: 0;
+        }
+
+        .footer-section p {
+            color: #bae6fd;  /* Lighter sky blue text */
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section ul a {
+            color: #bae6fd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-section ul a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid #1e293b;  /* Slate border */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom p {
+            color: #bae6fd;
+            font-size: 0.9rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-social a {
+            color: #bae6fd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .site-footer {
+                padding: 3rem 0 1.5rem;
+            }
+        }
+    </style>
+    {% block additional_styles %}{% endblock %}
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="nav-wrapper">
+                <div class="logo-container">
+                    <img src="{{ url_for('static', filename='logo.png') }}" alt="DynaRetire Logo" width="36" height="36">
+                    <h1>DynaRetire</h1>
+                </div>
+                <div class="nav-links">
+                    <a href="{{ url_for('home') }}">Home</a>
+                    <a href="{{ url_for('plan') }}">Simulator</a>
+                    <a href="{{ url_for('home') }}#capabilities">Features</a>
+                    <a href="{{ url_for('showcase') }}">Show Case</a>
+                    <a href="https://findinggoodlife.com/wp-content/uploads/2024/07/dynaRetire-1.xlsx" class="nav-link-subtle">Docs</a>
+                </div>
+                <button class="mobile-menu-toggle">
+                    <span></span><span></span><span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="{{ url_for('static', filename='logo.png') }}" alt="DynaRetire Logo" width="32" height="32">
+                        <h3>DynaRetire</h3>
+                    </div>
+                    <p>Plan your retirement with confidence using our dynamic retirement simulation tool.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="{{ url_for('plan') }}">Retirement Simulator</a></li>
+                        <li><a href="{{ url_for('showcase') }}">Show Case</a></li>
+                        <li><a href="{{ url_for('home') }}#capabilities">Features</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://findinggoodlife.com/wp-content/uploads/2024/07/dynaRetire-1.xlsx">Documentation</a></li>
+                        <li><a href="{{ url_for('showcase') }}#app">How It Works</a></li>
+                        <li><a href="{{ url_for('showcase') }}#result">Sample Results</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; {{ current_year }} DynaRetire. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Follow us on Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Connect on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Follow us on Facebook"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                    this.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+    {% block scripts %}{% endblock %}
+</body>
+</html> 

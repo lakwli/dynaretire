@@ -1,0 +1,1331 @@
+{% extends "base.html" %}
+
+{% block title %}DynaRetire: Comprehensive Retirement Planning Tool With Real-Life Scenarios{% endblock %}
+
+{% block meta %}
+<meta name="description" content="Explore DynaRetire's step-by-step retirement planning tool with Martin's real-life scenario. Learn how to plan for early retirement with dynamic expenses, investment strategies, and risk management.">
+<meta name="keywords" content="retirement planning, early retirement, pension fund, retirement calculator, retirement simulation, financial planning, investment strategy">
+<meta property="og:title" content="DynaRetire: Comprehensive Retirement Planning Tool">
+<meta property="og:description" content="Plan your retirement with real-life scenarios using our dynamic retirement planning tool. See how expenses, investments, and risk management work together.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="{{ request.url }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DynaRetire: Comprehensive Retirement Planning Tool">
+<meta name="twitter:description" content="Plan your retirement with real-life scenarios using our dynamic retirement planning tool.">
+<link rel="canonical" href="{{ request.url }}" />
+{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <div class="container">
+        <h1><i class="fas fa-clipboard-list"></i> DynaRetire Showcase</h1>
+        <p>A comprehensive tool to simulate your retirement with real-life scenarios</p>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Breadcrumb navigation -->
+    <nav class="breadcrumb" aria-label="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <ol>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+                <meta itemprop="position" content="1" />
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span itemprop="name">DynaRetire Showcase</span>
+                <meta itemprop="position" content="2" />
+            </li>
+        </ol>
+    </nav>
+    
+    <article class="blog-post" itemscope itemtype="http://schema.org/Article">
+        <meta itemprop="headline" content="DynaRetire: A Detail Step-by-Step Showcase Based On Sample">
+        <meta itemprop="description" content="Learn how to use DynaRetire to plan for early retirement with real-life scenarios and dynamic expense planning.">
+        <meta itemprop="author" content="DynaRetire Team">
+        <meta itemprop="datePublished" content="2024-08-06">
+        <meta itemprop="dateModified" content="2024-08-06">
+        
+        <div class="content-section">
+            <div class="migration-notice">
+                <p><i class="fas fa-info-circle"></i> This content was previously published on <a href="https://findinggoodlife.com/dynaretire-a-step-by-step-showcase/" rel="nofollow">Finding Good Life</a> and has been migrated to its new home here.</p>
+            </div>
+            
+            <div class="key-info">
+                <p>In this blog, we will use Martin's story to demonstrate how the DynaRetire app works by helping him input his retirement data according to his expectations. The app will generate the result in the form of an Excel file. You may visit <a href="/adaptive-retirement-planning">DynaRetire: Adaptive Retirement Planning With Real-Life Changes</a> about the app features.</p>
+            </div>
+            
+            <nav class="table-of-contents" aria-label="Table of Contents">
+                <h4><i class="fas fa-list"></i> Quick Navigation</h4>
+                <ul>
+                    <li><a href="#scenario"><i class="fas fa-user-clock"></i> The Brief Scenario</a></li>
+                    <li><a href="#info"><i class="fas fa-info-circle"></i> Age and Saving Information</a></li>
+                    <li><a href="#expenses"><i class="fas fa-chart-line"></i> Dynamic Expenses</a>
+                        <ul>
+                            <li><a href="#travel"><i class="fas fa-plane"></i> Travel Budget</a></li>
+                            <li><a href="#housing"><i class="fas fa-home"></i> Housing Loan</a></li>
+                            <li><a href="#insurance"><i class="fas fa-shield-halved"></i> Insurance</a></li>
+                            <li><a href="#medical"><i class="fas fa-hospital"></i> Medical Bills</a></li>
+                            <li><a href="#car"><i class="fas fa-car"></i> Car Replacement</a></li>
+                            <li><a href="#food"><i class="fas fa-utensils"></i> Food</a></li>
+                            <li><a href="#transport"><i class="fas fa-bus"></i> Transport</a></li>
+                            <li><a href="#other"><i class="fas fa-receipt"></i> Other Expenses</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#income"><i class="fas fa-money-bill-trend-up"></i> Incomes</a></li>
+                    <li><a href="#early-retirement"><i class="fas fa-umbrella-beach"></i> Early Retirement Tools</a></li>
+                    <li><a href="#bucket-strategy"><i class="fas fa-layer-group"></i> Bucket Strategy Simulator</a></li>
+                    <li><a href="#app"><i class="fas fa-gears"></i> How The App Works</a></li>
+                    <li><a href="#result"><i class="fas fa-file-excel"></i> Interpret Result</a></li>
+                    <li><a href="#conclusion"><i class="fas fa-check-circle"></i> Conclusion</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <section id="scenario">
+            <div class="section-header">
+                <h2><i class="fas fa-user-clock"></i> The Brief Scenario: Martin's Retirement Plan</h2>
+                <div class="section-meta">Current Age: <span class="value">45</span> | Target Retirement: <span class="value">50</span></div>
+            </div>
+            <div class="section-content">
+                <p>Martin is 45 and wants to plan for early retirement. Below are brief details:</p>
+                <ul class="feature-list">
+                    <li>He and his employer continue to <strong>contribute to the pension fund</strong>, and Martin also <strong>saves extra</strong> in his investments specifically for retirement</li>
+                    <li>Martin has <strong>rental income</strong> from his apartment that will continue after he retires. He expects the growth rate to be lower than his expenses inflation</li>
+                    <li>Covering his current <strong>living expenses</strong> like food, transport, bills, and insurance. All these expenses have their inflation rate</li>
+                    <li>He also plans for high <strong>medical bills</strong> not covered by insurance, and higher <strong>health-related expenses</strong>, with special high inflation rate</li>
+                    <li>Dreams of <strong>travelling the world</strong> and travel fewer afterwards and stop travelling upon 80</li>
+                    <li>Paying off his <strong>housing loan</strong> until 60</li>
+                    <li>Upgrading his <strong>insurance</strong> in a few years, and he expects to pay until 80</li>
+                    <li><strong>Changing his car</strong> every few years until a certain age</li>
+                    <li>He expects some <strong>expenses to decrease as he ages</strong></li>
+                </ul>
+
+                <p>Considering risk management, he wants to manage the risks to his investments in case of market downturns.</p>
+
+                <p>Martin wants to know if he can retire with his ongoing contributions during his working years, his rental income, and his budget for various expenses at different life stages. He also wants to know how long his retirement savings will last.</p>
+
+                <div class="key-info">
+                    <p><em>All expense amounts are in today's values. The app will calculate future amounts based on inflation for each year or age. It is however, the income amounts are future amounts, with what we expect to receive based on estimates or agreements, considering the age when we start.</em></p>
+                </div>
+
+                <p><em>Note: Some scenarios are for simulation purposes and may not apply to your situation.</em></p>
+            </div>
+            <a href="#" class="back-to-contents"><i class="fas fa-arrow-up"></i> Back to Contents</a>
+        </section>
+
+        <section id="info">
+            <div class="section-header">
+                <h2><i class="fas fa-info-circle"></i> The Information About Age, and Saving Information</h2>
+            </div>
+            <div class="section-content">
+                <h3>Age</h3>
+                <p>This year is <span class="value">2024</span>. A 45-year-old person plans to retire early at 50.</p>
+                <div class="image-container">
+                    <img src="{{ url_for('static', filename='images/showcase/how-to-setup-age.svg') }}" alt="DynaRetire interface showing age and retirement target setup - current age 45, retirement at 50">
+                </div>
+
+                <h3>Savings</h3>
+                <p>Martin currently has a pension fund worth <span class="value">$1,000,000</span>, which he expects to grow at a rate of <span class="value">5.5%</span>. However, he can only start withdrawing from this fund when he turns 55.</p>
+                
+                <p>He also has <span class="value">$500,000</span> invested in the S&P 500. Instead of assuming a consistent return rate, he wants to see the impact of retiring during a poor market, using 1999 as the retirement year. Since the fund's history is only available up to 2023, he assumes a return rate of <span class="value">7%</span> for the remaining years.</p>
+                
+                <div class="image-container">
+                    <img src="{{ url_for('static', filename='images/showcase/how-to-setup-saving.svg') }}" alt="DynaRetire savings configuration screen showing pension fund of $1,000,000 and S&P 500 investment of $500,000">
+                </div>
+            </div>
+            <a href="#" class="back-to-contents"><i class="fas fa-arrow-up"></i> Back to Contents</a>
+        </section>
+
+        <section id="expenses">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-line"></i> Dynamic Expenses Following Basic, Desire Lifestyle, and Risk Consideration</h2>
+            </div>
+            <div class="section-content">
+                <p>When planning for retirement expenses, he considers the following:</p>
+
+                <h3><i class="fas fa-plane"></i> Travel Budget: Dream Of Global Travel</h3>
+                <p>He dreams of travelling the world during the first two years of his retirement, planning to spend a total of $100,000 on global adventures. After that, he expects to spend about $10,000 a year on travel when he anticipates slowing down his travels and stopping when he turns 75. He expects these costs to rise with an inflation rate of 3%</p>
+                <img src="{{ url_for('static', filename='images/showcase/how-to-setup-travel-expenses.svg') }}" alt="Setting up travel budget in DynaRetire - $100,000 for first two years, then $10,000 annually with 3% inflation">
+
+                <h3><i class="fas fa-home"></i> Housing Loan Installment: To Be Settled Until Age 60</h3>
+                <p>He currently has a housing loan, which requires him to pay $10,000 a year. This loan will continue until he turns 60, after which he will no longer have this expense.</p>
+                <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-setup-housing-loan.svg') }}" alt="DynaRetire housing loan configuration - $10,000 annual payment until age 60">
+
+                <h3><i class="fas fa-shield-halved"></i> Insurance: Upgrade After 10 Years With Inflation Consideration</h3>
+                <p>Currently, he pays $4,000 a year for his insurance. However, as he approaches 56 <em>(Note: For simulated purposes, he may consider upgrading now instead, while he is still healthy, avoid exclusion or reject possibility)</em>, he plans to upgrade his medical insurance to ensure it covers him until he turns 80. He realizes that the insurance he bought in his 20s may not be sufficient, especially considering the high inflation rates. He estimates this upgrade will cost an additional $3,000 per year. While uncertain if payments can cease at any age, he prefers to budget until age 80, which aligns with the coverage duration.</p>
+                <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-setup-insurance.svg') }}" alt="DynaRetire how-to: setup Insurance">
+
+                <h3><i class="fas fa-hospital"></i> Medical Bills: Prepare For High Expenses In Later Years</h3>
+                <p>Starting at age 70, he anticipates needing about $20,000 a year (in today's money) for possible health-related expenses, e.g. medicines, follow-ups, physio visits, taking into account the possibility that insurance might not cover all expenses. He expects these costs to rise with an inflation rate of 8%. He does not plan for nursing home expenses <em>(Note: he may consider this)</em></p>
+                <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-setup-medical.svg') }}" alt="DynaRetire how-to: setup Medical">
+
+                <h3><i class="fas fa-car"></i> Car Replacement Every 7 Years</h3>
+                <p>Starting at age 51, he plans to buy a new car every 7 years. Each time he buys a new car, it costs him an extra $60,000 beyond what he gets from selling his old car. When he turns 72, he expects to be his last car purchase. He doesn't anticipate purchasing a car afterward. He projects that car prices rise with an inflation rate of 2%.</p>
+                <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-setup-car-replacement.svg') }}" alt="DynaRetire how-to: setup car replacement">
+
+                <h3><i class="fas fa-utensils"></i> Food: Luxury Now, Simple Later</h3>
+                <p>Currently, he spends about $20,000 a year on food, enjoying luxury dining occasionally. However, he anticipates that his lifestyle will become simpler as he ages. By the time he reaches 60, he plans to reduce his food budget to $15,000 a year. He also expects food prices to increase by about 6% annually due to inflation. If the market turns bad, he is prepared to reduce his food expenses to 80% of the original budget to minimize spending and more conservatively manage his finances.</p>
+                <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-setup-food.svg') }}" alt="DynaRetire how-to: setup food">
+
+                <h3><i class="fas fa-bus"></i> Transport: More Driving Now, Less Later, Stop Afterward</h3>
+                <p>Today. he spends about $4,000 a year on transport, covering costs such as petrol, insurance, parking, and maintenance. However, he expects these expenses to reduce to $3,000 a year after age 65, as he plans to drive less. By the time he reaches 80, he anticipates that he will stop driving altogether, eliminating these expenses. He expected these expenses to increase by about 4% annually due to inflation.</p>
+                <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-setup-transport.svg') }}" alt="DynaRetire how-to: setup transport">
+
+                <h3><i class="fas fa-receipt"></i> Other Expenses</h3>
+                <p>He estimates that his annual expenses for bills, clothes, gadgets, repairs, and other miscellaneous items will be around $20,000. He assumes a general inflation rate of 3.5% for these expenses over the years.</p>
+                <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-setup-other-expenses.svg') }}" alt="DynaRetire how-to: setup other expenses">
+            </div>
+            <a href="#" class="back-to-contents"><i class="fas fa-arrow-up"></i> Back to Contents</a>
+        </section>
+
+        <section id="income">
+            <div class="section-header">
+                <h2><i class="fas fa-money-bill-trend-up"></i> Incomes</h2>
+            </div>
+            <div class="section-content">
+                <p>During his working years, he wants to ensure his contributions to his retirement fund are well-planned:</p>
+
+                <h3><i class="fas fa-piggy-bank"></i> Pension Fund Contributions</h3>
+                <p>He and his employer together contribute $36,000 a year to his pension fund. This amount is expected to grow at a rate of 2% per year, in line with his salary increases.</p>
+                <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-setup-pension-fund.svg') }}" alt="DynaRetire how-to: setup pension fund">
+
+                <h3><i class="fas fa-chart-pie"></i> Index Fund Savings</h3>
+                <p>Separately, he saves $20,000 a year in an index fund. He plans to increase this savings amount by 10% each year, leveraging his income growth beyond just the basics.</p>
+                <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-setup-index.svg') }}" alt="DynaRetire how-to: setup index">
+
+                <h3><i class="fas fa-building"></i> Rental Income</h3>
+                <p>He earns $10,000 a year from rental income, which he invests in the same index fund. He expects this rental income to grow by 5% per year until he turns 55, after which he anticipates it will slow down to a 2% annual growth rate. He has no intention to sell this property yet.</p>
+                <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-setup-rental.svg') }}" alt="DynaRetire how-to: setup rental">
+            </div>
+            <a href="#" class="back-to-contents"><i class="fas fa-arrow-up"></i> Back to Contents</a>
+        </section>
+
+        <section id="early-retirement">
+            <div class="section-header">
+                <h2><i class="fas fa-umbrella-beach"></i> Early Retirement Tools: Minimum Spending, Load Balancing, Pause Selling, Asset Allocation</h2>
+            </div>
+            <div class="section-content">
+                <p>To manage investment risks, he has a contingency plan: if the personal history average history returns (since retired year) drop below 3% after retirement, he will switch to minimum spending. Additionally, he will avoid selling riskier investments during downturns to prevent losses, prioritizing risk management over growth.</p>
+
+                <p>In terms of asset allocation, he plans to maintain a 70% stock and 30% bond mix until age 60. Then, he will shift to a 60% stock and 40% bond mix. By the time he reaches 65, he plans to further adjust to a 50% stock and 50% bond allocation. He also intends to rebalance his portfolio annually to stay aligned with these goals.</p>
+                <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-setup-investment-risk-management.svg') }}" alt="DynaRetire how-to: setup investment risk management">
+            </div>
+            <a href="#" class="back-to-contents"><i class="fas fa-arrow-up"></i> Back to Contents</a>
+        </section>
+
+        <section id="bucket-strategy">
+            <div class="section-header">
+                <h2><i class="fas fa-layer-group"></i> Bucket Strategy Simulator</h2>
+            </div>
+            <div class="section-content">
+                <p>The Bucket Strategy Simulator helps you divide your retirement savings into different time-based buckets, each serving a specific purpose:</p>
+                <ul class="feature-list">
+                    <li><strong>Short-term bucket:</strong> For immediate expenses (1-2 years)</li>
+                    <li><strong>Medium-term bucket:</strong> For expenses in the next 3-10 years</li>
+                    <li><strong>Long-term bucket:</strong> For growth and expenses beyond 10 years</li>
+                </ul>
+                <p>This strategy helps protect your retirement savings from market volatility while ensuring you have enough liquidity for immediate needs.</p>
+            </div>
+            <a href="#" class="back-to-contents"><i class="fas fa-arrow-up"></i> Back to Contents</a>
+        </section>
+
+        <section id="app">
+            <div class="section-header">
+                <h2><i class="fas fa-gears"></i> How The App Generally Works:</h2>
+            </div>
+            <div class="section-content">
+                <p>There are four steps to consider when planning for retirement. The first and second steps are essential, while the third and fourth steps are optional. The first step focuses on basic info and savings, while the second step involves allocating your budget to various expenses. The third step pertains to preparing for retirement income or seeking support during retirement, and the fourth step addresses risk management related to investments. You can jump to any step without following the sequence.</p>
+                <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-go-to-different-step.svg') }}" alt="DynaRetire how-to: Go To different step">
+
+                <p>At the bottom of the page, you'll find the privacy statement and a few buttons. The left button allows you to go to the previous step, while the rightmost button takes you to the next step. The submit button indicates that your data is ready for submission to obtain your planning results. The submit button may appear at any step. The privacy statement assures you that this site doesn't retain any data, including logging or cookies.</p>
+            </div>
+            <a href="#" class="back-to-contents"><i class="fas fa-arrow-up"></i> Back to Contents</a>
+        </section>
+
+        <section id="result">
+            <div class="section-header">
+                <h2><i class="fas fa-file-excel"></i> Interpret Result: Excel</h2>
+            </div>
+            <div class="key-info">
+                <p>After successful submission, the app will generate an Excel file and download it to the designated folder. For a sample result file, please check the Documentation section from the menu above or download here: <a href="https://findinggoodlife.com/wp-content/uploads/2024/07/dynaRetire-1.xlsx" class="excel-download" title="Download Sample Excel File"><i class="far fa-file-excel"></i></a></p>
+            </div>
+
+            <div class="section-content">
+                <p>The purpose of this app is to generate an Excel file rather than displaying it on the screen. This allows you to keep it for reference without revisiting the app. You can use the numbers for further calculations or link them to your formulas. Additionally, if you want to leverage Excel capabilities for displaying forms, this approach is more useful than on-screen display.</p>
+            </div>
+
+            <h3>Excel File Structure</h3>
+            <ul class="feature-list">
+                <li><strong>Summary:</strong> The first sheet is a summary that displays the total fund balance, expenses, incomes, and profit and loss. It also shows the net balance for the year.</li>
+                <li><strong>Expenses:</strong> The second sheet will provide a detailed breakdown of individual expenses as they occur throughout the year and the total expenses for that year. In the case of an unfavourable market year, a user can configure expenses to switch to minimum spending. In that case, a comment in the column will indicate that the expense amount is based on minimum spending due to the unfavourable market conditions.</li>
+                <li><strong>Income:</strong> The third sheet will provide a detailed breakdown of individual income as it occurs throughout the year and the total income for that year.</li>
+                <li><strong>Funds Flow:</strong> The fourth screen illustrates the cash flow into and out of the fund. This movement can result from pension fund contributions (directed into the pension fund), additional savings (allocated to the investment fund), profit and loss, withdrawals for expenses (based on withdrawal eligibility and sequence), and rebalancing (which may involve transferring funds from Fund A to Fund B). If a year is marked as an unfavourable market year and there's a pause in balancing from a risky fund to a safer fund, the rebalance column will display a comment indicating the pause.</li>
+            </ul>
+            <div class="image-container zoomable">
+                <img src="{{ url_for('static', filename='images/showcase/dynaretire-generated-result-explained.svg') }}" alt="DynaRetire Excel output structure showing summary, expenses, income, and funds flow sheets" class="zoomable-image">
+                <div class="image-caption">Understanding the Excel output structure</div>
+            </div>
+            <a href="#" class="back-to-contents"><i class="fas fa-arrow-up"></i> Back to Contents</a>
+        </section>
+
+        <section id="conclusion">
+            <div class="section-header">
+                <h2><i class="fas fa-check-circle"></i> Conclusion: Plan Your Retirement With Confidence</h2>
+            </div>
+            <div class="section-content">
+                <p>DynaRetire provides a comprehensive approach to retirement planning that accounts for the dynamic nature of life. By following Martin's example, you can see how the tool helps you:</p>
+                
+                <ul class="feature-list">
+                    <li>Plan for <strong>early retirement</strong> with realistic financial projections</li>
+                    <li>Account for <strong>changing expenses</strong> throughout different life stages</li>
+                    <li>Manage <strong>investment risks</strong> with adaptive strategies</li>
+                    <li>Visualize the <strong>long-term impact</strong> of your financial decisions</li>
+                    <li>Create a <strong>personalized retirement plan</strong> based on your unique situation</li>
+                </ul>
+                
+                <div style="text-align: center; margin: 3rem 0;">
+                    <a href="/app" class="cta-button">Try DynaRetire Today</a>
+                </div>
+                
+                <div class="key-info" style="margin-top: 2rem;">
+                    <p><strong>Remember:</strong> The earlier you start planning, the more options you'll have for your retirement. DynaRetire makes it easy to adjust your plan as your life circumstances change.</p>
+                </div>
+                
+                <div class="social-sharing">
+                    <h4>Share this guide:</h4>
+                    <a href="https://twitter.com/intent/tweet?url={{ request.url | urlencode }}&text=Check%20out%20this%20comprehensive%20retirement%20planning%20guide%20from%20DynaRetire" target="_blank" class="social-btn twitter-btn" aria-label="Share on Twitter">
+                        <i class="fab fa-twitter"></i> Twitter
+                    </a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.url | urlencode }}" target="_blank" class="social-btn facebook-btn" aria-label="Share on Facebook">
+                        <i class="fab fa-facebook-f"></i> Facebook
+                    </a>
+                    <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.url | urlencode }}&title=DynaRetire:%20Comprehensive%20Retirement%20Planning%20Tool&summary=Learn%20how%20to%20plan%20for%20early%20retirement%20with%20real-life%20scenarios" target="_blank" class="social-btn linkedin-btn" aria-label="Share on LinkedIn">
+                        <i class="fab fa-linkedin-in"></i> LinkedIn
+                    </a>
+                </div>
+            </div>
+            <a href="#" class="back-to-contents"><i class="fas fa-arrow-up"></i> Back to Contents</a>
+        </section>
+    </article>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is DynaRetire?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DynaRetire is a comprehensive retirement planning tool that helps you simulate your retirement with real-life scenarios, accounting for dynamic expenses, investment strategies, and risk management."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does DynaRetire handle changing expenses in retirement?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DynaRetire allows you to set different expense levels for different life stages, accounting for inflation rates specific to each expense category. You can plan for expenses that increase (like medical costs), decrease (like food as you age), or stop entirely (like housing loans)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can DynaRetire help with early retirement planning?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, DynaRetire is specifically designed to help with early retirement planning. It allows you to model scenarios like Martin's, who plans to retire at 50 while accounting for pension fund access restrictions, investment strategies, and changing expenses throughout retirement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What output does DynaRetire provide?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DynaRetire generates a detailed Excel file with four sheets: Summary (showing fund balance, expenses, income, and P&L), Expenses (detailed breakdown of all expenses), Income (breakdown of all income sources), and Funds Flow (showing cash flow between different investment accounts)."
+      }
+    }
+  ]
+}
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Create modal element
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.innerHTML = `
+            <span class="close">&times;</span>
+            <div class="modal-content">
+                <img id="modal-img" src="" alt="">
+            </div>
+            <div class="zoom-controls">
+                <button class="zoom-btn" id="zoom-out">-</button>
+                <button class="zoom-btn" id="zoom-in">+</button>
+                <button class="zoom-btn" id="zoom-reset">Reset</button>
+            </div>
+        `;
+        document.body.appendChild(modal);
+
+        // Get all zoomable images
+        const zoomableImages = document.querySelectorAll('.zoomable-image');
+        const modalImg = document.getElementById('modal-img');
+        let currentZoom = 1;
+
+        // Add click event to images
+        zoomableImages.forEach(img => {
+            img.addEventListener('click', function() {
+                modal.style.display = 'block';
+                modalImg.src = this.src;
+                currentZoom = 1;
+                modalImg.style.transform = `scale(${currentZoom})`;
+            });
+        });
+
+        // Close modal
+        const closeBtn = document.querySelector('.close');
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Zoom controls
+        const zoomIn = document.getElementById('zoom-in');
+        const zoomOut = document.getElementById('zoom-out');
+        const zoomReset = document.getElementById('zoom-reset');
+
+        zoomIn.addEventListener('click', function() {
+            currentZoom = Math.min(currentZoom + 0.2, 3);
+            modalImg.style.transform = `scale(${currentZoom})`;
+        });
+
+        zoomOut.addEventListener('click', function() {
+            currentZoom = Math.max(currentZoom - 0.2, 0.5);
+            modalImg.style.transform = `scale(${currentZoom})`;
+        });
+
+        zoomReset.addEventListener('click', function() {
+            currentZoom = 1;
+            modalImg.style.transform = `scale(${currentZoom})`;
+        });
+
+        // Add keyboard controls
+        document.addEventListener('keydown', function(e) {
+            if (modal.style.display === 'block') {
+                if (e.key === 'Escape') {
+                    modal.style.display = 'none';
+                } else if (e.key === '+' || e.key === '=') {
+                    zoomIn.click();
+                } else if (e.key === '-') {
+                    zoomOut.click();
+                } else if (e.key === '0') {
+                    zoomReset.click();
+                }
+            }
+        });
+
+        // Back to top functionality
+        const backToTop = document.createElement('a');
+        backToTop.href = '#';
+        backToTop.className = 'back-to-top';
+        backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
+        document.body.appendChild(backToTop);
+
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Handle smooth scrolling for all "Back to Contents" links
+        document.querySelectorAll('.back-to-contents').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const tocElement = document.querySelector('.table-of-contents');
+                tocElement.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    });
+</script>
+{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+    :root {
+        --primary-color: #0ea5e9;      /* Modern sky blue */
+        --secondary-color: #38bdf8;    /* Lighter sky blue */
+        --accent-color: #0284c7;       /* Deep sky blue */
+        --bg-light: #f0f9ff;           /* Very light sky blue */
+        --text-dark: #0f172a;          /* Slate dark */
+        --gradient-start: #0284c7;     /* Deep sky blue */
+        --gradient-end: #38bdf8;       /* Light sky blue */
+        --border-color: #e0f2fe;       /* Light sky blue border */
+        --twitter-color: #0ea5e9;      /* Sky blue for social */
+        --facebook-color: #0284c7;     /* Sky blue for social */
+        --linkedin-color: #0369a1;     /* Sky blue for social */
+        --notice-bg: #f0f9ff;          /* Light sky blue for notices */
+        --notice-border: #0ea5e9;      /* Sky blue for notice borders */
+    }
+
+    /* Update footer styles for green theme */
+    .site-footer {
+        background: #064e3b;  /* Dark emerald background */
+        color: #d1fae5;      /* Light mint text */
+    }
+
+    .footer-section h4 {
+        color: white;
+    }
+
+    .footer-section p {
+        color: #a7f3d0;  /* Lighter mint text */
+    }
+
+    .footer-section ul a {
+        color: #a7f3d0;
+    }
+
+    .footer-section ul a:hover {
+        color: white;
+    }
+
+    .footer-bottom {
+        border-top: 1px solid #065f46;  /* Darker emerald border */
+    }
+
+    .footer-bottom p {
+        color: #a7f3d0;
+    }
+
+    .footer-social a {
+        color: #a7f3d0;
+    }
+
+    .footer-social a:hover {
+        color: white;
+    }
+
+    /* Update key-info for modern theme */
+    .key-info {
+        background: rgba(14, 165, 233, 0.05);
+        border-left: 4px solid var(--primary-color);
+    }
+
+    /* Update migration notice for modern theme */
+    .migration-notice {
+        background: var(--notice-bg);
+        border-left: 4px solid var(--notice-border);
+    }
+    
+    .migration-notice p {
+        color: #0f172a;
+    }
+    
+    .migration-notice i {
+        color: var(--notice-border);
+    }
+    
+    .migration-notice a {
+        color: #0f172a;
+    }
+
+    /* Update table of contents hover effect */
+    .table-of-contents a:hover {
+        color: var(--primary-color);
+    }
+
+    .table-of-contents i {
+        color: var(--secondary-color);
+    }
+
+    /* Update back to top button */
+    .back-to-top {
+        background: var(--primary-color);
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+    }
+
+    .back-to-top:hover {
+        background: var(--gradient-end);
+    }
+
+    /* Update CTA button */
+    .cta-button {
+        background: var(--primary-color);
+        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.15);
+    }
+
+    .cta-button:hover {
+        background: var(--gradient-end);
+        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.2);
+    }
+
+    /* Update hero section */
+    .hero {
+        background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    }
+
+    /* Update strong text color */
+    .blog-post strong {
+        color: var(--primary-color);
+    }
+
+    /* Update bullet points */
+    .blog-post li::before {
+        color: var(--primary-color);
+    }
+
+    /* Update value highlights */
+    .value {
+        color: var(--primary-color);
+    }
+
+    /* Update social buttons */
+    .social-btn {
+        background: var(--primary-color);
+    }
+    
+    .social-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(16, 185, 129, 0.2);
+        background: var(--gradient-end);
+    }
+
+    .hero {
+        padding: 8rem 0 6rem;
+        text-align: center;
+        color: white;
+        position: relative;
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        margin-bottom: 4rem;
+    }
+
+    .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero h1 i {
+        margin-right: 1rem;
+        opacity: 0.9;
+    }
+
+    .hero p {
+        font-size: 1.25rem;
+        max-width: 800px;
+        margin: 0 auto;
+        opacity: 0.9;
+    }
+
+    .blog-post {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 2rem;
+        line-height: 1.6;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .content-section {
+        margin-bottom: 4rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .lead {
+        font-size: 1.25rem;
+        color: var(--text-dark);
+        margin-bottom: 2rem;
+        line-height: 1.8;
+    }
+
+    .blog-post h2 {
+        font-size: 2.25rem;
+        margin: 3rem 0 1.5rem;
+        color: var(--text-dark);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0;
+    }
+
+    .blog-post h2 i {
+        color: var(--primary-color);
+        font-size: 0.9em;
+        opacity: 0.9;
+    }
+
+    .blog-post h3 {
+        font-size: 1.75rem;
+        margin: 2rem 0 1rem;
+        color: var(--primary-color);
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0;
+    }
+
+    .blog-post h3 i {
+        color: var(--secondary-color);
+        font-size: 0.85em;
+        opacity: 0.9;
+    }
+
+    .blog-post p {
+        margin: 1rem 0;
+        color: var(--text-dark);
+        font-size: 1.1rem;
+        line-height: 1.8;
+        padding: 0;
+    }
+
+    .blog-post ul {
+        margin: 1rem 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .blog-post li {
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+        position: relative;
+    }
+
+    .blog-post li::before {
+        content: "•";
+        position: absolute;
+        left: 0.75rem;
+        top: 0;
+        color: var(--primary-color);
+        font-size: 1.2em;
+        line-height: 1.6;
+    }
+
+    .blog-post img {
+        max-width: 100%;
+        height: auto;
+        margin: 2rem 0;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .blog-post img:hover {
+        transform: translateY(-4px);
+    }
+
+    .blog-post em {
+        font-style: italic;
+        color: #64748b;
+    }
+
+    .cta-button {
+        display: inline-block;
+        padding: 1rem 2.5rem;
+        margin: 2rem 0;
+        background: var(--primary-color);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-size: 0.95rem;
+    }
+
+    .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(37, 99, 235, 0.2);
+        background: var(--gradient-end);
+    }
+
+    .excel-download {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #185c37;  /* Microsoft 365 Excel green */
+        font-size: 1.75rem;
+        margin-left: 0.5rem;
+        padding: 0.5rem;
+        border-radius: 8px;
+        background: rgba(24, 92, 55, 0.08);
+        transition: all 0.3s ease;
+        text-decoration: none;
+        box-shadow: 0 2px 4px rgba(24, 92, 55, 0.1);
+    }
+
+    .excel-download:hover {
+        transform: translateY(-2px);
+        background: rgba(24, 92, 55, 0.12);
+        box-shadow: 0 4px 12px rgba(24, 92, 55, 0.2);
+    }
+
+    .excel-download i {
+        filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.1));
+    }
+
+    @media (max-width: 768px) {
+        .hero {
+            padding: 6rem 0 4rem;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+        }
+
+        .blog-post {
+            padding: 1.5rem;
+        }
+
+        .blog-post h2 {
+            font-size: 1.75rem;
+        }
+
+        .blog-post h3 {
+            font-size: 1.5rem;
+        }
+
+        .blog-post p, .blog-post li {
+            font-size: 1rem;
+        }
+    }
+
+    /* Table of Contents Styles */
+    .table-of-contents {
+        background: var(--bg-light);
+        border-radius: 12px;
+        padding: 2rem;
+        margin: 2rem 0;
+        border: 1px solid var(--border-color);
+    }
+
+    .table-of-contents h4 {
+        font-size: 1.25rem;
+        color: var(--text-dark);
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .table-of-contents ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .table-of-contents ul ul {
+        margin-left: 1.5rem;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .table-of-contents li {
+        margin-bottom: 0.75rem;
+        font-size: 1rem;
+    }
+
+    .table-of-contents a {
+        color: var(--text-dark);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.25rem 0;
+        transition: all 0.2s ease;
+    }
+
+    .table-of-contents a:hover {
+        color: var(--primary-color);
+        transform: translateX(4px);
+    }
+
+    .table-of-contents i {
+        font-size: 0.9em;
+        color: var(--secondary-color);
+    }
+
+    /* Improved Section Spacing */
+    .blog-post section {
+        margin-bottom: 3rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .blog-post section:last-child {
+        border-bottom: none;
+    }
+
+    /* Enhanced Typography */
+    .blog-post p {
+        max-width: 70ch;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .blog-post ul li {
+        position: relative;
+        padding-left: 2rem;
+    }
+
+    .blog-post ul li::before {
+        content: "•";
+        position: absolute;
+        left: 0.75rem;
+        top: 0;
+        color: var(--primary-color);
+        font-size: 1.2em;
+        line-height: 1.6;
+    }
+
+    /* Improved Image Display */
+    .blog-post figure {
+        margin: 2.5rem 0;
+        text-align: center;
+    }
+
+    .blog-post figure img {
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .blog-post figure figcaption {
+        margin-top: 1rem;
+        color: #64748b;
+        font-size: 0.9rem;
+        font-style: italic;
+    }
+
+    /* Enhanced Mobile Styles */
+    @media (max-width: 768px) {
+        .table-of-contents {
+            padding: 1.5rem;
+        }
+
+        .table-of-contents ul ul {
+            margin-left: 1rem;
+        }
+
+        .blog-post p {
+            max-width: 100%;
+        }
+    }
+
+    /* Key Information Highlights */
+    .key-info {
+        background: rgba(37, 99, 235, 0.05);
+        border-left: 4px solid var(--primary-color);
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 0 8px 8px 0;
+    }
+
+    /* Migration Notice */
+    .migration-notice {
+        background: var(--notice-bg);
+        border-left: 4px solid var(--notice-border);
+        padding: 1rem 1.5rem;
+        margin: 0 0 1.5rem 0;
+        border-radius: 0 8px 8px 0;
+        font-size: 0.95rem;
+    }
+    
+    .migration-notice p {
+        margin: 0;
+        color: #92400e;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .migration-notice i {
+        color: var(--notice-border);
+        font-size: 1.2em;
+    }
+    
+    .migration-notice a {
+        color: #92400e;
+        font-weight: 600;
+        text-decoration: underline;
+        text-decoration-style: dotted;
+    }
+    
+    .migration-notice a:hover {
+        text-decoration-style: solid;
+    }
+
+    .key-info p {
+        margin: 0;
+    }
+
+    .key-info .feature-list {
+        margin: 0.5rem 0 0 0;
+    }
+
+    /* Image Improvements */
+    .image-container {
+        margin: 2.5rem 0;
+        text-align: center;
+    }
+
+    .image-container img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .image-container img:hover {
+        transform: translateY(-4px);
+    }
+
+    .image-caption {
+        margin-top: 1rem;
+        color: #64748b;
+        font-size: 0.9rem;
+        font-style: italic;
+    }
+
+    /* Numerical Values Highlight */
+    .value {
+        font-family: 'Monaco', 'Consolas', monospace;
+        color: var(--primary-color);
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    /* Section Headers Enhancement */
+    .section-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .section-header h2 {
+        margin: 0;
+    }
+
+    .section-header .section-meta {
+        font-size: 0.9rem;
+        color: #64748b;
+    }
+
+    /* Enhanced List Styling */
+    .feature-list {
+        margin: 1.5rem 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .feature-list li {
+        position: relative;
+        padding-left: 2rem;
+        margin-bottom: 0.75rem;
+        line-height: 1.6;
+    }
+
+    .feature-list li::before {
+        content: "•";
+        position: absolute;
+        left: 0.75rem;
+        top: 0;
+        color: var(--primary-color);
+        font-size: 1.2em;
+        line-height: 1.6;
+    }
+
+    /* Section content alignment */
+    .section-content {
+        padding: 0;
+        margin: 0;
+    }
+
+    .section-content p {
+        margin: 1.5rem 0;
+        line-height: 1.6;
+    }
+
+    .section-content .key-info {
+        margin: 2rem 0;
+        padding: 1.5rem;
+    }
+
+    .section-content .key-info p {
+        margin: 0;
+    }
+
+    /* Back to Top Button */
+    .back-to-top {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        background: var(--primary-color);
+        color: white;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        opacity: 0;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    }
+
+    .back-to-top.visible {
+        opacity: 1;
+    }
+
+    .back-to-top:hover {
+        transform: translateY(-4px);
+        background: var(--gradient-end);
+    }
+
+    /* Add new CSS for back to contents link */
+    .back-to-contents {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--secondary-color);
+        text-decoration: none;
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+        margin: 2rem 0;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        transition: all 0.2s ease;
+    }
+
+    .back-to-contents:hover {
+        color: var(--primary-color);
+        background: var(--bg-light);
+        transform: translateX(-4px);
+    }
+
+    .back-to-contents i {
+        font-size: 0.8em;
+    }
+
+    /* Add these new styles before the existing styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        overflow: auto;
+    }
+
+    .modal-content {
+        margin: auto;
+        display: block;
+        position: relative;
+        max-width: 90%;
+        max-height: 90vh;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .modal-content img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    .close {
+        position: absolute;
+        right: 2rem;
+        top: 2rem;
+        color: #f1f1f1;
+        font-size: 2.5rem;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .zoomable {
+        cursor: zoom-in;
+    }
+
+    .zoomable img {
+        transition: transform 0.3s ease;
+    }
+
+    .zoomable:hover img {
+        transform: scale(1.02);
+    }
+
+    /* Add zoom controls */
+    .zoom-controls {
+        position: fixed;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 1rem;
+        z-index: 1001;
+    }
+
+    .zoom-btn {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 1.2rem;
+        transition: background 0.3s ease;
+    }
+
+    .zoom-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+    }
+    
+    /* Social Sharing Buttons */
+    .social-sharing {
+        margin: 2rem 0;
+        padding: 1.5rem;
+        background: var(--bg-light);
+        border-radius: 12px;
+        text-align: center;
+    }
+    
+    .social-sharing h4 {
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+        color: var(--text-dark);
+    }
+    
+    .social-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.75rem 1.5rem;
+        margin: 0.5rem;
+        border-radius: 8px;
+        color: white;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    
+    .social-btn i {
+        margin-right: 0.5rem;
+        font-size: 1.1rem;
+    }
+    
+    .twitter-btn {
+        background-color: var(--twitter-color);
+    }
+    
+    .facebook-btn {
+        background-color: var(--facebook-color);
+    }
+    
+    .linkedin-btn {
+        background-color: var(--linkedin-color);
+    }
+    
+    .social-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* CTA Link */
+    .cta-link {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        background: var(--primary-color);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    
+    .cta-link:hover {
+        background: var(--gradient-end);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(37, 99, 235, 0.2);
+    }
+    
+    /* Responsive adjustments for social buttons */
+    @media (max-width: 768px) {
+        .social-btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+    }
+
+    /* Breadcrumb Navigation */
+    .breadcrumb {
+        margin: 1.5rem 0;
+        font-size: 0.9rem;
+    }
+    
+    .breadcrumb ol {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .breadcrumb li {
+        display: flex;
+        align-items: center;
+    }
+    
+    .breadcrumb li:not(:last-child)::after {
+        content: "/";
+        margin: 0 0.5rem;
+        color: #94a3b8;
+    }
+    
+    .breadcrumb a {
+        color: var(--primary-color);
+        text-decoration: none;
+    }
+    
+    .breadcrumb a:hover {
+        text-decoration: underline;
+    }
+    
+    .breadcrumb li:last-child {
+        color: #64748b;
+    }
+</style>
+{% endblock %}

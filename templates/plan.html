@@ -1,159 +1,133 @@
-<!DOCTYPE html> 
-<html> 
+{% extends "base.html" %}
 
-<head> 
-<title>DynaRetire Simulator</title>
-<link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
-<link rel="apple-touch-icon" href="{{ url_for('static', filename='logo.png') }}">
-<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
-<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
-	<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css'> 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" /> 
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/bulma-steps.min.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/my-bulma-steps.css') }}">
-	
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-	<style> 
+{% block extra_head %}
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css'> 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bulma-steps.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/my-bulma-steps.css') }}">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
     .link-container {
-        display: inline-block; /* Display the containers side by side */
-        margin-right: 40px; /* Add some spacing between the links */
+        display: inline-block;
+        margin-right: 40px;
     }
 
+    .container>p { 
+        display: flex;
+        justify-content: space-between;
+    } 
 
-		.container>p { 
-			display: flex;
-  	justify-content: space-between;
-		} 
-		.container>.tabs { 
-			margin-top: 30px; 
-		} 
-		.buttons-container {
-  			display: flex;
-  			justify-content: space-between;
-		}
+    .container>.tabs { 
+        margin-top: 30px; 
+    } 
 
-		.step-btn {
-		/* Adjust as needed */
-		margin: 20px 0;
-		}
+    .buttons-container {
+        display: flex;
+        justify-content: space-between;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 10;
+        background: white;
+        padding: 10px;
+        box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+    }
 
-		.buttons-container {
-			position: fixed;
-			bottom: 0;
-			left: 0;
-			width: 100%;
-			z-index: 10; /* Higher than the content */
-			background: white; /* Or any color that fits your design */
-			padding: 10px; /* Adjust padding to your preference */
-			box-shadow: 0 -2px 5px rgba(0,0,0,0.2); /* Optional: adds a shadow for better visibility */
-		}
-		.buttons-container .button {
-			border: none;
-			background: transparent;
-		}
+    .buttons-container .button {
+        border: none;
+        background: transparent;
+    }
 
-		.buttons-container .button i {
-			font-size: 24px; /* Adjust size as needed */
-			color: #3273dc; /* Adjust color to match your design */
-		}
+    .buttons-container .button i {
+        font-size: 24px;
+        color: #3273dc;
+    }
 
-		/* Additional styling for the submit button to differentiate it */
-		#submit-btn i {
-			color: #23d160; /* Success color, adjust as needed */
-		}
-	</style> 
-</head> 
+    #submit-btn i {
+        color: #23d160;
+    }
 
-<body class="has-text-centered">
-{% block header %}
-<h1 class="is-size-2 has-text-success"> 
-<img src="{{ url_for('static', filename='logo.png') }}" alt="Simulator Icon" style="vertical-align: middle; margin-right: 5px;width:70px;height:70px;">
-DynaRetire Simulator
-</h1>
-<h2>Strategic Allocation For Preferred Lifestyle & Peace Of Mind</h2>
-
-<div class="link-container"><a href="https://findinggoodlife.com/dynaretire-plan-retirement-realistic/" target="_blank" rel="noopener noreferrer">Features</a></div>
-<div class="link-container"><a href="https://findinggoodlife.com/dynaretire-stepbystep-show/" target="_blank" rel="noopener noreferrer">Show Case</a></div>
-<div class="link-container"><a href="https://findinggoodlife.com/wp-content/uploads/2024/07/dynaRetire-1.xlsx">Sample Result</a></div>
-<br>
-<br>
-<br>
+    /* Add margin-top to account for fixed header */
+    .content-wrapper {
+        margin-top: 100px;
+    }
+</style>
 {% endblock %}
-	<div class="container"> 	
-		<div id="message-container"></div>
-<div class="steps my-step-style has-content-centered" id="steps-plan" style="margin-bottom: 1rem;">
-			<div class="steps-segment  is-active " id="funds" data-target="funds">
-				<a href="#">
-					<span class="steps-marker is-primary">1</span>
-					<div class="steps-content">
-					  <p class="is-size-6">Funds</p>
-					</div>
-				</a>
-			</div>
-			<div class="steps-segment  is-dashed" id="expenses" data-target="expenses">
-				<a href="#">
-					<span class="steps-marker is-primary">2</span>
-					<div class="steps-content">
-					  <p class="is-size-6">Expenses</p>
-					</div>
-				</a>					
-			</div>
-			<div class="steps-segment is-dashed" id="income"  data-target="income">
-				<a href="#">
-					<span class="steps-marker is-info">?</span>
-					<div class="steps-content">
-					  <p class="is-size-6">Income</p>
-					</div>
-				</a>
-			</div>
-			<div class="steps-segment" id="strategic" data-target="strategic">
-				<a href="#">
-					<span class="steps-marker is-info">?</span>
-					<div class="steps-content">
-					  <p class="is-size-6">Risk Handling</p>
-					</div>
-				</a>
-			</div>
-		</div>		 
-		
-		<div class="buttons-container">
-			<button class="button is-info is-light" id="prev-btn" disabled><i class="fas fa-arrow-left"></i></button></>
-			
-			<article>
-				**Privacy Statement:** <br>
-				Your data is securely discarded after delivering the Excel. We do not retain any trace of your submitted data or the generated results. Your privacy matters!
-			</article >
-			<div class="buttons is-pulled-right">
-				<button class="button is-success is-light is-hidden" type="submit" id="submit-btn">
-					<span class="icon is-small"><i class="fas fa-check"></i></span>
-					<span>Submit</span></button>
-				<button class="button is-info is-light " id="next-btn"><i class="fas fa-arrow-right"></i></button>
-			</div>
-		  </div>
-		
 
-		
-		<div class="content-container" style="padding-bottom: 60px; margin-top: 0;">
-			<div id="tab-content">
-				<form id="rform" novalidate> 
-					<!-- Content will be loaded here -->
-					<div id="funds-content" class="content-tab" ></div>
-					<div id="expenses-content" class="content-tab"  style="display:none;"></div>
-					<div id="income-content" class="content-tab" style="display:none;"></div>
-					<div id="strategic-content" class="content-tab" style="display:none;"></div>
-				</form>
-			  </div>
-		</div>
+{% block content %}
+<div class="content-wrapper">
+    <h2 class="subtitle has-text-centered">Strategic Allocation For Preferred Lifestyle & Peace Of Mind</h2>
 
-	</div> 
+    <br>
+    <br>
+    <div class="container"> 
+        <div id="message-container"></div>
+        <div class="steps my-step-style has-content-centered" id="steps-plan" style="margin-bottom: 1rem;">
+            <div class="steps-segment is-active" id="funds" data-target="funds">
+                <a href="#">
+                    <span class="steps-marker is-primary">1</span>
+                    <div class="steps-content">
+                      <p class="is-size-6">Funds</p>
+                    </div>
+                </a>
+            </div>
+            <div class="steps-segment is-dashed" id="expenses" data-target="expenses">
+                <a href="#">
+                    <span class="steps-marker is-primary">2</span>
+                    <div class="steps-content">
+                      <p class="is-size-6">Expenses</p>
+                    </div>
+                </a>                    
+            </div>
+            <div class="steps-segment is-dashed" id="income" data-target="income">
+                <a href="#">
+                    <span class="steps-marker is-info">?</span>
+                    <div class="steps-content">
+                      <p class="is-size-6">Income</p>
+                    </div>
+                </a>
+            </div>
+            <div class="steps-segment" id="strategic" data-target="strategic">
+                <a href="#">
+                    <span class="steps-marker is-info">?</span>
+                    <div class="steps-content">
+                      <p class="is-size-6">Risk Handling</p>
+                    </div>
+                </a>
+            </div>
+        </div>         
+        
+        <div class="buttons-container">
+            <button class="button is-info is-light" id="prev-btn" disabled><i class="fas fa-arrow-left"></i></button>
+            
+            <article>
+                **Privacy Statement:** <br>
+                Your data is securely discarded after delivering the Excel. We do not retain any trace of your submitted data or the generated results. Your privacy matters!
+            </article>
+            <div class="buttons is-pulled-right">
+                <button class="button is-success is-light is-hidden" type="submit" id="submit-btn">
+                    <span class="icon is-small"><i class="fas fa-check"></i></span>
+                    <span>Submit</span></button>
+                <button class="button is-info is-light" id="next-btn"><i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+        
+        <div class="content-container" style="padding-bottom: 60px; margin-top: 0;">
+            <div id="tab-content">
+                <form id="rform" novalidate> 
+                    <div id="funds-content" class="content-tab"></div>
+                    <div id="expenses-content" class="content-tab" style="display:none;"></div>
+                    <div id="income-content" class="content-tab" style="display:none;"></div>
+                    <div id="strategic-content" class="content-tab" style="display:none;"></div>
+                </form>
+            </div>
+        </div>
+    </div> 
+</div>
+{% endblock %}
 
-
-</div> 
-		  
+{% block scripts %}
 <script type="text/javascript" src="{{ url_for('static', filename='js/plan/plan.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/utilities/json_data.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/utilities/validation.js') }}"></script>
-</body> 
-
-</html>
+{% endblock %}

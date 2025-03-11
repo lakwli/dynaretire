@@ -1,0 +1,17 @@
+it is retirement financial planning app. What the app doing:  It have dynamic expeses plan with different amount along the age (e.g. travel cost high at the beginning but reduce later on, medical low but high later on with also high inflation), dynamic income with differnet growth rate projected in different time period and only apply certain period, to backtest against investment history to know better how comfort with the money can supprot for retirement, and also what are the backup plan to sustain it including lower expenses subject to which expenses and how low you can go for. it also included investment strategy to reduce risk with different allocation on risk fund and safe fund. It also include strategy that should bad market happen stop from rebalancing options. For earlier retirement it also support mimic separate funds allocation (e..g one for pension, one for own investment) with differnet return rate to know how well or likely you can achieve the retirement age, along with withdrawal contraint that withdrawal from pension fund can only happen after your eligible age which is important if you plan for earlier retirement as your investment money must be able to sustain before that age and also not exhauted too much which will impact the overall return, which will better to mimic if earlier retirement will work. Based on above, please write a proper hero section to be impactful, with the key point especially what make this app stand out from the cloud and which is critical in the planning which a lot of retirment plan lacking of, especially from real life projecting. My slogan is "Plan for prefer lifestyle & peace of mind" (which cover how you plan for your desire expenses changes and also how you take care of risk with backtest, medical cost climbing, bucket strategy... work together to know better how you control and adjust to find the balance that work the best for your, under your control, with informed deciison, to work the best for yourself)
+
+
+
+
+
+For the Old Site (findinggoodlife.com)
+If You Choose to Remove the Content (Recommended)
+Set up 301 redirects from the old URLs to the corresponding new URLs:
+    Redirect 301 /dynaretire-a-step-by-step-showcase/ https://new-domain.com/path-to-new-page
+Update your XML sitemap to remove these pages.
+Submit the updated sitemap to Google Search Console.
+If You Choose to Retain the Content
+Add a canonical tag pointing to the new URL:
+Add a visible notice at the top of the page informing visitors that the content has moved.
+Consider adding a meta robots tag with "noindex" if you want to eventually remove it from search results:
+    Redirect 301 /dynaretire-a-step-by-step-showcase/ https://new-domain.com/path-to-new-page
