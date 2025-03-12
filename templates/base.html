@@ -407,10 +407,10 @@
             </div>
         </div>
     </footer>
-    {% elif footer_type == 'minimal' %}
+    {% else %}
     <footer class="site-footer site-footer-minimal">
         <div class="container">
-            <p>&copy; {{ current_year }} DynaRetire. All rights reserved.</p>
+            <p>&copy; {{ current_year }} DynaRetire. All rights reserved. | <a href="/privacy.html" style="color: var(--accent-color); text-decoration: none;">Privacy Policy</a></p>
         </div>
     </footer>
     {% endif %}
