@@ -23,8 +23,9 @@ def inject_year():
     return {'current_year': datetime.now().year}
 
 @app.route('/')
+@app.route('/home')
 def home():
-    return render_template('marketing/index2.html')
+    return render_template('marketing/landing.html')
 
 @app.route('/test1')
 def test1():
@@ -90,9 +91,13 @@ def funds():
 def strategic():
     return render_template('strategic.html')
 
-@app.route('/showcase')
+@app.route('/showcase.html')
 def showcase():
     return render_template('marketing/showcase.html')
+
+@app.route('/privacy.html')
+def privacy():
+    return render_template('marketing/privacy.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

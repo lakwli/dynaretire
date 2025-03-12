@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% set footer_type = 'minimal' %}
+
+{% block title %}Privacy Policy - DynaRetire{% endblock %}
+
+{% block content %}
+<main>
+    <div class="container privacy-content">
+        <h1>Privacy Policy</h1>
+        
+        <section>
+            <h2>Our Commitment to Privacy</h2>
+            <p>At DynaRetire, we take your privacy seriously. This policy outlines how we handle your information when you use our retirement planning simulator.</p>
+        </section>
+
+        <section>
+            <h2>Data Collection and Usage</h2>
+            <ul>
+                <li><strong>No Data Storage:</strong> We do not store any of your financial or personal information. All data entered into our simulator is processed in real-time and discarded immediately after generating your results.</li>
+                <li><strong>Excel Generation:</strong> When you use our simulator, the results are delivered to you as an Excel file. This file is generated on-demand and no copy is retained on our servers.</li>
+                <li><strong>No Cookies:</strong> We do not use cookies or any other tracking mechanisms to monitor your usage of our site.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Data Security</h2>
+            <p>While we process your inputs to generate retirement simulations:</p>
+            <ul>
+                <li>All calculations are performed in real-time</li>
+                <li>Data is held in temporary memory only during the calculation process</li>
+                <li>No information is permanently stored</li>
+                <li>No data is shared with third parties</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Your Control</h2>
+            <p>Since we don't store any of your data:</p>
+            <ul>
+                <li>There's no need to request data deletion</li>
+                <li>No personal information to export</li>
+                <li>No account creation required</li>
+                <li>Complete privacy in your retirement planning</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Contact Us</h2>
+            <p>If you have any questions about our privacy practices, please contact us at privacy@dynaretire.com</p>
+        </section>
+    </div>
+</main>
+{% endblock %}
+
+{% block extra_head %}
+<style>
+    .privacy-content {
+        max-width: 800px;
+        margin: 3rem auto;
+        padding: 2rem;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 6px rgba(37, 99, 235, 0.1);
+    }
+
+    .privacy-content h1 {
+        color: var(--text-dark);
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .privacy-content h2 {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+    }
+
+    .privacy-content section {
+        margin-bottom: 2rem;
+    }
+
+    .privacy-content p {
+        color: var(--text-dark);
+        line-height: 1.7;
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+    }
+
+    .privacy-content ul {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0;
+    }
+
+    .privacy-content li {
+        padding-left: 1.5rem;
+        margin-bottom: 0.75rem;
+        position: relative;
+        line-height: 1.6;
+    }
+
+    .privacy-content li::before {
+        content: "•";
+        color: var(--primary-color);
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .privacy-content strong {
+        color: var(--primary-color);
+        font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+        .privacy-content {
+            padding: 1.5rem;
+            margin: 2rem 1rem;
+        }
+
+        .privacy-content h1 {
+            font-size: 2rem;
+        }
+
+        .privacy-content h2 {
+            font-size: 1.25rem;
+        }
+
+        .privacy-content p, .privacy-content li {
+            font-size: 1rem;
+        }
+    }
+</style>
+{% endblock %}

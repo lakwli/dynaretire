@@ -2,6 +2,8 @@
 
 {% block title %}DynaRetire: Comprehensive Retirement Planning Tool With Real-Life Scenarios{% endblock %}
 
+{% block footer %}{% endblock %}
+
 {% block meta %}
 <meta name="description" content="Explore DynaRetire's step-by-step retirement planning tool with Martin's real-life scenario. Learn how to plan for early retirement with dynamic expenses, investment strategies, and risk management.">
 <meta name="keywords" content="retirement planning, early retirement, pension fund, retirement calculator, retirement simulation, financial planning, investment strategy">
@@ -46,10 +48,6 @@
         <meta itemprop="dateModified" content="2024-08-06">
         
         <div class="content-section">
-            <div class="migration-notice">
-                <p><i class="fas fa-info-circle"></i> This content was previously published on <a href="https://findinggoodlife.com/dynaretire-a-step-by-step-showcase/" rel="nofollow">Finding Good Life</a> and has been migrated to its new home here.</p>
-            </div>
-            
             <div class="key-info">
                 <p>In this blog, we will use Martin's story to demonstrate how the DynaRetire app works by helping him input his retirement data according to his expectations. The app will generate the result in the form of an Excel file. You may visit <a href="/adaptive-retirement-planning">DynaRetire: Adaptive Retirement Planning With Real-Life Changes</a> about the app features.</p>
             </div>
@@ -72,8 +70,7 @@
                         </ul>
                     </li>
                     <li><a href="#income"><i class="fas fa-money-bill-trend-up"></i> Incomes</a></li>
-                    <li><a href="#early-retirement"><i class="fas fa-umbrella-beach"></i> Early Retirement Tools</a></li>
-                    <li><a href="#bucket-strategy"><i class="fas fa-layer-group"></i> Bucket Strategy Simulator</a></li>
+                    <li><a href="#early-retirement"><i class="fas fa-shield-halved"></i> Investment Risk Management</a></li>
                     <li><a href="#app"><i class="fas fa-gears"></i> How The App Works</a></li>
                     <li><a href="#result"><i class="fas fa-file-excel"></i> Interpret Result</a></li>
                     <li><a href="#conclusion"><i class="fas fa-check-circle"></i> Conclusion</a></li>
@@ -92,7 +89,7 @@
                     <li>He and his employer continue to <strong>contribute to the pension fund</strong>, and Martin also <strong>saves extra</strong> in his investments specifically for retirement</li>
                     <li>Martin has <strong>rental income</strong> from his apartment that will continue after he retires. He expects the growth rate to be lower than his expenses inflation</li>
                     <li>Covering his current <strong>living expenses</strong> like food, transport, bills, and insurance. All these expenses have their inflation rate</li>
-                    <li>He also plans for high <strong>medical bills</strong> not covered by insurance, and higher <strong>health-related expenses</strong>, with special high inflation rate</li>
+                    <li>He also plans for future (<strong>old age high medical bills</strong>) that may not be covered by insurance, and <strong>health-related expenses</strong>, with <strong>higher inflation rate</strong> than normal living expenses</li>
                     <li>Dreams of <strong>travelling the world</strong> and travel fewer afterwards and stop travelling upon 80</li>
                     <li>Paying off his <strong>housing loan</strong> until 60</li>
                     <li>Upgrading his <strong>insurance</strong> in a few years, and he expects to pay until 80</li>
@@ -202,29 +199,13 @@
 
         <section id="early-retirement">
             <div class="section-header">
-                <h2><i class="fas fa-umbrella-beach"></i> Early Retirement Tools: Minimum Spending, Load Balancing, Pause Selling, Asset Allocation</h2>
+                <h2><i class="fas fa-shield-halved"></i> Investment Risk Management: Minimum Spending, Load Balancing, Pause Selling, Asset Allocation</h2>
             </div>
             <div class="section-content">
                 <p>To manage investment risks, he has a contingency plan: if the personal history average history returns (since retired year) drop below 3% after retirement, he will switch to minimum spending. Additionally, he will avoid selling riskier investments during downturns to prevent losses, prioritizing risk management over growth.</p>
 
                 <p>In terms of asset allocation, he plans to maintain a 70% stock and 30% bond mix until age 60. Then, he will shift to a 60% stock and 40% bond mix. By the time he reaches 65, he plans to further adjust to a 50% stock and 50% bond allocation. He also intends to rebalance his portfolio annually to stay aligned with these goals.</p>
                 <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-setup-investment-risk-management.svg') }}" alt="DynaRetire how-to: setup investment risk management">
-            </div>
-            <a href="#" class="back-to-contents"><i class="fas fa-arrow-up"></i> Back to Contents</a>
-        </section>
-
-        <section id="bucket-strategy">
-            <div class="section-header">
-                <h2><i class="fas fa-layer-group"></i> Bucket Strategy Simulator</h2>
-            </div>
-            <div class="section-content">
-                <p>The Bucket Strategy Simulator helps you divide your retirement savings into different time-based buckets, each serving a specific purpose:</p>
-                <ul class="feature-list">
-                    <li><strong>Short-term bucket:</strong> For immediate expenses (1-2 years)</li>
-                    <li><strong>Medium-term bucket:</strong> For expenses in the next 3-10 years</li>
-                    <li><strong>Long-term bucket:</strong> For growth and expenses beyond 10 years</li>
-                </ul>
-                <p>This strategy helps protect your retirement savings from market volatility while ensuring you have enough liquidity for immediate needs.</p>
             </div>
             <a href="#" class="back-to-contents"><i class="fas fa-arrow-up"></i> Back to Contents</a>
         </section>
@@ -276,7 +257,7 @@
                 <p>DynaRetire provides a comprehensive approach to retirement planning that accounts for the dynamic nature of life. By following Martin's example, you can see how the tool helps you:</p>
                 
                 <ul class="feature-list">
-                    <li>Plan for <strong>early retirement</strong> with realistic financial projections</li>
+                    <li>Plan for <strong>early retirement</strong> with expected financial projections</li>
                     <li>Account for <strong>changing expenses</strong> throughout different life stages</li>
                     <li>Manage <strong>investment risks</strong> with adaptive strategies</li>
                     <li>Visualize the <strong>long-term impact</strong> of your financial decisions</li>
@@ -284,7 +265,7 @@
                 </ul>
                 
                 <div style="text-align: center; margin: 3rem 0;">
-                    <a href="/app" class="cta-button">Try DynaRetire Today</a>
+                    <a href="{{ url_for('plan') }}" class="cta-button">Try DynaRetire Today</a>
                 </div>
                 
                 <div class="key-info" style="margin-top: 2rem;">
@@ -482,127 +463,10 @@
         --notice-border: #0ea5e9;      /* Sky blue for notice borders */
     }
 
-    /* Update footer styles for green theme */
-    .site-footer {
-        background: #064e3b;  /* Dark emerald background */
-        color: #d1fae5;      /* Light mint text */
-    }
-
-    .footer-section h4 {
-        color: white;
-    }
-
-    .footer-section p {
-        color: #a7f3d0;  /* Lighter mint text */
-    }
-
-    .footer-section ul a {
-        color: #a7f3d0;
-    }
-
-    .footer-section ul a:hover {
-        color: white;
-    }
-
-    .footer-bottom {
-        border-top: 1px solid #065f46;  /* Darker emerald border */
-    }
-
-    .footer-bottom p {
-        color: #a7f3d0;
-    }
-
-    .footer-social a {
-        color: #a7f3d0;
-    }
-
-    .footer-social a:hover {
-        color: white;
-    }
-
     /* Update key-info for modern theme */
     .key-info {
         background: rgba(14, 165, 233, 0.05);
         border-left: 4px solid var(--primary-color);
-    }
-
-    /* Update migration notice for modern theme */
-    .migration-notice {
-        background: var(--notice-bg);
-        border-left: 4px solid var(--notice-border);
-    }
-    
-    .migration-notice p {
-        color: #0f172a;
-    }
-    
-    .migration-notice i {
-        color: var(--notice-border);
-    }
-    
-    .migration-notice a {
-        color: #0f172a;
-    }
-
-    /* Update table of contents hover effect */
-    .table-of-contents a:hover {
-        color: var(--primary-color);
-    }
-
-    .table-of-contents i {
-        color: var(--secondary-color);
-    }
-
-    /* Update back to top button */
-    .back-to-top {
-        background: var(--primary-color);
-        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
-    }
-
-    .back-to-top:hover {
-        background: var(--gradient-end);
-    }
-
-    /* Update CTA button */
-    .cta-button {
-        background: var(--primary-color);
-        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.15);
-    }
-
-    .cta-button:hover {
-        background: var(--gradient-end);
-        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.2);
-    }
-
-    /* Update hero section */
-    .hero {
-        background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
-    }
-
-    /* Update strong text color */
-    .blog-post strong {
-        color: var(--primary-color);
-    }
-
-    /* Update bullet points */
-    .blog-post li::before {
-        color: var(--primary-color);
-    }
-
-    /* Update value highlights */
-    .value {
-        color: var(--primary-color);
-    }
-
-    /* Update social buttons */
-    .social-btn {
-        background: var(--primary-color);
-    }
-    
-    .social-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(16, 185, 129, 0.2);
-        background: var(--gradient-end);
     }
 
     .hero {
@@ -959,7 +823,7 @@
     
     .migration-notice p {
         margin: 0;
-        color: #92400e;
+        color: #0f172a;
         display: flex;
         align-items: center;
         gap: 0.5rem;
@@ -971,7 +835,7 @@
     }
     
     .migration-notice a {
-        color: #92400e;
+        color: #0f172a;
         font-weight: 600;
         text-decoration: underline;
         text-decoration-style: dotted;

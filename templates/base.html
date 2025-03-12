@@ -218,30 +218,38 @@
 
         /* Footer Styles */
         .site-footer {
-            background: #0f172a;  /* Slate dark background */
-            color: #e0f2fe;      /* Light sky blue text */
+            background: var(--accent-color);  /* Deep sky blue background */
+            color: rgba(255, 255, 255, 0.9);  /* Slightly transparent white text */
             padding: 4rem 0 2rem;
             margin-top: 4rem;
         }
 
-        .footer-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
+        /* Minimal Footer */
+        .site-footer-minimal {
+            background: transparent;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(2, 132, 199, 0.1);  /* Subtle border using accent color */
         }
 
-        .footer-section h4 {
-            color: white;
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
+        .site-footer-minimal p {
+            color: var(--text-dark);
+            opacity: 0.7;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
 
         .footer-logo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 1rem;
             margin-bottom: 1rem;
         }
 
@@ -252,15 +260,21 @@
 
         .footer-logo h3 {
             color: white;
-            font-size: 1.25rem;
             margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .footer-section h4 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
         }
 
         .footer-section p {
-            color: #bae6fd;  /* Lighter sky blue text */
+            color: rgba(255, 255, 255, 0.8);  /* More transparent white for paragraph text */
+            margin-bottom: 1.5rem;
             font-size: 0.95rem;
             line-height: 1.6;
-            margin-bottom: 1.5rem;
         }
 
         .footer-section ul {
@@ -273,10 +287,10 @@
         }
 
         .footer-section ul a {
-            color: #bae6fd;
+            color: rgba(255, 255, 255, 0.8);  /* More transparent white for links */
             text-decoration: none;
-            transition: color 0.3s ease;
             font-size: 0.95rem;
+            transition: color 0.2s ease;
         }
 
         .footer-section ul a:hover {
@@ -284,16 +298,19 @@
         }
 
         .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);  /* Subtle white border */
             padding-top: 2rem;
-            border-top: 1px solid #1e293b;  /* Slate border */
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .footer-bottom p {
-            color: #bae6fd;
+            color: rgba(255, 255, 255, 0.8);  /* More transparent white for copyright text */
             font-size: 0.9rem;
+            margin: 0;
         }
 
         .footer-social {
@@ -302,9 +319,9 @@
         }
 
         .footer-social a {
-            color: #bae6fd;
-            text-decoration: none;
-            transition: color 0.3s ease;
+            color: rgba(255, 255, 255, 0.8);  /* More transparent white for social icons */
+            font-size: 1.2rem;
+            transition: color 0.2s ease;
         }
 
         .footer-social a:hover {
@@ -312,19 +329,13 @@
         }
 
         @media (max-width: 768px) {
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
             .footer-bottom {
                 flex-direction: column;
                 text-align: center;
-                gap: 1rem;
             }
-
-            .site-footer {
-                padding: 3rem 0 1.5rem;
+            
+            .footer-social {
+                justify-content: center;
             }
         }
     </style>
@@ -357,6 +368,8 @@
         {% block content %}{% endblock %}
     </main>
 
+    {% block footer %}
+    {% if footer_type == 'full' %}
     <footer class="site-footer">
         <div class="container">
             <div class="footer-content">
@@ -365,7 +378,7 @@
                         <img src="{{ url_for('static', filename='logo.png') }}" alt="DynaRetire Logo" width="32" height="32">
                         <h3>DynaRetire</h3>
                     </div>
-                    <p>Plan your retirement with confidence using our dynamic retirement simulation tool.</p>
+                    <p>Strategic Allocation For Preferred Lifestyle & Peace Of Mind</p>
                 </div>
                 <div class="footer-section">
                     <h4>Quick Links</h4>
@@ -380,8 +393,7 @@
                     <h4>Resources</h4>
                     <ul>
                         <li><a href="https://findinggoodlife.com/wp-content/uploads/2024/07/dynaRetire-1.xlsx">Documentation</a></li>
-                        <li><a href="{{ url_for('showcase') }}#app">How It Works</a></li>
-                        <li><a href="{{ url_for('showcase') }}#result">Sample Results</a></li>
+                        <li><a href="/privacy.html">Privacy Policy</a></li>
                     </ul>
                 </div>
             </div>
@@ -395,6 +407,14 @@
             </div>
         </div>
     </footer>
+    {% elif footer_type == 'minimal' %}
+    <footer class="site-footer site-footer-minimal">
+        <div class="container">
+            <p>&copy; {{ current_year }} DynaRetire. All rights reserved.</p>
+        </div>
+    </footer>
+    {% endif %}
+    {% endblock %}
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -411,4 +431,4 @@
     </script>
     {% block scripts %}{% endblock %}
 </body>
-</html> 
+</html>
