@@ -1,7 +1,7 @@
 # A very simple Flask Hello World app for you to get started with...
 #FLASK_DEBUG=1 FLASK_APP=app.py flask run --host=0.0.0.0 --port=5000
 
-from flask import Flask, render_template, request, jsonify, send_file, Response, session
+from flask import Flask, render_template, request, jsonify, send_file, Response, session, send_from_directory
 from classes.web.helper import Helper
 from classes.web.json import json_data as j
 import json
@@ -106,6 +106,10 @@ def showcase():
 @app.route('/privacy.html')
 def privacy():
     return render_template('marketing/privacy.html')
+
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory('static', 'sitemap.xml', mimetype='application/xml')
 
 if __name__ == '__main__':
     app.run(debug=True)
