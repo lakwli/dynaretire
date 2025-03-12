@@ -22,6 +22,8 @@ app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0  # Disable caching for development
 def inject_year():
     return {'current_year': datetime.now().year}
 
+
+@app.route('/home.html') 
 @app.route('/')
 @app.route('/home')
 def home():
@@ -35,6 +37,7 @@ def test1():
 def plans():
     return render_template('plans.html')
 
+@app.route('/plan.html')
 @app.route('/plan')
 def plan():
     return render_template('plan.html')
