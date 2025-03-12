@@ -3,12 +3,15 @@
 {% set footer_type = 'full' %}
 
 {% block meta %}
-    <!-- Primary Meta Tags -->
-    <meta name="title" content="DynaRetire - Comprehensive Retirement Simulator">
-    <meta name="description" content="Plan your retirement with confidence using our dynamic retirement simulator. Model real-life scenarios with multiple income sources, market backtesting, and smart expense planning.">
-    <meta name="keywords" content="retirement planning, retirement simulator, financial planning, pension calculator, early retirement, retirement income calculator">
+<!-- Primary Meta Tags -->
+<meta name="title" content="DynaRetire - Comprehensive Retirement Simulator">
+<meta name="description" content="Plan your retirement with confidence using our dynamic retirement simulator. Model real-life scenarios with multiple income sources, market backtesting, and smart expense planning.">
+<meta name="keywords" content="retirement planning, retirement simulator, financial planning, pension calculator, early retirement, retirement income calculator">
 
-    <!-- Open Graph / Facebook -->
+<!-- Canonical URL -->
+<link rel="canonical" href="{{ url_for('home', _external=True) }}" />
+
+<!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="DynaRetire - Comprehensive Retirement Simulator">
     <meta property="og:description" content="Plan your retirement with confidence using our dynamic retirement simulator. Model real-life scenarios with multiple income sources, market backtesting, and smart expense planning.">

@@ -39,7 +39,6 @@ def plans():
     return render_template('plans.html')
 
 @app.route('/plan.html')
-@app.route('/plan')
 def plan():
     return render_template('plan.html')
 
@@ -79,22 +78,18 @@ def planSubmit():
         print(f"   exception: {str(e)}")
         return jsonify({'error': str(e)})
 
-@app.route('/expenses')
 @app.route('/expenses.html')
 def expenses():
     return render_template('expenses.html')
 
-@app.route('/income')
 @app.route('/income.html')
 def income():
     return render_template('income.html')
 
-@app.route('/funds')
 @app.route('/funds.html')
 def funds():
     return render_template('funds.html')
 
-@app.route('/strategic')
 @app.route('/strategic.html')
 def strategic():
     return render_template('strategic.html')
