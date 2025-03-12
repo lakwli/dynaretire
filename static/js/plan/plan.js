@@ -19,7 +19,7 @@ $(document).ready(function() {
         return new Promise((resolve, reject) => {
             if (!content[tabName]) {
                 showLoadingIndicator(tabName);
-                $.get('/' + tabName)
+                $.get('/' + tabName + '.html')
                     .done(function(data) {
                         content[tabName] = data;
                         loadingStatus[tabName] = true;
