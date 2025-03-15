@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://dynaretire.app/" />
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="DynaRetire - Comprehensive Retirement Simulator">
+    <meta property="og:description" content="Plan your retirement with confidence using our dynamic retirement simulator. Model real-life scenarios with multiple income sources, market backtesting, and smart expense planning.">
+    <meta property="og:image" content="{{ url_for('static', filename='images/Expenses2.png', _external=True) }}">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DynaRetire - Comprehensive Retirement Simulator">
+    <meta name="twitter:description" content="Plan your retirement with confidence using our dynamic retirement simulator. Model real-life scenarios with multiple income sources, market backtesting, and smart expense planning.">
+    <meta name="twitter:image" content="{{ url_for('static', filename='images/Expenses2.png', _external=True) }}">
+
+    <title>{% block title %}DynaRetire - Adaptive Retirement Planning{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">DynaRetire</a>
+            <div class="nav-menu">
+                <a href="/showcase.html" class="nav-link">Show Case</a>
+                <a href="#" class="nav-link">Resources</a>
+                <a href="/plan.html" class="nav-cta">Launch App</a>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}{% endblock %}
+    {% block scripts %}{% endblock %}
+    <footer class="footer" id="footer-menu">
+        <div class="footer-wrapper">
+            <div class="menu-content">
+                <div class="menu-group">
+                    <div class="menu-group-title">Features</div>
+                    <div class="menu-group-links">
+                        <a href="#" class="menu-item">Dynamic Planning</a>
+                        <a href="#" class="menu-item">Risk Management</a>
+                        <a href="#" class="menu-item">Investment Testing</a>
+                        <a href="#" class="menu-item">Excel Export</a>
+                        <a href="#" class="menu-item">Early Retirement <span class="tag">New</span></a>
+                    </div>
+                </div>
+                <div class="menu-group">
+                    <div class="menu-group-title">Resources</div>
+                    <div class="menu-group-links">
+                        <a href="#" class="menu-item">Blog</a>
+                        <a href="#" class="menu-item">Documentation</a>
+                        <a href="#" class="menu-item">Community</a>
+                        <a href="#" class="menu-item">Retirement Guide <span class="tag">New</span></a>
+                    </div>
+                </div>
+                <div class="menu-group">
+                    <div class="menu-group-title">Support</div>
+                    <div class="menu-group-links">
+                        <a href="#" class="menu-item">Help Center</a>
+                        <a href="#" class="menu-item">Contact Us</a>
+                        <a href="#" class="menu-item">FAQ</a>
+                        <a href="#" class="menu-item">Video Tutorials</a>
+                    </div>
+                </div>
+                <div class="menu-group">
+                    <div class="menu-group-title">Legal</div>
+                    <div class="menu-group-links">
+                        <a href="#" class="menu-item">Terms of Service</a>
+                        <a href="#" class="menu-item">Privacy Policy</a>
+                        <a href="#" class="menu-item">Security</a>
+                        <a href="#" class="menu-item">GDPR Compliance</a>
+                    </div>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="#" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
+                <a href="#" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

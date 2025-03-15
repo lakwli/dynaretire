@@ -1,44 +1,17 @@
-{% extends "base.html" %}
+{% extends "marketing/content-template.html" %}
 
-{% block title %}DynaRetire: Dynamic Retirement Simulation Tool With Real-Life Scenarios{% endblock %}
+{% block title %}DynaRetire Showcase - Real-life Example{% endblock %}
 
-{% block meta %}
-<meta name="description" content="Explore DynaRetire's step-by-step retirement simulation tool with Martin's real-life scenario. Learn how to test early retirement with dynamic expenses, investment strategies, and risk management.">
-<meta name="keywords" content="retirement simulation, early retirement, pension fund, retirement calculator, retirement testing, financial planning, investment strategy">
-<meta property="og:title" content="DynaRetire: Dynamic Retirement Simulation Tool">
-<meta property="og:description" content="Test your retirement with real-life scenarios using our dynamic retirement simulation tool. See how expenses, investments, and risk management work together.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="{{ request.url }}">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="DynaRetire: Dynamic Retirement Simulation Tool">
-<meta name="twitter:description" content="Test your retirement with real-life scenarios using our dynamic retirement simulation tool.">
-<link rel="canonical" href="{{ request.url }}" />
-{% endblock %}
+{% block og_title %}DynaRetire: Real-life Retirement Planning Example{% endblock %}
+{% block og_description %}See how DynaRetire works with a detailed real-life retirement planning scenario.{% endblock %}
 
-{% block content %}
-<div class="hero">
-    <div class="container">
-        <h1><i class="fas fa-clipboard-list"></i> DynaRetire Showcase</h1>
-        <p>A Detail Step-by-Step Data Enter Based On Sample (Mimic Real-life Scenarios)</p>
-    </div>
-</div>
+{% block page_maintitle %}See DynaRetire In Action{% endblock %}
+{% block page_subtitle %}Follow Martin's journey as he plans his early retirement{% endblock %}
+{% block page_menutitle %}Show Case{% endblock %}
 
-<div class="container">
-    <!-- Breadcrumb navigation -->
-    <nav class="breadcrumb" aria-label="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
-        <ol>
-            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
-                <meta itemprop="position" content="1" />
-            </li>
-            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                <span itemprop="name">DynaRetire Showcase</span>
-                <meta itemprop="position" content="2" />
-            </li>
-        </ol>
-    </nav>
+
+{% block page_content %}
     
-    <article class="blog-post" itemscope itemtype="http://schema.org/Article">
         <meta itemprop="headline" content="DynaRetire: A Detail Step-by-Step Showcase Based On Sample">
         <meta itemprop="description" content="Learn how to use DynaRetire to test early retirement with real-life scenarios and dynamic expense simulation.">
         <meta itemprop="author" content="DynaRetire Team">
@@ -277,8 +250,11 @@
             </div>
             <a href="#" class="back-to-contents"><i class="fas fa-arrow-up"></i> Back to Contents</a>
         </section>
-    </article>
+    
 </div>
+{% endblock %}
+
+{% block scripts %}
 
 <script type="application/ld+json">
 {
@@ -432,26 +408,9 @@
         });
     });
 </script>
-{% endblock %}
 
-{% block extra_head %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-    :root {
-        --primary-color: #0ea5e9;      /* Modern sky blue */
-        --secondary-color: #38bdf8;    /* Lighter sky blue */
-        --accent-color: #0284c7;       /* Deep sky blue */
-        --bg-light: #f0f9ff;           /* Very light sky blue */
-        --text-dark: #0f172a;          /* Slate dark */
-        --gradient-start: #0284c7;     /* Deep sky blue */
-        --gradient-end: #38bdf8;       /* Light sky blue */
-        --border-color: #e0f2fe;       /* Light sky blue border */
-        --twitter-color: #0ea5e9;      /* Sky blue for social */
-        --facebook-color: #0284c7;     /* Sky blue for social */
-        --linkedin-color: #0369a1;     /* Sky blue for social */
-        --notice-bg: #f0f9ff;          /* Light sky blue for notices */
-        --notice-border: #0ea5e9;      /* Sky blue for notice borders */
-    }
 
     /* Update key-info for modern theme */
     .key-info {
@@ -459,14 +418,6 @@
         border-left: 4px solid var(--primary-color);
     }
 
-    .hero {
-        padding: 8rem 0 6rem;
-        text-align: center;
-        color: white;
-        position: relative;
-        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-        margin-bottom: 4rem;
-    }
 
     .hero h1 {
         font-size: 3.5rem;
@@ -1182,4 +1133,5 @@
         color: #64748b;
     }
 </style>
+
 {% endblock %}

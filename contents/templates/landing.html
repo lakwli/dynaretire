@@ -7,13 +7,13 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="DynaRetire - Comprehensive Retirement Simulator">
     <meta property="og:description" content="Plan your retirement with confidence using our dynamic retirement simulator. Model real-life scenarios with multiple income sources, market backtesting, and smart expense planning.">
-    <meta property="og:image" content="{{ url_for('static', filename='images/Expenses2.png', _external=True) }}">
+    <meta property="og:image" content="{{ url_for('static', filename='og-image.png', _external=True) }}">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="DynaRetire - Comprehensive Retirement Simulator">
     <meta name="twitter:description" content="Plan your retirement with confidence using our dynamic retirement simulator. Model real-life scenarios with multiple income sources, market backtesting, and smart expense planning.">
-    <meta name="twitter:image" content="{{ url_for('static', filename='images/Expenses2.png', _external=True) }}">
+    <meta name="twitter:image" content="{{ url_for('static', filename='og-image.png', _external=True) }}">
 
     <title>DynaRetire - Adaptive Retirement Planning</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -24,9 +24,11 @@
         <div class="container">
             <a href="/" class="logo">DynaRetire</a>
             <div class="nav-menu">
-                <a href="/showcase.html" class="nav-link">Show Case</a>
-                <a href="#" class="nav-link">Resources</a>
-                <a href="/plan.html" class="nav-cta">Launch App</a>
+                <a href="#simulator" class="nav-link">Simulator</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#showcase" class="nav-link">Show Case</a>
+                <a href="#resources" class="nav-link">Resources</a>
+                <a href="https://dynaretire.app" class="nav-cta">Launch App</a>
             </div>
         </div>
     </nav>
@@ -67,16 +69,16 @@
                 <p>Customize expenses at different age: from early travel to later healthcare. Set unique inflation rates, timing, and frequency for every expense category.</p>
             </div>
             <div class="main-feature">
-                <img src="{{ url_for('static', filename='images/Expenses2.png') }}" alt="Retirement Expenses Planning" class="feature-image">
+                <img src="{{ url_for('static', filename='img/Expenses2.png') }}" alt="Retirement Expenses Planning" class="feature-image">
             </div>
             <div class="features-grid">
                 <div class="feature-item">
-                    <img src="{{ url_for('static', filename='images/Savings.png') }}" alt="Pension and Investment" class="feature-item-image">
+                    <img src="{{ url_for('static', filename='img/Savings.png') }}" alt="Pension and Investment" class="feature-item-image">
                     <h3>Expected Return Or Back-test</h3>
                     <p>Set funds with expected returns, or back-test against historical market data</p>
                 </div>
                 <div class="feature-item">
-                    <img src="{{ url_for('static', filename='images/WithdrawAge.png') }}" alt="Pension and Investment" class="feature-item-image">
+                    <img src="{{ url_for('static', filename='img/WithdrawAge.png') }}" alt="Pension and Investment" class="feature-item-image">
                     <h3>Withdrawal Constraint</h3>
                     <p>DynaRetire will ensure no withdrawal before this age (For earlier retirement)</p>
                 </div>

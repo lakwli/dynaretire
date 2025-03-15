@@ -1,0 +1,158 @@
+/* Content page base styles - extends main application style.css */
+
+/* Base content layout */
+.content-wrapper {
+    padding-top: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Page introduction */
+.intro-section {
+    padding: 3rem 0;
+    margin-bottom: 2rem;
+    background: var(--bg-light);
+    text-align: center;  /* Center all text content */
+}
+.intro-section h1 {
+    font-size: 3.8rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+.intro-description {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto;  /* Center the max-width container */
+}
+
+/* Content sections */
+.section {
+    margin-bottom: 3rem;
+    text-align: left; /* Force left alignment */
+}
+
+/* Section Headers */
+.section-header {
+    margin-bottom: 2rem;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    color: var(--text-dark);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0;
+}
+
+.section-header .section-meta {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+}
+/* Step-by-step guides */
+.steps {
+    counter-reset: step;
+    margin: 2rem 0;
+}
+
+.step {
+    position: relative;
+    padding-left: 3rem;
+    margin-bottom: 2rem;
+}
+
+.step::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2rem;
+    height: 2rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+}
+
+/* Important callouts */
+.callout {
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 8px;
+    background: var(--bg-light);
+    border-left: 4px solid var(--primary-color);
+}
+
+.callout.warning {
+    border-color: #fbbf24;
+}
+
+/* Content navigation */
+.breadcrumb {
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+}
+
+.breadcrumb ol {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+.breadcrumb li:not(:last-child)::after {
+    content: "/";
+    margin: 0 0.5rem;
+    color: var(--text-secondary);
+}
+
+.breadcrumb a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+/* Content specific elements */
+.screenshot {
+    max-width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    margin: 1.5rem 0;
+}
+
+.content-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+}
+
+.content-table th,
+.content-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.content-table th {
+    font-weight: 500;
+    background: var(--bg-light);
+}
+
+/* Code examples */
+.code-block {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 1rem;
+    border-radius: 6px;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+}
+
