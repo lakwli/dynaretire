@@ -1,148 +1,335 @@
 {% extends "marketing/content-template.html" %}
 
-{% block title %}DynaRetire Showcase - Real-life Example{% endblock %}
+{% block title %}DynaRetire Showcase - Real-life Retirement Planning Example{% endblock %}
 
 {% block og_title %}DynaRetire: Real-life Retirement Planning Example{% endblock %}
-{% block og_description %}See how DynaRetire works with a detailed real-life retirement planning scenario.{% endblock %}
+{% block og_description %}See how DynaRetire works with a detailed real-life retirement planning scenario. Follow a step-by-step guide to plan your early retirement.{% endblock %}
 
+{% block page_tag %}STEP-BY-STEP GUIDE{% endblock %}
 {% block page_maintitle %}See DynaRetire In Action{% endblock %}
-{% block page_subtitle %}Follow Martin's journey as he plans his early retirement{% endblock %}
-{% block page_menutitle %}Show Case{% endblock %}
+{% block page_subtitle %}Follow Martin's journey as he plans his early retirement using dynamic expense planning and risk management{% endblock %}
+{% block page_menutitle %}Showcase{% endblock %}
 
+{% block page_sidebar %}
+    <nav class="table-of-contents" aria-label="Table of Contents">
+        <h4><i class="fas fa-list"></i> Quick Navigation</h4>
+        <ul>
+            <li><a href="#scenario"><i class="fas fa-user-clock"></i> The Brief Scenario</a></li>
+            <li><a href="#info"><i class="fas fa-info-circle"></i> Age and Saving Information</a></li>
+            <li><a href="#expenses"><i class="fas fa-chart-line"></i> Dynamic Expenses</a>
+                <ul>
+                    <li><a href="#travel"><i class="fas fa-plane"></i> Travel Budget</a></li>
+                    <li><a href="#housing"><i class="fas fa-home"></i> Housing Loan</a></li>
+                    <li><a href="#insurance"><i class="fas fa-shield-halved"></i> Insurance</a></li>
+                    <li><a href="#medical"><i class="fas fa-hospital"></i> Medical Bills</a></li>
+                    <li><a href="#car"><i class="fas fa-car"></i> Car Replacement</a></li>
+                    <li><a href="#food"><i class="fas fa-utensils"></i> Food</a></li>
+                    <li><a href="#transport"><i class="fas fa-bus"></i> Transport</a></li>
+                    <li><a href="#other"><i class="fas fa-receipt"></i> Other Expenses</a></li>
+                </ul>
+            </li>
+            <li><a href="#income"><i class="fas fa-money-bill-trend-up"></i> Incomes</a></li>
+            <li><a href="#early-retirement"><i class="fas fa-shield-halved"></i> Investment Risk Management</a></li>
+            <li><a href="#app"><i class="fas fa-gears"></i> How The App Works</a></li>
+            <li><a href="#result"><i class="fas fa-file-excel"></i> Interpret Result</a></li>
+            <li><a href="#conclusion"><i class="fas fa-check-circle"></i> Conclusion</a></li>
+        </ul>
+    </nav>
+
+    <div class="key-info">
+        <h4><i class="fas fa-download"></i> Sample Result</h4>
+        <p>Download the sample Excel file to see how DynaRetire helps Martin plan his retirement:</p>
+        <a href="https://findinggoodlife.com/wp-content/uploads/2024/07/dynaRetire-1.xlsx" class="excel-download" title="Download Sample Excel File">
+            <i class="far fa-file-excel"></i> Download Excel
+        </a>
+    </div>
+{% endblock %}
 
 {% block page_content %}
-    
-        <meta itemprop="headline" content="DynaRetire: A Detail Step-by-Step Showcase Based On Sample">
-        <meta itemprop="description" content="Learn how to use DynaRetire to test early retirement with real-life scenarios and dynamic expense simulation.">
-        <meta itemprop="author" content="DynaRetire Team">
-        <meta itemprop="datePublished" content="2024-08-06">
-        <meta itemprop="dateModified" content="2024-08-06">
-        
-        <div class="content-section">
+    <meta itemprop="headline" content="DynaRetire: A Detail Step-by-Step Showcase Based On Sample">
+    <meta itemprop="description" content="Learn how to use DynaRetire to test early retirement with real-life scenarios and dynamic expense simulation.">
+    <meta itemprop="author" content="DynaRetire Team">
+    <meta itemprop="datePublished" content="2024-08-06">
+    <meta itemprop="dateModified" content="2024-08-06">
+
+    <div class="key-info">
+        <p>Follow Martin's journey as he uses DynaRetire to plan his early retirement. We'll explore how the app helps him simulate various scenarios and create a comprehensive retirement plan that adapts to his changing needs.</p>
+    </div>
+    <section id="scenario">
+        <div class="section-header">
+            <h2><i class="fas fa-user-clock"></i> The Brief Scenario: Martin's Early Retirement Plan</h2>
+            <div class="section-meta">
+                <span><i class="fas fa-user"></i> Current Age: <span class="value">45</span></span>
+                <span><i class="fas fa-flag-checkered"></i> Target Retirement: <span class="value">50</span></span>
+            </div>
+        </div>
+        <div class="section-content">
+            <p>Martin is 45 and wants to plan for early retirement. Here's his detailed retirement scenario:</p>
+            <ul class="feature-list">
+                <li>He and his employer continue to <strong>contribute to the pension fund</strong>, and Martin also <strong>saves extra</strong> in his investments specifically for retirement</li>
+                <li>Martin has <strong>rental income</strong> from his apartment that will continue after he retires. He expects the growth rate to be lower than his expenses inflation</li>
+                <li>Covering his current <strong>living expenses</strong> like food, transport, bills, and insurance. All these expenses have their inflation rate</li>
+                <li>He also plans for future (<strong>old age high medical bills</strong>) that may not be covered by insurance, and <strong>health-related expenses</strong>, with <strong>higher inflation rate</strong> than normal living expenses</li>
+                <li>Dreams of <strong>travelling the world</strong> and travel fewer afterwards and stop travelling upon 80</li>
+                <li>Paying off his <strong>housing loan</strong> until 60</li>
+                <li>Upgrading his <strong>insurance</strong> in a few years, and he expects to pay until 80</li>
+                <li><strong>Changing his car</strong> every few years until a certain age</li>
+                <li>He expects some <strong>expenses to decrease as he ages</strong></li>
+            </ul>
+
             <div class="key-info">
-                <p>We will use Martin's story to demonstrate how the DynaRetire app works by helping him simulate his retirement scenario according to his expectations. The app will generate the result in the form of an Excel file <a href="https://findinggoodlife.com/wp-content/uploads/2024/07/dynaRetire-1.xlsx" class="excel-download" title="Download Sample Excel File"><i class="far fa-file-excel"></i></a></p>
+                <h4><i class="fas fa-lightbulb"></i> Important Notes</h4>
+                <ul class="feature-list">
+                    <li>All expense amounts are in today's values - the app will calculate future amounts based on inflation</li>
+                    <li>Income amounts are future projections based on estimates and agreements</li>
+                    <li>Some scenarios are for demonstration and may not apply to your situation</li>
+                </ul>
+            </div>
+
+            <p>Martin wants to validate if his retirement plan is sustainable with:</p>
+            <ul class="feature-list">
+                <li>His ongoing contributions during working years</li>
+                <li>Rental income throughout retirement</li>
+                <li>Various expenses at different life stages</li>
+                <li>Investment risk management strategies</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="info">
+        <div class="section-header">
+            <h2><i class="fas fa-info-circle"></i> Age and Savings Overview</h2>
+        </div>
+        <div class="section-content">
+            <h3><i class="fas fa-calendar"></i> Planning Timeline</h3>
+            <p>Starting in <span class="value">2024</span>, Martin aims to transition from his current age of <span class="value">45</span> to early retirement at <span class="value">50</span>.</p>
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='images/showcase/how-to-setup-age.svg') }}" alt="DynaRetire interface showing age and retirement target setup - current age 45, retirement at 50">
+                <div class="image-caption">Age and retirement target configuration in DynaRetire</div>
+            </div>
+
+            <h3><i class="fas fa-piggy-bank"></i> Current Savings</h3>
+            <div class="key-info">
+                <h4><i class="fas fa-chart-pie"></i> Portfolio Breakdown</h4>
+                <ul class="feature-list">
+                    <li>Pension Fund: <span class="value">$1,000,000</span> (Expected growth: <span class="value">5.5%</span>)</li>
+                    <li>S&P 500 Investment: <span class="value">$500,000</span> (Historical returns using 1999 scenario)</li>
+                </ul>
             </div>
             
-            <nav class="table-of-contents" aria-label="Table of Contents">
-                <h4><i class="fas fa-list"></i> Quick Navigation</h4>
-                <ul>
-                    <li><a href="#scenario"><i class="fas fa-user-clock"></i> The Brief Scenario</a></li>
-                    <li><a href="#info"><i class="fas fa-info-circle"></i> Age and Saving Information</a></li>
-                    <li><a href="#expenses"><i class="fas fa-chart-line"></i> Dynamic Expenses</a>
-                        <ul>
-                            <li><a href="#travel"><i class="fas fa-plane"></i> Travel Budget</a></li>
-                            <li><a href="#housing"><i class="fas fa-home"></i> Housing Loan</a></li>
-                            <li><a href="#insurance"><i class="fas fa-shield-halved"></i> Insurance</a></li>
-                            <li><a href="#medical"><i class="fas fa-hospital"></i> Medical Bills</a></li>
-                            <li><a href="#car"><i class="fas fa-car"></i> Car Replacement</a></li>
-                            <li><a href="#food"><i class="fas fa-utensils"></i> Food</a></li>
-                            <li><a href="#transport"><i class="fas fa-bus"></i> Transport</a></li>
-                            <li><a href="#other"><i class="fas fa-receipt"></i> Other Expenses</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#income"><i class="fas fa-money-bill-trend-up"></i> Incomes</a></li>
-                    <li><a href="#early-retirement"><i class="fas fa-shield-halved"></i> Investment Risk Management</a></li>
-                    <li><a href="#app"><i class="fas fa-gears"></i> How The App Works</a></li>
-                    <li><a href="#result"><i class="fas fa-file-excel"></i> Interpret Result</a></li>
-                    <li><a href="#conclusion"><i class="fas fa-check-circle"></i> Conclusion</a></li>
-                </ul>
-            </nav>
+            <p>Martin's retirement savings are split between two main investments:</p>
+            <ul class="feature-list">
+                <li>A pension fund that can only be accessed at age 55</li>
+                <li>S&P 500 investment using historical market data from 1999 to test retirement in a challenging market</li>
+            </ul>
+            
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='images/showcase/how-to-setup-saving.svg') }}" alt="DynaRetire savings configuration screen showing pension fund of $1,000,000 and S&P 500 investment of $500,000">
+                <div class="image-caption">Initial savings and investment configuration in DynaRetire</div>
+            </div>
         </div>
+    </section>
 
-        <section id="scenario">
-            <div class="section-header">
-                <h2><i class="fas fa-user-clock"></i> The Brief Scenario: Martin's Retirement Simulation</h2>
-                <div class="section-meta">Current Age: <span class="value">45</span> | Target Retirement: <span class="value">50</span></div>
-            </div>
-            <div class="section-content">
-                <p>Martin is 45 and wants to plan for early retirement. Below are brief details:</p>
+    <section id="expenses">
+        <div class="section-header">
+            <h2><i class="fas fa-chart-line"></i> Dynamic Expense Planning</h2>
+            <div class="section-meta">Adapting expenses for different life stages</div>
+        </div>
+        
+        <div class="section-content">
+            <div class="key-info">
+                <h4><i class="fas fa-lightbulb"></i> Understanding Dynamic Expenses</h4>
+                <p>Martin's retirement plan considers how expenses change throughout different life stages, with each expense category having its own:</p>
                 <ul class="feature-list">
-                    <li>He and his employer continue to <strong>contribute to the pension fund</strong>, and Martin also <strong>saves extra</strong> in his investments specifically for retirement</li>
-                    <li>Martin has <strong>rental income</strong> from his apartment that will continue after he retires. He expects the growth rate to be lower than his expenses inflation</li>
-                    <li>Covering his current <strong>living expenses</strong> like food, transport, bills, and insurance. All these expenses have their inflation rate</li>
-                    <li>He also plans for future (<strong>old age high medical bills</strong>) that may not be covered by insurance, and <strong>health-related expenses</strong>, with <strong>higher inflation rate</strong> than normal living expenses</li>
-                    <li>Dreams of <strong>travelling the world</strong> and travel fewer afterwards and stop travelling upon 80</li>
-                    <li>Paying off his <strong>housing loan</strong> until 60</li>
-                    <li>Upgrading his <strong>insurance</strong> in a few years, and he expects to pay until 80</li>
-                    <li><strong>Changing his car</strong> every few years until a certain age</li>
-                    <li>He expects some <strong>expenses to decrease as he ages</strong></li>
+                    <li>Specific inflation rate based on category</li>
+                    <li>Timeline of changes at different ages</li>
+                    <li>Adjustable amounts based on life stage</li>
+                    <li>Risk management options for market downturns</li>
                 </ul>
+            </div>
 
-                <p>Considering risk management, he wants to manage the risks to his investments in case of market downturns.</p>
-
-                <p>Martin wants to know if he can retire with his ongoing contributions during his working years, his rental income, and his budget for various expenses at different life stages. He also wants to know how long his retirement savings will last.</p>
-
-                <div class="key-info">
-                    <p><em>All expense amounts are in today's values. The app will calculate future amounts based on inflation for each year or age. It is however, the income amounts are future amounts, with what we expect to receive based on estimates or agreements, considering the age when we start.</em></p>
+            <section id="travel" class="expense-category">
+                <div class="expense-details">
+                    <div class="key-info">
+                        <h4><i class="fas fa-calendar-alt"></i> Travel Budget Timeline</h4>
+                        <ul class="feature-list">
+                            <li>Initial Years (50-52): <span class="value">$100,000</span> total for world travel</li>
+                            <li>Ages 52-75: <span class="value">$10,000</span> annually for regular trips</li>
+                            <li>Age 75+: No planned travel expenses</li>
+                            <li>Inflation Rate: <span class="value">3%</span> annual increase</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="image-container">
+                        <img src="{{ url_for('static', filename='images/showcase/how-to-setup-travel-expenses.svg') }}" alt="Setting up travel budget in DynaRetire - $100,000 for first two years, then $10,000 annually with 3% inflation" class="zoomable-image">
+                        <div class="image-caption">Travel expense configuration showing transition from extensive to reduced travel</div>
+                    </div>
                 </div>
 
-                <p><em>Note: Some scenarios are for simulation purposes and may not apply to your situation.</em></p>
-            </div>
-            <a href="#" class="back-to-contents"><i class="fas fa-arrow-up"></i> Back to Contents</a>
-        </section>
+                <section id="housing" class="expense-category">
+                    <div class="expense-details">
+                        <div class="key-info">
+                            <h4><i class="fas fa-money-bill"></i> Housing Loan Details</h4>
+                            <ul class="feature-list">
+                                <li>Annual Payment: <span class="value">$10,000</span></li>
+                                <li>Duration: Until age <span class="value">60</span></li>
+                                <li>Payment Type: Fixed annual installments</li>
+                                <li>Status: Non-adjustable commitment</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="image-container">
+                            <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-setup-housing-loan.svg') }}" alt="DynaRetire housing loan configuration - $10,000 annual payment until age 60" class="zoomable-image">
+                            <div class="image-caption">Housing loan payment schedule configuration</div>
+                        </div>
+                    </div>
+                </section>
 
-        <section id="info">
-            <div class="section-header">
-                <h2><i class="fas fa-info-circle"></i> The Information About Age, and Saving Information</h2>
-            </div>
-            <div class="section-content">
-                <h3>Age</h3>
-                <p>This year is <span class="value">2024</span>. A 45-year-old person plans to retire early at 50.</p>
-                <div class="image-container">
-                    <img src="{{ url_for('static', filename='images/showcase/how-to-setup-age.svg') }}" alt="DynaRetire interface showing age and retirement target setup - current age 45, retirement at 50">
+                <section id="insurance" class="expense-category">
+                    <div class="expense-details">
+                        <div class="key-info">
+                            <h4><i class="fas fa-file-medical"></i> Insurance Coverage Plan</h4>
+                            <ul class="feature-list">
+                                <li>Current Premium: <span class="value">$4,000</span> annually</li>
+                                <li>Upgrade at Age 56: Additional <span class="value">$3,000</span> annually</li>
+                                <li>Coverage Duration: Until age <span class="value">80</span></li>
+                            </ul>
+                        </div>
+
+                        <div class="key-info">
+                            <h4><i class="fas fa-exclamation-circle"></i> Important Consideration</h4>
+                            <p><em>Consider upgrading coverage earlier while still healthy to avoid potential exclusions or rejections. Early planning can secure better coverage terms.</em></p>
+                        </div>
+                        
+                        <div class="image-container">
+                            <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-setup-insurance.svg') }}" alt="DynaRetire insurance setup showing current and upgraded premiums" class="zoomable-image">
+                            <div class="image-caption">Insurance premium configuration with planned upgrade</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="medical" class="expense-category">
+                    <div class="expense-details">
+                        <div class="key-info">
+                            <h4><i class="fas fa-heartbeat"></i> Medical Expense Details</h4>
+                            <ul class="feature-list">
+                                <li>Starting Age: <span class="value">70</span></li>
+                                <li>Annual Budget: <span class="value">$20,000</span> (today's value)</li>
+                                <li>Inflation Rate: <span class="value">8%</span></li>
+                                <li>Coverage: Medicines, follow-ups, physio visits</li>
+                            </ul>
+                        </div>
+
+                        <div class="key-info">
+                            <h4><i class="fas fa-notes-medical"></i> Planning Considerations</h4>
+                            <p><em>Consider including budget for potential nursing home expenses in long-term planning. High medical inflation rate reflects growing healthcare costs in later years.</em></p>
+                        </div>
+                        
+                        <div class="image-container">
+                            <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-setup-medical.svg') }}" alt="DynaRetire medical expense setup showing annual allocation and inflation settings" class="zoomable-image">
+                            <div class="image-caption">Medical expense planning with inflation adjustment</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="car" class="expense-category">
+                    <div class="expense-details">
+                        <div class="key-info">
+                            <h4><i class="fas fa-calendar-alt"></i> Car Replacement Schedule</h4>
+                            <ul class="feature-list">
+                                <li>First Purchase: Age <span class="value">51</span></li>
+                                <li>Frequency: Every <span class="value">7</span> years</li>
+                                <li>Net Cost: <span class="value">$60,000</span> per replacement</li>
+                                <li>Final Purchase: Age <span class="value">72</span></li>
+                                <li>Inflation Rate: <span class="value">2%</span></li>
+                            </ul>
+                        </div>
+
+                        <div class="key-info">
+                            <h4><i class="fas fa-info-circle"></i> Planning Considerations</h4>
+                            <p>Net cost accounts for trade-in value of existing vehicle. Schedule aligned with changing lifestyle needs in retirement.</p>
+                        </div>
+                        
+                        <div class="image-container">
+                            <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-setup-car-replacement.svg') }}" alt="DynaRetire car replacement schedule configuration" class="zoomable-image">
+                            <div class="image-caption">Car replacement planning with periodic updates until age 72</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="food" class="expense-category">
+                    <div class="expense-details">
+                        <div class="key-info">
+                            <h4><i class="fas fa-chart-line"></i> Food Budget Evolution</h4>
+                            <ul class="feature-list">
+                                <li>Current Budget: <span class="value">$20,000</span> annually</li>
+                                <li>Age 60+: Reduced to <span class="value">$15,000</span> annually</li>
+                                <li>Inflation Rate: <span class="value">6%</span></li>
+                                <li>Market Downturn Adjustment: <span class="value">80%</span> of normal budget</li>
+                            </ul>
+                        </div>
+
+                        <div class="key-info">
+                            <h4><i class="fas fa-lightbulb"></i> Lifestyle Planning</h4>
+                            <p>Budget transition reflects planned shift from luxury dining to simpler lifestyle, with built-in flexibility for market conditions.</p>
+                        </div>
+                        
+                        <div class="image-container">
+                            <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-setup-food.svg') }}" alt="DynaRetire food expense configuration with age-based adjustments" class="zoomable-image">
+                            <div class="image-caption">Food budget planning showing lifestyle transitions</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="transport" class="expense-category">
+                    <div class="expense-details">
+                        <div class="key-info">
+                            <h4><i class="fas fa-chart-line"></i> Transport Cost Timeline</h4>
+                            <ul class="feature-list">
+                                <li>Current Cost: <span class="value">$4,000</span> annually</li>
+                                <li>Age 65+: Reduced to <span class="value">$3,000</span> annually</li>
+                                <li>Age 80+: No transport expenses</li>
+                                <li>Inflation Rate: <span class="value">4%</span></li>
+                            </ul>
+                        </div>
+
+                        <div class="key-info">
+                            <h4><i class="fas fa-info-circle"></i> Coverage Details</h4>
+                            <p>Includes petrol, insurance, parking, and maintenance costs. Gradual reduction aligns with anticipated lifestyle changes in retirement.</p>
+                        </div>
+                        
+                        <div class="image-container">
+                            <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-setup-transport.svg') }}" alt="DynaRetire transport expense configuration showing gradual reduction" class="zoomable-image">
+                            <div class="image-caption">Transport expense planning with age-based adjustments</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="other" class="expense-category">
+                    <div class="expense-details">
+                        <div class="key-info">
+                            <h4><i class="fas fa-list-ul"></i> Miscellaneous Expenses</h4>
+                            <ul class="feature-list">
+                                <li>Annual Budget: <span class="value">$20,000</span></li>
+                                <li>Inflation Rate: <span class="value">3.5%</span></li>
+                                <li>Categories: Bills, clothes, gadgets, repairs</li>
+                                <li>Duration: Ongoing throughout retirement</li>
+                            </ul>
+                        </div>
+
+                        <div class="key-info">
+                            <h4><i class="fas fa-info-circle"></i> Budget Information</h4>
+                            <p>Regular household and lifestyle expenses with standard inflation adjustment to maintain purchasing power.</p>
+                        </div>
+                        
+                        <div class="image-container">
+                            <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-setup-other-expenses.svg') }}" alt="DynaRetire miscellaneous expenses configuration" class="zoomable-image">
+                            <div class="image-caption">Setting up ongoing miscellaneous expenses with inflation adjustment</div>
+                        </div>
+                    </div>
+                </section>
                 </div>
-
-                <h3>Savings</h3>
-                <p>Martin currently has a pension fund worth <span class="value">$1,000,000</span>, which he expects to grow at a rate of <span class="value">5.5%</span>. However, he can only start withdrawing from this fund when he turns 55.</p>
-                
-                <p>He also has <span class="value">$500,000</span> invested in the S&P 500. Instead of assuming a consistent return rate, he wants to see the impact of retiring during a poor market, using 1999 as the retirement year. Since the fund's history is only available up to 2023, he assumes a return rate of <span class="value">7%</span> for the remaining years.</p>
-                
-                <div class="image-container">
-                    <img src="{{ url_for('static', filename='images/showcase/how-to-setup-saving.svg') }}" alt="DynaRetire savings configuration screen showing pension fund of $1,000,000 and S&P 500 investment of $500,000">
-                </div>
-            </div>
-            <a href="#" class="back-to-contents"><i class="fas fa-arrow-up"></i> Back to Contents</a>
-        </section>
-
-        <section id="expenses">
-            <div class="section-header">
-                <h2><i class="fas fa-chart-line"></i> Dynamic Expenses Following Basic, Desire Lifestyle, and Risk Consideration</h2>
-            </div>
-            <div class="section-content">
-                <p>When simulating retirement expenses, he considers the following:</p>
-
-                <h3><i class="fas fa-plane"></i> Travel Budget: Dream Of Global Travel</h3>
-                <p>He dreams of travelling the world during the first two years of his retirement, planning to spend a total of $100,000 on global adventures. After that, he expects to spend about $10,000 a year on travel when he anticipates slowing down his travels and stopping when he turns 75. He expects these costs to rise with an inflation rate of 3%</p>
-                <img src="{{ url_for('static', filename='images/showcase/how-to-setup-travel-expenses.svg') }}" alt="Setting up travel budget in DynaRetire - $100,000 for first two years, then $10,000 annually with 3% inflation">
-
-                <h3><i class="fas fa-home"></i> Housing Loan Installment: To Be Settled Until Age 60</h3>
-                <p>He currently has a housing loan, which requires him to pay $10,000 a year. This loan will continue until he turns 60, after which he will no longer have this expense.</p>
-                <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-setup-housing-loan.svg') }}" alt="DynaRetire housing loan configuration - $10,000 annual payment until age 60">
-
-                <h3><i class="fas fa-shield-halved"></i> Insurance: Upgrade After 10 Years With Inflation Consideration</h3>
-                <p>Currently, he pays $4,000 a year for his insurance. However, as he approaches 56 <em>(Note: For simulated purposes, he may consider upgrading now instead, while he is still healthy, avoid exclusion or reject possibility)</em>, he plans to upgrade his medical insurance to ensure it covers him until he turns 80. He realizes that the insurance he bought in his 20s may not be sufficient, especially considering the high inflation rates. He estimates this upgrade will cost an additional $3,000 per year. While uncertain if payments can cease at any age, he prefers to budget until age 80, which aligns with the coverage duration.</p>
-                <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-setup-insurance.svg') }}" alt="DynaRetire how-to: setup Insurance">
-
-                <h3><i class="fas fa-hospital"></i> Medical Bills: Prepare For High Expenses In Later Years</h3>
-                <p>Starting at age 70, he anticipates needing about $20,000 a year (in today's money) for possible health-related expenses, e.g. medicines, follow-ups, physio visits, taking into account the possibility that insurance might not cover all expenses. He expects these costs to rise with an inflation rate of 8%. He does not plan for nursing home expenses <em>(Note: he may consider this)</em></p>
-                <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-setup-medical.svg') }}" alt="DynaRetire how-to: setup Medical">
-
-                <h3><i class="fas fa-car"></i> Car Replacement Every 7 Years</h3>
-                <p>Starting at age 51, he plans to buy a new car every 7 years. Each time he buys a new car, it costs him an extra $60,000 beyond what he gets from selling his old car. When he turns 72, he expects to be his last car purchase. He doesn't anticipate purchasing a car afterward. He projects that car prices rise with an inflation rate of 2%.</p>
-                <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-setup-car-replacement.svg') }}" alt="DynaRetire how-to: setup car replacement">
-
-                <h3><i class="fas fa-utensils"></i> Food: Luxury Now, Simple Later</h3>
-                <p>Currently, he spends about $20,000 a year on food, enjoying luxury dining occasionally. However, he anticipates that his lifestyle will become simpler as he ages. By the time he reaches 60, he plans to reduce his food budget to $15,000 a year. He also expects food prices to increase by about 6% annually due to inflation. If the market turns bad, he is prepared to reduce his food expenses to 80% of the original budget to minimize spending and more conservatively manage his finances.</p>
-                <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-setup-food.svg') }}" alt="DynaRetire how-to: setup food">
-
-                <h3><i class="fas fa-bus"></i> Transport: More Driving Now, Less Later, Stop Afterward</h3>
-                <p>Today. he spends about $4,000 a year on transport, covering costs such as petrol, insurance, parking, and maintenance. However, he expects these expenses to reduce to $3,000 a year after age 65, as he plans to drive less. By the time he reaches 80, he anticipates that he will stop driving altogether, eliminating these expenses. He expected these expenses to increase by about 4% annually due to inflation.</p>
-                <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-setup-transport.svg') }}" alt="DynaRetire how-to: setup transport">
-
-                <h3><i class="fas fa-receipt"></i> Other Expenses</h3>
-                <p>He estimates that his annual expenses for bills, clothes, gadgets, repairs, and other miscellaneous items will be around $20,000. He assumes a general inflation rate of 3.5% for these expenses over the years.</p>
-                <img src="{{ url_for('static', filename='images/showcase/dynaretire-how-to-setup-other-expenses.svg') }}" alt="DynaRetire how-to: setup other expenses">
-            </div>
+            </section>
             <a href="#" class="back-to-contents"><i class="fas fa-arrow-up"></i> Back to Contents</a>
         </section>
 
@@ -1131,6 +1318,53 @@
     
     .breadcrumb li:last-child {
         color: #64748b;
+    }
+
+    /* Fix content layout */
+    .content-wrapper {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .content-container {
+        display: grid;
+        grid-template-columns: auto 280px;
+        gap: 2rem;
+        align-items: start;
+        justify-content: center;
+        max-width: 1400px;
+        flex: 1;
+    }
+
+    .content-article {
+        width: 100%;
+        grid-column: 1;
+    }
+
+    .content-sidebar {
+        position: sticky;
+        top: 2rem;
+        grid-column: 2;
+        width: 280px;
+    }
+
+    @media (max-width: 1024px) {
+        .content-container {
+            grid-template-columns: 1fr;
+            padding: 1rem;
+        }
+
+        .content-sidebar {
+            grid-column: 1;
+            position: relative;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .content-article {
+            grid-column: 1;
+        }
     }
 </style>
 
