@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
+    <link rel="icon" href="/static/logo.png">
+    <title>{% block title %}DynaRetire: Dynamic Retirement Simulation Tool{% endblock %}</title>
+
+    {% block meta %}
+    <meta name="description" content="DynaRetire: A comprehensive retirement planning tool for simulating dynamic retirement scenarios">
+    <meta name="keywords" content="retirement simulation, early retirement, pension fund, retirement calculator, retirement testing, financial planning">
+    {% endblock %}
+
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    {% block css %}{% endblock %}
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">DynaRetire</a>
+            <div class="nav-menu">
+                <a href="/showcase.html" class="nav-link">Show Case</a>
+                <a href="#" class="nav-link">Resources</a>
+                <a href="/plan.html" class="nav-cta">Launch App</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer site-footer-minimal">
+        <div class="container">
+            <p>&copy; 2025 DynaRetire. All rights reserved. | <a href="/privacy.html" style="color: var(--accent-color); text-decoration: none;">Privacy Policy</a></p>
+        </div>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+
+</body>
+</html>
