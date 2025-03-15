@@ -15,7 +15,7 @@
         </div>
     </section>
 
-    <div class="container content-container">
+    <div class="container">
         <nav class="breadcrumb" aria-label="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
             <ol>
                 <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
@@ -32,12 +32,7 @@
         <article class="content-article" itemscope itemtype="https://schema.org/Article">
             {% block page_content %}{% endblock %}
         </article>
-        
-        <aside class="content-sidebar">
-            <div class="sidebar-content">
-                {% block page_sidebar %}{% endblock %}
-            </div>
-        </aside>
+
     </div>
 </div>
 

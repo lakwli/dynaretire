@@ -99,7 +99,7 @@ def strategic():
 
 @app.route('/showcase.html')
 def showcase():
-    return render_template('marketing/showcase.html')
+    return render_template('marketing/showcase2.html')
 
 @app.route('/privacy.html')
 def privacy():
