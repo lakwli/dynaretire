@@ -14,8 +14,8 @@
     background: transparent;
     border: none;
     cursor: pointer;
-    padding: 0 5px; /* Adds padding to the left and right of the icon */
-    vertical-align: middle; /* Aligns the icon vertically with the input field */
+    padding: 0 5px;
+    vertical-align: middle;
 }
 .icon-placeholder {
     visibility: hidden;
@@ -23,16 +23,36 @@
 }
 
 .strategic-item {
-    position: relative; /* This makes it a reference for absolutely positioned children */
+    position: relative;
 }
 
 .add-rebal .fas {
-    font-size: 16px; /* Adjust the size as needed */
-    color: #23d160; /* This should make the icon green */
+    font-size: 16px;
+    color: #23d160;
 }
 
-/* Styles for the delete button */
 .delete-rebal .fas {
-    font-size: 16px; /* Adjust the size as needed */
-    color: #ff3860; /* This should make the icon red */
+    font-size: 16px;
+    color: #ff3860;
+}
+
+/* Center align add buttons */
+.button.add-fund,
+.button.add-expense,
+.button.add-income {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Center align strategic checkboxes */
+#stg-min_spend,
+#stg-apply-bucket {
+    margin: 0 auto;
+    display: block;
+}
+
+/* Center align labels */
+.label {
+    text-align: center !important;
 }
