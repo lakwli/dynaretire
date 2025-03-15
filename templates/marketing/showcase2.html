@@ -1,15 +1,10 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Google Search Console Verification - Replace with your actual verification code -->
-    <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
-    <!-- Simple favicon setup -->
-    <link rel="icon" href="/static/logo.png">
-    <title>DynaRetire: Dynamic Retirement Simulation Tool With Real-Life Scenarios</title>
-    
+{% extends "base.html" %}
+
+{% block title %}DynaRetire: Dynamic Retirement Simulation Tool With Real-Life Scenarios{% endblock %}
+
+{% block meta %}
+<meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
 <meta name="description" content="Explore DynaRetire's step-by-step retirement simulation tool with Martin's real-life scenario. Learn how to test early retirement with dynamic expenses, investment strategies, and risk management.">
 <meta name="keywords" content="retirement simulation, early retirement, pension fund, retirement calculator, retirement testing, financial planning, investment strategy">
 <meta property="og:title" content="DynaRetire: Dynamic Retirement Simulation Tool">
@@ -20,29 +15,16 @@
 <meta name="twitter:title" content="DynaRetire: Dynamic Retirement Simulation Tool">
 <meta name="twitter:description" content="Test your retirement with real-life scenarios using our dynamic retirement simulation tool.">
 <link rel="canonical" href="https://dynaretire.app/showcase.html" />
+{% endblock %}
 
+{% block css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/showcase.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
- 
-    
-    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+{% endblock %}
 
-</head>
-<body>
-    <nav class="navbar">
-        <div class="container">
-            <a href="/" class="logo">DynaRetire</a>
-            <div class="nav-menu">
-                <a href="/showcase.html" class="nav-link">Show Case</a>
-                <a href="#" class="nav-link">Resources</a>
-                <a href="/plan.html" class="nav-cta">Launch App</a>
-            </div>
-        </div>
-    </nav>
-
-    <main>
+{% block content %}
         
 <div class="hero">
     <div class="container">
@@ -308,6 +290,9 @@
     </article>
 </div>
 
+{% endblock %}
+
+{% block scripts %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -458,35 +443,32 @@
                 tocElement.scrollIntoView({ behavior: 'smooth' });
             });
         });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                this.classList.toggle('active');
+            });
+        }
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                this.classList.toggle('active');
+            });
+        }
     });
 </script>
 
-    </main>
-
-    
-    
-    <footer class="site-footer site-footer-minimal">
-        <div class="container">
-            <p>&copy; 2025 DynaRetire. All rights reserved. | <a href="/privacy.html" style="color: var(--accent-color); text-decoration: none;">Privacy Policy</a></p>
-        </div>
-    </footer>
-    
-    
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
-            
-            if (mobileMenuToggle) {
-                mobileMenuToggle.addEventListener('click', function() {
-                    navLinks.classList.toggle('active');
-                    this.classList.toggle('active');
-                });
-            }
-        });
-    </script>
-    
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"920bc54cdcbe6337","version":"2025.1.0","r":1,"token":"8815578124d54056b5a74f6263cbb09d","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}' crossorigin="anonymous"></script>
-</body>
-</html>
+{% endblock %}
