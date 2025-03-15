@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Strategic</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
 </head>
 <body>
-
-
 
 <section class="section">
     <div class="container">
@@ -23,7 +22,7 @@
                   <div class="control is-expanded">
                     <label class="label">Apply Spending Reduction                                                                                  
                         <span class="icon">
-                            <i class="fa-solid fa-circle-question" title="When you enable ‘Apply Spending Reduction,’ the app will automatically adjust your spending based on the ‘Expense Reduction Rate’ you’ve set for each expense category during periods of bad market. This feature helps you simulate and implement spending strategies to mitigate the impact of market downturns on your financial plan."></i>
+                            <i class="fas fa-question-circle" title="When you enable 'Apply Spending Reduction,' the app will automatically adjust your spending based on the 'Expense Reduction Rate' you've set for each expense category during periods of bad market. This feature helps you simulate and implement spending strategies to mitigate the impact of market downturns on your financial plan."></i>
                         </span>
                     </label>
                     <div class="control">
@@ -33,7 +32,7 @@
                   <div class="control is-expanded">
                     <label class="label">Apply Bucket Strategy                                                                                                      
                         <span class="icon">
-                            <i class="fa-solid fa-circle-question" title="The ‘Apply Bucket Strategy’ setting enables a withdrawal approach where funds are drawn from your safer investments first, preserving riskier investments for later. This strategy aims to reduce the impact of market volatility on your retirement funds. Additionally, you have the option to pause rebalancing during downturns in the market, providing further control over your investment strategy"></i>
+                            <i class="fas fa-question-circle" title="The 'Apply Bucket Strategy' setting enables a withdrawal approach where funds are drawn from your safer investments first, preserving riskier investments for later. This strategy aims to reduce the impact of market volatility on your retirement funds. Additionally, you have the option to pause rebalancing during downturns in the market, providing further control over your investment strategy"></i>
                         </span>
                     </label>
                     <div class="control">
@@ -43,29 +42,20 @@
                 </div>        
               
                 <div id="stg-next-option" class="field is-grouped ">
-                    <!--
-                    <div class="control is-hidden" id="stg-retire-yr">
-                      <label class="label">Mimic YearOne After Retirement</label>
-                      <input class="input is-primary" type="number" id="stg-retire-year" name="stg-retire-year" min=1900 step="1" placeholder="e.g. 1981" onChange="validateStgRetireYear(this)">
-                    </div>-->
                     <div class="control is-hidden" id="stg-exp-return-rate">
                         <label class="label">Minimum Annual Return %                                                                                                                             
                             <span class="icon">
-                                <i class="fa-solid fa-circle-question" title="The ‘Market Threshold Rate’ defines the minimum acceptable annualized return for your investments, based on a time-weighted average since your retirement. If the historical annualized return falls below this rate, the system identifies it as a bad market condition. This threshold helps you make informed decisions about rebalancing and spending during varying market conditions."></i>
+                                <i class="fas fa-question-circle" title="The 'Market Threshold Rate' defines the minimum acceptable annualized return for your investments, based on a time-weighted average since your retirement. If the historical annualized return falls below this rate, the system identifies it as a bad market condition. This threshold helps you make informed decisions about rebalancing and spending during varying market conditions."></i>
                             </span>
                         </label>
                         
                             <input class="input is-primary" type="number" id="stg-min_rate" name="stg-min_rate" step="0.01" min=1  placeholder="e.g. 3%" onChange="validateStgReturnRate(this)">
                    
-                    </div><!--
-                    <div class="control is-hidden" id="stg-default-return-rate">
-                        <label class="label">Default Return Rate%</label>                        
-                        <input class="input is-primary" type="number" id="stg-default_rate" name="stg-default_rate" step="0.01" min=1  placeholder="e.g. 3%" onChange="validateStgDefaultReturnRate(this)">
-                    </div>-->
+                    </div>
                     <div class="control is-expanded is-hidden" id="stg-risky-fund">
                         <label class="label">Risky Fund                                                                                                                                                 
                             <span class="icon">
-                                <i class="fa-solid fa-circle-question" title="The system selects the ‘risky fund’ based on an ‘Index’ return type. This fund is designated for secondary withdrawal, following the depletion of the ‘safer fund,’ to potentially enhance your investment growth over time." ></i>
+                                <i class="fas fa-question-circle" title="The system selects the 'risky fund' based on an 'Index' return type. This fund is designated for secondary withdrawal, following the depletion of the 'safer fund,' to potentially enhance your investment growth over time." ></i>
                             </span>
                         </label>
                         <div class="select is-fullwidth is-primary">
@@ -77,7 +67,7 @@
                     <div class="control is-expanded is-hidden" id="stg-safer-fund">
                       <label class="label">Safer Fund                                                                                                                                                        
                         <span class="icon">
-                            <i class="fa-solid fa-circle-question" title="The system automatically filters and selects funds with a ‘flat’ return rate as ‘safer funds’ .This fund is prioritized for withdrawal before  ‘risky fund’ "></i>
+                            <i class="fas fa-question-circle" title="The system automatically filters and selects funds with a 'flat' return rate as 'safer funds' .This fund is prioritized for withdrawal before  'risky fund' "></i>
                         </span>
                       </label>
                       <div class="select is-primary is-fullwidth">
@@ -89,10 +79,10 @@
                     <div class="control is-hidden" id="stg-rebal-opt">
                       <label class="label">Bad Market Rebalance Option                                                                                                                                                                        
                         <span class="icon">
-                            <i class="fa-solid fa-circle-question" title="The ‘Bad Market Rebalance’ option gives you control over how your portfolio responds to market downturns.
-- **Pause from Risky to Safer Only**: If you want to avoid locking in losses from selling riskier assets during a downturn. It’s suitable for those who have a moderate risk tolerance and want to maintain some level of growth potential.
+                            <i class="fas fa-question-circle" title="The 'Bad Market Rebalance' option gives you control over how your portfolio responds to market downturns.
+- **Pause from Risky to Safer Only**: If you want to avoid locking in losses from selling riskier assets during a downturn. It's suitable for those who have a moderate risk tolerance and want to maintain some level of growth potential.
 - **Pause from Both Directions**: If you are lower risk tolerance who prefer to wait out the market volatility without making any changes. This can help avoid selling at a loss and also prevent buying into a falling market.
-- **Always Rebalance**: If you are confident in your long-term investment strategy and believe that regular rebalancing will benefit them over time. This is often suited for those with a higher risk tolerance and a longer time horizon before retirement. It’s also important to consider the size of cash bucket; if it’s sufficient to cover expenses for several years"></i>
+- **Always Rebalance**: If you are confident in your long-term investment strategy and believe that regular rebalancing will benefit them over time. This is often suited for those with a higher risk tolerance and a longer time horizon before retirement. It's also important to consider the size of cash bucket; if it's sufficient to cover expenses for several years"></i>
                         </span>
                       </label>
                       <div class="select is-primary is-fullwidth">
@@ -105,16 +95,12 @@
                     </div>
                   </div>
 
-
-                
-           
-
                 <div id='rebals-container' class="rebals-container is-hidden">
                     <div class="columns is-multiline rebal-item">
                         <div class="column">
                             <label class="label ">Risky Fund Allocation %                                
                                 <span class="icon">
-                                    <i class="fa-solid fa-circle-question" title="'Risky Fund Allocation' refers to the portion of an investment portfolio allocated to Risky Fund"></i>
+                                    <i class="fas fa-question-circle" title="'Risky Fund Allocation' refers to the portion of an investment portfolio allocated to Risky Fund"></i>
                                 </span>
                             </label>
                             <input class="input is-primary risk-ratio" name="risk-ratio" min=1 type="number" placeholder="e.g. 60" onChange="validateFirstRatio(this)">
@@ -122,7 +108,7 @@
                         <div class="column">
                             <label class="label">Safer Fund Allocation %                                                               
                                 <span class="icon">
-                                    <i class="fa-solid fa-circle-question" title="'Safer Fund Allocation' refers to the portion of an investment portfolio allocated to Safer Fund"></i>
+                                    <i class="fas fa-question-circle" title="'Safer Fund Allocation' refers to the portion of an investment portfolio allocated to Safer Fund"></i>
                                 </span>
                             </label>
                             <input disabled class="input stg-ratio-second" min=1 type="number" >
@@ -158,12 +144,10 @@
                 </div>
             </div>
         </div>
-        <!--<button class="button is-primary add-expense">Add Expense</button>-->
     </div>
 </section>
 
 <script type="text/javascript" src="{{ url_for('static', filename='js/strategic/strategic.js') }}">
-
 
 </script>
 </body>

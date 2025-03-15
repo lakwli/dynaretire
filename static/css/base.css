@@ -1,6 +1,17 @@
 .is-hidden { display: none; }
+.label { text-align: center; }
 .section { padding: 3rem 1.5rem; }
-.container { max-width: 800px; margin: auto; }
+.container {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+}
+
+/* Center align Add buttons */
+.container .button.is-primary {
+    display: block;
+    margin: 1rem auto;
+}
 .columns.is-multiline > .column { flex: 1; max-width: calc(33% - 0.75rem); }
 .button-row { display: flex; justify-content: space-between; align-items: center; }
 @media screen and (max-width: 768px) {

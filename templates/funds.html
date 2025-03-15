@@ -13,9 +13,8 @@
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
-    <!-- Replace full FontAwesome with specific icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     
     <!-- Local styles -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
@@ -54,7 +53,7 @@
                     <div class="column  is-2">
                         <label class="label">Retirement Age
                             <span class="icon">
-                                <i class="fa-solid fa-circle-question" title="'Retirement Age' refers to the age at which you plan to stop working and start your retirement"></i>
+                                <i class="fas fa-question-circle" title="'Retirement Age' refers to the age at which you plan to stop working and start your retirement"></i>
                               </span>
                         </label>
                         <div class="field">
@@ -67,7 +66,7 @@
                         <label class="label">
                             Full Retirement Year
                             <span class="icon">
-                                <i class="fa-solid fa-circle-question" title="'Full Retirement Year' Year refers to the first full year of your retirement. If you retire in the middle of a year, that year is considered as your last working year, and the following year is your Retirement Commencement Year. This is the year when you start living fully on your retirement savings and investments."></i>
+                                <i class="fas fa-question-circle" title="'Full Retirement Year' Year refers to the first full year of your retirement. If you retire in the middle of a year, that year is considered as your last working year, and the following year is your Retirement Commencement Year. This is the year when you start living fully on your retirement savings and investments."></i>
                               </span>
                         </label>
                         <label id="retired-Calendar-Year"></label>
@@ -104,7 +103,7 @@
                         <label class="label">
                             Saving Amount
                             <span class="icon">
-                                <i class="fa-solid fa-circle-question" title="'Saving Amount' refers to the total amount of money you have saved"></i>
+                                <i class="fas fa-question-circle" title="'Saving Amount' refers to the total amount of money you have saved"></i>
                               </span>
                         </label>
                         <div class="field">
@@ -116,7 +115,7 @@
                     <div class="column is-7">
                         <label class="label">Return%                            
                             <span class="icon">
-                                <i class="fa-solid fa-circle-question" title="'Expected Return' refer to estimated growth rate of your savings. You can choose a flat rate (e.g., 5.5%) for consistent growth over time, or link your return to an index fund's performance from a specific year to simulate potential market-based growth."></i>
+                                <i class="fas fa-question-circle" title="'Expected Return' refer to estimated growth rate of your savings. You can choose a flat rate (e.g., 5.5%) for consistent growth over time, or link your return to an index fund's performance from a specific year to simulate potential market-based growth."></i>
                               </span>
                         </label>
                         <div class="field">
@@ -153,7 +152,7 @@
                     <div class="column is-1 funds-mimic-year-wrap is-hidden" name="funds-mimic-year-wrap">
                         <label class="label">Backtest Year                            
                             <span class="icon">
-                                <i class="fa-solid fa-circle-question" title="'Backtest Year' refers to the year used to backtest your retirement plan with an index fund such as S&P500. If you enter 1998, for example, the system will backtest assuming your Retirement Commencement Year would happen in 1998. This allows you to see how your retirement plan would have performed if you had retired in a specific past year"></i>
+                                <i class="fas fa-question-circle" title="'Backtest Year' refers to the year used to backtest your retirement plan with an index fund such as S&P500. If you enter 1998, for example, the system will backtest assuming your Retirement Commencement Year would happen in 1998. This allows you to see how your retirement plan would have performed if you had retired in a specific past year"></i>
                               </span>
                         </label>
                         <div class="field">
@@ -166,7 +165,7 @@
                         <div class="field">
                             <label class="label">WithdrawalAge                            
                                 <span class="icon">
-                                    <i class="fa-solid fa-circle-question" title="'Withdrawal Age' refers to the age at the beginning of the year when you start withdrawing from your saving. If your eligible withdrawal age is, for example, 55, you should enter 56 here"></i>
+                                    <i class="fas fa-question-circle" title="'Withdrawal Age' refers to the age at the beginning of the year when you start withdrawing from your saving. If your eligible withdrawal age is, for example, 55, you should enter 56 here"></i>
                                 </span>
                             </label>
                             <div class="control">

@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LifeSpendManager</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/components/income.css') }}">
 </head>
@@ -34,7 +35,7 @@
                         <div class="field">
                             <label class="label">Yearly Income
                                 <span class="icon">
-                                    <i class="fa-solid fa-circle-question" title="'Yearly Income' refer to income you receive before retiring. It includes contributions or savings you make toward your retirement fund.It can be passive income sources you may have during retirement, such as rental income or other ongoing earnings. Unlike expenses, income is often estimated based on specific contracts or expectations. Users input the FUTURE VALUE directly based on the 1st starting age, considering factors like promised returns, house sales, or other anticipated income. The system then calculates growth rates accordingly"></i>
+                                    <i class="fas fa-question-circle" title="'Yearly Income' refer to income you receive before retiring. It includes contributions or savings you make toward your retirement fund.It can be passive income sources you may have during retirement, such as rental income or other ongoing earnings. Unlike expenses, income is often estimated based on specific contracts or expectations. Users input the FUTURE VALUE directly based on the 1st starting age, considering factors like promised returns, house sales, or other anticipated income. The system then calculates growth rates accordingly"></i>
                                 </span>
                             </label>
                             <div class="control">
@@ -46,9 +47,7 @@
                         <div class="field">
                             <label class="label">Deposit To Fund                                
                                 <span class="icon">
-                                    <i class="fa-solid fa-circle-question" title="'Deposit To Fund' allows you to specify which fund your income should be deposited into. If you don’t specify a fund, the system will default to the first fund you entered. 
-If your income is related to pension contributions, select the pension fund. or income allocated from monthly savings, choose the appropriate fund, such as stocks, unit trusts, or any other fund you’ve selected. 
-If you sell a house, you might split the income into few part and put into different fund subject to your comfortable level"></i>
+                                    <i class="fas fa-question-circle" title="'Deposit To Fund' allows you to specify which fund your income should be deposited into. If you don't specify a fund, the system will default to the first fund you entered. If your income is related to pension contributions, select the pension fund. or income allocated from monthly savings, choose the appropriate fund, such as stocks, unit trusts, or any other fund you've selected. If you sell a house, you might split the income into few part and put into different fund subject to your comfortable level"></i>
                                 </span>
                             </label>
                             <div class="control">
@@ -67,7 +66,7 @@ If you sell a house, you might split the income into few part and put into diffe
                         <div class="column">
                             <label class="label">Growth Rate for Income Period%                                                              
                                 <span class="icon">
-                                    <i class="fa-solid fa-circle-question" title="'Growth Rate %'' represents the expected annual growth rate for your income. You can customize it based on different periods or scenarios. For example, if you anticipate higher growth during certain years, adjust the rate accordingly"></i>
+                                    <i class="fas fa-question-circle" title="'Growth Rate %'' represents the expected annual growth rate for your income. You can customize it based on different periods or scenarios. For example, if you anticipate higher growth during certain years, adjust the rate accordingly"></i>
                                 </span>
                             </label>
                             <input class="input inc-growth-rate is-primary" name="inc-growth-rate" min=1 type="number" step="0.01"  placeholder="e.g. 3%" required onchange="window.addValidationIfNeeded(this)">
@@ -75,7 +74,7 @@ If you sell a house, you might split the income into few part and put into diffe
                         <div class="column">
                             <label class="label">Start Age for Income Period                                                             
                                 <span class="icon">
-                                    <i class="fa-solid fa-circle-question" title="'Start Age for Income Period' refers to your age at the beginning of a period when you expect to have a certain level of income"></i>
+                                    <i class="fas fa-question-circle" title="'Start Age for Income Period' refers to your age at the beginning of a period when you expect to have a certain level of income"></i>
                                 </span>
                             </label>
                             <input class="input inc-growth-starting-age is-primary" name="inc-growth-starting-age" min=1 type="number" placeholder="First year income" required onchange="validateStartingYearFromPage(this)">
@@ -83,7 +82,7 @@ If you sell a house, you might split the income into few part and put into diffe
                         <div class="column">
                             <label class="label">End Age for Income Period &nbsp;                                                                                     
                              <span class="icon">
-                                <i class="fa-solid fa-circle-question" title="'End Age for Income Period' refers to your age at the end of a period when you expect to have a certain level of income"></i>
+                                <i class="fas fa-question-circle" title="'End Age for Income Period' refers to your age at the end of a period when you expect to have a certain level of income"></i>
                             </span>
                             </label>
                             <div class="field has-addons">
