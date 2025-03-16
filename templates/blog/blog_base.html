@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block meta %}
+    <!-- Default blog meta tags -->
+    <meta name="description" content="{% block meta_description %}DynaRetire Blog - Insights and guides for retirement planning{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}retirement planning, financial planning, retirement simulator{% endblock %}">
+    
+    <!-- Open Graph meta tags -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{% block og_title %}DynaRetire Blog{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Insights and guides for retirement planning{% endblock %}">
+    
+    <!-- Twitter Card meta tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}{{ self.og_title() }}{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}{{ self.og_description() }}{% endblock %}">
+    
+    {% block additional_meta %}{% endblock %}
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blog/blog.css') }}">
+    {% block blog_css %}{% endblock %}
+{% endblock %}
+
+{% block content %}
+    <div class="blog-container">
+        <!-- Blog content container -->
+        {% block blog_content %}{% endblock %}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {% block blog_scripts %}{% endblock %}
+{% endblock %}

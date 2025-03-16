@@ -1,0 +1,74 @@
+{% extends "blog/blog_base.html" %}
+
+{% block blog_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/blog/components/cards.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/blog/components/featured.css') }}">
+{% endblock %}
+
+{% block meta_description %}Explore retirement planning insights, guides, and expert advice on the DynaRetire blog{% endblock %}
+{% block meta_keywords %}retirement planning, financial advice, retirement simulation, retirement calculator, early retirement{% endblock %}
+
+{% block blog_content %}
+    <!-- Blog Header -->
+    <header class="blog-header">
+        <h1>DynaRetire Blog</h1>
+        <p>Expert insights and guides for planning your retirement journey</p>
+    </header>
+
+    <!-- Featured Post -->
+    {% if featured_article %}
+        {% include "blog/components/featured_post.html" %}
+    {% endif %}
+
+    <!-- Articles Grid -->
+    {% if articles %}
+        <section class="article-grid">
+            {% for article in articles %}
+                {% include "blog/components/article_card.html" %}
+            {% endfor %}
+        </section>
+    {% else %}
+        <div class="no-articles">
+            <p>No articles available at the moment. Check back soon for updates!</p>
+        </div>
+    {% endif %}
+
+    <!-- Pagination (if needed) -->
+    {% if pagination %}
+    <nav class="pagination" aria-label="Blog pagination">
+        <div class="pagination-container">
+            {% if pagination.has_prev %}
+                <a href="{{ url_for('blog', page=pagination.prev_num) }}" class="pagination-link prev" aria-label="Previous page">
+                    ← Previous
+                </a>
+            {% endif %}
+            
+            <span class="pagination-info">Page {{ pagination.page }} of {{ pagination.pages }}</span>
+            
+            {% if pagination.has_next %}
+                <a href="{{ url_for('blog', page=pagination.next_num) }}" class="pagination-link next" aria-label="Next page">
+                    Next →
+                </a>
+            {% endif %}
+        </div>
+    </nav>
+    {% endif %}
+{% endblock %}
+
+{% block blog_scripts %}
+<script>
+    // Add any blog-specific JavaScript here
+    document.addEventListener('DOMContentLoaded', function() {
+        // Lazy load images if needed
+        const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+        if ('loading' in HTMLImageElement.prototype) {
+            lazyImages.forEach(img => {
+                img.loading = 'lazy';
+            });
+        } else {
+            // Fallback for browsers that don't support lazy loading
+            // Could add a lazy loading library here if needed
+        }
+    });
+</script>
+{% endblock %}

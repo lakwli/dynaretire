@@ -1,0 +1,24 @@
+{% set article_url = article.url|default('#') %}
+{% set article_image = article.card_image|default(article.image)|default(url_for('static', filename='images/default-article.jpg')) %}
+{% set article_title = article.title|default('Article Title') %}
+{% set article_description = article.description|default('Article description') %}
+{% set article_category = article.category|default('Category') %}
+{% set article_read_time = article.read_time|default('5 min read') %}
+{% set article_date = article.date.strftime('%B %d, %Y') if article.date else '' %}
+
+<article class="article-card">
+    <a href="{{ url_for('blog_article', article_id=article.id) }}" class="article-card-link">
+        <div class="article-image">
+            <img src="{{ article_image }}" alt="{{ article_title }}">
+        </div>
+        <div class="article-content">
+            <span class="category-tag">{{ article_category }}</span>
+            <h3 class="article-title">{{ article_title }}</h3>
+            <p class="article-description">{{ article_description }}</p>
+            <div class="article-meta">
+                <time datetime="{{ article.date.isoformat() if article.date else '' }}">{{ article_date }}</time>
+                <span class="read-time">{{ article_read_time }}</span>
+            </div>
+        </div>
+    </a>
+</article>
