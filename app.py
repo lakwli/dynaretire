@@ -1,7 +1,7 @@
 # A very simple Flask Hello World app for you to get started with...
 #FLASK_DEBUG=1 FLASK_APP=app.py flask run --host=0.0.0.0 --port=5000
 
-from flask import Flask, render_template, request, jsonify, send_file, Response, session, send_from_directory, redirect,url_for, abort
+from flask import Flask, render_template, request, jsonify, send_file, Response, session, send_from_directory, redirect, url_for, abort
 from classes.web.helper import Helper
 from classes.web.json import json_data as j
 import json
@@ -10,32 +10,13 @@ import os
 from core import output as op
 from core import plan as pl
 from datetime import datetime
+from classes.blog import blog_manager  # Import our blog manager
 
 app = Flask(__name__, static_url_path='/static', static_folder='static')
 app.config["DEBUG"] = True
 app.config["SECRET_KEY"] = "lkmaslkdsldsamdlsdmaseewe2ldsmkdd"
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0  # Disable caching for development
-
-# Temporary blog data structure (replace with database later)
-BLOG_POSTS = [
-    {
-        'id': 'early-retirement-myths',
-        'title': 'Common Myths About Early Retirement',  # Main title
-        'description': 'Debunking misconceptions about retiring before the traditional age of 65',  # Subtitle
-        'content': '''
-            <h2>Understanding Early Retirement Reality</h2>  <!-- Content title -->
-            
-            <p>Many people believe that early retirement is only possible for the wealthy elite or requires extreme frugality. However, the reality is much different. With proper planning, strategic investing, and smart lifestyle choices, early retirement can be achievable for many individuals. The key lies in understanding your expenses, building multiple income streams, and making informed decisions about your investments. Using tools like DynaRetire can help you visualize and plan your path to early retirement while maintaining a comfortable lifestyle.</p>
-        ''',
-        'category': 'Early Retirement',
-        'date': datetime(2025, 3, 16),
-        'read_time': '2 min read',
-        'image': '/static/images/WithdrawAge.png',  # Main article image
-        'card_image': '/static/images/Savings.png',  # Image for article card/preview
-        'is_featured': True
-    }
-]
 
 # Add context processor for current year
 @app.context_processor
@@ -45,15 +26,14 @@ def inject_year():
 # Blog routes
 @app.route('/blog')
 def blog_list():
-    featured_article = next((post for post in BLOG_POSTS if post.get('is_featured')), None)
-    regular_articles = [post for post in BLOG_POSTS if not post.get('is_featured')]
+    featured_article, regular_articles = blog_manager.get_blog_list()
     return render_template('blog/blog_list.html', 
                          featured_article=featured_article,
                          articles=regular_articles)
 
 @app.route('/blog/<string:article_id>')
 def blog_article(article_id):
-    article = next((post for post in BLOG_POSTS if post['id'] == article_id), None)
+    article = blog_manager.get_article(article_id)
     if article is None:
         abort(404)
     return render_template('blog/article.html', article=article)
