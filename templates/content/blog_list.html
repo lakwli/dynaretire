@@ -17,14 +17,14 @@
 
     <!-- Featured Post -->
     {% if featured_article %}
-        {% include "content/components/featured_post.html" %}
+        {% include "content/components/featured_blog.html" %}
     {% endif %}
 
     <!-- Articles Grid -->
     {% if articles %}
         <section class="article-grid">
             {% for article in articles %}
-                {% include "content/components/article_card.html" %}
+                {% include "content/components/blog_card.html" %}
             {% endfor %}
         </section>
     {% else %}

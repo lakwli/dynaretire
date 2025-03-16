@@ -5,7 +5,6 @@ import frontmatter
 import markdown
 from pathlib import Path
 
-from .blog_repo import BlogRepository
 from ..models.article import Article
 
 class ArticleMarkdownRepository:
