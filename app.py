@@ -119,10 +119,6 @@ def funds():
 def strategic():
     return render_template('strategic.html')
 
-@app.route('/showcase.html')
-def showcase():
-    return render_template('marketing/showcase.html')
-
 @app.route('/privacy.html')
 def privacy():
     return render_template('marketing/privacy.html')

@@ -104,7 +104,41 @@
         height: auto;
         border-radius: 8px;
         margin: 2rem 0;
+        cursor: pointer;
+        transition: transform 0.3s ease;
     }
+
+    /* Modal styles */
+    .image-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        overflow: auto;
+    }
+
+    .modal-content {
+        margin: auto;
+        display: block;
+        max-width: 90%;
+        max-height: 90vh;
+        margin-top: 2%;
+    }
+
+    .close-modal {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
 
     /* Navigation */
     .article-nav {
@@ -247,10 +281,45 @@
         </nav>
         {% endif %}
     </div>
+
+   <!-- Image Modal -->
+   <div id="imageModal" class="image-modal">
+       <span class="close-modal">&times;</span>
+       <img class="modal-content" id="modalImage">
+   </div>
 </article>
 {% endblock %}
 
 {% block blog_scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+   // Image zoom functionality
+   const modal = document.getElementById('imageModal');
+   const modalImg = document.getElementById('modalImage');
+   const closeBtn = document.getElementsByClassName('close-modal')[0];
+   
+   // Add click handlers to all content images
+   document.querySelectorAll('.article-content img').forEach(img => {
+       img.onclick = function() {
+           modal.style.display = "block";
+           modalImg.src = this.src;
+       }
+   });
+   
+   // Close modal when clicking the close button
+   closeBtn.onclick = function() {
+       modal.style.display = "none";
+   }
+   
+   // Close modal when clicking outside the image
+   modal.onclick = function(e) {
+       if (e.target === modal) {
+           modal.style.display = "none";
+       }
+   }
+});
+</script>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Share functionality
