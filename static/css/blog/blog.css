@@ -1,8 +1,80 @@
 /* Blog Main Styles */
 .blog-container {
-    max-width: 1200px;
+    max-width: 800px; /* Standard blog width */
     margin: 0 auto;
     padding: 2rem;
+    position: relative; /* For social sidebar positioning */
+}
+
+/* Social Media Sidebar */
+.social-sidebar {
+    position: fixed;
+    left: calc((100vw - 800px) / 2 - 60px); /* Position outside content */
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    z-index: 100;
+}
+
+.social-sidebar a {
+    color: var(--text-primary);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.social-sidebar a:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Responsive Social Sidebar */
+@media (max-width: 1024px) {
+    .social-sidebar {
+        position: static;
+        flex-direction: row;
+        justify-content: center;
+        margin: 2rem 0;
+        transform: none;
+    }
+    
+    .blog-container {
+        padding: 1rem 2rem;
+    }
+}
+
+@media (max-width: 860px) {
+    .blog-container {
+        margin: 0 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .blog-container {
+        padding: 1rem;
+    }
+    
+    .social-sidebar {
+        margin: 1rem 0;
+        gap: 1rem;
+    }
+    
+    .social-sidebar a {
+        font-size: 1.25rem;
+        width: 35px;
+        height: 35px;
+    }
 }
 
 /* Typography */
