@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import List, Optional
-from ..models.blog_post import BlogPost
+from ..models.blog import Blog
 
 class BlogRepository(ABC):
     """
@@ -9,22 +9,22 @@ class BlogRepository(ABC):
     """
 
     @abstractmethod
-    def get_all(self) -> List[BlogPost]:
+    def get_all(self) -> List[Blog]:
         """Get all blog posts."""
         pass
 
     @abstractmethod
-    def get_by_id(self, post_id: str) -> Optional[BlogPost]:
+    def get_by_id(self, post_id: str) -> Optional[Blog]:
         """Get a single blog post by ID."""
         pass
 
     @abstractmethod
-    def get_featured(self) -> Optional[BlogPost]:
+    def get_featured(self) -> Optional[Blog]:
         """Get the featured blog post."""
         pass
 
     @abstractmethod
-    def get_regular_posts(self) -> List[BlogPost]:
+    def get_regular_posts(self) -> List[Blog]:
         """Get all non-featured blog posts."""
         pass
 

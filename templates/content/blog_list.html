@@ -1,4 +1,4 @@
-{% extends "blog/blog_base.html" %}
+{% extends "content/content_base.html" %}
 
 {% block blog_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/blog/components/cards.css') }}">
@@ -17,14 +17,14 @@
 
     <!-- Featured Post -->
     {% if featured_article %}
-        {% include "blog/components/featured_post.html" %}
+        {% include "content/components/featured_post.html" %}
     {% endif %}
 
     <!-- Articles Grid -->
     {% if articles %}
         <section class="article-grid">
             {% for article in articles %}
-                {% include "blog/components/article_card.html" %}
+                {% include "content/components/article_card.html" %}
             {% endfor %}
         </section>
     {% else %}

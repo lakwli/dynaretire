@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import Optional
 
 @dataclass
-class BlogPost:
+class Blog:
     """
     Represents a blog post with all its attributes.
     
@@ -46,7 +46,7 @@ class BlogPost:
         }
 
     @classmethod
-    def from_dict(cls, data: dict) -> 'BlogPost':
+    def from_dict(cls, data: dict) -> 'Blog':
         """Create a BlogPost instance from a dictionary."""
         # Handle date conversion if it's a string
         if isinstance(data.get('date'), str):

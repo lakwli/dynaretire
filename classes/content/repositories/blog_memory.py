@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import List, Optional
-from .base import BlogRepository
-from ..models.blog_post import BlogPost
+from .blog_repo import BlogRepository
+from ..models.blog import Blog
 
 class InMemoryBlogRepository(BlogRepository):
     """
@@ -12,7 +12,7 @@ class InMemoryBlogRepository(BlogRepository):
     def __init__(self):
         # Initialize with hardcoded blog posts
         self._posts = [
-            BlogPost(
+            Blog(
                 id="early-retirement-myths",
                 title="Common Myths About Early Retirement",
                 description="Debunking misconceptions about retiring before the traditional age of 65",
@@ -31,19 +31,19 @@ class InMemoryBlogRepository(BlogRepository):
             # You can add more blog posts here as needed
         ]
 
-    def get_all(self) -> List[BlogPost]:
+    def get_all(self) -> List[Blog]:
         """Get all blog posts."""
         return sorted(self._posts, key=lambda x: x.date, reverse=True)
 
-    def get_by_id(self, post_id: str) -> Optional[BlogPost]:
+    def get_by_id(self, post_id: str) -> Optional[Blog]:
         """Get a single blog post by ID."""
         return next((post for post in self._posts if post.id == post_id), None)
 
-    def get_featured(self) -> Optional[BlogPost]:
+    def get_featured(self) -> Optional[Blog]:
         """Get the featured blog post."""
         return next((post for post in self._posts if post.is_featured), None)
 
-    def get_regular_posts(self) -> List[BlogPost]:
+    def get_regular_posts(self) -> List[Blog]:
         """Get all non-featured blog posts."""
         return sorted(
             [post for post in self._posts if not post.is_featured],

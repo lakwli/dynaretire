@@ -1,4 +1,4 @@
-{% extends "blog/blog_base.html" %}
+{% extends "content/content_base.html" %}
 
 {% block blog_css %}
 <style>
@@ -57,12 +57,10 @@
         margin-bottom: 3rem;
     }
 
-    .article-category {
-        color: var(--accent-color);
+    .article-meta {
+        color: var(--text-tertiary);
         font-size: 0.9375rem;
-        font-weight: 500;
-        margin-bottom: 1rem;
-        display: block;
+        margin: 1rem 0;
         text-align: left;
     }
 
@@ -72,13 +70,6 @@
         color: var(--text-primary);
         margin-bottom: 1rem;
         line-height: 1.2;
-    }
-
-    .article-meta {
-        color: var(--text-tertiary);
-        font-size: 0.9375rem;
-        margin: 1rem 0;
-        text-align: left;
     }
 
     .article-featured-image {
@@ -113,6 +104,33 @@
         height: auto;
         border-radius: 8px;
         margin: 2rem 0;
+    }
+
+    /* Navigation */
+    .article-nav {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .article-nav-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .article-nav-item {
+        margin: 1rem 0;
+    }
+
+    .article-nav-link {
+        color: var(--text-primary);
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .article-nav-link:hover {
+        color: var(--accent-color);
     }
 
     /* Responsive Design */
@@ -198,11 +216,12 @@
     <!-- Main Article Content -->
     <div class="article-main">
         <header class="article-header">
-            <span class="article-category">{{ article.category }}</span>
             <h1 class="article-title">{{ article.title }}</h1>
+            {% if article.updated_at %}
             <div class="article-meta">
-                {{ article.date.strftime('%B %d, %Y') if article.date else '' }}
+                Last Updated: {{ article.updated_at.strftime('%B %d, %Y') }}
             </div>
+            {% endif %}
         </header>
 
         {% if article.image %}
@@ -212,6 +231,21 @@
         <div class="article-content">
             {{ article.content|safe }}
         </div>
+
+        {% if article.related_articles %}
+        <nav class="article-nav">
+            <h3>Related Articles</h3>
+            <ul class="article-nav-list">
+                {% for related in article.related_articles %}
+                <li class="article-nav-item">
+                    <a href="{{ url_for('article', path=related.path) }}" class="article-nav-link">
+                        {{ related.title }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </nav>
+        {% endif %}
     </div>
 </article>
 {% endblock %}

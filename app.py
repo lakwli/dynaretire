@@ -10,7 +10,7 @@ import os
 from core import output as op
 from core import plan as pl
 from datetime import datetime
-from classes.blog import blog_manager  # Import our blog manager
+from classes.content import blog_manager  # Import our blog manager
 
 app = Flask(__name__, static_url_path='/static', static_folder='static')
 app.config["DEBUG"] = True
@@ -27,7 +27,7 @@ def inject_year():
 @app.route('/blog')
 def blog_list():
     featured_article, regular_articles = blog_manager.get_blog_list()
-    return render_template('blog/blog_list.html', 
+    return render_template('content/blog_list.html', 
                          featured_article=featured_article,
                          articles=regular_articles)
 
@@ -36,7 +36,15 @@ def blog_article(article_id):
     article = blog_manager.get_article(article_id)
     if article is None:
         abort(404)
-    return render_template('blog/article.html', article=article)
+    return render_template('content/blog_post.html', article=article)  # Updated to use blog_post.html
+
+# Article routes for static content
+@app.route('/articles/<path:article_path>')
+def article(article_path):
+    article = blog_manager.get_article_by_path(article_path)
+    if article is None:
+        abort(404)
+    return render_template('content/article_post.html', article=article)
 
 @app.route('/home.html')
 @app.route('/home')

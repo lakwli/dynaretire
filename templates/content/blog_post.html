@@ -1,0 +1,236 @@
+{% extends "content/content_base.html" %}
+
+{% block blog_css %}
+<style>
+    /* Layout */
+    .article-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+        position: relative;
+    }
+
+    /* Social Sharing Sidebar */
+    .social-share {
+        position: fixed;
+        left: calc((100vw - 800px) / 2 - 60px);
+        top: 50%;
+        transform: translateY(-50%);
+        height: fit-content;
+    }
+
+    .social-share-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .social-share-button {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--background-secondary);
+        color: var(--text-primary);
+        transition: all 0.2s ease;
+        border: none;
+        cursor: pointer;
+    }
+
+    .social-share-button:hover {
+        background-color: var(--accent-color);
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    /* Article Content */
+    .article-main {
+        width: 100%;
+    }
+
+    .article-header {
+        margin-bottom: 3rem;
+    }
+
+    .article-category {
+        color: var(--accent-color);
+        font-size: 0.9375rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        display: block;
+        text-align: left;
+    }
+
+    .article-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+        line-height: 1.2;
+    }
+
+    .article-meta {
+        color: var(--text-tertiary);
+        font-size: 0.9375rem;
+        margin: 1rem 0;
+        text-align: left;
+    }
+
+    .article-featured-image {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 2rem 0;
+    }
+
+    .article-content {
+        font-size: 1.125rem;
+        line-height: 1.8;
+        color: var(--text-primary);
+    }
+
+    .article-content p {
+        margin-bottom: 1.5rem;
+    }
+
+    .article-content h2 {
+        margin: 2.5rem 0 1rem;
+        font-size: 1.75rem;
+    }
+
+    .article-content h3 {
+        margin: 2rem 0 1rem;
+        font-size: 1.5rem;
+    }
+
+    .article-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 2rem 0;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+        .article-container {
+            padding: 1rem 2rem;
+        }
+
+        .social-share {
+            position: static;
+            transform: none;
+            left: auto;
+            margin: 2rem 0;
+        }
+
+        .social-share-list {
+            flex-direction: row;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+    }
+
+    @media (max-width: 860px) {
+        .article-container {
+            margin: 0 1rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .article-title {
+            font-size: 2rem;
+        }
+
+        .article-content {
+            font-size: 1rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .article-container {
+            padding: 1rem;
+        }
+
+        .social-share {
+            margin: 1rem 0;
+        }
+
+        .social-share-list {
+            gap: 1rem;
+        }
+
+        .social-share-button {
+            width: 35px;
+            height: 35px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block blog_content %}
+<article class="article-container">
+    <!-- Social Sharing Sidebar -->
+    <aside class="social-share">
+        <ul class="social-share-list">
+            <li>
+                <button class="social-share-button" onclick="shareTwitter()" title="Share on Twitter">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </li>
+            <li>
+                <button class="social-share-button" onclick="shareFacebook()" title="Share on Facebook">
+                    <i class="fas fa-share-nodes"></i>
+                </button>
+            </li>
+            <li>
+                <button class="social-share-button" onclick="shareLinkedIn()" title="Share on LinkedIn">
+                    <i class="fas fa-link"></i>
+                </button>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Main Article Content -->
+    <div class="article-main">
+        <header class="article-header">
+            <span class="article-category">{{ article.category }}</span>
+            <h1 class="article-title">{{ article.title }}</h1>
+            <div class="article-meta">
+                {{ article.date.strftime('%B %d, %Y') if article.date else '' }}
+            </div>
+        </header>
+
+        {% if article.image %}
+        <img src="{{ article.image }}" alt="{{ article.title }}" class="article-featured-image">
+        {% endif %}
+
+        <div class="article-content">
+            {{ article.content|safe }}
+        </div>
+    </div>
+</article>
+{% endblock %}
+
+{% block blog_scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Share functionality
+    window.shareTwitter = function() {
+        window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(document.title)}`, '_blank');
+    };
+
+    window.shareFacebook = function() {
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank');
+    };
+
+    window.shareLinkedIn = function() {
+        window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(window.location.href)}&title=${encodeURIComponent(document.title)}`, '_blank');
+    };
+});
+</script>
+{% endblock %}
