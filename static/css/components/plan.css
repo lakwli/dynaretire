@@ -1,0 +1,78 @@
+.link-container {
+    display: inline-block;
+    margin-right: 40px;
+}
+
+.container>p { 
+    display: flex;
+    justify-content: space-between;
+} 
+
+.container>.tabs { 
+    margin-top: 30px; 
+} 
+
+/* Center align labels */
+.label {
+    text-align: center !important;
+    font-size: 0.9rem !important;
+}
+
+
+.floating-nav {
+    position: fixed;
+    bottom: 20px;
+    right: calc((100% - 1200px) / 2 + 20px); /* Align with container's right edge */
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 12px 24px;
+    z-index: 1000;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.floating-nav .button {
+    background: transparent;
+    border: none;
+    padding: 8px 16px;
+    transition: transform 0.2s ease;
+}
+
+.floating-nav .button:hover {
+    transform: translateY(-2px);
+}
+
+.floating-nav .button i {
+    font-size: 20px;
+    color: var(--primary-color);
+}
+ink
+.floating-nav #submit-btn i {
+    color: #23d160;
+}
+
+.floating-nav #submit-btn {
+    background: rgba(35, 209, 96, 0.1);
+    border-radius: 8px;
+}
+
+.floating-nav #submit-btn:hover {
+    background: rgba(35, 209, 96, 0.2);
+}
+
+/* Add margin-top to account for fixed header */
+.content-wrapper {
+    margin-top: 100px;
+}
+
+
+
+/* Responsive adjustment for floating nav */
+@media (max-width: 1240px) { /* 1200px container + 40px padding */
+    .floating-nav {
+        right: 20px; /* Reset to viewport edge on smaller screens */
+    }
+}

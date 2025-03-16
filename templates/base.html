@@ -4,12 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
+    <meta name="author" content="DynaRetire">
+    <meta name="application-name" content="DynaRetire">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Default social meta tags -->
+    <meta property="og:site_name" content="DynaRetire">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Favicon and app icons -->
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon/favicon.ico') }}">
+ 
     <link rel="icon" href="/static/logo.png">
     <title>{% block title %}DynaRetire: Dynamic Retirement Simulation Tool{% endblock %}</title>
 
     {% block meta %}
-    <meta name="description" content="DynaRetire: A comprehensive retirement planning tool for simulating dynamic retirement scenarios">
-    <meta name="keywords" content="retirement simulation, early retirement, pension fund, retirement calculator, retirement testing, financial planning">
     {% endblock %}
 
     <!-- Common CSS -->
