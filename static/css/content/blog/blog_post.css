@@ -1,9 +1,36 @@
  /* Blog specific styles */
- .article-category {
+ .blog-category {
      color: var(--accent-color);
      font-size: 0.9375rem;
      font-weight: 500;
      margin-bottom: 1rem;
      display: block;
      text-align: left;
+ }
+ 
+ /* Related Posts Navigation */
+ .blog-related {
+     margin-top: 3rem;
+     padding-top: 2rem;
+     border-top: 1px solid var(--border-color);
+ }
+ 
+ .blog-related-list {
+     list-style: none;
+     padding: 0;
+     margin: 0;
+ }
+ 
+ .blog-related-item {
+     margin: 1rem 0;
+ }
+ 
+ .blog-related-link {
+     color: var(--text-primary);
+     text-decoration: none;
+     transition: color 0.2s ease;
+ }
+ 
+ .blog-related-link:hover {
+     color: var(--accent-color);
  }

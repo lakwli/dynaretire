@@ -1,21 +1,21 @@
 /* Common Content Styles */
-.article-container, .content-container {
+.content-container {
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem;
     position: relative;
 }
 
-/* Article Layout */
-.article-main {
+/* Content Layout */
+.content-main {
     width: 100%;
 }
 
-.article-header {
+.content-header {
     margin-bottom: 3rem;
 }
 
-.article-title {
+.content-title {
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--text-primary);
@@ -23,41 +23,41 @@
     line-height: 1.2;
 }
 
-.article-meta {
+.content-meta {
     color: var(--text-tertiary);
     font-size: 0.9375rem;
     margin: 1rem 0;
     text-align: left;
 }
 
-.article-featured-image {
+.content-featured-image {
     width: 100%;
     height: auto;
     border-radius: 8px;
     margin: 2rem 0;
 }
 
-.article-content {
+.content-body {
     font-size: 1.125rem;
     line-height: 1.8;
     color: var(--text-primary);
 }
 
-.article-content p {
+.content-body p {
     margin-bottom: 1.5rem;
 }
 
-.article-content h2 {
+.content-body h2 {
     margin: 2.5rem 0 1rem;
     font-size: 1.75rem;
 }
 
-.article-content h3 {
+.content-body h3 {
     margin: 2rem 0 1rem;
     font-size: 1.5rem;
 }
 
-.article-content img {
+.content-body img {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
@@ -265,7 +265,7 @@
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-    .article-container, .content-container {
+    .content-container {
         padding: 1rem 2rem;
     }
 
@@ -292,13 +292,13 @@
 }
 
 @media (max-width: 860px) {
-    .article-container, .content-container {
+    .content-container {
         margin: 0 1rem;
     }
 }
 
 @media (max-width: 768px) {
-    .article-container, .content-container {
+    .content-container {
         padding: 1rem;
     }
 
@@ -306,11 +306,11 @@
         margin-bottom: 2rem;
     }
 
-    .article-title {
+    .content-title {
         font-size: 2rem;
     }
 
-    .article-content {
+    .content-body {
         font-size: 1rem;
     }
 
@@ -326,13 +326,13 @@
         font-size: 1.25rem;
     }
 
-    .article-grid {
+    .content-grid {
         grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 480px) {
-    .article-container, .content-container {
+    .content-container {
         padding: 1rem;
     }
 

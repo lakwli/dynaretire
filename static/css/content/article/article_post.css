@@ -1,26 +1,2 @@
-/* Navigation */
-.article-nav {
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border-color);
-}
-
-.article-nav-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.article-nav-item {
-    margin: 1rem 0;
-}
-
-.article-nav-link {
-    color: var(--text-primary);
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-.article-nav-link:hover {
-    color: var(--accent-color);
-}
+/* Article specific styles */
+/* Currently no article-specific styles needed */

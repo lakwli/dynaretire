@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content_content %}
-<article class="article-container">
+<article class="content-container">
     <!-- Social Sharing Sidebar -->
     <aside class="social-share">
         <ul class="social-share-list">
@@ -27,39 +27,24 @@
         </ul>
     </aside>
 
-    <!-- Main Article Content -->
-    <div class="article-main">
-        <header class="article-header">
-            <h1 class="article-title">{{ article.title }}</h1>
+    <!-- Main Content -->
+    <div class="content-main">
+        <header class="content-header">
+            <h1 class="content-title">{{ article.title }}</h1>
             {% if article.updated_at %}
-            <div class="article-meta">
+            <div class="content-meta">
                 Last Updated: {{ article.updated_at.strftime('%B %d, %Y') }}
             </div>
             {% endif %}
         </header>
 
         {% if article.image %}
-        <img src="{{ article.image }}" alt="{{ article.title }}" class="article-featured-image">
+        <img src="{{ article.image }}" alt="{{ article.title }}" class="content-featured-image">
         {% endif %}
 
-        <div class="article-content">
+        <div class="content-body">
             {{ article.content|safe }}
         </div>
-
-        {% if article.related_articles %}
-        <nav class="article-nav">
-            <h3>Related Articles</h3>
-            <ul class="article-nav-list">
-                {% for related in article.related_articles %}
-                <li class="article-nav-item">
-                    <a href="{{ url_for('article', path=related.path) }}" class="article-nav-link">
-                        {{ related.title }}
-                    </a>
-                </li>
-                {% endfor %}
-            </ul>
-        </nav>
-        {% endif %}
     </div>
 
 </article>

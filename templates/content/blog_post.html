@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content_content %}
-<article class="article-container">
+<article class="content-container">
     <!-- Social Sharing Sidebar -->
     <aside class="social-share">
         <ul class="social-share-list">
@@ -27,21 +27,21 @@
         </ul>
     </aside>
 
-    <!-- Main Article Content -->
-    <div class="article-main">
-        <header class="article-header">
-            <span class="article-category">{{ article.category }}</span>
-            <h1 class="article-title">{{ article.title }}</h1>
-            <div class="article-meta">
+    <!-- Main Content -->
+    <div class="content-main">
+        <header class="content-header">
+            <span class="blog-category">{{ article.category }}</span>
+            <h1 class="content-title">{{ article.title }}</h1>
+            <div class="content-meta">
                 {{ article.date.strftime('%B %d, %Y') if article.date else '' }}
             </div>
         </header>
 
         {% if article.image %}
-        <img src="{{ article.image }}" alt="{{ article.title }}" class="article-featured-image">
+        <img src="{{ article.image }}" alt="{{ article.title }}" class="content-featured-image">
         {% endif %}
 
-        <div class="article-content">
+        <div class="content-body">
             {{ article.content|safe }}
         </div>
     </div>
