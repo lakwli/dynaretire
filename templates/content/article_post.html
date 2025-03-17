@@ -62,44 +62,11 @@
         {% endif %}
     </div>
 
-   <!-- Image Modal -->
-   <div id="imageModal" class="image-modal">
-       <span class="close-modal">&times;</span>
-       <img class="modal-content" id="modalImage">
-   </div>
 </article>
 {% endblock %}
 
 {% block content_scripts %}
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-   // Image zoom functionality
-   const modal = document.getElementById('imageModal');
-   const modalImg = document.getElementById('modalImage');
-   const closeBtn = document.getElementsByClassName('close-modal')[0];
-   
-   // Add click handlers to all content images
-   document.querySelectorAll('.article-content img').forEach(img => {
-       img.onclick = function() {
-           modal.style.display = "block";
-           modalImg.src = this.src;
-       }
-   });
-   
-   // Close modal when clicking the close button
-   closeBtn.onclick = function() {
-       modal.style.display = "none";
-   }
-   
-   // Close modal when clicking outside the image
-   modal.onclick = function(e) {
-       if (e.target === modal) {
-           modal.style.display = "none";
-       }
-   }
-});
-</script>
-
+<!-- Social sharing -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Share functionality

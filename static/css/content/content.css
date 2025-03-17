@@ -220,6 +220,49 @@
     margin: 2rem 0;
 }
 
+/* Image Zoom Component */
+.content-image-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    overflow: auto;
+}
+
+.content-modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90vh;
+    margin-top: 2%;
+}
+
+.content-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.content-modal-close:hover {
+    color: #bbb;
+}
+
+[data-zoomable] {
+    transition: opacity 0.3s ease;
+}
+
+[data-zoomable]:hover {
+    opacity: 0.9;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .article-container, .content-container {

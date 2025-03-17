@@ -31,5 +31,16 @@
 {% endblock %}
 
 {% block scripts %}
+    <!-- Image zoom capability - only initialized if content has zoomable images -->
+    <script src="{{ url_for('static', filename='js/utilities/image-zoom.js') }}"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Only initialize if there are zoomable images
+        if (document.querySelector('[data-zoomable]')) {
+            new ImageZoom();
+        }
+    });
+    </script>
+
     {% block content_scripts %}{% endblock %}
 {% endblock %}
