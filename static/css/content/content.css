@@ -8,6 +8,57 @@
     --radius-lg: 12px;
 }
 
+/* Block List */
+.block-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 1.5rem 0;
+}
+
+.block-list li {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.block-list li:before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+}
+
+/* Image Container */
+.image-container {
+    margin: 2rem 0;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+}
+
+/* Key Info Box */
+.key-info {
+    background-color: var(--background-light);
+    border-left: 4px solid var(--primary-color);
+    padding: 1rem;
+    margin: 1.5rem 0;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.key-info p {
+    margin: 0;
+}
+
+/* Value Highlights */
+.value {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
 /* Common Content Styles */
 .content-container {
     max-width: 800px;
