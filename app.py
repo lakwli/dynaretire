@@ -2,6 +2,7 @@
 #FLASK_DEBUG=1 FLASK_APP=app.py flask run --host=0.0.0.0 --port=5005
 
 from flask import Flask, render_template, request, jsonify, send_file, Response, session, send_from_directory, redirect, url_for, abort
+from werkzeug.security import safe_join
 from classes.web.helper import Helper
 from classes.web.json import json_data as j
 import json
@@ -45,6 +46,19 @@ def article(article_path):
     if article is None:
         abort(404)
     return render_template('content/article_post.html', article=article)
+
+# Serve content files (images, etc.)
+@app.route('/content/<path:filename>')
+def content_files(filename):
+    """Serve files from the content directory"""
+    try:
+        # Use safe_join to prevent directory traversal
+        filepath = safe_join('content', filename)
+        directory = os.path.dirname(filepath)
+        filename = os.path.basename(filepath)
+        return send_from_directory(directory, filename)
+    except (TypeError, ValueError) as e:
+        abort(404)
 
 @app.route('/home.html')
 @app.route('/home')
