@@ -19,17 +19,17 @@
 {% endblock %}
 
 {% block css %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/blog/content.css') }}">
-    {% block blog_css %}{% endblock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/content/content.css') }}">
+    {% block content_css %}{% endblock %}
 {% endblock %}
 
 {% block content %}
-    <div class="blog-container">
+    <div class="content-container">
         <!-- Blog content container -->
         {% block content_content %}{% endblock %}
     </div>
 {% endblock %}
 
 {% block scripts %}
-    {% block blog_scripts %}{% endblock %}
+    {% block content_scripts %}{% endblock %}
 {% endblock %}

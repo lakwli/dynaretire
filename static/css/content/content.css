@@ -1,5 +1,5 @@
 /* Blog Main Styles */
-.content_content {
+.content-container {
     max-width: 800px; /* Standard blog width */
     margin: 0 auto;
     padding: 2rem;
@@ -49,19 +49,19 @@
         transform: none;
     }
     
-    .content_content {
+    .content-container {
         padding: 1rem 2rem;
     }
 }
 
 @media (max-width: 860px) {
-    .content_content {
+    .content-container {
         margin: 0 1rem;
     }
 }
 
 @media (max-width: 480px) {
-    .content_content {
+    .content-container {
         padding: 1rem;
     }
     
@@ -78,7 +78,7 @@
 }
 
 /* Typography */
-.content_content h1 {
+.content-container h1 {
     font-family: 'Inter', sans-serif;
     font-size: 2.5rem;
     font-weight: 700;
@@ -86,7 +86,7 @@
     margin-bottom: 1rem;
 }
 
-.content_content h2 {
+.content-container h2 {
     font-family: 'Inter', sans-serif;
     font-size: 2rem;
     font-weight: 600;
@@ -94,7 +94,7 @@
     margin: 2rem 0 1rem;
 }
 
-.content_content h3 {
+.content-container h3 {
     font-family: 'Inter', sans-serif;
     font-size: 1.5rem;
     font-weight: 600;
@@ -126,7 +126,7 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .content_content {
+    .content-container {
         padding: 1rem;
     }
 
@@ -134,15 +134,15 @@
         margin-bottom: 2rem;
     }
 
-    .content_content h1 {
+    .content-container h1 {
         font-size: 2rem;
     }
 
-    .content_content h2 {
+    .content-container h2 {
         font-size: 1.75rem;
     }
 
-    .content_content h3 {
+    .content-container h3 {
         font-size: 1.25rem;
     }
 

@@ -1,8 +1,7 @@
 {% extends "content/content_base.html" %}
 
-{% block blog_css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/blog/components/cards.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/blog/components/featured.css') }}">
+{% block content_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/content/blog/blog_list.css') }}">
 {% endblock %}
 
 {% block meta_description %}Explore retirement planning insights, guides, and expert advice on the DynaRetire blog{% endblock %}
@@ -55,7 +54,7 @@
     {% endif %}
 {% endblock %}
 
-{% block blog_scripts %}
+{% block content_scripts %}
 <script>
     // Add any blog-specific JavaScript here
     document.addEventListener('DOMContentLoaded', function() {
