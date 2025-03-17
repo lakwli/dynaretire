@@ -1,13 +1,13 @@
-{% set featured_url = featured_article.url|default('#') %}
-{% set featured_image = featured_article.image|default(url_for('static', filename='images/default-featured.jpg')) %}
-{% set featured_title = featured_article.title|default('Featured Article Title') %}
-{% set featured_description = featured_article.description|default('Featured article description') %}
-{% set featured_category = featured_article.category|default('Featured') %}
-{% set featured_read_time = featured_article.read_time|default('7 min read') %}
-{% set featured_date = featured_article.date.strftime('%B %d, %Y') if featured_article.date else '' %}
+{% set featured_url = featured_blog.url|default('#') %}
+{% set featured_image = featured_blog.image|default(url_for('static', filename='images/default-featured.jpg')) %}
+{% set featured_title = featured_blog.title|default('Featured Blog Post') %}
+{% set featured_description = featured_blog.description|default('Featured blog post description') %}
+{% set featured_category = featured_blog.category|default('Featured') %}
+{% set featured_read_time = featured_blog.read_time|default('7 min read') %}
+{% set featured_date = featured_blog.date.strftime('%B %d, %Y') if featured_blog.date else '' %}
 
 <section class="featured-post">
-    <a href="{{ url_for('blog_article', article_id=featured_article.id) }}" class="featured-post-link">
+    <a href="{{ url_for('blog_post', blog_id=featured_blog.id) }}" class="featured-post-link">
         <div class="featured-post-grid">
             <div class="featured-image">
                 <img src="{{ featured_image }}" alt="{{ featured_title }}">
@@ -17,7 +17,7 @@
                 <h2 class="featured-title">{{ featured_title }}</h2>
                 <p class="featured-description">{{ featured_description }}</p>
                 <div class="featured-meta">
-                    <time datetime="{{ featured_article.date.isoformat() if featured_article.date else '' }}">{{ featured_date }}</time>
+                    <time datetime="{{ featured_blog.date.isoformat() if featured_blog.date else '' }}">{{ featured_date }}</time>
                     <span class="read-time">{{ featured_read_time }}</span>
                 </div>
             </div>

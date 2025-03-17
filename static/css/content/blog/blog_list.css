@@ -1,5 +1,5 @@
-/* Article Card Styles */
-.article-card {
+/* Blog Card Styles */
+.blog-card {
     background: #fff;
     border-radius: 8px;
     overflow: hidden;
@@ -8,26 +8,26 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.article-card:hover {
+.blog-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-.article-card-link {
+.blog-card-link {
     text-decoration: none;
     color: inherit;
     display: block;
     height: 100%;
 }
 
-/* Article Image */
-.article-image {
+/* Blog Image */
+.blog-image {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 aspect ratio */
     overflow: hidden;
 }
 
-.article-image img {
+.blog-image img {
     position: absolute;
     top: 0;
     left: 0;
@@ -37,12 +37,12 @@
     transition: transform 0.3s ease;
 }
 
-.article-card:hover .article-image img {
+.blog-card:hover .blog-image img {
     transform: scale(1.05);
 }
 
-/* Article Content */
-.article-content {
+/* Blog Content */
+.blog-post-content {
     padding: 1.5rem;
 }
 
@@ -56,7 +56,7 @@
     text-align: left;
 }
 
-.article-title {
+.blog-title {
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 0.75rem;
@@ -65,7 +65,7 @@
     text-align: left;
 }
 
-.article-description {
+.blog-description {
     font-size: 1rem;
     color: var(--text-secondary);
     margin-bottom: 1rem;
@@ -73,8 +73,8 @@
     text-align: left;
 }
 
-/* Article Meta */
-.article-meta {
+/* Blog Meta */
+.blog-meta {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -95,17 +95,25 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .article-content {
+    .blog-post-content {
         padding: 1rem;
     }
 
-    .article-title {
+    .blog-title {
         font-size: 1.1rem;
     }
 
-    .article-description {
+    .blog-description {
         font-size: 0.9rem;
     }
+}
+
+/* Blog Grid */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
 }
 
 

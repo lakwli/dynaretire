@@ -27,17 +27,17 @@ def inject_year():
 # Blog routes
 @app.route('/blog')
 def blog_list():
-    featured_article, regular_articles = blog_manager.get_blog_list()
-    return render_template('content/blog_list.html', 
-                         featured_article=featured_article,
-                         articles=regular_articles)
+    featured_blog, blog_posts = blog_manager.get_blog_list()
+    return render_template('content/blog_list.html',
+                          featured_blog=featured_blog,
+                          blog_posts=blog_posts)
 
-@app.route('/blog/<string:article_id>')
-def blog_article(article_id):
-    article = blog_manager.get_article(article_id)
-    if article is None:
+@app.route('/blog/<string:blog_id>')
+def blog_post(blog_id):
+    blog = blog_manager.get_article(blog_id)  # Function name unchanged for now
+    if blog is None:
         abort(404)
-    return render_template('content/blog_post.html', article=article)  # Updated to use blog_post.html
+    return render_template('content/blog_post.html', blog=blog)  # Pass as blog=
 
 # Article routes for static content
 @app.route('/articles/<path:article_path>')

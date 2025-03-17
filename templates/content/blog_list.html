@@ -14,21 +14,21 @@
         <p>Expert insights and guides for planning your retirement journey</p>
     </header>
 
-    <!-- Featured Post -->
-    {% if featured_article %}
+    <!-- Featured Blog Post -->
+    {% if featured_blog %}
         {% include "content/components/featured_blog.html" %}
     {% endif %}
 
-    <!-- Articles Grid -->
-    {% if articles %}
-        <section class="article-grid">
-            {% for article in articles %}
+    <!-- Blog Posts Grid -->
+    {% if blog_posts %}
+        <section class="blog-grid">
+            {% for blog in blog_posts %}
                 {% include "content/components/blog_card.html" %}
             {% endfor %}
         </section>
     {% else %}
-        <div class="no-articles">
-            <p>No articles available at the moment. Check back soon for updates!</p>
+        <div class="no-posts">
+            <p>No blog posts available at the moment. Check back soon for updates!</p>
         </div>
     {% endif %}
 

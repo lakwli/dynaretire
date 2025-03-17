@@ -1,23 +1,23 @@
-{% set article_url = article.url|default('#') %}
-{% set article_image = article.card_image|default(article.image)|default(url_for('static', filename='images/default-article.jpg')) %}
-{% set article_title = article.title|default('Article Title') %}
-{% set article_description = article.description|default('Article description') %}
-{% set article_category = article.category|default('Category') %}
-{% set article_read_time = article.read_time|default('5 min read') %}
-{% set article_date = article.date.strftime('%B %d, %Y') if article.date else '' %}
+{% set blog_url = blog.url|default('#') %}
+{% set blog_image = blog.card_image|default(blog.image)|default(url_for('static', filename='images/default-blog.jpg')) %}
+{% set blog_title = blog.title|default('Blog Post Title') %}
+{% set blog_description = blog.description|default('Blog post description') %}
+{% set blog_category = blog.category|default('Category') %}
+{% set blog_read_time = blog.read_time|default('5 min read') %}
+{% set blog_date = blog.date.strftime('%B %d, %Y') if blog.date else '' %}
 
-<article class="article-card">
-    <a href="{{ url_for('blog_article', article_id=article.id) }}" class="article-card-link">
-        <div class="article-image">
-            <img src="{{ article_image }}" alt="{{ article_title }}">
+<article class="blog-card">
+    <a href="{{ url_for('blog_post', blog_id=blog.id) }}" class="blog-card-link">
+        <div class="blog-image">
+            <img src="{{ blog_image }}" alt="{{ blog_title }}">
         </div>
-        <div class="article-content">
-            <span class="category-tag">{{ article_category }}</span>
-            <h3 class="article-title">{{ article_title }}</h3>
-            <p class="article-description">{{ article_description }}</p>
-            <div class="article-meta">
-                <time datetime="{{ article.date.isoformat() if article.date else '' }}">{{ article_date }}</time>
-                <span class="read-time">{{ article_read_time }}</span>
+        <div class="blog-post-content">
+            <span class="category-tag">{{ blog_category }}</span>
+            <h3 class="blog-title">{{ blog_title }}</h3>
+            <p class="blog-description">{{ blog_description }}</p>
+            <div class="blog-meta">
+                <time datetime="{{ blog.date.isoformat() if blog.date else '' }}">{{ blog_date }}</time>
+                <span class="read-time">{{ blog_read_time }}</span>
             </div>
         </div>
     </a>
