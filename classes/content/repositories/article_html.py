@@ -58,7 +58,9 @@ class ArticleHtmlRepository:
                 type='article',
                 updated_at=updated_at,
                 keywords=metadata.get('keywords', []),
-                image=metadata.get('image')
+                image=metadata.get('image'),
+                custom_css_file=metadata.get('custom_css_file'),
+                custom_styles=metadata.get('custom_styles')
             )
         except Exception as e:
             print(f"Error parsing HTML file {file_path}: {e}")
@@ -72,7 +74,9 @@ class ArticleHtmlRepository:
             'type': 'article',
             'updated_at': article.updated_at.isoformat(),
             'keywords': article.keywords,
-            'image': article.image
+            'image': article.image,
+            'custom_css_file': article.custom_css_file,
+            'custom_styles': article.custom_styles
         }
         
         html_template = f'''<!DOCTYPE html>

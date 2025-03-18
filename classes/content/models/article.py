@@ -16,6 +16,8 @@ class Article:
         updated_at: Last update timestamp
         keywords: List of keywords for SEO
         image: Optional main image URL for the article
+        custom_css_file: Optional path to custom CSS file
+        custom_styles: Optional inline CSS styles
     """
     path: str
     title: str
@@ -25,6 +27,8 @@ class Article:
     updated_at: datetime
     keywords: List[str] = field(default_factory=list)
     image: Optional[str] = None
+    custom_css_file: Optional[str] = None
+    custom_styles: Optional[str] = None
 
     def to_dict(self) -> dict:
         """Convert the article to a dictionary."""

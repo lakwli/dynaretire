@@ -19,7 +19,27 @@
 {% endblock %}
 
 {% block css %}
+    <!-- Base content CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/content/content.css') }}">
+    
+    <!-- Custom CSS file if specified -->
+    {% if article is defined and article.custom_css_file %}
+    <link rel="stylesheet" href="{{ url_for('static', filename=article.custom_css_file) }}">
+    {% elif blog is defined and blog.custom_css_file %}
+    <link rel="stylesheet" href="{{ url_for('static', filename=blog.custom_css_file) }}">
+    {% endif %}
+    
+    <!-- Inline custom styles if specified -->
+    {% if article is defined and article.custom_styles %}
+    <style type="text/css">
+        {{ article.custom_styles|safe }}
+    </style>
+    {% elif blog is defined and blog.custom_styles %}
+    <style type="text/css">
+        {{ blog.custom_styles|safe }}
+    </style>
+    {% endif %}
+
     {% block content_css %}{% endblock %}
 {% endblock %}
 

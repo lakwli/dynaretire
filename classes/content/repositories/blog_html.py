@@ -65,7 +65,9 @@ class BlogHtmlRepository(BlogRepository):
                 keywords=metadata.get('keywords', []),
                 image=metadata.get('image', ''),
                 card_image=metadata.get('card_image'),
-                is_featured=metadata.get('is_featured', False)
+                is_featured=metadata.get('is_featured', False),
+                custom_css_file=metadata.get('custom_css_file'),
+                custom_styles=metadata.get('custom_styles')
             )
         except Exception as e:
             print(f"Error parsing HTML file {file_path}: {e}")
@@ -82,7 +84,9 @@ class BlogHtmlRepository(BlogRepository):
             'keywords': post.keywords,
             'image': post.image,
             'card_image': post.card_image,
-            'is_featured': post.is_featured
+            'is_featured': post.is_featured,
+            'custom_css_file': post.custom_css_file,
+            'custom_styles': post.custom_styles
         }
         
         html_template = f'''<!DOCTYPE html>

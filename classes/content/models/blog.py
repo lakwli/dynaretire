@@ -19,6 +19,8 @@ class Blog:
         image: Main image URL for the blog post
         card_image: Optional image URL for card preview
         is_featured: Whether this is a featured post
+        custom_css_file: Optional path to custom CSS file
+        custom_styles: Optional inline CSS styles
     """
     id: str
     title: str
@@ -31,6 +33,8 @@ class Blog:
     keywords: List[str] = field(default_factory=list)
     card_image: Optional[str] = None
     is_featured: bool = False
+    custom_css_file: Optional[str] = None
+    custom_styles: Optional[str] = None
 
     def to_dict(self) -> dict:
         """Convert the blog post to a dictionary."""
@@ -45,7 +49,9 @@ class Blog:
             'keywords': self.keywords,
             'image': self.image,
             'card_image': self.card_image or self.image,
-            'is_featured': self.is_featured
+            'is_featured': self.is_featured,
+            'custom_css_file': self.custom_css_file,
+            'custom_styles': self.custom_styles
         }
 
     @classmethod
