@@ -1,5 +1,23 @@
 {% extends "content/content_base.html" %}
 
+{% block meta_description %}{{ blog.description }}{% endblock %}
+
+{% block meta_keywords %}{{ blog.keywords|join(', ') }}{% endblock %}
+
+{% block og_title %}{{ blog.title }}{% endblock %}
+{% block og_description %}{{ blog.description }}{% endblock %}
+
+{% block additional_meta %}
+    <meta property="article:published_time" content="{{ blog.date }}">
+    <meta property="article:section" content="{{ blog.category }}">
+    {% for keyword in blog.keywords %}
+    <meta property="article:tag" content="{{ keyword }}">
+    {% endfor %}
+    <meta property="og:image" content="{{ blog.card_image if blog.card_image else blog.image }}">
+    <meta name="twitter:image" content="{{ blog.card_image if blog.card_image else blog.image }}">
+    <meta name="reading-time" content="{{ blog.read_time }}">
+{% endblock %}
+
 {% block content_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/content/blog/blog_post.css') }}">
 {% endblock %}

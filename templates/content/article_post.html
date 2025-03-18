@@ -1,5 +1,21 @@
 {% extends "content/content_base.html" %}
 
+{% block meta_description %}{{ article.description }}{% endblock %}
+
+{% block meta_keywords %}{{ article.keywords|join(', ') }}{% endblock %}
+
+{% block og_title %}{{ article.title }}{% endblock %}
+{% block og_description %}{{ article.description }}{% endblock %}
+
+{% block additional_meta %}
+    <meta property="article:modified_time" content="{{ article.updated_at }}">
+    {% for keyword in article.keywords %}
+    <meta property="article:tag" content="{{ keyword }}">
+    {% endfor %}
+    <meta property="og:image" content="{{ article.image }}">
+    <meta name="twitter:image" content="{{ article.image }}">
+{% endblock %}
+
 {% block content_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/content/article/article_post.css') }}">
 {% endblock %}

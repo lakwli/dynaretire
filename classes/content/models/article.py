@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Optional, List
 
@@ -14,6 +14,7 @@ class Article:
         content: Full HTML content of the article
         type: Always 'article' to distinguish from blog posts
         updated_at: Last update timestamp
+        keywords: List of keywords for SEO
         image: Optional main image URL for the article
     """
     path: str
@@ -22,6 +23,7 @@ class Article:
     content: str
     type: str  # Always 'article'
     updated_at: datetime
+    keywords: List[str] = field(default_factory=list)
     image: Optional[str] = None
 
     def to_dict(self) -> dict:
@@ -33,6 +35,7 @@ class Article:
             'content': self.content,
             'type': self.type,
             'updated_at': self.updated_at,
+            'keywords': self.keywords,
             'image': self.image
         }
 

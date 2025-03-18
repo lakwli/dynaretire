@@ -1,6 +1,6 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Optional
+from typing import Optional, List
 
 @dataclass
 class Blog:
@@ -15,6 +15,7 @@ class Blog:
         category: Category of the blog post
         date: Publication date
         read_time: Estimated reading time
+        keywords: List of keywords for SEO
         image: Main image URL for the blog post
         card_image: Optional image URL for card preview
         is_featured: Whether this is a featured post
@@ -27,6 +28,7 @@ class Blog:
     date: datetime
     read_time: str
     image: str
+    keywords: List[str] = field(default_factory=list)
     card_image: Optional[str] = None
     is_featured: bool = False
 
@@ -40,6 +42,7 @@ class Blog:
             'category': self.category,
             'date': self.date,
             'read_time': self.read_time,
+            'keywords': self.keywords,
             'image': self.image,
             'card_image': self.card_image or self.image,
             'is_featured': self.is_featured

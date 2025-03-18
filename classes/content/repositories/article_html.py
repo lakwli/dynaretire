@@ -57,6 +57,7 @@ class ArticleHtmlRepository:
                 content=str(content_div),
                 type='article',
                 updated_at=updated_at,
+                keywords=metadata.get('keywords', []),
                 image=metadata.get('image')
             )
         except Exception as e:
@@ -70,6 +71,7 @@ class ArticleHtmlRepository:
             'description': article.description,
             'type': 'article',
             'updated_at': article.updated_at.isoformat(),
+            'keywords': article.keywords,
             'image': article.image
         }
         

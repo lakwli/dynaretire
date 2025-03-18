@@ -62,6 +62,7 @@ class BlogHtmlRepository(BlogRepository):
                 category=metadata.get('category', ''),
                 date=date,
                 read_time=metadata.get('read_time', ''),
+                keywords=metadata.get('keywords', []),
                 image=metadata.get('image', ''),
                 card_image=metadata.get('card_image'),
                 is_featured=metadata.get('is_featured', False)
@@ -78,6 +79,7 @@ class BlogHtmlRepository(BlogRepository):
             'category': post.category,
             'date': post.date.isoformat(),
             'read_time': post.read_time,
+            'keywords': post.keywords,
             'image': post.image,
             'card_image': post.card_image,
             'is_featured': post.is_featured
