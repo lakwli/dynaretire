@@ -51,6 +51,7 @@ class BlogMarkdownRepository(BlogRepository):
                     title=post.get('title', ''),
                     description=post.get('description', ''),
                     content=html_content,
+                    keywords=post.get('keywords', []),  # Added keywords
                     category=post.get('category', ''),
                     date=date,
                     read_time=post.get('read_time', ''),
@@ -111,6 +112,7 @@ class BlogMarkdownRepository(BlogRepository):
             post.content,
             title=post.title,
             description=post.description,
+            keywords=post.keywords,  # Added keywords
             category=post.category,
             date=post.date.isoformat(),
             read_time=post.read_time,

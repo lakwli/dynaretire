@@ -1,40 +1,29 @@
 from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Optional, List
+from .content import Content
 
 @dataclass
-class Blog:
+class Blog(Content):
     """
     Represents a blog post with all its attributes.
     
     Attributes:
         id: Unique identifier for the blog post
-        title: Main title of the blog post
-        description: Short description or subtitle
-        content: Full HTML content of the blog post
         category: Category of the blog post
         date: Publication date
         read_time: Estimated reading time
-        keywords: List of keywords for SEO
         image: Main image URL for the blog post
         card_image: Optional image URL for card preview
         is_featured: Whether this is a featured post
-        custom_css_file: Optional path to custom CSS file
-        custom_styles: Optional inline CSS styles
     """
     id: str
-    title: str
-    description: str
-    content: str
     category: str
     date: datetime
     read_time: str
     image: str
-    keywords: List[str] = field(default_factory=list)
     card_image: Optional[str] = None
     is_featured: bool = False
-    custom_css_file: Optional[str] = None
-    custom_styles: Optional[str] = None
 
     def to_dict(self) -> dict:
         """Convert the blog post to a dictionary."""

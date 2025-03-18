@@ -47,6 +47,7 @@ class ArticleMarkdownRepository:
                     title=article.get('title', ''),
                     description=article.get('description', ''),
                     content=html_content,
+                    keywords=article.get('keywords', []),  # Added keywords
                     type='article',
                     updated_at=updated_at,
                     image=article.get('image')
@@ -89,6 +90,7 @@ class ArticleMarkdownRepository:
             article.content,
             title=article.title,
             description=article.description,
+            keywords=article.keywords,  # Added keywords
             type='article',
             updated_at=article.updated_at.isoformat(),
             image=article.image

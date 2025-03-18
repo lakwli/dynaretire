@@ -605,3 +605,225 @@
         height: 35px;
     }
 }
+
+
+/* Table of Contents - mirrors social-share positioning but on the right */
+.content-toc {
+    position: fixed;
+    right: calc((100vw - 800px) / 2 - 70px);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 250px;
+    background: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    padding: 1.5rem;
+    max-height: 80vh;
+    overflow-y: auto;
+    z-index: 100;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) transparent;
+    -webkit-overflow-scrolling: touch;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.content-toc::-webkit-scrollbar {
+    width: 4px;
+}
+
+.content-toc::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.content-toc::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+.content-toc:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.content-toc__title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(73, 197, 196, 0.2);
+}
+
+.content-toc__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.content-toc__item {
+    margin-bottom: 0.75rem;
+}
+
+.content-toc__link {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    display: block;
+    padding: 0.5rem 0;
+}
+
+.content-toc__link:hover {
+    color: var(--primary-color);
+    transform: translateX(3px);
+}
+
+.content-toc__link--h2 {
+    font-weight: 600;
+}
+
+.content-toc__link--h3 {
+    padding-left: 1rem;
+    font-size: 0.9rem;
+}
+
+.content-toc__link--active {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+
+/* Progress Bar */
+.content-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--primary-color);
+    z-index: 1000;
+    transition: width 0.1s ease;
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 45px;
+    height: 45px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    box-shadow: var(--shadow-md);
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+
+/* Mobile TOC Toggle */
+.content-toc-toggle {
+    display: none;
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    width: 45px;
+    height: 45px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    box-shadow: var(--shadow-md);
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.content-toc-toggle:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.content-toc-toggle:active {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (min-width: 1281px) {
+    /* Hide mobile elements on desktop */
+    .content-toc-overlay,
+    .content-toc-toggle {
+        display: none;
+    }
+}
+
+@media (max-width: 1280px) {
+    /* Mobile TOC styling */
+    .content-toc {
+        position: fixed;
+        right: -280px;
+        width: 280px;
+        top: 0;
+        bottom: 0;
+        transform: none;
+        border-radius: 0;
+        transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        max-height: 100vh;
+    }
+
+    .content-toc-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 90;
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+    }
+
+    .content-toc.active {
+        right: 0;
+    }
+
+    .content-toc.active ~ .content-toc-overlay {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .content-toc-toggle {
+        display: flex;
+    }
+
+    body.toc-active {
+        overflow: hidden;
+    }
+}
