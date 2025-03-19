@@ -187,6 +187,7 @@
 }
 
 .content-body {
+    position: relative; /* Added for TOC positioning */
     font-size: 1.125rem;
     line-height: 1.8;
     color: var(--text-color);
@@ -609,22 +610,16 @@
 
 /* Table of Contents - mirrors social-share positioning but on the right */
 .content-toc {
-    position: fixed;
-    right: calc((100vw - 800px) / 2 - 70px);
-    top: 50%;
-    transform: translateY(-50%);
+    position: absolute;
+    left: calc(100% + 2rem);
     width: 250px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
     background: white;
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-md);
     padding: 1.5rem;
-    max-height: 80vh;
-    overflow-y: auto;
     z-index: 100;
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary-color) transparent;
-    -webkit-overflow-scrolling: touch;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .content-toc::-webkit-scrollbar {
@@ -781,11 +776,27 @@
     }
 }
 
+/* Remove the 1440px media query since we're using fixed right positioning */
+
+@media (min-width: 1281px) {
+    /* Ensure TOC is visible on desktop */
+    .content-toc {
+        display: block;
+    }
+}
+
 @media (max-width: 1280px) {
     /* Mobile TOC styling */
+    .content-container {
+        padding: 1rem;
+    }
+
     .content-toc {
+        display: none; /* Hide the desktop TOC */
         position: fixed;
         right: -280px;
+        left: auto; /* Override the left: 100% */
+        margin-left: 0; /* Remove desktop margin */
         width: 280px;
         top: 0;
         bottom: 0;
@@ -793,6 +804,11 @@
         border-radius: 0;
         transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         max-height: 100vh;
+    }
+
+    .content-toc.active {
+        display: block;
+        right: 0;
     }
 
     .content-toc-overlay {

@@ -1,0 +1,2 @@
+again fix 0. Keep the TOC aligned with the content's (content-body ) start. Scrolled state: When content-body reaches top of viewport, TOC will switch to fixed position at top of screen with padding
+This will ensure the TOC is always visible alongside the content whether you're at the top of the article or scrolled down.  TOC always display beside the content (fix position) without overlap with the content without movement to middle or far from the content (the starting position from left sould be FIX always).

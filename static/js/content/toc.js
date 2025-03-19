@@ -49,9 +49,78 @@ class ContentTableOfContents {
             this.setupIntersectionObserver();
             this.setupBackToTop();
             this.setupMobileToggle();
+            
+            // Initial alignment
+            this.alignTOCWithContent();
+            
+            // Realign on window resize
+            const handleResize = () => this.alignTOCWithContent();
+            window.addEventListener('resize', handleResize);
+            this.listeners.set(window, { event: 'resize', handler: handleResize });
+            
+            // Realign when images load as they can affect layout
+            const handleImageLoad = () => this.alignTOCWithContent();
+            document.querySelectorAll('.content-body img').forEach(img => {
+                if (!img.complete) {
+                    img.addEventListener('load', handleImageLoad);
+                    this.listeners.set(img, { event: 'load', handler: handleImageLoad });
+                }
+            });
+            
+            // Also realign after a short delay to catch any dynamic content changes
+            setTimeout(() => this.alignTOCWithContent(), 500);
         } catch (error) {
             console.error('Error initializing TOC:', error);
         }
+    }
+
+    alignTOCWithContent() {
+        if (!this.toc || !this.contentBody) return;
+
+        const setTocPosition = () => {
+            const contentRect = this.contentBody.getBoundingClientRect();
+            const headerOffset = 20;
+
+            const containerRect = this.contentBody.closest('.content-container').getBoundingClientRect();
+            const contentBodyTop = contentRect.top;
+            const windowScrollY = window.scrollY || window.pageYOffset;
+
+            if (contentBodyTop <= headerOffset) {
+                // When content reaches top, fix the TOC
+                this.toc.style.position = 'fixed';
+                this.toc.style.top = `${headerOffset}px`;
+                this.toc.style.left = `${containerRect.right + 32}px`; // 2rem spacing
+            } else {
+                // Get the exact content-body starting position relative to container
+                const contentBodyRect = this.contentBody.getBoundingClientRect();
+                const containerRect = this.contentBody.closest('.content-container').getBoundingClientRect();
+                const offsetTop = contentBodyRect.top - containerRect.top;
+                
+                // Align TOC with content-body starting position
+                this.toc.style.position = 'absolute';
+                this.toc.style.top = `${offsetTop}px`;
+                this.toc.style.left = `calc(100% + 2rem)`;
+            }
+        };
+
+        // Run on load
+        setTocPosition();
+
+        // Update on scroll (throttled)
+        const handleScroll = throttle(() => {
+            requestAnimationFrame(setTocPosition);
+        }, 16);
+
+        // Update on resize
+        const handleResize = throttle(() => {
+            requestAnimationFrame(setTocPosition);
+        }, 100);
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('resize', handleResize);
+        
+        this.listeners.set(window, { event: 'scroll', handler: handleScroll });
+        this.listeners.set(window, { event: 'resize', handler: handleResize });
     }
 
     setupTOC() {
@@ -114,20 +183,43 @@ class ContentTableOfContents {
 
         const observerOptions = {
             rootMargin: '-80px 0px -80px 0px',
-            threshold: 0
+            threshold: [0, 0.25, 0.5, 0.75, 1]
+        };
+
+        const updateTocScroll = (activeLink) => {
+            if (!activeLink) return;
+            const tocContainer = activeLink.closest('.content-toc');
+            if (!tocContainer) return;
+
+            const containerRect = tocContainer.getBoundingClientRect();
+            const linkRect = activeLink.getBoundingClientRect();
+            
+            if (linkRect.top < containerRect.top || linkRect.bottom > containerRect.bottom) {
+                activeLink.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            }
         };
 
         const observerCallback = (entries) => {
             try {
-                entries.forEach(entry => {
-                    const id = entry.target.id;
+                // Sort entries by their intersection ratio
+                const visibleEntries = entries
+                    .filter(entry => entry.isIntersecting)
+                    .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+                if (visibleEntries.length > 0) {
+                    const mostVisible = visibleEntries[0];
+                    const id = mostVisible.target.id;
                     const tocLink = document.querySelector(`.content-toc__link[href="#${id}"]`);
-                    
-                    if (tocLink && entry.isIntersecting) {
+
+                    if (tocLink) {
                         tocLinks.forEach(link => link.classList.remove('content-toc__link--active'));
                         tocLink.classList.add('content-toc__link--active');
+                        updateTocScroll(tocLink);
                     }
-                });
+                }
             } catch (error) {
                 console.error('Error in intersection observer callback:', error);
             }
