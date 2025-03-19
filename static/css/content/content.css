@@ -249,13 +249,9 @@
 
 
 /* Social Sharing */
-.social-share {
-    position: fixed;
-    left: calc((100vw - 800px) / 2 - 70px);
-    top: 50%;
-    transform: translateY(-50%);
-    height: fit-content;
-    z-index: 10;
+.bottom-social-share {
+    margin: 3rem 0 1rem;
+    text-align: center;
 }
 
 .social-share-list {
@@ -263,7 +259,7 @@
     padding: 0;
     margin: 0;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     gap: 1.25rem;
 }
 
@@ -306,73 +302,9 @@
     top: -30%;
 }
 
-/* Social Media Sidebar */
-.social-sidebar {
-    position: fixed;
-    left: calc((100vw - 800px) / 2 - 60px);
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    z-index: 10;
-}
-
-.social-sidebar a {
-    color: var(--secondary-color);
-    font-size: 1.5rem;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: white;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow-sm);
-}
-
-.social-sidebar a:hover {
-    color: var(--primary-color);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-}
-
-/* Responsive Social Sidebar */
-@media (max-width: 1024px) {
-    .social-sidebar {
-        position: static;
-        flex-direction: row;
-        justify-content: center;
-        margin: 2rem 0;
-        transform: none;
-    }
-    
-    .content-container {
-        padding: 1rem 2rem;
-    }
-}
-
 @media (max-width: 860px) {
     .content-container {
         margin: 0 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .content-container {
-        padding: 1rem;
-    }
-    
-    .social-sidebar {
-        margin: 1rem 0;
-        gap: 1rem;
-    }
-    
-    .social-sidebar a {
-        font-size: 1.25rem;
-        width: 35px;
-        height: 35px;
     }
 }
 
@@ -514,27 +446,6 @@
     .content-container {
         padding: 1rem 2rem;
     }
-
-    .social-sidebar {
-        position: static;
-        flex-direction: row;
-        justify-content: center;
-        margin: 2rem 0;
-        transform: none;
-    }
-
-    .social-share {
-        position: static;
-        transform: none;
-        left: auto;
-        margin: 2rem 0;
-    }
-
-    .social-share-list {
-        flex-direction: row;
-        justify-content: center;
-        gap: 1.5rem;
-    }
 }
 
 @media (max-width: 860px) {
@@ -580,21 +491,6 @@
 @media (max-width: 480px) {
     .content-container {
         padding: 1rem;
-    }
-
-    .social-sidebar {
-        margin: 1rem 0;
-        gap: 1rem;
-    }
-
-    .social-sidebar a {
-        font-size: 1.25rem;
-        width: 35px;
-        height: 35px;
-    }
-
-    .social-share {
-        margin: 1rem 0;
     }
 
     .social-share-list {
