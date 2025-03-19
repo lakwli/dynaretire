@@ -618,8 +618,9 @@
     background: white;
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-md);
-    padding: 1.5rem;
+    padding: 0 1.5rem 1.5rem;
     z-index: 100;
+    margin-top: 2rem;
 }
 
 .content-toc::-webkit-scrollbar {
@@ -643,7 +644,7 @@
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--accent-color);
-    margin-bottom: 1rem;
+    margin: 2rem 0 1rem;
     padding-bottom: 0.5rem;
     border-bottom: 2px solid rgba(73, 197, 196, 0.2);
 }
