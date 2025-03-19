@@ -655,7 +655,7 @@
 }
 
 .content-toc__item {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.2rem;
 }
 
 .content-toc__link {
@@ -664,7 +664,7 @@
     font-size: 0.95rem;
     transition: all 0.2s ease;
     display: block;
-    padding: 0.5rem 0;
+    padding: 0.25rem 0;
 }
 
 .content-toc__link:hover {
@@ -677,7 +677,7 @@
 }
 
 .content-toc__link--h3 {
-    padding-left: 1rem;
+    padding-left: 0.75rem;
     font-size: 0.9rem;
 }
 
