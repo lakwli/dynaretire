@@ -37,7 +37,8 @@ class ContentTableOfContents {
         // Exit if required elements aren't found
         if (!this.contentBody || !this.tocList) return;
         
-        this.headings = Array.from(this.contentBody.querySelectorAll('h2, h3'));
+        // Select h2 and h3 elements that don't have data-toc-skip attribute
+        this.headings = Array.from(this.contentBody.querySelectorAll('h2:not([data-toc-skip]), h3:not([data-toc-skip])'));
         
         this.init();
     }
@@ -138,7 +139,9 @@ class ContentTableOfContents {
                 const link = document.createElement('a');
                 link.href = `#${heading.id}`;
                 link.className = `content-toc__link content-toc__link--${heading.tagName.toLowerCase()}`;
-                link.textContent = heading.textContent;
+                // Use data-toc-text if available, otherwise use heading text content
+                // Use data-toc-text if available, otherwise get text content excluding icon text
+                link.textContent = heading.getAttribute('data-toc-text') || heading.cloneNode(true).lastChild.textContent.trim();
 
                 const handleClick = (e) => {
                     e.preventDefault();
