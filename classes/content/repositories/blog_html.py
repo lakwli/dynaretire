@@ -52,6 +52,9 @@ class BlogHtmlRepository(BlogRepository):
             # Convert date string to datetime if needed
             date = metadata.get('date')
             if isinstance(date, str):
+                # Handle 'Z' timezone designator for older Python versions
+                if date.endswith('Z'):
+                    date = date[:-1] + '+00:00'
                 date = datetime.fromisoformat(date)
             
             return Blog(

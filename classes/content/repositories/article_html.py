@@ -48,6 +48,9 @@ class ArticleHtmlRepository:
             # Convert date string to datetime if needed
             updated_at = metadata.get('updated_at')
             if isinstance(updated_at, str):
+                # Handle 'Z' timezone designator for older Python versions
+                if updated_at.endswith('Z'):
+                    updated_at = updated_at[:-1] + '+00:00'
                 updated_at = datetime.fromisoformat(updated_at)
             
             return Article(
