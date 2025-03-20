@@ -12,13 +12,25 @@ class BlogHtmlRepository(BlogRepository):
     """
     File-based implementation of the BlogRepository interface using HTML files.
     Blog posts are stored as individual .html files with metadata in JSON format.
+    Uses singleton pattern and class-level caching for optimal performance with Gunicorn workers.
     """
+    _instance = None  # Class-level singleton instance
+    _posts = []       # Class-level list of all posts
+    _featured_post = None  # Class-level featured post
+    _is_loaded = False    # Class-level loading flag
+
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+        return cls._instance
 
     def __init__(self, content_dir: str = "content/blog"):
-        self.content_dir = Path(content_dir)
-        self.posts_dir = self.content_dir / "posts"
-        self.cache: Dict[str, Blog] = {}
-        self._ensure_dirs_exist()
+        if not self._is_loaded:  # Only load once per process
+            self.content_dir = Path(content_dir)
+            self.posts_dir = self.content_dir / "posts"
+            self._ensure_dirs_exist()
+            self.load_posts()
+            self.__class__._is_loaded = True
 
     def _ensure_dirs_exist(self) -> None:
         """Ensure all required directories exist."""
@@ -113,45 +125,35 @@ class BlogHtmlRepository(BlogRepository):
         
         return html_template
 
-    def get_all(self) -> List[Blog]:
-        """Get all blog posts."""
+    def load_posts(self):
+        """Load all posts into class-level cache"""
         posts = []
         for file_path in self.posts_dir.glob('*.html'):
             if post := self._parse_html_file(file_path):
                 posts.append(post)
-                self.cache[post.id] = post
-        return sorted(posts, key=lambda x: x.date, reverse=True)
+                if post.is_featured:
+                    self.__class__._featured_post = post
+        
+        self.__class__._posts = sorted(posts, key=lambda x: x.date, reverse=True)
+
+    def get_all(self) -> List[Blog]:
+        """Get all blog posts from cache."""
+        return self._posts
 
     def get_by_id(self, post_id: str) -> Optional[Blog]:
-        """Get a single blog post by ID."""
-        # Check cache first
-        if post_id in self.cache:
-            return self.cache[post_id]
-
-        # Look for matching file
-        for file_path in self.posts_dir.glob('*-' + post_id + '.html'):
-            if post := self._parse_html_file(file_path):
-                self.cache[post_id] = post
-                return post
-        return None
+        """Get a single blog post by ID from cache."""
+        return next((post for post in self._posts if post.id == post_id), None)
 
     def get_featured(self) -> Optional[Blog]:
-        """Get the featured blog post."""
-        for post in self.get_all():
-            if post.is_featured:
-                return post
-        return None
+        """Get the featured blog post from cache."""
+        return self._featured_post
 
     def get_regular_posts(self) -> List[Blog]:
-        """Get all non-featured blog posts."""
-        return sorted(
-            [post for post in self.get_all() if not post.is_featured],
-            key=lambda x: x.date,
-            reverse=True
-        )
+        """Get all non-featured blog posts from cache."""
+        return [post for post in self._posts if not post.is_featured]
 
     def create(self, post: Blog) -> Blog:
-        """Create a new blog post."""
+        """Create a new blog post and reload cache."""
         # Format filename
         date_str = post.date.strftime('%Y-%m-%d')
         filename = f"{date_str}-{post.id}.html"
@@ -164,8 +166,8 @@ class BlogHtmlRepository(BlogRepository):
         with open(file_path, 'w', encoding='utf-8') as f:
             f.write(html_content)
 
-        # Update cache
-        self.cache[post.id] = post
+        # Reload all posts to update class-level cache
+        self.load_posts()
         return post
 
     def update(self, post: Blog) -> Blog:
@@ -173,14 +175,14 @@ class BlogHtmlRepository(BlogRepository):
         return self.create(post)  # Same operation as create
 
     def delete(self, post_id: str) -> bool:
-        """Delete a blog post."""
+        """Delete a blog post and reload cache."""
         success = False
         for file_path in self.posts_dir.glob('*-' + post_id + '.html'):
             try:
                 file_path.unlink()
                 success = True
-                if post_id in self.cache:
-                    del self.cache[post_id]
+                if success:
+                    self.load_posts()  # Reload cache after successful deletion
             except Exception as e:
                 print(f"Error deleting file {file_path}: {e}")
         return success
