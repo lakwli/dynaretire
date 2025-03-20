@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 
 from .blog_repo import BlogRepository
 from ..models.blog import Blog
+from ..config import BlogConfig
 
 class BlogHtmlRepository(BlogRepository):
     """
@@ -38,6 +39,21 @@ class BlogHtmlRepository(BlogRepository):
         os.makedirs(self.posts_dir, exist_ok=True)
         os.makedirs(self.content_dir / "assets" / "images", exist_ok=True)
 
+    def _slugify(self, text: str) -> str:
+        """Convert text to URL-friendly slug."""
+        # Convert to lowercase
+        text = text.lower()
+        # Replace spaces with hyphens
+        text = text.replace(' ', '-')
+        # Remove any characters that aren't alphanumeric or hyphens
+        text = ''.join(c for c in text if c.isalnum() or c == '-')
+        # Remove multiple consecutive hyphens
+        while '--' in text:
+            text = text.replace('--', '-')
+        # Remove leading/trailing hyphens
+        text = text.strip('-')
+        return text
+
     def _parse_html_file(self, file_path: Path) -> Optional[Blog]:
         """Parse an HTML file into a Blog object."""
         try:
@@ -58,8 +74,8 @@ class BlogHtmlRepository(BlogRepository):
             if not content_div:
                 raise ValueError("No content div found in HTML file")
             
-            # Get post ID from filename (YYYY-MM-DD-slug.html -> slug)
-            post_id = file_path.stem.split('-', 3)[-1]
+            # Get post ID from filename (NNN-slug.html -> NNN)
+            post_id = file_path.stem.split('-', 1)[0]
             
             # Convert date string to datetime if needed
             date = metadata.get('date')
@@ -154,9 +170,8 @@ class BlogHtmlRepository(BlogRepository):
 
     def create(self, post: Blog) -> Blog:
         """Create a new blog post and reload cache."""
-        # Format filename
-        date_str = post.date.strftime('%Y-%m-%d')
-        filename = f"{date_str}-{post.id}.html"
+        # Format filename using numeric ID
+        filename = f"{post.id}-{self._slugify(post.title)}.html"
         file_path = self.posts_dir / filename
 
         # Generate HTML content
