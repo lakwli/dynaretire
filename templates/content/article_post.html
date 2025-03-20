@@ -40,33 +40,40 @@
         <div class="content-body">
             {{ article.content|safe }}
         </div>
+
+        <div class="bottom-social-share">
+            <ul class="social-share-list">
+                <li>
+                    <button class="social-share-button" onclick="shareTwitter()" title="Share on Twitter">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </li>
+                <li>
+                    <button class="social-share-button" onclick="shareFacebook()" title="Share on Facebook">
+                        <i class="fas fa-share-nodes"></i>
+                    </button>
+                </li>
+                <li>
+                    <button class="social-share-button" onclick="shareLinkedIn()" title="Share on LinkedIn">
+                        <i class="fas fa-link"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
     </div>
 
-    <!-- Bottom Social Share -->
-    <div class="bottom-social-share">
-        <ul class="social-share-list">
-            <li>
-                <button class="social-share-button" onclick="shareTwitter()" title="Share on Twitter">
-                    <i class="fas fa-paper-plane"></i>
-                </button>
-            </li>
-            <li>
-                <button class="social-share-button" onclick="shareFacebook()" title="Share on Facebook">
-                    <i class="fas fa-share-nodes"></i>
-                </button>
-            </li>
-            <li>
-                <button class="social-share-button" onclick="shareLinkedIn()" title="Share on LinkedIn">
-                    <i class="fas fa-link"></i>
-                </button>
-            </li>
-        </ul>
-    </div>
+    {% if article.show_toc %}
+    <aside class="content-toc" aria-label="Table of contents">
+        <h2 class="content-toc__title">Contents</h2>
+        <nav>
+            <ul class="content-toc__list"></ul>
+        </nav>
+    </aside>
+    {% endif %}
 </article>
 {% endblock %}
 
 {% block content_scripts %}
-<!-- Social sharing -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Share functionality

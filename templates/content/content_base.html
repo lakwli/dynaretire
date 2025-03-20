@@ -49,31 +49,22 @@
         <div class="content-progress" role="progressbar" aria-label="Reading progress"></div>
     {% endif %}
 
-    <div class="content-container">
-        {% if (article is defined and article.show_toc) or (blog is defined and blog.show_toc) %}
-            <!-- Table of Contents -->
-            <aside class="content-toc" aria-label="Table of contents">
-                <h2 class="content-toc__title">Contents</h2>
-                <nav>
-                    <ul class="content-toc__list"></ul>
-                </nav>
-            </aside>
-            <!-- TOC overlay for mobile -->
-            <div class="content-toc-overlay"></div>
-            <!-- Mobile TOC toggle -->
-            <button class="content-toc-toggle" aria-label="Toggle table of contents" aria-expanded="false">
-                <i class="fas fa-list"></i>
-            </button>
-        {% endif %}
-
-        <!-- Blog content container -->
+    <div class="content-wrapper">
         {% block content_content %}{% endblock %}
-
+        
         {% if (article is defined and article.show_toc) or (blog is defined and blog.show_toc) %}
             <!-- Back to top button -->
             <button class="back-to-top" aria-label="Back to top">
                 <i class="fas fa-arrow-up"></i>
             </button>
+            
+            <!-- Mobile TOC toggle -->
+            <button class="content-toc-toggle" aria-label="Toggle table of contents" aria-expanded="false">
+                <i class="fas fa-list"></i>
+            </button>
+            
+            <!-- TOC overlay for mobile -->
+            <div class="content-toc-overlay"></div>
         {% endif %}
     </div>
 {% endblock %}

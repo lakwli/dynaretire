@@ -44,119 +44,40 @@ class ContentTableOfContents {
     }
 
     init() {
-        try {
-            this.setupTOC();
-            this.setupProgressBar();
-            this.setupIntersectionObserver();
-            this.setupBackToTop();
-            this.setupMobileToggle();
-            
-            // Initial alignment
-            this.alignTOCWithContent();
-            
-            // Realign on window resize
-            const handleResize = () => this.alignTOCWithContent();
-            window.addEventListener('resize', handleResize);
-            this.listeners.set(window, { event: 'resize', handler: handleResize });
-            
-            // Realign when images load as they can affect layout
-            const handleImageLoad = () => this.alignTOCWithContent();
-            document.querySelectorAll('.content-body img').forEach(img => {
-                if (!img.complete) {
-                    img.addEventListener('load', handleImageLoad);
-                    this.listeners.set(img, { event: 'load', handler: handleImageLoad });
-                }
-            });
-            
-            // Also realign after a short delay to catch any dynamic content changes
-            setTimeout(() => this.alignTOCWithContent(), 500);
-        } catch (error) {
-            console.error('Error initializing TOC:', error);
-        }
-    }
-
-    alignTOCWithContent() {
-        if (!this.toc || !this.contentBody) return;
-
-        const setTocPosition = () => {
-            const contentRect = this.contentBody.getBoundingClientRect();
-            const headerOffset = 20;
-
-            const containerRect = this.contentBody.closest('.content-container').getBoundingClientRect();
-            const contentBodyTop = contentRect.top;
-            const windowScrollY = window.scrollY || window.pageYOffset;
-
-            if (contentBodyTop <= headerOffset) {
-                // When content reaches top, fix the TOC
-                this.toc.style.position = 'fixed';
-                this.toc.style.top = `${headerOffset}px`;
-                this.toc.style.left = `${containerRect.right + 32}px`; // 2rem spacing
-            } else {
-                // Get the exact content-body starting position relative to container
-                const contentBodyRect = this.contentBody.getBoundingClientRect();
-                const containerRect = this.contentBody.closest('.content-container').getBoundingClientRect();
-                const offsetTop = contentBodyRect.top - containerRect.top;
-                
-                // Align TOC with content-body starting position
-                this.toc.style.position = 'absolute';
-                this.toc.style.top = `${offsetTop}px`;
-                this.toc.style.left = `calc(100% + 2rem)`;
-            }
-        };
-
-        // Run on load
-        setTocPosition();
-
-        // Update on scroll (throttled)
-        const handleScroll = throttle(() => {
-            requestAnimationFrame(setTocPosition);
-        }, 16);
-
-        // Update on resize
-        const handleResize = throttle(() => {
-            requestAnimationFrame(setTocPosition);
-        }, 100);
-
-        window.addEventListener('scroll', handleScroll);
-        window.addEventListener('resize', handleResize);
-        
-        this.listeners.set(window, { event: 'scroll', handler: handleScroll });
-        this.listeners.set(window, { event: 'resize', handler: handleResize });
+        this.setupTOC();
+        this.setupProgressBar();
+        this.setupIntersectionObserver();
+        this.setupBackToTop();
+        this.setupMobileToggle();
     }
 
     setupTOC() {
         if (!this.tocList || this.headings.length === 0) return;
 
         this.headings.forEach((heading, index) => {
-            try {
-                if (!heading.id) {
-                    heading.id = `toc-heading-${index}`;
-                }
-
-                const listItem = document.createElement('li');
-                listItem.className = 'content-toc__item';
-
-                const link = document.createElement('a');
-                link.href = `#${heading.id}`;
-                link.className = `content-toc__link content-toc__link--${heading.tagName.toLowerCase()}`;
-                // Use data-toc-text if available, otherwise use heading text content
-                // Use data-toc-text if available, otherwise get text content excluding icon text
-                link.textContent = heading.getAttribute('data-toc-text') || heading.cloneNode(true).lastChild.textContent.trim();
-
-                const handleClick = (e) => {
-                    e.preventDefault();
-                    heading.scrollIntoView({ behavior: 'smooth' });
-                    history.pushState(null, null, link.href);
-                };
-
-                link.addEventListener('click', handleClick);
-                this.listeners.set(link, { event: 'click', handler: handleClick });
-
-                listItem.appendChild(link);
-                this.tocList.appendChild(listItem);
-            } catch (error) {
-                console.error('Error setting up TOC item:', error);
+            if (!heading.id) {
+                heading.id = `toc-heading-${index}`;
             }
+
+            const listItem = document.createElement('li');
+            listItem.className = 'content-toc__item';
+
+            const link = document.createElement('a');
+            link.href = `#${heading.id}`;
+            link.className = `content-toc__link content-toc__link--${heading.tagName.toLowerCase()}`;
+            link.textContent = heading.getAttribute('data-toc-text') || heading.cloneNode(true).lastChild.textContent.trim();
+
+            const handleClick = (e) => {
+                e.preventDefault();
+                heading.scrollIntoView({ behavior: 'smooth' });
+                history.pushState(null, null, link.href);
+            };
+
+            link.addEventListener('click', handleClick);
+            this.listeners.set(link, { event: 'click', handler: handleClick });
+
+            listItem.appendChild(link);
+            this.tocList.appendChild(listItem);
         });
     }
 
@@ -164,16 +85,12 @@ class ContentTableOfContents {
         if (!this.progressBar) return;
 
         const updateProgress = throttle(() => {
-            try {
-                const windowHeight = window.innerHeight;
-                const documentHeight = document.documentElement.scrollHeight - windowHeight;
-                const scrolled = window.scrollY;
-                const progress = (scrolled / documentHeight) * 100;
-                
-                this.progressBar.style.width = `${progress}%`;
-            } catch (error) {
-                console.error('Error updating progress bar:', error);
-            }
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrolled = window.scrollY;
+            const progress = (scrolled / documentHeight) * 100;
+            
+            this.progressBar.style.width = `${progress}%`;
         }, 100);
 
         window.addEventListener('scroll', updateProgress);
@@ -189,42 +106,20 @@ class ContentTableOfContents {
             threshold: [0, 0.25, 0.5, 0.75, 1]
         };
 
-        const updateTocScroll = (activeLink) => {
-            if (!activeLink) return;
-            const tocContainer = activeLink.closest('.content-toc');
-            if (!tocContainer) return;
-
-            const containerRect = tocContainer.getBoundingClientRect();
-            const linkRect = activeLink.getBoundingClientRect();
-            
-            if (linkRect.top < containerRect.top || linkRect.bottom > containerRect.bottom) {
-                activeLink.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center'
-                });
-            }
-        };
-
         const observerCallback = (entries) => {
-            try {
-                // Sort entries by their intersection ratio
-                const visibleEntries = entries
-                    .filter(entry => entry.isIntersecting)
-                    .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+            const visibleEntries = entries
+                .filter(entry => entry.isIntersecting)
+                .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
-                if (visibleEntries.length > 0) {
-                    const mostVisible = visibleEntries[0];
-                    const id = mostVisible.target.id;
-                    const tocLink = document.querySelector(`.content-toc__link[href="#${id}"]`);
+            if (visibleEntries.length > 0) {
+                const mostVisible = visibleEntries[0];
+                const id = mostVisible.target.id;
+                const tocLink = document.querySelector(`.content-toc__link[href="#${id}"]`);
 
-                    if (tocLink) {
-                        tocLinks.forEach(link => link.classList.remove('content-toc__link--active'));
-                        tocLink.classList.add('content-toc__link--active');
-                        updateTocScroll(tocLink);
-                    }
+                if (tocLink) {
+                    tocLinks.forEach(link => link.classList.remove('content-toc__link--active'));
+                    tocLink.classList.add('content-toc__link--active');
                 }
-            } catch (error) {
-                console.error('Error in intersection observer callback:', error);
             }
         };
 
@@ -236,11 +131,7 @@ class ContentTableOfContents {
         if (!this.backToTop) return;
 
         const handleScroll = throttle(() => {
-            try {
-                this.backToTop.classList.toggle('visible', window.scrollY > 300);
-            } catch (error) {
-                console.error('Error handling scroll for back to top:', error);
-            }
+            this.backToTop.classList.toggle('visible', window.scrollY > 300);
         }, 100);
 
         const handleClick = () => {
@@ -265,115 +156,48 @@ class ContentTableOfContents {
         this.overlay.className = 'content-toc-overlay';
         this.toc.parentNode.insertBefore(this.overlay, this.toc.nextSibling);
 
-        let touchStartX = 0;
-        let touchStartY = 0;
-
         const toggleTOC = (show) => {
-            try {
-                this.toc.classList.toggle('active', show);
-                document.body.classList.toggle('toc-active', show);
-                this.tocToggle.setAttribute('aria-expanded', String(show));
-                this.tocToggle.setAttribute('aria-label', 
-                    show ? 'Close table of contents' : 'Open table of contents'
-                );
-            } catch (error) {
-                console.error('Error toggling TOC:', error);
-            }
+            this.toc.classList.toggle('active', show);
+            document.body.classList.toggle('toc-active', show);
+            this.tocToggle.setAttribute('aria-expanded', String(show));
+            this.tocToggle.setAttribute('aria-label', 
+                show ? 'Close table of contents' : 'Open table of contents'
+            );
         };
 
         const handleToggleClick = () => toggleTOC(!this.toc.classList.contains('active'));
-
-        const handleOutsideClick = (e) => {
-            try {
-                if (!this.toc.contains(e.target) && 
-                    !this.tocToggle.contains(e.target) && 
-                    this.toc.classList.contains('active')) {
-                    toggleTOC(false);
-                }
-            } catch (error) {
-                console.error('Error handling outside click:', error);
-            }
-        };
-
-        const handleEscape = (e) => {
-            try {
-                if (e.key === 'Escape' && this.toc.classList.contains('active')) {
-                    toggleTOC(false);
-                }
-            } catch (error) {
-                console.error('Error handling escape key:', error);
-            }
-        };
-
-        const handleTouchStart = (e) => {
-            touchStartX = e.touches[0].clientX;
-            touchStartY = e.touches[0].clientY;
-        };
-
-        const handleTouchMove = (e) => {
-            if (!touchStartX || !touchStartY) return;
-
-            const touchEndX = e.touches[0].clientX;
-            const touchEndY = e.touches[0].clientY;
-
-            const deltaX = touchEndX - touchStartX;
-            const deltaY = touchEndY - touchStartY;
-
-            // Check if horizontal swipe
-            if (Math.abs(deltaX) > Math.abs(deltaY)) {
-                if (this.toc.classList.contains('active') && deltaX > 50) {
-                    toggleTOC(false);
-                } else if (!this.toc.classList.contains('active') && deltaX < -50) {
-                    toggleTOC(true);
-                }
-            }
-
-            touchStartX = 0;
-            touchStartY = 0;
-        };
+        const handleOverlayClick = () => toggleTOC(false);
 
         this.tocToggle.addEventListener('click', handleToggleClick);
-        this.overlay.addEventListener('click', () => toggleTOC(false));
-        document.addEventListener('click', handleOutsideClick);
-        document.addEventListener('keydown', handleEscape);
-        document.addEventListener('touchstart', handleTouchStart);
-        document.addEventListener('touchmove', handleTouchMove);
+        this.overlay.addEventListener('click', handleOverlayClick);
 
         this.listeners.set(this.tocToggle, { event: 'click', handler: handleToggleClick });
-        this.listeners.set(this.overlay, { event: 'click', handler: () => toggleTOC(false) });
-        this.listeners.set(document, { event: 'click', handler: handleOutsideClick });
-        this.listeners.set(document, { event: 'keydown', handler: handleEscape });
-        this.listeners.set(document, { event: 'touchstart', handler: handleTouchStart });
-        this.listeners.set(document, { event: 'touchmove', handler: handleTouchMove });
+        this.listeners.set(this.overlay, { event: 'click', handler: handleOverlayClick });
     }
 
     cleanup() {
-        try {
-            // Cleanup event listeners
-            this.listeners.forEach((listener, element) => {
-                element.removeEventListener(listener.event, listener.handler);
-            });
-            this.listeners.clear();
+        // Cleanup event listeners
+        this.listeners.forEach((listener, element) => {
+            element.removeEventListener(listener.event, listener.handler);
+        });
+        this.listeners.clear();
 
-            // Cleanup intersection observer
-            if (this.observer) {
-                this.observer.disconnect();
-            }
+        // Cleanup intersection observer
+        if (this.observer) {
+            this.observer.disconnect();
+        }
 
-            // Remove overlay
-            if (this.overlay && this.overlay.parentNode) {
-                this.overlay.parentNode.removeChild(this.overlay);
-            }
+        // Remove overlay
+        if (this.overlay && this.overlay.parentNode) {
+            this.overlay.parentNode.removeChild(this.overlay);
+        }
 
-            // Reset body class
-            document.body.classList.remove('toc-active');
+        // Reset body class
+        document.body.classList.remove('toc-active');
 
-            // Remove TOC content
-            if (this.tocList) {
-                this.tocList.innerHTML = '';
-            }
-        } catch (error) {
-            console.error('Error cleaning up TOC:', error);
+        // Remove TOC content
+        if (this.tocList) {
+            this.tocList.innerHTML = '';
         }
     }
 }

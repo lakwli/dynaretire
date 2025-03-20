@@ -23,7 +23,7 @@
 {% endblock %}
 
 {% block content_content %}
-<article class="content-container">
+<article class="blog-container">
     <!-- Main Content -->
     <div class="content-main">
         <header class="content-header">
@@ -41,27 +41,27 @@
         <div class="content-body">
             {{ blog.content|safe }}
         </div>
-    </div>
 
-    <!-- Bottom Social Share -->
-    <div class="bottom-social-share">
-        <ul class="social-share-list">
-            <li>
-                <button class="social-share-button" onclick="shareTwitter()" title="Share on Twitter">
-                    <i class="fas fa-paper-plane"></i>
-                </button>
-            </li>
-            <li>
-                <button class="social-share-button" onclick="shareFacebook()" title="Share on Facebook">
-                    <i class="fas fa-share-nodes"></i>
-                </button>
-            </li>
-            <li>
-                <button class="social-share-button" onclick="shareLinkedIn()" title="Share on LinkedIn">
-                    <i class="fas fa-link"></i>
-                </button>
-            </li>
-        </ul>
+        <!-- Bottom Social Share -->
+        <div class="bottom-social-share">
+            <ul class="social-share-list">
+                <li>
+                    <button class="social-share-button" onclick="shareTwitter()" title="Share on Twitter">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </li>
+                <li>
+                    <button class="social-share-button" onclick="shareFacebook()" title="Share on Facebook">
+                        <i class="fas fa-share-nodes"></i>
+                    </button>
+                </li>
+                <li>
+                    <button class="social-share-button" onclick="shareLinkedIn()" title="Share on LinkedIn">
+                        <i class="fas fa-link"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
     </div>
 </article>
 {% endblock %}
