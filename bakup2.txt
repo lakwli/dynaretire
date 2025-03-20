@@ -1,3 +1,10 @@
-1. id_blog name
-3. prioritized of blogs.
+
 4. tags 
+
+
+
+AI:
+Based on the pdf, with the features, what message should I put on the landing page to make it impactful that users find it is challenging to find a plan with such a combination of powerful features to help them on retirement planning? At least not from the other site.
+Please make it simple, emotional based. e.g. "flat expenses? how about travel? what if health issues when old? what if market crash? can I optimize expenses now as some expenses might be lower e.g. food , travel, transport in future? Did you plan your retirement with adapting to how you spend, how you might need in future, how you will be handle the risk, or just flat expenses and hope for the best? Your expenses is unique, dynamic, this is where the app doing this for you. ". But I could thnk of simple, emotion, touch the heart, touch the worry, touch the desire to know, for people to use it, in simple, short but impactful message, to put into landing page the hero section, which is suppose to be short
+
+actually my app also including calculate how much money you would have, x years later, with your pension funds contribution (and it's return rate, and your expected salary increase which transform into increase contribution year on year... with even have time period that your salary might be lower increment at later years), and also you might save extra into say S&P 500. so X years later how much you would have. I think a lot of app doesn't cover this. you need to work out this math. But due to a lot f apps doesn't have it, a lot of people now aware of it, not even expect this to have... this had give me some questions that how I position this? with weird feature, it is either take time to explain it, or ya this is very good..... how do you think normally people aware of it that they will feel excited if this app have it, or normally people not aware of this and don't know what are you talking about (at least not less than 5 words)
