@@ -21,6 +21,7 @@
 {% block css %}
     <!-- Base content CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/content/content.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/content/modal.css') }}">
     
     <!-- Custom CSS file if specified -->
     {% if article is defined and article.custom_css_file %}
@@ -74,10 +75,15 @@
     <script src="{{ url_for('static', filename='js/utilities/image-zoom.js') }}"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Only initialize if there are zoomable images
-        if (document.querySelector('[data-zoomable]')) {
-            new ImageZoom();
-        }
+        // Initialize with custom options to handle body scrolling
+        new ImageZoom({
+            onOpen: function() {
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+            },
+            onClose: function() {
+                document.body.style.overflow = ''; // Restore scrolling when modal is closed
+            }
+        });
     });
     </script>
 

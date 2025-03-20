@@ -4,13 +4,17 @@ class ImageZoom {
         this.contentClass = options.contentClass || 'content-modal-content';
         this.closeClass = options.closeClass || 'content-modal-close';
         this.zoomableSelector = '[data-zoomable]';
+        this.onOpen = options.onOpen || (() => {});
+        this.onClose = options.onClose || (() => {});
         this.initialize();
     }
 
     initialize() {
-        // Create modal once when first needed
-        this.createModal();
-        this.addEventListeners();
+        // Only create modal and add listeners if there are zoomable images
+        if (document.querySelector(this.zoomableSelector)) {
+            this.createModal();
+            this.addEventListeners();
+        }
     }
 
     createModal() {
@@ -37,15 +41,22 @@ class ImageZoom {
         // Add click handlers to all zoomable images
         document.querySelectorAll(this.zoomableSelector).forEach(img => {
             img.style.cursor = 'pointer';
-            img.addEventListener('click', () => this.openModal(img.src));
+            img.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.openModal(img.src);
+            });
         });
         
         // Close modal when clicking the close button
-        this.closeBtn.addEventListener('click', () => this.closeModal());
+        this.closeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.closeModal();
+        });
         
         // Close modal when clicking outside the image
         this.modal.addEventListener('click', (e) => {
             if (e.target === this.modal) {
+                e.preventDefault();
                 this.closeModal();
             }
         });
@@ -59,18 +70,20 @@ class ImageZoom {
     }
 
     openModal(src) {
+        if (!this.modal) return;
         this.modalImg.src = src;
         this.modal.style.display = 'block';
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
+        this.onOpen();
     }
 
     closeModal() {
+        if (!this.modal) return;
         this.modal.style.display = 'none';
-        document.body.style.overflow = ''; // Restore scrolling
+        this.onClose();
     }
 
     isModalOpen() {
-        return this.modal.style.display === 'block';
+        return this.modal && this.modal.style.display === 'block';
     }
 }
 
