@@ -1,0 +1,9 @@
+{% macro priority_badge(priority) %}
+{% from "content/helpers/priority.html" import get_priority_level %}
+{% set level = get_priority_level(priority) %}
+{% if level != 'default' %}
+    <span class="priority-badge priority-{{ level }}">
+        {{ level|title }}
+    </span>
+{% endif %}
+{% endmacro %}

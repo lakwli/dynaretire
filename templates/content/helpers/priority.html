@@ -1,0 +1,11 @@
+{% macro get_priority_level(priority) %}
+    {%- if priority >= 70 -%}
+        high
+    {%- elif priority >= 30 -%}
+        medium
+    {%- elif priority > 0 -%}
+        low
+    {%- else -%}
+        default
+    {%- endif -%}
+{% endmacro %}

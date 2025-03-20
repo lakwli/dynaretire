@@ -26,14 +26,19 @@ class InMemoryBlogRepository(BlogRepository):
                 read_time="2 min read",
                 image="/static/images/WithdrawAge.png",
                 card_image="/static/images/Savings.png",
-                is_featured=True
+                is_featured=True,
+                priority=70  # High priority for featured content
             ),
             # You can add more blog posts here as needed
         ]
 
     def get_all(self) -> List[Blog]:
-        """Get all blog posts."""
-        return sorted(self._posts, key=lambda x: x.date, reverse=True)
+        """Get all blog posts sorted by featured status, priority, and date."""
+        return sorted(
+            self._posts,
+            key=lambda x: (x.is_featured, x.priority, x.date),
+            reverse=True
+        )
 
     def get_by_id(self, post_id: str) -> Optional[Blog]:
         """Get a single blog post by ID."""
@@ -47,7 +52,7 @@ class InMemoryBlogRepository(BlogRepository):
         """Get all non-featured blog posts."""
         return sorted(
             [post for post in self._posts if not post.is_featured],
-            key=lambda x: x.date,
+            key=lambda x: (x.priority, x.date),
             reverse=True
         )
 

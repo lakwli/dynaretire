@@ -16,6 +16,7 @@ class Blog(Content):
         image: Main image URL for the blog post
         card_image: Optional image URL for card preview
         is_featured: Whether this is a featured post
+        priority: Priority level of the blog post (0-100)
     """
     id: str
     category: str
@@ -24,6 +25,7 @@ class Blog(Content):
     image: str
     card_image: Optional[str] = None
     is_featured: bool = False
+    priority: int = 0
 
     def to_dict(self) -> dict:
         """Convert the blog post to a dictionary."""
@@ -39,6 +41,7 @@ class Blog(Content):
             'image': self.image,
             'card_image': self.card_image or self.image,
             'is_featured': self.is_featured,
+            'priority': self.priority,
             'custom_css_file': self.custom_css_file,
             'custom_styles': self.custom_styles
         }
