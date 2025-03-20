@@ -49,14 +49,25 @@ h1, h2, h3 {
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 0.5rem;
+}
+
+.logo-img {
+    height: 32px;
+    width: auto;
+}
+
+.logo-text {
     font-size: 1.5rem;
     font-weight: bold;
     color: var(--primary-color);
-    text-decoration: none;
     transition: color 0.3s ease;
 }
 
-.logo:hover {
+.logo:hover .logo-text {
     color: var(--secondary-color);
 }
 
@@ -692,6 +703,14 @@ h1, h2, h3 {
     .navbar .container {
         flex-direction: column;
         padding: 0.5rem 0;
+    }
+    
+    .logo-img {
+        height: 28px;
+    }
+
+    .logo-text {
+        font-size: 1.3rem;
     }
 
     .nav-link {

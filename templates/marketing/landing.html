@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
+    <meta name="author" content="DynaRetire">
+    <meta name="application-name" content="DynaRetire">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="robots" content="index, follow">
+    <meta property="og:site_name" content="DynaRetire">
     <link rel="canonical" href="https://dynaretire.app/" />
     <meta property="og:type" content="website">
     <meta property="og:title" content="DynaRetire - Comprehensive Retirement Simulator">
@@ -15,6 +21,13 @@
     <meta name="twitter:description" content="Plan your retirement with confidence using our dynamic retirement simulator. Model real-life scenarios with multiple income sources, market backtesting, and smart expense planning.">
     <meta name="twitter:image" content="{{ url_for('static', filename='images/Expenses2.png', _external=True) }}">
 
+    <!-- Favicon and app icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/static/favicon/site.webmanifest">
+    <link rel="icon" href="/static/favicon/favicon.ico">
+
     <title>DynaRetire - Adaptive Retirement Planning</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -22,7 +35,10 @@
 <body>
     <nav class="navbar">
         <div class="container">
-            <a href="/" class="logo">DynaRetire</a>
+            <a href="/" class="logo">
+                <img src="/static/logo.png" alt="DynaRetire Logo" class="logo-img">
+                <span class="logo-text">DynaRetire</span>
+            </a>
             <div class="nav-menu">
                 <a href="/articles/showcase" class="nav-link">Show Case</a>
                 <a href="#" class="nav-link">Resources</a>
