@@ -65,7 +65,19 @@ class ContentTableOfContents {
             const link = document.createElement('a');
             link.href = `#${heading.id}`;
             link.className = `content-toc__link content-toc__link--${heading.tagName.toLowerCase()}`;
-            link.textContent = heading.getAttribute('data-toc-text') || heading.cloneNode(true).lastChild.textContent.trim();
+            // Check if heading has an icon
+            const icon = heading.querySelector('i');
+            if (icon) {
+                const iconClone = icon.cloneNode(true);
+                link.appendChild(iconClone);
+                // Add a space between icon and text
+                link.appendChild(document.createTextNode(' '));
+            }
+            // Add the heading text
+            link.appendChild(document.createTextNode(
+                heading.getAttribute('data-toc-text') || 
+                (heading.lastChild ? heading.lastChild.textContent.trim() : heading.textContent.trim())
+            ));
 
             const handleClick = (e) => {
                 e.preventDefault();

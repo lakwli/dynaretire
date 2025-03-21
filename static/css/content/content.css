@@ -371,8 +371,15 @@
     text-decoration: none;
     font-size: 0.95rem;
     transition: all 0.2s ease;
-    display: block;
+    display: flex;
+    align-items: center;
     padding: 0.25rem 0;
+}
+
+.content-toc__link i {
+    margin-right: 0.5rem;
+    color: inherit;
+    font-size: 0.9em;
 }
 
 .content-toc__link:hover {
