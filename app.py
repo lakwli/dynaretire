@@ -60,10 +60,7 @@ def content_files(filename):
     except (TypeError, ValueError) as e:
         abort(404)
 
-@app.route('/home.html')
-@app.route('/home')
-def redirect_to_home():
-    return redirect(url_for('home', _external=True), code=301)
+
 
 @app.route('/')
 def home():
@@ -73,11 +70,11 @@ def home():
 def test1():
     return 'test'
 
-@app.route('/plans.html')
+@app.route('/plans')
 def plans():
     return render_template('plans.html')
 
-@app.route('/plan.html')
+@app.route('/plan')
 def plan():
     return render_template('plan.html')
 
@@ -117,23 +114,23 @@ def planSubmit():
         print(f"   exception: {str(e)}")
         return jsonify({'error': str(e)})
 
-@app.route('/expenses.html')
+@app.route('/expenses')
 def expenses():
     return render_template('expenses.html')
 
-@app.route('/income.html')
+@app.route('/income')
 def income():
     return render_template('income.html')
 
-@app.route('/funds.html')
+@app.route('/funds')
 def funds():
     return render_template('funds.html')
 
-@app.route('/strategic.html')
+@app.route('/strategic')
 def strategic():
     return render_template('strategic.html')
 
-@app.route('/privacy.html')
+@app.route('/privacy')
 def privacy():
     return render_template('marketing/privacy.html')
 
