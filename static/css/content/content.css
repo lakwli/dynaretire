@@ -151,7 +151,7 @@
 
 .content-body h2 i {
     margin-right: 0.5rem;
-    color: var(--primary-color);
+    color: var(--accent-color);
 }
 
 .content-body h3 {
@@ -165,7 +165,7 @@
 
 .content-body h3 i {
     margin-right: 0.75rem;
-    color: var(--primary-color);
+    color: var(--accent-color);
     font-size: 0.9em;
 }
 
