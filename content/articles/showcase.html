@@ -1,152 +1,566 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DynaRetire: Dynamic Retirement Simulation Tool With Real-Life Scenarios</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      A Detail Step-by-Step Data Enter Based On Sample (Mimic Real-life
+      Scenarios)
+    </title>
     <script id="article-metadata" type="application/json">
-    {
-      "title": "DynaRetire: Dynamic Retirement Simulation Tool With Real-Life Scenarios",
-      "description": "Explore DynaRetire's step-by-step retirement simulation tool with Martin's real-life scenario. Learn how to test early retirement with dynamic expenses, investment strategies, and risk management.",
-      "type": "article",
-      "updated_at": "2025-03-17T13:34:10Z",
-      "image": "/content/articles/assets/images/showcase/fi_showcase.png",
-      "card_image": "/content/articles/assets/images/showcase/dynaretire-how-to-go-to-different-step.svg",
-      "custom_styles": ".article-content h3 { color: #28a745; font-size: 1.3em; margin-top: 1.5em; } .article-content h3 i { color: #28a745; margin-right: 0.5em; }"
-    }
+      {
+        "title": "A Detail Step-by-Step Data Enter Based On Sample (Mimic Real-life Scenarios)",
+        "description": "Explore DynaRetire's step-by-step retirement simulation tool with Martin's real-life scenario. Learn how to test early retirement with dynamic expenses, investment strategies, and risk management.",
+        "type": "article",
+        "updated_at": "2025-03-17T13:34:10Z",
+
+        "card_image": "/content/articles/assets/images/showcase/dynaretire-how-to-go-to-different-step.svg",
+        "custom_styles": ".article-content h3 { color: #28a745; font-size: 1.3em; margin-top: 1.5em; } .article-content h3 i { color: #28a745; margin-right: 0.5em; }"
+      }
     </script>
-</head>
-<body>
+  </head>
+  <body>
     <article>
-        <div class="article-content">
+      <div class="article-content">
+        <p>
+          I'd like to walk you through how DynaRetire works using Martin's
+          retirement plan. His situation might resonate with many of us. By
+          seeing how the tool helps Martin make informed decisions, you'll get a
+          clear picture of how it might help with your as well. Let's explore
+          his plan together.
+        </p>
 
-            <p>We will use Martin's story to demonstrate how the DynaRetire app works by helping him simulate his retirement scenario according to his expectations. The app will generate the result in the form of an Excel file</p>
+        <h2 data-toc-text="The Brief Scenario">
+          <i class="fas fa-user-clock"></i> The Brief Scenario: Martin's
+          Retirement Simulation
+        </h2>
+        <p>
+          Martin is 45 and, like many of us, wonders if retiring earlier than
+          the traditional age 65 is possible. He's thoughtfully considering all
+          aspects of his financial future:
+        </p>
+        <ul class="block-list">
+          <li>
+            He and his employer continue to
+            <strong>contribute to the pension fund</strong>, and Martin also
+            <strong>saves extra</strong> in his investments specifically for
+            retirement
+          </li>
+          <li>
+            Martin has <strong>rental income</strong> from his apartment that
+            will continue after he retires
+          </li>
+          <li>
+            Covering his current <strong>living expenses</strong> like food,
+            transport, bills, and insurance. All these expenses have their
+            inflation rate
+          </li>
+          <li>
+            He also plans for future
+            <strong> high medical bills & health-related expenses </strong
+            >during <strong>old age</strong>, with
+            <strong>higher inflation rate</strong> than normal living expenses
+          </li>
+          <li>
+            Dreams of <strong>travelling the world</strong> and travel fewer
+            afterwards and stop travelling upon 80
+          </li>
+          <li>A <strong>housing loan</strong> that runs until he's 60</li>
+          <li>
+            Upgrading his <strong>insurance</strong> in a few years, and he
+            expects to pay until 80
+          </li>
+          <li>
+            <strong>Changing his car</strong> every few years until a certain
+            age
+          </li>
+          <li>
+            He expects some <strong>expenses to decrease as he ages</strong>
+          </li>
+        </ul>
 
-            
-                <h2 data-toc-text="The Brief Scenario"><i class="fas fa-user-clock"></i> The Brief Scenario: Martin's Retirement Simulation</h2>
-                <p>Martin is 45 and wants to plan for early retirement. Below are brief details:</p>
-                <ul class="block-list">
-                    <li>He and his employer continue to <strong>contribute to the pension fund</strong>, and Martin also <strong>saves extra</strong> in his investments specifically for retirement</li>
-                    <li>Martin has <strong>rental income</strong> from his apartment that will continue after he retires. He expects the growth rate to be lower than his expenses inflation</li>
-                    <li>Covering his current <strong>living expenses</strong> like food, transport, bills, and insurance. All these expenses have their inflation rate</li>
-                    <li>He also plans for future (<strong>old age high medical bills</strong>) that may not be covered by insurance, and <strong>health-related expenses</strong>, with <strong>higher inflation rate</strong> than normal living expenses</li>
-                    <li>Dreams of <strong>travelling the world</strong> and travel fewer afterwards and stop travelling upon 80</li>
-                    <li>Paying off his <strong>housing loan</strong> until 60</li>
-                    <li>Upgrading his <strong>insurance</strong> in a few years, and he expects to pay until 80</li>
-                    <li><strong>Changing his car</strong> every few years until a certain age</li>
-                    <li>He expects some <strong>expenses to decrease as he ages</strong></li>
-                </ul>
+        <p>
+          Most importantly, Martin wants to know: If he retires at 50, will his
+          money last? And how should he protect himself against market
+          volatility?
+        </p>
 
-                <p>Considering risk management, he wants to manage the risks to his investments in case of market downturns.</p>
+        <p>
+          Let's see how Martin uses DynaRetire to find answers to these
+          questions.
+        </p>
 
-                <p>Martin wants to know if he can retire with his ongoing contributions during his working years, his rental income, and his budget for various expenses at different life stages. He also wants to know how long his retirement savings will last.</p>
-
-                <div class="key-info">
-                    <p><em>All expense amounts are in today's values. The app will calculate future amounts based on inflation for each year or age. It is however, the income amounts are future amounts, with what we expect to receive based on estimates or agreements, considering the age when we start.</em></p>
-                </div>
-
-                <p><em>Note: Some scenarios are for simulation purposes and may not apply to your situation.</em></p>
-
-                <h2 data-toc-text="Age & Savings"><i class="fas fa-info-circle"></i> The Information About Age, and Saving Information</h2>
-                <h3 data-toc-skip>Age</h3>
-                <p>This year is <span class="value">2024</span>. A 45-year-old person plans to retire early at <span class="value">50</span>.</p>
-                <div class="image-container">
-                    <img src="/content/articles/assets/images/showcase/how-to-setup-age.svg" alt="DynaRetire interface showing age and retirement target setup - current age 45, retirement at 50">
-                </div>
-
-                <h3 data-toc-skip>Savings</h3>
-                <p>Martin currently has a pension fund worth <span class="value">$1,000,000</span>, which he expects to grow at a rate of <span class="value">5.5%</span>. However, he can only start withdrawing from this fund when he turns <span class="value">55</span>.</p>
-                
-                <p>He also has <span class="value">$500,000</span> invested in the S&P 500. Instead of assuming a consistent return rate, he wants to see the impact of retiring during a poor market, using 1999 as the retirement year. Since the fund's history is only available up to 2023, he assumes a return rate of <span class="value">7%</span> for the remaining years.</p>
-                
-                <div class="image-container">
-                    <img src="/content/articles/assets/images/showcase/how-to-setup-saving.svg" alt="DynaRetire savings configuration screen showing pension fund of $1,000,000 and S&P 500 investment of $500,000">
-                </div>
-
-                <h2 data-toc-text="Dynamic Expenses"><i class="fas fa-chart-line"></i> Dynamic Expenses Following Basic, Desire Lifestyle, and Risk Consideration</h2>
-                <p>When simulating retirement expenses, he considers the following:</p>
-
-                <h3 data-toc-text="Travel Budget"><i class="fas fa-plane"></i> Travel Budget: Dream Of Global Travel</h3>
-                <p>He dreams of travelling the world during the first two years of his retirement, planning to spend a total of <span class="value">$100,000</span> on global adventures. After that, he expects to spend about <span class="value">$10,000</span> a year on travel when he anticipates slowing down his travels and stopping when he turns <span class="value">75</span>. He expects these costs to rise with an inflation rate of <span class="value">3%</span></p>
-                <img src="/content/articles/assets/images/showcase/how-to-setup-travel-expenses.svg" alt="Setting up travel budget in DynaRetire - $100,000 for first two years, then $10,000 annually with 3% inflation">
-
-                <h3 data-toc-text="Housing Loan"><i class="fas fa-home"></i> Housing Loan Installment: To Be Settled Until Age 60</h3>
-                <p>He currently has a housing loan, which requires him to pay <span class="value">$10,000</span> a year. This loan will continue until he turns <span class="value">60</span>, after which he will no longer have this expense.</p>
-                <img src="/content/articles/assets/images/showcase/dynaretire-how-to-setup-housing-loan.svg" alt="DynaRetire housing loan configuration - $10,000 annual payment until age 60">
-
-                <h3 data-toc-text="Insurance"><i class="fas fa-shield-halved"></i> Insurance: Upgrade After 10 Years With Inflation Consideration</h3>
-                <p>Currently, he pays <span class="value">$4,000</span> a year for his insurance. However, as he approaches <span class="value">56</span> <em>(Note: For simulated purposes, he may consider upgrading now instead, while he is still healthy, avoid exclusion or reject possibility)</em>, he plans to upgrade his medical insurance to ensure it covers him until he turns <span class="value">80</span>. He realizes that the insurance he bought in his 20s may not be sufficient, especially considering the high inflation rates. He estimates this upgrade will cost an additional <span class="value">$3,000</span> per year. While uncertain if payments can cease at any age, he prefers to budget until age <span class="value">80</span>, which aligns with the coverage duration.</p>
-                <img src="/content/articles/assets/images/showcase/dynaretire-how-to-setup-insurance.svg" alt="DynaRetire how-to: setup Insurance">
-
-                <h3 data-toc-text="Medical Bills"><i class="fas fa-hospital"></i> Medical Bills: Prepare For High Expenses In Later Years</h3>
-                <p>Starting at age <span class="value">70</span>, he anticipates needing about <span class="value">$20,000</span> a year (in today's money) for possible health-related expenses, e.g. medicines, follow-ups, physio visits, taking into account the possibility that insurance might not cover all expenses. He expects these costs to rise with an inflation rate of <span class="value">8%</span>. He does not plan for nursing home expenses <em>(Note: he may consider this)</em></p>
-                <img src="/content/articles/assets/images/showcase/dynaretire-how-to-setup-medical.svg" alt="DynaRetire how-to: setup Medical">
-
-                <h3 data-toc-text="Car Replacement"><i class="fas fa-car"></i> Car Replacement Every 7 Years</h3>
-                <p>Starting at age <span class="value">51</span>, he plans to buy a new car every <span class="value">7</span> years. Each time he buys a new car, it costs him an extra <span class="value">$60,000</span> beyond what he gets from selling his old car. When he turns <span class="value">72</span>, he expects to be his last car purchase. He doesn't anticipate purchasing a car afterward. He projects that car prices rise with an inflation rate of <span class="value">2%</span>.</p>
-                <img src="/content/articles/assets/images/showcase/dynaretire-how-to-setup-car-replacement.svg" alt="DynaRetire how-to: setup car replacement">
-
-                <h3 data-toc-text="Food"><i class="fas fa-utensils"></i> Food: Luxury Now, Simple Later</h3>
-                <p>Currently, he spends about <span class="value">$20,000</span> a year on food, enjoying luxury dining occasionally. However, he anticipates that his lifestyle will become simpler as he ages. By the time he reaches <span class="value">60</span>, he plans to reduce his food budget to <span class="value">$15,000</span> a year. He also expects food prices to increase by about <span class="value">6%</span> annually due to inflation. If the market turns bad, he is prepared to reduce his food expenses to <span class="value">80%</span> of the original budget to minimize spending and more conservatively manage his finances.</p>
-                <img src="/content/articles/assets/images/showcase/dynaretire-how-to-setup-food.svg" alt="DynaRetire how-to: setup food">
-
-                <h3 data-toc-text="Transport"><i class="fas fa-bus"></i> Transport: More Driving Now, Less Later, Stop Afterward</h3>
-                <p>Today. he spends about <span class="value">$4,000</span> a year on transport, covering costs such as petrol, insurance, parking, and maintenance. However, he expects these expenses to reduce to <span class="value">$3,000</span> a year after age <span class="value">65</span>, as he plans to drive less. By the time he reaches <span class="value">80</span>, he anticipates that he will stop driving altogether, eliminating these expenses. He expected these expenses to increase by about <span class="value">4%</span> annually due to inflation.</p>
-                <img src="/content/articles/assets/images/showcase/dynaretire-how-to-setup-transport.svg" alt="DynaRetire how-to: setup transport">
-
-                <h3 data-toc-text="Other"><i class="fas fa-receipt"></i> Other Expenses</h3>
-                <p>He estimates that his annual expenses for bills, clothes, gadgets, repairs, and other miscellaneous items will be around <span class="value">$20,000</span>. He assumes a general inflation rate of <span class="value">3.5%</span> for these expenses over the years.</p>
-                <img src="/content/articles/assets/images/showcase/dynaretire-how-to-setup-other-expenses.svg" alt="DynaRetire how-to: setup other expenses">
-
-                <h2><i class="fas fa-money-bill-trend-up"></i>Incomes</h2>
-                <p>During his working years, he wants to optimize his retirement fund with extra saving :</p>
-
-                <h3 data-toc-text="Pension Fund"><i class="fas fa-piggy-bank"></i> Pension Fund Contributions</h3>
-                <p>He and his employer together contribute <span class="value">$36,000</span> a year to his pension fund. This amount is expected to grow at a rate of <span class="value">2%</span> per year, in line with his salary increases.</p>
-                <img src="/content/articles/assets/images/showcase/dynaretire-how-to-setup-pension-fund.svg" alt="DynaRetire how-to: setup pension fund">
-
-                <h3 data-toc-text="Index Fund"><i class="fas fa-chart-pie"></i> Index Fund Savings</h3>
-                <p>Separately, he saves <span class="value">$20,000</span> a year in an index fund. He plans to increase this savings amount by <span class="value">10%</span> each year, leveraging his income growth beyond just the basics.</p>
-                <img src="/content/articles/assets/images/showcase/dynaretire-how-to-setup-index.svg" alt="DynaRetire how-to: setup index">
-
-                <h3><i class="fas fa-building"></i> Rental Income</h3>
-                <p>He earns <span class="value">$10,000</span> a year from rental income, which he invests in the same index fund. He expects this rental income to grow by <span class="value">5%</span> per year until he turns <span class="value">55</span>, after which he anticipates it will slow down to a <span class="value">2%</span> annual growth rate. He has no intention to sell this property yet.</p>
-                <img src="/content/articles/assets/images/showcase/dynaretire-how-to-setup-rental.svg" alt="DynaRetire how-to: setup rental">
-
-                <h2 data-toc-text="Risk Management"><i class="fas fa-shield-halved"></i> Investment Risk Management: Minimum Spending, Load Balancing, Pause Selling, Asset Allocation</h2>
-                <p>To manage investment risks, he has a contingency plan: if the personal history average history returns (since retired year) drop below <span class="value">3%</span> after retirement, he will switch to minimum spending. Additionally, he will avoid selling riskier investments during downturns to prevent losses, prioritizing risk management over growth.</p>
-
-                <p>In terms of asset allocation, he plans to maintain a <span class="value">70%</span> stock and <span class="value">30%</span> bond mix until age <span class="value">60</span>. Then, he will shift to a <span class="value">60%</span> stock and <span class="value">40%</span> bond mix. By the time he reaches <span class="value">65</span>, he plans to further adjust to a <span class="value">50%</span> stock and <span class="value">50%</span> bond allocation. He also intends to rebalance his portfolio annually to stay aligned with these goals.</p>
-                <img src="/content/articles/assets/images/showcase/dynaretire-how-to-setup-investment-risk-management.svg" alt="DynaRetire how-to: setup investment risk management">
-
-                <h2 data-toc-skip><i class="fas fa-gears"></i> How The App Generally Works:</h2>
-                <p>There are four steps to consider when simulating your retirement scenario. The first and second steps are essential, while the third and fourth steps are optional. The first step focuses on basic info and savings, while the second step involves allocating your budget to various expenses. The third step pertains to defining retirement income or support during retirement, and the fourth step addresses risk management related to investments. You can jump to any step without following the sequence.</p>
-                <img src="/content/articles/assets/images/showcase/dynaretire-how-to-go-to-different-step.svg" alt="DynaRetire how-to: Go To different step">
-
-                <h2 data-toc-text="Interpret Result"><i class="fas fa-file-excel"></i> Interpret Result: Excel</h2>
-                <p>The purpose of this app is to generate an Excel file rather than displaying it on the screen. This allows you to keep it for reference without revisiting the app. You can use the numbers for further calculations or link them to your formulas. Additionally, if you want to leverage Excel capabilities for displaying forms, this approach is more useful than on-screen display.</p>
-                <h3 data-toc-skip>Excel File Structure</h3>
-                <ul class="block-list">
-                    <li><strong>Summary:</strong> The first sheet is a summary that displays the total fund balance, expenses, incomes, and profit and loss. It also shows the net balance for the year.</li>
-                    <li><strong>Expenses:</strong> The second sheet will provide a detailed breakdown of individual expenses as they occur throughout the year and the total expenses for that year. In the case of an unfavourable market year, a user can configure expenses to switch to minimum spending. In that case, a comment in the column will indicate that the expense amount is based on minimum spending due to the unfavourable market conditions.</li>
-                    <li><strong>Income:</strong> The third sheet will provide a detailed breakdown of individual income as it occurs throughout the year and the total income for that year.</li>
-                    <li><strong>Funds Flow:</strong> The fourth screen illustrates the cash flow into and out of the fund. This movement can result from pension fund contributions (directed into the pension fund), additional savings (allocated to the investment fund), profit and loss, withdrawals for expenses (based on withdrawal eligibility and sequence), and rebalancing (which may involve transferring funds from Fund A to Fund B). If a year is marked as an unfavourable market year and there's a pause in balancing from a risky fund to a safer fund, the rebalance column will display a comment indicating the pause.</li>
-                </ul>
-                <div class="image-container">
-                    <img src="/content/articles/assets/images/showcase/dynaretire-generated-result-explained.svg" alt="DynaRetire Excel output structure showing summary, expenses, income, and funds flow sheets" data-zoomable>
-                </div>
-
-                <h2 data-toc-text="Conclusion"><i class="fas fa-check-circle"></i> Conclusion: Test Your Retirement With Confidence</h2>
-                <p>DynaRetire accounts for the dynamic nature of life. By following Martin's example, you can see how the tool helps you:</p>
-                
-                <ul class="block-list">
-                    <li>Test <strong>early retirement</strong> scenarios with dynamic financial projections</li>
-                    <li>Simulate <strong>changing expenses</strong> throughout different life stages</li>
-                    <li>Model <strong>investment risks</strong> with adaptive strategies</li>
-                    <li>Visualize the <strong>long-term impact</strong> of your financial decisions</li>
-                    <li>Create a <strong>personalized retirement simulation</strong> based on your unique situation</li>
-                </ul>
+        <div class="key-info">
+          <p>
+            <em
+              >All expense amounts are in today's values. The app will calculate
+              future amounts based on inflation for each year or age. It is
+              however, the income amounts are future amounts, with what we
+              expect to receive based on estimates or agreements, considering
+              the age when we start.</em
+            >
+          </p>
         </div>
+
+        <p>
+          <em
+            >Note: Some scenarios are for simulation purposes and may not apply
+            to your situation.</em
+          >
+        </p>
+
+        <h2 data-toc-text="Age & Savings">
+          <i class="fas fa-info-circle"></i> The Information About Age, and
+          Saving Information
+        </h2>
+        <h3 data-toc-skip>Age</h3>
+        <p>
+          This year is <span class="value">2024</span>. A 45-year-old person
+          plans to retire early at <span class="value">50</span>.
+        </p>
+        <div class="image-container">
+          <img
+            src="/content/articles/assets/images/showcase/how-to-setup-age.svg"
+            alt="DynaRetire interface showing age and retirement target setup - current age 45, retirement at 50"
+          />
+        </div>
+
+        <h3 data-toc-skip>Savings</h3>
+        <p>
+          Martin currently has a pension fund worth
+          <span class="value">$1,000,000</span>, which he expects to grow at a
+          rate of <span class="value">5.5%</span>. However, he can only start
+          withdrawing from this fund when he turns
+          <span class="value">55</span>.
+        </p>
+
+        <p>
+          He also has <span class="value">$500,000</span> invested in the S&P
+          500. Instead of assuming a consistent return rate, he worried about
+          the impact of retiring during a poor market, so he want to backtest
+          against one of the worst market periods 1999 as the retirement year.
+          For years beyond our historical data (after 2023), he uses a more
+          typical <span class="value">7%</span> return. By planning for the
+          worst, Martin can have better awareness how he want to adjust his plan
+          based on his comfort level.
+        </p>
+
+        <div class="image-container">
+          <img
+            src="/content/articles/assets/images/showcase/how-to-setup-saving.svg"
+            alt="DynaRetire savings configuration screen showing pension fund of $1,000,000 and S&P 500 investment of $500,000"
+          />
+        </div>
+
+        <h2 data-toc-text="Dynamic Expenses">
+          <i class="fas fa-chart-line"></i> Dynamic Expenses Following Basic,
+          Desire Lifestyle, and Risk Consideration
+        </h2>
+        <p>
+          Let's look at how Martin anticipates his retirement needs will evolve
+          over time. He doesn't believe his spending will stay the same
+          throughout retirement - instead, he expects his needs and wants will
+          naturally change as he ages.
+        </p>
+
+        <h3 data-toc-text="Travel Budget">
+          <i class="fas fa-plane"></i> Travel Budget: Dream Of Global Travel
+        </h3>
+        <p>
+          Martin plans to spend <span class="value">$100,000</span> on travel
+          during his first two years of retirement. After that, he'll spend
+          about <span class="value">$10,000</span> each year until he's
+          <span class="value">75</span>. He's not spreading his travel budget
+          evenly across years - It is because he know that:
+        </p>
+
+        <ul class="bullet-list">
+          <li>
+            Health and mobility tend to be strongest in those early retirement
+            years. The same money spent at different ages gives completely
+            different experiences.
+          </li>
+          <li>
+            Martin doesn't know how long his health will allow him to travel
+          </li>
+          <li>
+            Life often brings unexpected responsibilities, like caring for aging
+            parents, that can restrict travel later
+          </li>
+        </ul>
+        <img
+          src="/content/articles/assets/images/showcase/how-to-setup-travel-expenses.svg"
+          alt="Setting up travel budget in DynaRetire - $100,000 for first two years, then $10,000 annually with 3% inflation"
+        />
+
+        <h3 data-toc-text="Housing Loan">
+          <i class="fas fa-home"></i> Housing Loan Installment: To Be Settled
+          Until Age 60
+        </h3>
+        <p>
+          He currently has a housing loan, which requires him to pay
+          <span class="value">$10,000</span> a year. This loan will continue
+          until he turns <span class="value">60</span>, after which he will no
+          longer have this expense.
+        </p>
+        <p>
+          Martin has deliberately chosen not to pay off his housing loan before
+          retirement. His loan's interest rate is significantly lower than both
+          his pension fund returns and his expected investment returns. By
+          keeping this lower-interest debt while his money grows in
+          higher-return investments, he maintains more flexibility with his
+          assets. This approach allows him to better manage his overall
+          financial picture and optimize returns while maintaining liquidity for
+          other needs.
+        </p>
+        <img
+          src="/content/articles/assets/images/showcase/dynaretire-how-to-setup-housing-loan.svg"
+          alt="DynaRetire housing loan configuration - $10,000 annual payment until age 60"
+        />
+
+        <h3 data-toc-text="Insurance">
+          <i class="fas fa-shield-halved"></i> Insurance: Upgrade After 10 Years
+          With Inflation Consideration
+        </h3>
+        <p>
+          Martin currently allocates <span class="value">$4,000</span> annually
+          for insurance. Looking ahead to age <span class="value">56</span>, he
+          plans to enhance his coverage with an additional
+          <span class="value">$3,000</span> per year to ensure protection until
+          age <span class="value">80</span>.
+        </p>
+        <p>
+          While Martin's current plan is to upgrade at age
+          <span class="value">56</span>, he's also weighing another option:
+          upgrading his coverage sooner while still in good health. This is due
+          to insurance companies typically assess risk based on health status at
+          the time of application, and if later might lead to exclusions or even
+          application rejections.
+        </p>
+        <p>
+          Martin has allocated insurance expenses through age
+          <span class="value">80</span>, which is the maximum his policy will
+          cover. To Martin personal viewpoint, after 80s, he may prefer natural
+          life progression over extensive medical interventions.
+        </p>
+        <img
+          src="/content/articles/assets/images/showcase/dynaretire-how-to-setup-insurance.svg"
+          alt="DynaRetire how-to: setup Insurance"
+        />
+
+        <h3 data-toc-text="Medical Bills">
+          <i class="fas fa-hospital"></i> Medical Bills: Prepare For High
+          Expenses In Later Years
+        </h3>
+        <p>
+          Starting at age <span class="value">70</span>, Martin allocates
+          <span class="value">$20,000</span> annually (in today's dollars) for
+          potential health-related expenses—medicines, specialist follow-ups,
+          and physical therapy sessions—recognizing that insurance typically
+          won't cover everything. He projects these costs will increase at a
+          higher <span class="value">8%</span> inflation rate, reflecting the
+          reality of rising healthcare costs.
+        </p>
+
+        <p>
+          While his current plan doesn't include funding for long-term care
+          facilities, Martin acknowledges this as an area for future
+          consideration. His perspective is that family support combined with
+          his medical budget might be sufficient, but he's keeping an open mind
+          as he refines his plan over time.
+        </p>
+        <img
+          src="/content/articles/assets/images/showcase/dynaretire-how-to-setup-medical.svg"
+          alt="DynaRetire how-to: setup Medical"
+        />
+
+        <h3 data-toc-text="Food">
+          <i class="fas fa-utensils"></i> Food: Luxury Now, Simple Later
+        </h3>
+        <p>
+          Martin currently enjoys occasional fine dining, spending about
+          <span class="value">$20,000</span> yearly on food. As he gets older,
+          he expects his tastes to become simpler. By age
+          <span class="value">60</span>, he plans to reduce his food budget to
+          <span class="value">$15,000</span> a year.
+        </p>
+
+        <p>
+          He's factored in food inflation at
+          <span class="value">6%</span> annually - higher than general
+          inflation. And he's built in some flexibility too: if his investments
+          perform poorly, he can cut back to <span class="value">80%</span> of
+          his normal food budget until things improve.
+        </p>
+        <img
+          src="/content/articles/assets/images/showcase/dynaretire-how-to-setup-food.svg"
+          alt="DynaRetire how-to: setup food"
+        />
+
+        <h3 data-toc-text="Car Replacement">
+          <i class="fas fa-car"></i> Car Replacement Every 7 Years
+        </h3>
+        <p>
+          Martin includes regular car replacements starting at age
+          <span class="value">51</span>, setting aside
+          <span class="value">$60,000</span> (after trade-in value) for a new
+          car every <span class="value">7</span> years. It is because getting
+          car loans becomes difficult once retired! So, he plan this expenses
+          every few years, not as yearly expenses
+        </p>
+        <p>
+          Looking at his driving needs as he ages, Martin figures his last car
+          purchase will be around age <span class="value">72</span> (which may
+          last another 7 years or beyond). By then, rideshare services or family
+          help might make more sense. He estimate a modest
+          <span class="value">2%</span> annual price increase for cars, which
+          tends to be lower than other expenses.
+        </p>
+        <img
+          src="/content/articles/assets/images/showcase/dynaretire-how-to-setup-car-replacement.svg"
+          alt="DynaRetire how-to: setup car replacement"
+        />
+        <p>
+          While planning for these periodic car purchases, Martin also have
+          separate ongoing expenses of his car
+        </p>
+
+        <h3 data-toc-text="Car Related Expenses">
+          <i class="fas fa-bus"></i>Car Related Expenses: More Driving Now, Less
+          Later, Stop Afterward
+        </h3>
+        <p>
+          Today. he spends about <span class="value">$4,000</span> a year on
+          transport, covering costs such as petrol, insurance, parking, and
+          maintenance. However, he expects these expenses to reduce to
+          <span class="value">$3,000</span> a year after age
+          <span class="value">65</span>, as he plans to drive less. By the time
+          he reaches <span class="value">80</span>, he anticipates that he will
+          stop driving altogether, eliminating these expenses. He expected these
+          expenses to increase by about <span class="value">4%</span> annually
+          due to inflation.
+        </p>
+        <img
+          src="/content/articles/assets/images/showcase/dynaretire-how-to-setup-transport.svg"
+          alt="DynaRetire how-to: setup transport"
+        />
+
+        <h3 data-toc-text="Other">
+          <i class="fas fa-receipt"></i> Other Expenses
+        </h3>
+        <p>
+          He estimates that his annual expenses for bills, clothes, gadgets,
+          repairs, and other miscellaneous items will be around
+          <span class="value">$20,000</span>. He assumes a general inflation
+          rate of <span class="value">3.5%</span> for these expenses over the
+          years.
+        </p>
+        <p>
+          Martin sees this category as more than just everyday items - it's his
+          'backup money'. This budget allow him to handle small overruns budget
+          or lets him occasionally buy something he like. This will make him
+          feel more relaxed during retirement without too calculative every
+          cents with stress.
+        </p>
+        <img
+          src="/content/articles/assets/images/showcase/dynaretire-how-to-setup-other-expenses.svg"
+          alt="DynaRetire how-to: setup other expenses"
+        />
+
+        <h2><i class="fas fa-money-bill-trend-up"></i>Incomes</h2>
+        <p>
+          Martin sees this category as more than just everyday items - it's his
+          'backup money'. This budget allows him to handle small unexpected
+          costs or lets him occasionally buy something he likes without guilt.
+          Having this cushion helps him feel more relaxed during retirement
+          instead of stressing about every dollar spent.
+        </p>
+
+        <h3 data-toc-text="Pension Fund">
+          <i class="fas fa-piggy-bank"></i> Pension Fund Contributions
+        </h3>
+        <p>
+          He and his employer together contribute
+          <span class="value">$36,000</span> a year to his pension fund. This
+          amount is expected to grow at a rate of
+          <span class="value">2%</span> per year, in line with his salary
+          increases.
+        </p>
+        <img
+          src="/content/articles/assets/images/showcase/dynaretire-how-to-setup-pension-fund.svg"
+          alt="DynaRetire how-to: setup pension fund"
+        />
+
+        <h3 data-toc-text="Index Fund">
+          <i class="fas fa-chart-pie"></i> Index Fund: Extra Savings
+        </h3>
+        <p>
+          Martin knows his pension fund alone won't get him to early retirement
+          at 50. That's why he puts an extra
+          <span class="value">$20,000</span> a year into an index fund. Since
+          his income comfortably exceeds his expenses, he plans to increase this
+          savings amount by <span class="value">10%</span> each year, putting
+          the extra from his salary growth directly into savings.
+        </p>
+        <p>
+          This is what Martin can save after paying for his day-to-day life. He
+          wonders if this amount is enough, too much, or too little. If it's not
+          enough, he might need to consider to save more now (which means
+          cutting back on things he enjoys), push his retirement age later than
+          50, or plan for a simpler lifestyle when he retires. Right now, he's
+          starting with what feels comfortable for his current lifestyle and
+          will adjust based on what his calculations show.
+        </p>
+        <img
+          src="/content/articles/assets/images/showcase/dynaretire-how-to-setup-index.svg"
+          alt="DynaRetire how-to: setup index"
+        />
+
+        <h3><i class="fas fa-building"></i> Rental Income</h3>
+        <p>
+          Martin earns <span class="value">$10,000</span> a year from his rental
+          property, which he invests in the same index fund during working
+          years. He expects this rental income to grow by
+          <span class="value">5%</span> annually until age
+          <span class="value">55</span>, then slow to
+          <span class="value">2%</span> yearly growth afterward.
+        </p>
+        <p>
+          Martin views his rental property as an important part of his "safe
+          money" portfolio so he currently plans to keep the rental property for
+          the long term. It also serves as his backup plan - if someday he needs
+          a large amount of money, he could sell the property, especially if it
+          has appreciated well over time.
+        </p>
+        <img
+          src="/content/articles/assets/images/showcase/dynaretire-how-to-setup-rental.svg"
+          alt="DynaRetire how-to: setup rental"
+        />
+
+        <h2 data-toc-text="Risk Management">
+          <i class="fas fa-shield-halved"></i> Investment Risk Management:
+          Minimum Spending, Load Balancing, Pause Selling, Asset Allocation
+        </h2>
+        <p>
+          Knowing the market volatility could affect his retirement plan, Martin
+          is thinking about ways to minimize the impact of running out of money
+          too early - like at age 60, when he'd still have many years ahead.
+        </p>
+
+        <p>
+          If his personal investment returns drop below
+          <span class="value">3%</span> after retirement, he'll switch to
+          minimum spending - hopefully reduce the money lost impact due to less
+          selling for expenses. He'll also chose to pause on rebalance to sell
+          saving fund to risky fund while it is bad market.
+        </p>
+
+        <p>
+          Martin also gradually shifts his asset allocation as he ages - from
+          <span class="value">70%</span> stocks/<span class="value">30%</span>
+          bonds to a more conservative mix in later years. This approach is to
+          reduce the risk of market volatility impact his money when he get
+          older.
+        </p>
+        <img
+          src="/content/articles/assets/images/showcase/dynaretire-how-to-setup-investment-risk-management.svg"
+          alt="DynaRetire how-to: setup investment risk management"
+        />
+
+        <h2 data-toc-skip>
+          <i class="fas fa-gears"></i> How The App Generally Works:
+        </h2>
+        <p>
+          There are four steps to consider when simulating your retirement
+          scenario. The first and second steps are essential, while the third
+          and fourth steps are optional. The first step focuses on basic info
+          and savings, while the second step involves allocating your budget to
+          various expenses. The third step pertains to defining retirement
+          income or support during retirement, and the fourth step addresses
+          risk management related to investments. You can jump to any step
+          without following the sequence.
+        </p>
+        <img
+          src="/content/articles/assets/images/showcase/dynaretire-how-to-go-to-different-step.svg"
+          alt="DynaRetire how-to: Go To different step"
+        />
+
+        <h2 data-toc-text="Interpret Result">
+          <i class="fas fa-file-excel"></i> Interpret Result: Excel
+        </h2>
+        <p>
+          What I particularly value about DynaRetire is how it creates something
+          tangible you can keep and reference. This tool provides a
+          comprehensive Excel file that becomes your personalized retirement
+          blueprint.
+        </p>
+        <h3 data-toc-skip>Excel File Structure</h3>
+        <ul class="block-list">
+          <li>
+            <strong>Summary:</strong> The first sheet is a summary that displays
+            the total fund balance, expenses, incomes, and profit and loss. It
+            also shows the net balance for the year.
+          </li>
+          <li>
+            <strong>Expenses:</strong> The second sheet will provide a detailed
+            breakdown of individual expenses as they occur throughout the year
+            and the total expenses for that year. In the case of an unfavourable
+            market year, a user can configure expenses to switch to minimum
+            spending. In that case, a comment in the column will indicate that
+            the expense amount is based on minimum spending due to the
+            unfavourable market conditions.
+          </li>
+          <li>
+            <strong>Income:</strong> The third sheet will provide a detailed
+            breakdown of individual income as it occurs throughout the year and
+            the total income for that year.
+          </li>
+          <li>
+            <strong>Funds Flow:</strong> The fourth screen illustrates the cash
+            flow into and out of the fund. This movement can result from pension
+            fund contributions (directed into the pension fund), additional
+            savings (allocated to the investment fund), profit and loss,
+            withdrawals for expenses (based on withdrawal eligibility and
+            sequence), and rebalancing (which may involve transferring funds
+            from Fund A to Fund B). If a year is marked as an unfavourable
+            market year and there's a pause in balancing from a risky fund to a
+            safer fund, the rebalance column will display a comment indicating
+            the pause.
+          </li>
+        </ul>
+        <div class="image-container">
+          <img
+            src="/content/articles/assets/images/showcase/dynaretire-generated-result-explained.svg"
+            alt="DynaRetire Excel output structure showing summary, expenses, income, and funds flow sheets"
+            data-zoomable
+          />
+        </div>
+
+        <h2 data-toc-text="Conclusion">
+          <i class="fas fa-check-circle"></i> Conclusion: Test Your Retirement
+          With Confidence
+        </h2>
+        <p>
+          I created DynaRetire because I believe retirement planning should
+          reflect real life - with all its changes and complexities. Martin's
+          example shows how the right tools can transform uncertainty into
+          clarity.
+        </p>
+
+        <p>
+          Your retirement journey deserves this same level of thoughtful
+          consideration. Whether you're wondering about early retirement
+          possibilities, planning for healthcare costs, or preparing for
+          changing lifestyle needs, taking the time to create a dynamic plan now
+          can make all the difference later.
+        </p>
+
+        <p>
+          I encourage you to explore your own scenarios with DynaRetire. Your
+          future self will thank you for the peace of mind that comes with
+          proper planning.
+        </p>
+      </div>
     </article>
-</body>
+  </body>
 </html>
