@@ -46,7 +46,9 @@
 
 /* Content Container (Article Layout) */
 .content-container {
-    width: 100%;
+    width: 90%;
+    max-width: 1200px;  /*Critical constraint */
+    margin: 0 auto; /* Centers the container */
     display: grid;
     grid-template-columns: 10fr 70fr 20fr;
     gap: 2rem;
@@ -58,6 +60,7 @@
 /* Blog Container */
 .blog-container {
     width: 60%;
+    max-width: 800px;  /* Add this constraint */
     margin: 0 auto;
     padding: 1.5rem;
     position: relative;
