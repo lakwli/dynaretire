@@ -13,7 +13,11 @@
                 <div class="columns is-multiline">
                     <div class="column is-5">
                         <div class="field">
-                            <h2 class="label">Expense Name</h2>
+                            <label class="label">Expense Name
+                                <span class="icon">
+                                    <i class="fas fa-question-circle" title="'Expense Name' refers to the category or type of expense you want to track in your retirement plan (e.g., Food, Housing, Medical, Travel). Using clear and specific names helps you better organize and understand your retirement expenses"></i>
+                                </span>
+                            </label>
                             <div class="control">
                                 <input class="input exp-name is-primary" type="text" name="exp-name"  placeholder="e.g. Food, Bills" required onchange="validateExpNameDuplicated(this)">
                             </div>
@@ -21,7 +25,7 @@
                     </div>
                     <div class="column is-3">
                         <div class="field">
-                            <h2 class="label">Inflation Rate %                                                         
+                            <label class="label">Inflation Rate %                                                         
                                 <span class="icon">
                                     <i class="fas fa-question-circle" title="'Inflation' Rate refer to a measure of how much things might get more expensive each year. For example, if the inflation rate is 2%, it’s like saying a loaf of bread that costs $1 this year might cost $1.02 next year. In real life, not all expenses increase at the same rate. Some things might get more expensive faster than others. For example, the cost of healthcare or education might go up faster than the cost of transport or clothing. This means they have a higher inflation rate"></i>
                                 </span>
@@ -33,7 +37,7 @@
                     </div>
                     <div class="column is-3">
                         <div class="field">
-                            <h2 class="label">Reduction Rate%                                                                                     
+                            <label class="label">Reduction Rate%                                                                                     
                                 <span class="icon">
                                     <i class="fas fa-question-circle" title="'Expense Reduction Rate' refer to feature that works similar to a battery saving mode. In case of a downturn in the market, the system projects that you will spend less on your expenses based on the rate you set here. For example, if you set 80, it means that during a market downturn, you would only spend 80% of the originally allocated amount for your expenses. However, when the market turns good, the system will revert to projecting expenses based on the original amount. Please note that inflation continues to be calculated on the original amount and does not pause during a market downturn. This feature allows you to see how adjusting your spending during market downturns can help your retirement savings."></i>
                                 </span>
@@ -53,36 +57,36 @@
                             <input  id="exp-tied-to-age" type="checkbox"/>
                         </div>
                         <div class="column">
-                            <h2 class="label">Total Yearly Expenditure                                                                               
+                            <label class="label">Total Yearly Expenditure                                                                               
                                 <span class="icon">
-                                    <i class="fas fa-question-circle" title="‘Yearly Spending Amount’ refers to the total amount you expect to spend in one year.  Please note that this amount should be in today’s dollars, and this app will adjust it for inflation over time."></i>
+                                    <i class="fas fa-question-circle" title="Enter this expense in TODAY'S DOLLARS (present value). For example, if you enter $6,000 for age 65, the tool will automatically calculate what this will actually cost at age 65 after inflation."></i>
                                 </span>
                             </label>
                             <input class="input exp-amt-amt is-primary" name="exp-amt-amt" type="text" placeholder="Amount" onchange="window.addValidationIfNeeded(this)" onkeyup="callKeyUpAmountFunction(this)">
                         </div>
                         <div class="column">
-                            <h2 class="label">Start Age for Expense Period                                                                       
+                            <label class="label">From Age (inclusive)                                                                       
                                 <span class="icon">
-                                    <i class="fas fa-question-circle" title="'Start Age for Expense Period' refers to your age at the beginning of a period when you expect to have a certain level of expenses. For example, if you expect to spend $30k/year on food from the age of 55, you would enter ‘55’ here. The amount should be in today’s dollars, and the tool will adjust it for inflation over time."></i>
+                                    <i class="fas fa-question-circle" title="Enter the age when these expenses begin. For example, enter '55' if this expense starts at age 55."></i>
                                 </span>
                             </label>
                             <input class="input exp-amt-starting-age is-primary" name="exp-amt-starting-age" type="number" min="1" placeholder="When the expenses start?" required onchange="validateExpStartingYearFromPage(this)">
                         </div>
                         <div class="column">
-                            <h2 class="label">End Age for Expense Period                                                                                                       
+                            <label class="label">To Age (inclusive)                                                                                                     
                                 <span class="icon">
-                                    <i class="fas fa-question-circle" title="'End Age for Expense Period' refers to your age at the end of a period when you expect to have a certain level of expenses. For example, if you expect to spend $30k/year on food until the age of 65, you would enter ‘65’ here. Starting from the next year, you can enter a different amount for your expenses"></i>
+                                    <i class="fas fa-question-circle" title="Enter the last age when these expenses apply. For example, enter '65' if this expense ends at age 65."></i>
                                 </span>
                             </label>
                             <input class="input exp-amt-until-age is-info " name="exp-amt-until-age" type="number" placeholder="When the expenses end?" value="100" onchange="validateExpFirstUntilYear(this)">
                         </div>
                         <div class="column">
-                            <h2 class="label">Occurrence Interval                                                                                                       
+                            <label class="label">Occurrence Interval                                                                                                       
                                 <span class="icon">
                                     <i class="fas fa-question-circle" title="'Occurrence Interval' refers to the frequency at which certain expenses occur. For example, if you plan to buy a new car every 10 years during your retirement, you would enter ‘10’ in this field. This allows the tool to account for these periodic large expenses in your retirement plan. It’s important to note that large withdrawals from your retirement fund can impact the fund’s ability to generate returns. Therefore, accurately accounting for these expenses can help provide a more realistic projection of your retirement savings."></i>
                                 </span>
                                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                            </h2>
+                            </label>
                             <div class="field has-addons">
                                 <div class="control">
                                     <input class="input exp-amt-every-few-years is-primary" name="exp-amt-every-few-years" type="number" placeholder="Occur once for few years e.g 10 " value="1" onchange="validateExpIntervalFromPage(this)">

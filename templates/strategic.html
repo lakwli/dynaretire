@@ -34,7 +34,7 @@
                     <div class="control is-hidden" id="stg-exp-return-rate">
                         <label class="label">Minimum Annual Return %                                                                                                                             
                             <span class="icon">
-                                <i class="fas fa-question-circle" title="The 'Market Threshold Rate' defines the minimum acceptable annualized return for your investments, based on a time-weighted average since your retirement. If the historical annualized return falls below this rate, the system identifies it as a bad market condition. This threshold helps you make informed decisions about rebalancing and spending during varying market conditions."></i>
+                                <i class="fas fa-question-circle" title="'Minimum Annual Return' defines the minimum acceptable annualized return for your investments, based on a time-weighted average since your retirement. If the historical annualized return falls below this rate, the system identifies it as a bad market condition. This threshold helps you make informed decisions about rebalancing and spending during varying market conditions."></i>
                             </span>
                         </label>
                         
@@ -103,11 +103,19 @@
                             <input disabled class="input stg-ratio-second" min=1 type="number" >
                         </div>
                         <div class="column">
-                            <label class="label">Start Age for Period</label>
+                            <label class="label">From Age (inclusive)                                                                       
+                                <span class="icon">
+                                    <i class="fas fa-question-circle" title="Enter the age when these asset allocation begin. For example, enter '55' if this asset allocation  starts at age 55."></i>
+                                </span>
+                            </label>
                             <input class="input is-primary stg-starting-age" name="stg-starting-age" type="number" placeholder="When the rebalancing started?" onChange="onChangeStgStartYear(this)">
                         </div>
                         <div class="column">
-                            <label class="label">End Age for Period</label>
+                            <label class="label">To Age (inclusive)                                                                                                     
+                                <span class="icon">
+                                    <i class="fas fa-question-circle" title="Enter the last age when these asset allocation apply. For example, enter '65' if this asset allocation ends at age 65."></i>
+                                </span>
+                            </label>
                             <input class="input is-info stg-until-age" type="number" placeholder="When the rebalancing ended?" value="100" onChange="validateStgUntilYear(this)">
                         </div>
                         <div class="column">

@@ -1,104 +1,177 @@
-
-
 <section class="section">
-    <div class="container">
-        <!-- <h1 class="title has-text-centered">Income Tracker</h1>-->
-        <div id="income-container">
-            <!-- income Template -->
-            <div class="box income-item">
-                <button class="delete-income is-danger" aria-label="Delete Income" >
-                    <i class="fas fa-times"></i> <!-- Font Awesome icon -->
-                  </button>
-                <!-- <h2 class="subtitle">Income Details</h2>-->
-                <div class="columns is-multiline">
-                    <div class="column">
-                        <div class="field">
-                            <label class="label">Income Name</label>
-                            <div class="control">
-                                <input class="input inc-name is-primary" name="inc-name" type="text" placeholder="e.g. Rental" required onchange="validateIncomeNameDuplicated(this)">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="field">
-                            <label class="label">Yearly Income
-                                <span class="icon">
-                                    <i class="fas fa-question-circle" title="'Yearly Income' refer to income you receive before retiring. It includes contributions or savings you make toward your retirement fund.It can be passive income sources you may have during retirement, such as rental income or other ongoing earnings. Unlike expenses, income is often estimated based on specific contracts or expectations. Users input the FUTURE VALUE directly based on the 1st starting age, considering factors like promised returns, house sales, or other anticipated income. The system then calculates growth rates accordingly"></i>
-                                </span>
-                            </label>
-                            <div class="control">
-                                <input class="input inc-amount is-primary" name="inc-amount" type="text" placeholder="e.g. 1000" required onchange="window.addValidationIfNeeded(this)"  onkeyup="callKeyUpAmountFunction(this)">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="field">
-                            <label class="label">Deposit To Fund                                
-                                <span class="icon">
-                                    <i class="fas fa-question-circle" title="'Deposit To Fund' allows you to specify which fund your income should be deposited into. If you don't specify a fund, the system will default to the first fund you entered. If your income is related to pension contributions, select the pension fund. or income allocated from monthly savings, choose the appropriate fund, such as stocks, unit trusts, or any other fund you've selected. If you sell a house, you might split the income into few part and put into different fund subject to your comfortable level"></i>
-                                </span>
-                            </label>
-                            <div class="control">
-                                <div class="select is-info is-fullwidth">
-                                    <select id="fundSelect-inc-dep" class="fundSelect-inc-dep" onchange="changeFundSelectIncDep(this)">
-                                        <!-- Options will be populated by JavaScript -->
-                                      </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="growths-container">
-                    <!-- Amounts Template -->
-                    <div class="columns is-multiline growth-item" >
-                        <div class="column">
-                            <label class="label">Growth Rate for Income Period%                                                              
-                                <span class="icon">
-                                    <i class="fas fa-question-circle" title="'Growth Rate %'' represents the expected annual growth rate for your income. You can customize it based on different periods or scenarios. For example, if you anticipate higher growth during certain years, adjust the rate accordingly"></i>
-                                </span>
-                            </label>
-                            <input class="input inc-growth-rate is-primary" name="inc-growth-rate" min=1 type="number" step="0.01"  placeholder="e.g. 3%" required onchange="window.addValidationIfNeeded(this)">
-                        </div>
-                        <div class="column">
-                            <label class="label">Start Age for Income Period                                                             
-                                <span class="icon">
-                                    <i class="fas fa-question-circle" title="'Start Age for Income Period' refers to your age at the beginning of a period when you expect to have a certain level of income"></i>
-                                </span>
-                            </label>
-                            <input class="input inc-growth-starting-age is-primary" name="inc-growth-starting-age" min=1 type="number" placeholder="First year income" required onchange="validateStartingYearFromPage(this)">
-                        </div>
-                        <div class="column">
-                            <label class="label">End Age for Income Period &nbsp;                                                                                     
-                             <span class="icon">
-                                <i class="fas fa-question-circle" title="'End Age for Income Period' refers to your age at the end of a period when you expect to have a certain level of income"></i>
-                            </span>
-                            </label>
-                            <div class="field has-addons">
-                                <div class="control is-expanded" >
-                                    <input class="input inc-growth-until-age is-info" name="inc-growth-until-age" type="number" placeholder="Last year income" value="50" onchange="validateFirstUntilYear(this)">
-                                </div>
-                                <div class="control" >
-                                    <button class="icon-button add-growth " aria-label="Add Growth"  title="Add a different growth rate for another period">
-                                        <i class="fas fa-plus"></i>
-                                      </button>
-                                </div>
-                                <div class="control" >
-                                    <button class="icon-button delete-growth icon-placeholder" aria-label="Delete Growth" title="Remove this growth rate">
-                                      <i class="fas fa-minus"></i>
-                                    </button>
-                                </div>
-                            </div>                       
-                        </div>
-                    </div>
-                </div>
+  <div class="container">
+    <!-- <h1 class="title has-text-centered">Income Tracker</h1>-->
+    <div id="income-container">
+      <!-- income Template -->
+      <div class="box income-item">
+        <button class="delete-income is-danger" aria-label="Delete Income">
+          <i class="fas fa-times"></i>
+          <!-- Font Awesome icon -->
+        </button>
+        <!-- <h2 class="subtitle">Income Details</h2>-->
+        <div class="columns is-multiline">
+          <div class="column">
+            <div class="field">
+              <label class="label">Income Name
+                <span class="icon">
+                    <i class="fas fa-question-circle" title="'Income Name' refers to the category or type of income you received(e.g., Salary, Rental)"></i>
+                </span>
+              </label>
+              <div class="control">
+                <input
+                  class="input inc-name is-primary"
+                  name="inc-name"
+                  type="text"
+                  placeholder="e.g. Rental"
+                  required
+                  onchange="validateIncomeNameDuplicated(this)"
+                />
+              </div>
             </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label class="label"
+                >Yearly Income
+                <span class="icon">
+                  <i
+                    class="fas fa-question-circle"
+                    title="'Yearly Income' refer to income you receive before retiring. It includes contributions or savings you make toward your retirement fund.It can be passive income sources you may have during retirement, such as rental income or other ongoing earnings. Unlike expenses, income is often estimated based on specific contracts or expectations. Users input the FUTURE VALUE directly based on the 1st From Age, considering factors like promised returns, house sales, or other anticipated income. The system then calculates growth rates accordingly"
+                  ></i>
+                </span>
+              </label>
+              <div class="control">
+                <input
+                  class="input inc-amount is-primary"
+                  name="inc-amount"
+                  type="text"
+                  placeholder="e.g. 1000"
+                  required
+                  onchange="window.addValidationIfNeeded(this)"
+                  onkeyup="callKeyUpAmountFunction(this)"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label class="label"
+                >Deposit To Fund
+                <span class="icon">
+                  <i
+                    class="fas fa-question-circle"
+                    title="'Deposit To Fund' allows you to specify which fund your income should be deposited into. If you don't specify a fund, the system will default to the first fund you entered. If your income is related to pension contributions, select the pension fund. or income allocated from monthly savings, choose the appropriate fund, such as stocks, unit trusts, or any other fund you've selected. If you sell a house, you might split the income into few part and put into different fund subject to your comfortable level"
+                  ></i>
+                </span>
+              </label>
+              <div class="control">
+                <div class="select is-info is-fullwidth">
+                  <select
+                    id="fundSelect-inc-dep"
+                    class="fundSelect-inc-dep"
+                    onchange="changeFundSelectIncDep(this)"
+                  >
+                    <!-- Options will be populated by JavaScript -->
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <button class="button is-primary add-income">Add Income</button>
+        <div class="growths-container">
+          <!-- Amounts Template -->
+          <div class="columns is-multiline growth-item">
+            <div class="column">
+              <label class="label"
+                >Growth Rate for Income Period%
+                <span class="icon">
+                  <i
+                    class="fas fa-question-circle"
+                    title="'Growth Rate %'' represents the expected annual growth rate for your income. You can customize it based on different periods or scenarios. For example, if you anticipate higher growth during certain years, adjust the rate accordingly"
+                  ></i>
+                </span>
+              </label>
+              <input
+                class="input inc-growth-rate is-primary"
+                name="inc-growth-rate"
+                min="1"
+                type="number"
+                step="0.01"
+                placeholder="e.g. 3%"
+                required
+                onchange="window.addValidationIfNeeded(this)"
+              />
+            </div>
+            <div class="column">
+              <label class="label"
+                >From Age (inclusive)
+                <span class="icon">
+                  <i
+                    class="fas fa-question-circle"
+                    title="Enter the age when these income begin. For example, enter '55' if this income starts at age 55."
+                  ></i>
+                </span>
+              </label>
+              <input
+                class="input inc-growth-starting-age is-primary"
+                name="inc-growth-starting-age"
+                min="1"
+                type="number"
+                placeholder="First year income"
+                required
+                onchange="validateStartingYearFromPage(this)"
+              />
+            </div>
+            <div class="column">
+              <label class="label"
+                >To Age (inclusive)
+                <span class="icon">
+                  <i
+                    class="fas fa-question-circle"
+                    title="Enter the last age when these income apply. For example, enter '65' if this income ends at age 65."
+                  ></i>
+                </span>
+              </label>
+              <div class="field has-addons">
+                <div class="control is-expanded">
+                  <input
+                    class="input inc-growth-until-age is-info"
+                    name="inc-growth-until-age"
+                    type="number"
+                    placeholder="Last year income"
+                    value="50"
+                    onchange="validateFirstUntilYear(this)"
+                  />
+                </div>
+                <div class="control">
+                  <button
+                    class="icon-button add-growth"
+                    aria-label="Add Growth"
+                    title="Add a different growth rate for another period"
+                  >
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+                <div class="control">
+                  <button
+                    class="icon-button delete-growth icon-placeholder"
+                    aria-label="Delete Growth"
+                    title="Remove this growth rate"
+                  >
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <button class="button is-primary add-income">Add Income</button>
+  </div>
 </section>
 
-<script type="text/javascript" src="{{ url_for('static', filename='js/income/income.js') }}">
-
-
-</script>
-
+<script
+  type="text/javascript"
+  src="{{ url_for('static', filename='js/income/income.js') }}"
+></script>
