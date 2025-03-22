@@ -43,7 +43,7 @@
                 <div class="resources-menu" onclick="this.classList.toggle('active')">
                     <span class="resources-trigger">Resources</span>
                     <div class="resources-content" onclick="event.stopPropagation()">
-                        <a href="https://findinggoodlife.com/wp-content/uploads/2024/07/dynaRetire-1.xlsx" target="_blank">
+                        <a href="{{ url_for('static', filename='downloads/files/dynaRetire-SampleResult-Martin_2024.xlsx') }}" target="_blank">
                             Docs - Sample Result
                             <span class="description">Example retirement simulation results</span>
                         </a>
@@ -64,7 +64,7 @@
 
     <footer class="site-footer site-footer-minimal">
         <div class="container">
-            <p>&copy; 2025 DynaRetire. All rights reserved. | <a href="/privacy.html" style="color: var(--accent-color); text-decoration: none;">Privacy Policy</a></p>
+            <p>&copy; 2025 DynaRetire. All rights reserved. | <a href="/privacy" style="color: var(--accent-color); text-decoration: none;">Privacy Policy</a></p>
         </div>
     </footer>
 

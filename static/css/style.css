@@ -142,53 +142,70 @@ h1, h2, h3 {
     margin-right: auto;
 }
 
-.hero-subtitle {
-    font-size: 1.1rem;
-    color: var(--secondary-color);
-    max-width: 500px;
-    margin: 0 auto 3rem;
-    line-height: 1.5;
+.hero-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.hero-free-text {
-    font-size: 0.9rem;
-    color: var(--secondary-color);
-    margin: 1rem 0 3rem;
-    opacity: 0.9;
+.hero-cta-subtext {
+  margin-top: 8px;
+  color: var(--primary-color); /* Match button color */
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
-.hero-stats {
+.hero-benefit {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
     margin-top: 4rem;
 }
 
-.stat-item {
+.benefit-item {
     padding: 1.5rem;
     background: white;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.stat-item h3 {
+.benefit-item h3 {
     font-size: 2rem;
-    color: var(--primary-color);
+    color: var(--accent-color);
     margin-bottom: 0.5rem;
 }
 
+.benefit-item p {
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    color: var(--text-color);
+    opacity: 0.85;
+  }
+
+  .phase-label {
+    font-size: 0.5rem;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    display: block;
+  }
+
 /* Expenses Section */
-.expenses-section {
+.features-section {
     padding: 6rem 2rem;
     background: linear-gradient(to bottom, var(--background-light) 0%, white 100%);
     text-align: center;
 }
 
-.expenses-section .feature-item {
+.features-section .feature-item {
     background: var(--background-light);
 }
 
-.expenses-section .container {
+.features-section .container {
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -341,13 +358,13 @@ h1, h2, h3 {
     font-size: 1.5rem;
 }
 
-/* Problem Section */
-.problem {
+/* ups-section Section */
+.ups-section {
     padding: 6rem 0;
     background: var(--background-light);
 }
 
-.problem h2 {
+.ups-section h2 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 3rem;
@@ -732,7 +749,7 @@ h1, h2, h3 {
         font-size: 2rem;
     }
     
-    .features, .problem, .advanced-features, .cta {
+    .features, .ups-section, .advanced-features, .cta {
         padding: 4rem 0;
     }
 

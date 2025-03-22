@@ -1,62 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <link rel="canonical" href="https://dynaretire.app/" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="DynaRetire">
-    <meta name="application-name" content="DynaRetire">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="robots" content="index, follow">
-    <meta property="og:site_name" content="DynaRetire">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="DynaRetire - Comprehensive Retirement Simulator">
-    <meta property="og:description" content="Plan your retirement with confidence using our dynamic retirement simulator. Model real-life scenarios with multiple income sources, market backtesting, and dynamic expense planning.">
-    <meta property="og:image" content="{{ url_for('static', filename='images/Expenses2.png', _external=True) }}">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="DynaRetire" />
+    <meta name="application-name" content="DynaRetire" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:site_name" content="DynaRetire" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="DynaRetire - Comprehensive Retirement Simulator"
+    />
+    <meta
+      property="og:description"
+      content="Plan your retirement with confidence using our dynamic retirement simulator. Model real-life scenarios with multiple income sources, market backtesting, and dynamic expense planning."
+    />
+    <meta
+      property="og:image"
+      content="{{ url_for('static', filename='images/Expenses2.png', _external=True) }}"
+    />
 
     <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="DynaRetire - Comprehensive Retirement Simulator">
-    <meta name="twitter:description" content="Plan your retirement with confidence using our dynamic retirement simulator. Model real-life scenarios with multiple income sources, market backtesting, and smart expense planning.">
-    <meta name="twitter:image" content="{{ url_for('static', filename='images/Expenses2.png', _external=True) }}">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="DynaRetire - Comprehensive Retirement Simulator"
+    />
+    <meta
+      name="twitter:description"
+      content="Plan your retirement with confidence using our dynamic retirement simulator. Model real-life scenarios with multiple income sources, market backtesting, and smart expense planning."
+    />
+    <meta
+      name="twitter:image"
+      content="{{ url_for('static', filename='images/Expenses2.png', _external=True) }}"
+    />
 
     <!-- Favicon and app icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/static/favicon/site.webmanifest">
-    <link rel="icon" href="/static/favicon/favicon.ico">
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/static/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/static/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/static/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/static/favicon/site.webmanifest" />
+    <link rel="icon" href="/static/favicon/favicon.ico" />
 
     <title>DynaRetire - Adaptive Retirement Planning</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
     <nav class="navbar">
-        <div class="container">
-            <a href="/" class="logo">
-                <img src="/static/logo.png" alt="DynaRetire Logo" class="logo-img">
-                <span class="logo-text">DynaRetire</span>
-            </a>
-            <div class="nav-menu">
-                <a href="/articles/tutorial" class="nav-link">Tutorial</a>
-                <a href="#" class="nav-link">Resources</a>
-                <a href="/plan" class="nav-cta">Launch App</a>
-            </div>
+      <div class="container">
+        <a href="/" class="logo">
+          <img src="/static/logo.png" alt="DynaRetire Logo" class="logo-img" />
+          <span class="logo-text">DynaRetire</span>
+        </a>
+        <div class="nav-menu">
+          <a href="/articles/tutorial" class="nav-link">Tutorial</a>
+          <a href="#" class="nav-link">Resources</a>
+          <a href="/plan" class="nav-cta">Launch App</a>
         </div>
+      </div>
     </nav>
 
     <section class="hero">
-        <div class="container">
-            <p class="small-header">For serious retirement planner</p>
-            <!--Plan Your Retirement With Adapting Changes-->
-            <h1>Your Retirement Isn't Flat. Why Is Your Planning?</h1>
-            <!--Personalized retirement plans adapt to changing expenses needs, income, and market conditions & risk handling-->
-            <p class="hero-subtitle">Travel dreams today. Health needs tomorrow. Market ups and downs. Your real retirement has moving parts, do not settle with standard calculators</p>
-            <div class="hero-cta">
-                <a href="https://dynaretire.app" class="primary-button">Start Planning Free</a>
-                <p class="hero-free-text">No Cost, No Registration Required to Start</p>
-            </div>
+      <div class="container">
+        <p class="small-header">For Serious Retirement Planners</p>
+        <!--Plan Your Retirement With Adapting Changes-->
+        <h1 class="headline">
+          Your Retirement Isn't Flat. Why Is Your Planning?
+        </h1>
+        <!--Personalized retirement plans adapt to changing expenses needs, income, and market conditions & risk handling-->
+        <p class="hero-subtitle">
+          Your real retirement goes from travel dreams to healthcare needs, with
+          expenses change, income varies, and markets swing wildly. Visualize
+          the retirement you'll actually live—do not settle for simplified
+          averages.
+        </p>
+        <div class="hero-cta">
+          <a href="https://dynaretire.app" class="primary-button"
+            >Start Planning Free</a
+          >
+          <p class="hero-cta-subtext">No cost. No registration required.</p>
+        </div>
+        <div class="hero-benefit">
+          <div class="benefit-item">
+            <span class="phase-label">ACCUMULATE</span>
+            <div class="feature-icon">🔥</div>
+            <h3>Nest Egg Projection</h3>
+            <p>Start today, see how much total $ you'll have at retirement</p>
+          </div>
+          <div class="benefit-item">
+            <span class="phase-label">SPEND</span>
+            <div class="feature-icon">📊</div>
+            <h3>Dynamic Expenses</h3>
+            <p>See when your $ truly lasts with varied expenses that evolve</p>
+          </div>
+          <div class="benefit-item">
+            <span class="phase-label">PROTECT</span>
+            <div class="feature-icon">🛡️</div>
+            <h3>Crash Back-Test</h3>
+            <p>See if your plan survives historical market crashes</p>
+          </div>
+        </div>
+        <!--
             <div class="hero-stats">
                 <div class="stat-item">
                     <div class="feature-icon">📊</div>
@@ -74,176 +142,242 @@
                     <p>Test if minimum spending, pause balancing options sustain better</p>
                 </div>
             </div>
-        </div>
+            -->
+      </div>
     </section>
 
-    <section class="expenses-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Expense planning that evolves with your life stages</h2>
-                <p>Customize expenses at different age: from early travel to later healthcare. Set unique inflation rates, timing, and frequency for every expense category.</p>
-            </div>
-            <div class="main-feature">
-                <img src="{{ url_for('static', filename='images/Expenses2.png') }}" alt="Retirement Expenses Planning" class="feature-image">
-            </div>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <img src="{{ url_for('static', filename='images/Savings.png') }}" alt="Pension and Investment" class="feature-item-image">
-                    <h3>Expected Return Or Back-test</h3>
-                    <p>Set funds with expected returns, or back-test against historical market data</p>
-                </div>
-                <div class="feature-item">
-                    <img src="{{ url_for('static', filename='images/WithdrawAge.png') }}" alt="Pension and Investment" class="feature-item-image">
-                    <h3>Withdrawal Constraint</h3>
-                    <p>DynaRetire will ensure no withdrawal before this age (For earlier retirement)</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">📈</div>
-                    <h3>Inflation Control</h3>
-                    <p>Set unique inflation rates for different expense categories</p>
-                </div>
-            </div>
+    <section class="features-section">
+      <div class="container">
+        <div class="section-header">
+          <!--<h2>Expense planning that evolves with your life stages</h2>-->
+          <h2>How It Works</h2>
+          <p>
+            Customize expenses at different age: from early travel to later
+            healthcare. Set unique inflation rates, timing, and frequency for
+            every expense category.
+          </p>
         </div>
+        <div class="main-feature">
+          <img
+            src="{{ url_for('static', filename='images/Expenses2.png') }}"
+            alt="Retirement Expenses Planning"
+            class="feature-image"
+          />
+        </div>
+        <div class="features-grid">
+          <div class="feature-item">
+            <img
+              src="{{ url_for('static', filename='images/Savings.png') }}"
+              alt="Pension and Investment"
+              class="feature-item-image"
+            />
+            <h3>Expected Return Or Back-test</h3>
+            <p>
+              Set funds with expected returns, or back-test against historical
+              market data
+            </p>
+          </div>
+          <div class="feature-item">
+            <img
+              src="{{ url_for('static', filename='images/WithdrawAge.png') }}"
+              alt="Pension and Investment"
+              class="feature-item-image"
+            />
+            <h3>Withdrawal Constraint</h3>
+            <p>
+              DynaRetire will ensure no withdrawal before this age (For earlier
+              retirement)
+            </p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">📈</div>
+            <h3>Inflation Control</h3>
+            <p>Set unique inflation rates for different expense categories</p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="features">
-        <div class="container">
-            <h2>Why Choose DynaRetire?</h2>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Realistic Planning</h3>
-                    <p>Set different expenses for different life stages, reflecting real retirement needs - from travel in early years to healthcare later.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🛡️</div>
-                    <h3>Risk Management</h3>
-                    <p>Use bucket strategies and minimum spending thresholds to protect your retirement during market downturns.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📈</div>
-                    <h3>Investment Testing</h3>
-                    <p>Back-test your plan against historical market data to ensure it's robust enough for various scenarios.</p>
-                </div>
-            </div>
+      <div class="container">
+        <h2>Why Choose DynaRetire?</h2>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>Realistic Planning</h3>
+            <p>
+              Set different expenses for different life stages, reflecting real
+              retirement needs - from travel in early years to healthcare later.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🛡️</div>
+            <h3>Risk Management</h3>
+            <p>
+              Use bucket strategies and minimum spending thresholds to protect
+              your retirement during market downturns.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📈</div>
+            <h3>Investment Testing</h3>
+            <p>
+              Back-test your plan against historical market data to ensure it's
+              robust enough for various scenarios.
+            </p>
+          </div>
         </div>
+      </div>
     </section>
 
-    <section class="problem">
-        <div class="container">
-            <div class="problem-content">
-                <h2>Traditional Planning Tools Fall Short</h2>
-                <div class="comparison-grid">
-                    <div class="comparison-item">
-                        <h3>Old Way</h3>
-                        <ul>
-                            <li>Assumes constant withdrawal throughout retirement</li>
-                            <li>Uses single inflation rate for all expenses</li>
-                            <li>Oversimplified investment assumptions with flat return</li>
-                            <li>Calculate yourself how much you will have upon retirement</li>
-                            <li>Missing risk handling with what-if</li>
-                            <li>Missing important consideration for FIRE planning</li>
-                        </ul>
-                    </div>
-                    <div class="comparison-item highlight">
-                        <h3>DynaRetire Way</h3>
-                        <ul>
-                            <li>Adapts to changing expenses at different life stages</li>
-                            <li>Different inflation rates for different expense types</li>
-                            <li>Real history market testing with bucket strategies</li>
-                            <li>Help you to project with contributions, returns, & growth</li>
-                            <li>Switch to Minimum Spending, Option of Pause Balancing</li>
-                            <li>Cater for pension fund withdrawal constraints & impact</li>
-                        </ul>
-                    </div>
-                </div>
+    <section class="ups-section">
+      <div class="container">
+        <div class="ups-content">
+          <h2>Traditional Planning Tools Fall Short</h2>
+          <div class="comparison-grid">
+            <div class="comparison-item">
+              <h3>Old Way</h3>
+              <ul>
+                <li>Assumes constant withdrawal throughout retirement</li>
+                <li>Uses single inflation rate for all expenses</li>
+                <li>Oversimplified investment assumptions with flat return</li>
+                <li>
+                  Calculate yourself how much you will have upon retirement
+                </li>
+                <li>Missing risk handling with what-if</li>
+                <li>Missing important consideration for FIRE planning</li>
+              </ul>
             </div>
+            <div class="comparison-item highlight">
+              <h3>DynaRetire Way</h3>
+              <ul>
+                <li>Adapts to changing expenses at different life stages</li>
+                <li>Different inflation rates for different expense types</li>
+                <li>Real history market testing with bucket strategies</li>
+                <li>
+                  Help you to project with contributions, returns, & growth
+                </li>
+                <li>Switch to Minimum Spending, Option of Pause Balancing</li>
+                <li>Cater for pension fund withdrawal constraints & impact</li>
+              </ul>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <section class="advanced-features">
-        <div class="container">
-            <h2>Advanced Features for Complex Needs</h2>
-            <div class="advanced-grid">
-                <div class="advanced-card">
-                    <h3>Custom Asset Allocation</h3>
-                    <p>Set different asset allocations for different age periods based on your risk tolerance.</p>
-                </div>
-                <div class="advanced-card">
-                    <h3>Flexible Income Planning</h3>
-                    <p>Support various income sources, with it's occur period and growth pattern as how it expected.</p>
-                </div>
-                <div class="advanced-card">
-                    <h3>Early Retirement Planning</h3>
-                    <p>Account for pension fund eligibility and sequence of returns risk with specialized early retirement features.</p>
-                </div>
-                <div class="advanced-card">
-                    <h3>Excel Export</h3>
-                    <p>Export detailed calculations to Excel for further analysis or record keeping.</p>
-                </div>
-            </div>
+      <div class="container">
+        <h2>Advanced Features for Complex Needs</h2>
+        <div class="advanced-grid">
+          <div class="advanced-card">
+            <h3>Custom Asset Allocation</h3>
+            <p>
+              Set different asset allocations for different age periods based on
+              your risk tolerance.
+            </p>
+          </div>
+          <div class="advanced-card">
+            <h3>Flexible Income Planning</h3>
+            <p>
+              Support various income sources, with it's occur period and growth
+              pattern as how it expected.
+            </p>
+          </div>
+          <div class="advanced-card">
+            <h3>Early Retirement Planning</h3>
+            <p>
+              Account for pension fund eligibility and sequence of returns risk
+              with specialized early retirement features.
+            </p>
+          </div>
+          <div class="advanced-card">
+            <h3>Excel Export</h3>
+            <p>
+              Export detailed calculations to Excel for further analysis or
+              record keeping.
+            </p>
+          </div>
         </div>
+      </div>
     </section>
 
     <section class="cta">
-        <div class="container">
-            <h2>Start Planning Your Dynamic Retirement Today</h2>
-            <p>This App is build by earlier retiree who understand the important of dynamic retirement planning</p>
-            <a href="https://dynaretire.app" class="primary-button">Try DynaRetire Free</a>
-        </div>
+      <div class="container">
+        <h2>Start Planning Your Dynamic Retirement Today</h2>
+        <p>
+          This App is build by earlier retiree who understand the important of
+          dynamic retirement planning
+        </p>
+        <a href="https://dynaretire.app" class="primary-button"
+          >Try DynaRetire Free</a
+        >
+      </div>
     </section>
 
     <footer class="footer" id="footer-menu">
-        <div class="footer-wrapper">
-            <div class="menu-content">
-                <div class="menu-group">
-                    <div class="menu-group-title">Features</div>
-                    <div class="menu-group-links">
-                        <a href="#" class="menu-item">Dynamic Planning</a>
-                        <a href="#" class="menu-item">Risk Management</a>
-                        <a href="#" class="menu-item">Investment Testing</a>
-                        <a href="#" class="menu-item">Excel Export</a>
-                        <a href="#" class="menu-item">Early Retirement <span class="tag">New</span></a>
-                    </div>
-                </div>
-                <div class="menu-group">
-                    <div class="menu-group-title">Resources</div>
-                    <div class="menu-group-links">
-                        <a href="#" class="menu-item">Blog</a>
-                        <a href="#" class="menu-item">Documentation</a>
-                        <a href="#" class="menu-item">Community</a>
-                        <a href="#" class="menu-item">Retirement Guide <span class="tag">New</span></a>
-                    </div>
-                </div>
-                <div class="menu-group">
-                    <div class="menu-group-title">Support</div>
-                    <div class="menu-group-links">
-                        <a href="#" class="menu-item">Help Center</a>
-                        <a href="#" class="menu-item">Contact Us</a>
-                        <a href="#" class="menu-item">FAQ</a>
-                        <a href="#" class="menu-item">Video Tutorials</a>
-                    </div>
-                </div>
-                <div class="menu-group">
-                    <div class="menu-group-title">Legal</div>
-                    <div class="menu-group-links">
-                        <a href="#" class="menu-item">Terms of Service</a>
-                        <a href="#" class="menu-item">Privacy Policy</a>
-                        <a href="#" class="menu-item">Security</a>
-                        <a href="#" class="menu-item">GDPR Compliance</a>
-                    </div>
-                </div>
+      <div class="footer-wrapper">
+        <div class="menu-content">
+          <div class="menu-group">
+            <div class="menu-group-title">Features</div>
+            <div class="menu-group-links">
+              <a href="#" class="menu-item">Dynamic Planning</a>
+              <a href="#" class="menu-item">Risk Management</a>
+              <a href="#" class="menu-item">Investment Testing</a>
+              <a href="#" class="menu-item">Excel Export</a>
+              <a href="#" class="menu-item"
+                >Early Retirement <span class="tag">New</span></a
+              >
             </div>
-            <div class="social-links">
-                <a href="#" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
-                <a href="#" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
-                <a href="#" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+          </div>
+          <div class="menu-group">
+            <div class="menu-group-title">Resources</div>
+            <div class="menu-group-links">
+              <a href="#" class="menu-item">Blog</a>
+              <a href="#" class="menu-item">Documentation</a>
+              <a href="#" class="menu-item">Community</a>
+              <a href="#" class="menu-item"
+                >Retirement Guide <span class="tag">New</span></a
+              >
             </div>
+          </div>
+          <div class="menu-group">
+            <div class="menu-group-title">Support</div>
+            <div class="menu-group-links">
+              <a href="#" class="menu-item">Help Center</a>
+              <a href="#" class="menu-item">Contact Us</a>
+              <a href="#" class="menu-item">FAQ</a>
+              <a href="#" class="menu-item">Video Tutorials</a>
+            </div>
+          </div>
+          <div class="menu-group">
+            <div class="menu-group-title">Legal</div>
+            <div class="menu-group-links">
+              <a href="#" class="menu-item">Terms of Service</a>
+              <a href="#" class="menu-item">Privacy Policy</a>
+              <a href="#" class="menu-item">Security</a>
+              <a href="#" class="menu-item">GDPR Compliance</a>
+            </div>
+          </div>
         </div>
-        <a href="https://dynaretire.app/signup" class="footer-cta">
-            Start Planning Free <i class="fas fa-arrow-right"></i>
-        </a>
+        <div class="social-links">
+          <a href="#" target="_blank" rel="noopener"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a href="#" target="_blank" rel="noopener"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+          <a href="#" target="_blank" rel="noopener"
+            ><i class="fab fa-youtube"></i
+          ></a>
+          <a href="#" target="_blank" rel="noopener"
+            ><i class="fab fa-github"></i
+          ></a>
+        </div>
+      </div>
+      <a href="https://dynaretire.app/signup" class="footer-cta">
+        Start Planning Free <i class="fas fa-arrow-right"></i>
+      </a>
     </footer>
-</body>
+  </body>
 </html>
