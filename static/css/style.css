@@ -320,23 +320,23 @@ h1, h2, h3 {
 }
 
 /* Features Section */
-.features {
+.why-secion {
     padding: 6rem 0;
 }
 
-.features h2 {
+.why-secion h2 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 3rem;
 }
 
-.feature-grid {
+.why-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
 }
 
-.feature-card {
+.why-card {
     padding: 2rem;
     background: white;
     border-radius: 8px;
@@ -344,16 +344,16 @@ h1, h2, h3 {
     transition: transform 0.3s ease;
 }
 
-.feature-card:hover {
+.why-card:hover {
     transform: translateY(-5px);
 }
 
-.feature-icon {
+.why-icon {
     font-size: 2.5rem;
     margin-bottom: 1rem;
 }
 
-.feature-card h3 {
+.why-card h3 {
     margin-bottom: 1rem;
     font-size: 1.5rem;
 }
@@ -749,7 +749,7 @@ h1, h2, h3 {
         font-size: 2rem;
     }
     
-    .features, .ups-section, .advanced-features, .cta {
+    .why-secion, .ups-section, .features-section, .advanced-features, .cta {
         padding: 4rem 0;
     }
 
