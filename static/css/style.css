@@ -1,12 +1,13 @@
 /* Variables */
 :root {
-    --primary-color: #49c5c4;
+    --brand-color: #49c5c4;
+    --cta-color: #FF6B35;
     --secondary-color: #3c4344;
     --accent-color: #293132;
     --background-light: #f8fafc;
     --text-color: #293132;
     --border-color: #e2e8f0;
-    --gradient: linear-gradient(135deg, #49c5c4 0%, #3c4344 100%);
+    --gradient: linear-gradient(135deg, var(--brand-color) 0%, #3c4344 100%);
 }
 
 * {
@@ -63,7 +64,7 @@ h1, h2, h3 {
 .logo-text {
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--primary-color);
+    color: var(--brand-color);
     transition: color 0.3s ease;
 }
 
@@ -86,7 +87,7 @@ h1, h2, h3 {
 }
 
 .nav-link:hover {
-    color: var(--primary-color);
+    color: var(--brand-color);
 }
 
 .nav-link::after {
@@ -96,7 +97,7 @@ h1, h2, h3 {
     height: 2px;
     bottom: -4px;
     left: 0;
-    background-color: var(--primary-color);
+    background-color: var(--brand-color);
     transition: width 0.3s ease;
 }
 
@@ -106,7 +107,7 @@ h1, h2, h3 {
 
 .nav-cta {
     padding: 0.5rem 1.5rem;
-    background: var(--primary-color);
+    background: var(--cta-color);
     color: white;
     text-decoration: none;
     border-radius: 6px;
@@ -150,7 +151,7 @@ h1, h2, h3 {
 
 .hero-cta-subtext {
   margin-top: 8px;
-  color: var(--primary-color); /* Match button color */
+  color: var(--cta-color);
   font-size: 0.9rem;
   font-weight: 500;
   letter-spacing: 0.02em;
@@ -384,7 +385,7 @@ h1, h2, h3 {
 }
 
 .comparison-item.highlight {
-    background: var(--primary-color);
+    background: var(--brand-color);
     color: white;
 }
 
@@ -475,7 +476,7 @@ h1, h2, h3 {
 .primary-button {
     display: inline-block;
     padding: 1rem 2.5rem;
-    background: var(--primary-color);
+    background: var(--cta-color);
     color: white;
     text-decoration: none;
     border-radius: 6px;
@@ -490,7 +491,7 @@ h1, h2, h3 {
 
 .cta .primary-button {
     background: white;
-    color: var(--primary-color);
+    color: var(--cta-color);
 }
 
 .cta .primary-button:hover {
@@ -569,7 +570,7 @@ h1, h2, h3 {
 }
 
 .menu-group .menu-item:hover {
-    color: var(--primary-color);
+    color: var(--brand-color);
     transform: translateX(2px);
 }
 
@@ -580,7 +581,7 @@ h1, h2, h3 {
     height: 1px;
     bottom: 0;
     left: 0;
-    background-color: var(--primary-color);
+    background-color: var(--brand-color);
     transition: width 0.3s ease;
 }
 
@@ -591,7 +592,7 @@ h1, h2, h3 {
 .tag {
     font-size: 0.75rem;
     padding: 0.15rem 0.5rem;
-    background-color: var(--primary-color);
+    background-color: var(--brand-color);
     color: white;
     border-radius: 12px;
     font-weight: 500;
@@ -612,7 +613,7 @@ h1, h2, h3 {
 }
 
 .social-links a:hover {
-    color: var(--primary-color);
+    color: var(--brand-color);
     transform: translateY(-2px);
 }
 
@@ -624,13 +625,13 @@ h1, h2, h3 {
     align-items: center;
     gap: 0.75rem;
     padding: 1rem 2rem;
-    background: var(--primary-color);
+    background: var(--cta-color);
     color: white;
     text-decoration: none;
     border-radius: 12px;
     font-weight: 500;
     transition: all 0.3s ease;
-    box-shadow: 0 8px 16px rgba(73, 197, 196, 0.25);
+    box-shadow: 0 8px 16px rgba(255, 107, 53, 0.25);
     z-index: 100;
 }
 
@@ -642,7 +643,7 @@ h1, h2, h3 {
 .footer-cta:hover {
     transform: translateY(-4px);
     background: var(--secondary-color);
-    box-shadow: 0 12px 20px rgba(73, 197, 196, 0.35);
+    box-shadow: 0 12px 20px rgba(255, 107, 53, 0.35);
 }
 
 .footer-cta:hover i {
