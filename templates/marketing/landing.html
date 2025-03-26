@@ -86,33 +86,40 @@
 
     <section class="hero">
       <div class="container">
-        <p class="small-header">For Serious Retirement Planners</p>
+        <p class="small-header">For Serious Retirement Planner</p>
         <!--Plan Your Retirement With Adapting Changes-->
         <!-- Your Retirement Isn't Flat. Why Is Your Planning?-->
         <!--Dynamic Planning for Your Real-Life Retirement-->
-        <h1 class="headline">
-          Plan For The Retirement That Changes With Life
-        </h1>
+        <h1 class="headline">Plan For The Retirement That Changes With Life</h1>
         <!--Personalized retirement plans adapt to changing expenses needs, income, and market conditions & risk handling-->
         <p class="hero-subtitle">
-          Travel early? Healthcare later? Loan, Kids, Market Crashes? Will my retirement plan hold up through it all? Am I saving enough? Test it now.
+          Travel early? Healthcare later? Loan, Kids, Market Crashes? Will my
+          retirement plan hold up through it all? Am I saving enough? Test it
+          now.
         </p>
         <div class="hero-cta">
-          <a href="https://dynaretire.app" class="primary-button">See If My Plan Holds Up</a>
-          <p class="hero-cta-subtext">Free • Anonymous • Designed for privacy</p>
+          <a href="https://dynaretire.app" class="primary-button"
+            >See If My Plan Holds Up</a
+          >
+          <p class="hero-cta-subtext">
+            Free • Anonymous • Designed for privacy
+          </p>
         </div>
         <div class="hero-benefit">
           <div class="benefit-item">
             <span class="phase-label">ACCUMULATE</span>
             <div class="feature-icon">📈</div>
             <h3>Savings Forecast</h3>
-            <p>See if your savings plan will be enough to support your retirement</p>
+            <p>Is the way you save enough for the retirement you want?</p>
           </div>
           <div class="benefit-item">
             <span class="phase-label">SPEND</span>
             <div class="feature-icon">⚖️</div>
             <h3>Dynamic Expenses</h3>
-            <p>Maximize overall retirement satisfaction through intelligent expense balancing</p>
+            <p>
+              Get the most out of retirement with a spending plan that works for
+              you
+            </p>
           </div>
           <div class="benefit-item">
             <span class="phase-label">SUSTAIN</span>
@@ -147,51 +154,105 @@
       <div class="container">
         <div class="section-header">
           <!--<h2>Expense planning that evolves with your life stages</h2>-->
-          <h2>How It Works</h2>
+          <h2>Built for You</h2>
           <p>
-            Customize expenses at different age: from early travel to later
-            healthcare. Set unique inflation rates, timing, and frequency for
-            every expense category.
+            Customize expenses for every stage of retirement—Set unique inflation rates, timing, and
+            frequency for each category.
           </p>
         </div>
         <div class="main-feature">
           <img
-            src="{{ url_for('static', filename='images/Expenses2.png') }}"
+            src="{{ url_for('static', filename='images/ExpensesChange.png') }}"
             alt="Retirement Expenses Planning"
             class="feature-image"
           />
         </div>
-        <div class="features-grid">
-          <div class="feature-item">
-            <img
-              src="{{ url_for('static', filename='images/Savings.png') }}"
-              alt="Pension and Investment"
-              class="feature-item-image"
-            />
-            <h3>Expected Return Or Back-test</h3>
-            <p>
-              Set funds with expected returns, or back-test against historical
-              market data
-            </p>
-          </div>
-          <div class="feature-item">
-            <img
-              src="{{ url_for('static', filename='images/WithdrawAge.png') }}"
-              alt="Pension and Investment"
-              class="feature-item-image"
-            />
-            <h3>Withdrawal Constraint</h3>
-            <p>
-              DynaRetire will ensure no withdrawal before this age (For earlier
-              retirement)
-            </p>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">📈</div>
-            <h3>Inflation Control</h3>
-            <p>Set unique inflation rates for different expense categories</p>
-          </div>
-        </div>
+
+  <!-- TODO: Commitment e.g. loan, insurance, child education -->
+
+<div class="features-grid">
+  <!-- ALL USERS - Start with features everyone cares about -->
+  <div class="feature-item">
+    <span class="feature-tag">Essential</span>
+    <img src="{{ url_for('static', filename='images/feature_commitment.png') }}" alt="Financial Commitments" class="feature-item-image" />
+    <h3>Ongoing Commitments</h3>
+    <p>Handle housing loans, kids' college costs, and other commitments that keep coming even after you retire.</p>
+  </div>
+  
+  <div class="feature-item">
+    <span class="feature-tag">Essential</span>
+    <img src="{{ url_for('static', filename='images/feature_medical.png') }}" alt="Healthcare Costs" class="feature-item-image" />
+    <h3>Healthcare Costs Surge</h3>
+    <p>Be prepared for unavoidable medical costs that rise with age and high inflation.</p>
+  </div>
+  
+  <div class="feature-item">
+    <span class="feature-tag">Essential</span>
+    <img src="{{ url_for('static', filename='images/feature_irregular.png') }}" alt="Irregular Expenses" class="feature-item-image" />
+    <h3>Irregular Expenses</h3>
+    <p>Plan for major one-time costs like renovations or recurring big expenses like car replacement every few years</p>
+  </div>
+  
+  <!-- FUTURE RETIREES GROUP - For those planning ahead 
+  <div class="feature-item">
+    <span class="feature-tag">Future Retirees</span>
+    <img src="{{ url_for('static', filename='images/feature_workingSaving.png') }}" alt="Working Savings" class="feature-item-image" />
+    <h3>Saving for Retirement</h3>
+    <p>Contribute to pension and set aside extra savings with different returns for closer retirement projection</p>
+  </div>
+  
+  <div class="feature-item">
+    <span class="feature-tag">Future Retirees</span>
+    <img src="{{ url_for('static', filename='images/feature_incomeGrowth.png') }}" alt="Working Savings" class="feature-item-image" />
+    <h3>How will savings grow?</h3>
+    <p>Adjust growth rates as careers progress</p>
+  </div>-->
+  <div class="feature-item">
+    <span class="feature-tag">Future Retirees</span>
+    <img src="{{ url_for('static', filename='images/feature_workingSaving.png') }}" alt="Working Savings" class="feature-item-image" />
+    <h3>Saving & Growth Projection</h3>
+    <p>Set pension contributions and extra savings with custom growth rates as career progresses for saving projections.</p>
+  </div>
+  
+  <!-- INVESTORS GROUP - For those focused on investment strategies -->
+  <div class="feature-item">
+    <span class="feature-tag">Investors</span>
+    <img src="{{ url_for('static', filename='images/Savings.png') }}" alt="Expected Returns" class="feature-item-image" />
+    <h3>Expected Return Or Back-test</h3>
+    <p>Set expected returns or back-test with historical data to see potential outcomes</p>
+  </div>
+  
+  <div class="feature-item">
+    <span class="feature-tag">Investors</span>
+    <img src="{{ url_for('static', filename='images/feature_reductionRate.png') }}" alt="Minimum Spending" class="feature-item-image" />
+    <h3>Spend Less in a Tough Market</h3>
+    <p>Reduce selective expenses to your acceptable comfort level to speed portfolio recovery.</p>
+  </div>
+  
+  <div class="feature-item">
+    <span class="feature-tag">Investors</span>
+    <img src="{{ url_for('static', filename='images/feature_assetAllocation.png') }}" alt="Asset Allocation" class="feature-item-image" />
+    <h3>Age-Based Asset Allocation</h3>
+    <p>Automatically shift from growth to preservation, adjust asset allocation as you age.</p>
+  </div>
+  
+  <div class="feature-item">
+    <span class="feature-tag">Investors</span>
+    <img src="{{ url_for('static', filename='images/feature_rebalanceOption.png') }}" alt="Portfolio Rebalance" class="feature-item-image" />
+    <h3>Portfolio Rebalancing</h3>
+    <p>Control rebalancing frequency and pause fund transfers during market downturns to protect your investments.</p>
+  </div>
+  
+  <!-- FIRE SEEKERS - More specialized audience -->
+  <div class="feature-item">
+    <span class="feature-tag">FIRE Seekers</span>
+    <img src="{{ url_for('static', filename='images/WithdrawAge.png') }}" alt="Pension and Investment" class="feature-item-image" />
+    <h3>Withdrawal Constraint (FIRE)</h3>
+    <p>Manage cash flow before pension access—critical for early retirees relying on investments or savings.</p>
+  </div>
+</div>
+
+
       </div>
     </section>
 
@@ -302,12 +363,14 @@
     <section class="cta">
       <div class="container">
         <h2>Start Planning Your Dynamic Retirement Today</h2>
+        <!--This App is build by earlier retiree who understand the important of dynamic retirement planning-->
         <p>
-          This App is build by earlier retiree who understand the important of
-          dynamic retirement planning
+          Retirement is about living life on your terms. This app is built by an
+          early retiree who truly understands that and designed it to support
+          your dynamic retirement planning.
         </p>
         <a href="https://dynaretire.app" class="primary-button"
-          >Try DynaRetire Free</a
+          >Just Start It !</a
         >
       </div>
     </section>
