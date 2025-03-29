@@ -154,15 +154,14 @@
       <div class="container">
         <div class="section-header">
           <!--<h2>Expense planning that evolves with your life stages</h2>-->
-          <h2>Built for You</h2>
+          <h2>Features That Make Real-World Retirement Planning Possible</h2>
           <p>
-            Customize expenses for every stage of retirement—Set unique inflation rates, timing, and
-            frequency for each category.
+            Customize expenses, test investments, model income sources, and handle risks that other planners ignore
           </p>
         </div>
         <div class="main-feature">
           <img
-            src="{{ url_for('static', filename='images/ExpensesChange.png') }}"
+            src="{{ url_for('static', filename='images/landing/ExpensesChange.svg') }}"
             alt="Retirement Expenses Planning"
             class="feature-image"
           />
@@ -178,7 +177,7 @@
       <img src="{{ url_for('static', filename='images/landing/feature_commitment.svg') }}" alt="Financial Commitments" class="feature-item-image" />
     </div>
     <h3>Ongoing Commitments</h3>
-    <p>Handle housing loans, child's education fees and other commitments that coming even after retirement.</p>
+    <p>Handle housing loans, child's education fees and other commitments that continue into retirement.</p>
   </div>
   
   <div class="feature-item">
@@ -196,7 +195,7 @@
       <img src="{{ url_for('static', filename='images/landing/feature_irregular.svg') }}" alt="Irregular Expenses" class="feature-item-image" />
     </div>
     <h3>Irregular Expenses</h3>
-    <p>Plan for few-years-once recurring expenses  or 1-time costs </p>
+    <p>Plan for recurring expenses every few years  or 1-time costs </p>
   </div>
 
   
@@ -217,10 +216,12 @@
   <div class="feature-item">
     <span class="feature-tag">Working Years</span>
     <div class="image-wrapper image-wrapper-work">
-    <img src="{{ url_for('static', filename='images/landing/feature_workingSaving.svg') }}" alt="Working Savings" class="feature-item-image" />
-  </div>
-    <h3>Retirement Money Projection</h3>
-    <p>Set pension contributions and extra savings with custom growth rates as career progresses for saving projections.</p>
+      <img src="{{ url_for('static', filename='images/landing/feature_workingSaving.svg') }}" alt="Working Savings" class="feature-item-image" />
+    </div>
+    <div class="feature-text-wrapper">
+      <h3>Retirement Money Projection</h3>
+      <p>Set pension contributions and extra savings with custom growth rates as career progresses for retirement money projections.</p>
+    </div>
   </div>
   <div class="feature-item">
     <span class="feature-tag">Have Investments?</span>
@@ -238,7 +239,7 @@
     <img src="{{ url_for('static', filename='images/landing/feature_reductionRate.svg') }}" alt="Minimum Spending" class="feature-item-image" />
   </div>
     <h3>Spending Control</h3>
-    <p>Reduce selective expenses to acceptable level during touch market</p>
+    <p>Reduce selective expenses to acceptable level during tought market</p>
   </div>
   
   <div class="feature-item">
@@ -246,19 +247,21 @@
     <div class="image-wrapper image-wrapper-retireIncome scale-70">
       <img src="{{ url_for('static', filename='images/landing/feature_retirementIncome.svg') }}" alt="Continuous Income" class="feature-item-image" />
     </div>
-    <h3>Retirement Income Planning</h3>
-    <p>Project additional revenue from rentals, property sales, and part-time work.</p>
+    <div class="feature-text-wrapper">
+      <h3>Retirement Income Planning</h3>
+      <p>Project additional revenue from rentals, property sales, and part-time work after retirement.</p>
+    </div>
   </div>
   
   <div class="feature-item">
     <span class="feature-tag">Retiring Early?</span>
     <!-- Restructured layout with horizontal orientation -->
-    <div class="image-wrapper scale-20">
+    <div class="image-wrapper image-wrapper-fire scale-20">
       <img src="{{ url_for('static', filename='images/landing/WithdrawAge.svg') }}" alt="Pension and Investment" class="feature-item-image" />
     </div>
     <div class="content-wrapper">
       <h3>FIRE Transition Strategy</h3>
-      <p>FIRE Transition Strategy</p>
+      <p>Manage investment withdrawals during early retirement before pension access</p>
     </div>
   </div>
   
@@ -293,47 +296,52 @@
         <div class="why-grid">
           <div class="why-card">
             <div class="why-icon">📊</div>
-            <h3>Realistic Planning</h3>
+            <h3>Holistic Coverage</h3>
             <p>
-              Set different expenses for different life stages, reflecting real
-              retirement needs - from travel in early years to healthcare later.
+              Covers both pre-retirement saving and post-retirement spending.  Addresses often-overlooked factors like healthcare inflation.
             </p>
           </div>
           <div class="why-card">
             <div class="why-icon">🛡️</div>
-            <h3>Risk Management</h3>
+            <h3>True Personalization</h3>
             <p>
-              Use bucket strategies and minimum spending thresholds to protect
-              your retirement during market downturns.
+              Adapt to your unique situation rather than standard templates. Fine-tune every aspect of your retirement plan.
             </p>
           </div>
           <div class="why-card">
             <div class="why-icon">📈</div>
-            <h3>Investment Testing</h3>
+            <h3>Built By Early Retiree</h3>
             <p>
-              Back-test your plan against historical market data to ensure it's
-              robust enough for various scenarios.
+              Created by someone who understands real retirees' needs with real-world challenges built into every calculation.
+            </p>
+          </div>
+          <div class="why-card">
+            <div class="why-icon">📈</div>
+            <h3>Privacy-First Approach</h3>
+            <p>
+              No account required, completely anonymous planning without data collection or tracking.
             </p>
           </div>
         </div>
       </div>
+      </div>
     </section>
 
-    <section class="ups-section">
+    <section class="comparison-section">
       <div class="container">
-        <div class="ups-content">
-          <h2>Traditional Planning Tools Fall Short</h2>
+        <div class="comparison-content">
+          <h2>Why Traditional Tools Aren't Enough</h2>
           <div class="comparison-grid">
             <div class="comparison-item">
               <h3>Old Way</h3>
               <ul>
                 <li>Assumes constant withdrawal throughout retirement</li>
                 <li>Uses single inflation rate for all expenses</li>
-                <li>Oversimplified investment assumptions with flat return</li>
                 <li>
                   Calculate yourself how much you will have upon retirement
                 </li>
-                <li>Missing risk handling with what-if</li>
+                <li>Oversimplified investment assumptions with flat return</li>
+                <li>Missing risk handling as part of the plan</li>
                 <li>Missing important consideration for FIRE planning</li>
               </ul>
             </div>
@@ -342,12 +350,10 @@
               <ul>
                 <li>Adapts to changing expenses at different life stages</li>
                 <li>Different inflation rates for different expense types</li>
-                <li>Real history market testing with bucket strategies</li>
-                <li>
-                  Help you to project with contributions, returns, & growth
-                </li>
+                <li>Help you to project with contributions, returns, & growth</li>
+                <li>Real history market testing</li>
                 <li>Switch to Minimum Spending, Option of Pause Balancing</li>
-                <li>Cater for pension fund withdrawal constraints & impact</li>
+                <li>Cater for pension fund withdrawal constraints</li>
               </ul>
             </div>
           </div>
@@ -388,21 +394,6 @@
             </p>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="cta">
-      <div class="container">
-        <h2>Start Planning Your Dynamic Retirement Today</h2>
-        <!--This App is build by earlier retiree who understand the important of dynamic retirement planning-->
-        <p>
-          Retirement is about living life on your terms. This app is built by an
-          early retiree who truly understands that and designed it to support
-          your dynamic retirement planning.
-        </p>
-        <a href="https://dynaretire.app" class="primary-button"
-          >Just Start It !</a
-        >
       </div>
     </section>
 
