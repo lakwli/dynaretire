@@ -277,11 +277,38 @@ h1, h2, h3 {
 .features-grid .feature-item:nth-child(5) { grid-column: 6 / span 4; grid-row: 3 / span 2; } /* Expected Return 4x2 */
 .features-grid .feature-item:nth-child(6) { grid-column: 10 / span 3; grid-row: 3 / span 2; } /* Spend Less 3x2 */
 
-/* Row 6-7 */
-.features-grid .feature-item:nth-child(7) { grid-column: 1 / span 5; grid-row: 6 / span 1; } /* Ongoing Income 5x1 */
-.features-grid .feature-item:nth-child(8) { grid-column: 1 / span 5; grid-row: 7 / span 1; } /* Withdrawal 5x1 */
-.features-grid .feature-item:nth-child(9) { grid-column: 6 / span 4; grid-row: 6 / span 2; } /* Asset Allocation 4x2 */
-.features-grid .feature-item:nth-child(10) { grid-column: 10 / span 3; grid-row: 6 / span 2; } /* Portfolio Rebalancing 3x2 */
+/* New Row 5-6 */
+.features-grid .feature-item:nth-child(7) { grid-column: 1 / span 5; grid-row: 6 / span 2; } /* Ongoing Income 5x2 */
+.features-grid .feature-item:nth-child(9) { grid-column: 6 / span 4; grid-row: 5 / span 2; } /* Asset Allocation moved up 4x2 */
+.features-grid .feature-item:nth-child(10) { grid-column: 10 / span 3; grid-row: 5 / span 2; } /* Portfolio Rebalancing moved up 3x2 */
+
+/* Row 7 (bottom) - Special card with horizontal layout */
+.features-grid .feature-item:nth-child(8) { 
+    grid-column: 6 / span 7; /* Spans across both cards above it */
+    grid-row: 7 / span 1; 
+    flex-direction: row; /* Horizontal layout */
+    align-items: flex-start;
+    gap: 1rem;
+} 
+
+/* Special styling for the FIRE card */
+.features-grid .feature-item:nth-child(8) .feature-tag {
+    margin-bottom: 0.75rem;
+}
+
+.features-grid .feature-item:nth-child(8) .image-wrapper {
+    flex: 0 0 auto;
+    width: 80px;
+    height: auto;
+    margin-bottom: 0;
+    margin-right: 1rem;
+}
+
+.features-grid .feature-item:nth-child(8) .content-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
 
 .feature-tag {
     display: inline-block;
