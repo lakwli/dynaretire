@@ -539,12 +539,17 @@ h1, h2, h3 {
 }
 
 .image-wrapper-invest1 {
-    height: 126px; /* Increased by 20% from 130px */
+    height: 120px; /* Increased by 20% from 130px */
 }
 .image-wrapper-invest2 {
-    height: 137px; /* Increased by 20% from 130px */
+    height: 130px; /* Increased by 20% from 130px */
 }
-
+.image-wrapper-work {
+    height: 200px; /* Increased by 20% from 130px */
+}
+.image-wrapper-retireIncome {
+    margin: 0 auto;
+}
 .feature-item-image {
     max-width: 100%;
     max-height: 100%;
