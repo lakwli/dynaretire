@@ -459,118 +459,92 @@ h1, h2, h3 {
     /* Removed testing background color and padding */
 }
 
-/* CLEAN SLATE: Remove all previous image container styles */
-.scale-90, .scale-80, .scale-70, .scale-65, .scale-60, 
-.scale-50, .scale-30, .scale-20, .scale-120, .scale-1000,
-.full-size, .image-wrapper, .image-wrapper-tall, 
-.image-wrapper-medium, .image-wrapper-standard, 
-.standard-image, .healthcare-image,
-.image-container-expenses, .image-container-invest1, 
-.image-container-invest2, .image-container-savinggrowth,
-.image-container-ongoingincome, .image-container-withdraw,
-.image-container-healthcare {
-    /* Clear all previous styles */
+.scale-90 {
+    width: 90%;
+    margin: 0 auto;
+    display: block;
 }
 
-/* SIMPLE IMAGE CONTAINER SYSTEM */
-/* Base container for ALL images */
-.image-container-expenses, 
-.image-container-invest1,
-.image-container-invest2, 
-.image-container-savinggrowth,
-.image-container-ongoingincome {
-    height: 140px; /* Consistent height for alignment */
+.scale-80 {
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+}
+
+.scale-70 {
+    width: 70%;
+    margin: 0 auto;
+    display: block;
+}
+
+.scale-65 {
+    width: 65%;
+    margin: 0 auto;
+    display: block;
+}
+
+.scale-60 {
+    width: 60%;
+    margin: 0 auto;
+    display: block;
+}
+
+.scale-50 {
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+}
+
+.scale-30 {
+    width: 30%;
+    margin: 0 auto;
+    display: block;
+}
+
+.scale-20 {
+    width: 20%;
+    margin: 0 auto;
+    display: block;
+}
+
+.scale-120 {
+    width: 120%;
+    margin: 0 auto;
+    display: block;
+    transform: translateX(-8%); /* Center the oversized image */
+}
+
+.feature-item-image {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1.5rem; /* Increased from 0.8rem for better spacing */
-    padding: 0; /* No padding to maximize space */
-    overflow: hidden; /* Allow overflow for special cases */
-}
-
-/* Special case: Healthcare image (slightly larger) */
-.feature-item:nth-child(2) .image-container-expenses img {
-    max-height: 115%; /* Allow slight overflow */
-    max-width: 115%;
-}
-
-/* Special case: Saving & Growth container (needs more height) */
-.image-container-savinggrowth {
-    height: 246px; /* Increased by another 10% from 224px */
-    margin-bottom: auto; /* Push title and description to the bottom of card */
-}
-
-/* Special case: Withdrawal constraint (horizontal layout) */
-.image-container-withdraw {
-    width: 80px;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 1rem 0 0; /* Keep horizontal layout margins */
-}
-
-.image-container-withdraw img {
-    width: 100%;
-    height: auto;
-}
-
-/* SIMPLIFIED IMAGE CONTAINER SYSTEM */
-.image-container-expenses, 
-.image-container-invest1,
-.image-container-invest2, 
-.image-container-savinggrowth,
-.image-container-ongoingincome {
-    height: 140px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    padding: 0;
-    overflow: hidden; /* Fix: prevent overflow */
-    background-color: rgba(248, 250, 252, 0.3); /* Very subtle background */
-}
-
-/* Base image style - constrain to container */
-.image-container-expenses img,
-.image-container-invest1 img,
-.image-container-invest2 img,
-.image-container-savinggrowth img,
-.image-container-ongoingincome img {
-    max-width: 90%; /* Keep images slightly smaller than container */
-    max-height: 90%;
-    width: auto;
     height: auto;
     object-fit: contain;
+    margin: 0 0 0.75rem 0;
+    border-radius: 8px;
+    display: block;
+    max-width: 100%; /* Ensure image doesn't overflow container */
+    max-height: 110px;
 }
 
-/* Special case: Saving & Growth container (needs more height) */
-.image-container-savinggrowth {
-    height: 246px; /* Increased by another 10% from 224px */
-    margin-bottom: auto; /* Push title and description to the bottom of card */
-}
-
-/* Special case: Withdrawal constraint (horizontal layout) */
-.image-container-withdraw {
-    width: 80px;
-    height: auto;
+.image-wrapper {
+    margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 1rem 0 0;
-    overflow: hidden;
+    height: 100px; /* Standard height */
+    margin-bottom: 1rem;
 }
 
-.image-container-withdraw img {
+.image-wrapper-tall {
+    height: 156px; /* Increased by 20% from 130px */
+}
+
+.feature-item-image {
     max-width: 100%;
     max-height: 100%;
-    width: auto;
-    height: auto;
+    object-fit: contain;
+    display: block;
 }
 
-/* Fix the media query */
 @media (max-width: 768px) {
     .section-header {
         padding: 0 1rem;
@@ -597,79 +571,6 @@ h1, h2, h3 {
     .feature-item-image {
         max-height: 90px;
     }
-    
-    /* Fix image containers at smaller screens */
-    .image-container-expenses,
-    .image-container-invest1,
-    .image-container-invest2,
-    .image-container-savinggrowth,
-    .image-container-ongoingincome {
-        height: 110px; /* Smaller on mobile but still visible */
-    }
-    
-    .image-container-savinggrowth {
-        height: 140px; /* Still larger than others */
-    }
-}
-
-/* BASE STYLES FOR FEATURE CARDS */
-.feature-item {
-    background: white;
-    padding: 1.25rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    position: relative;
-    border-left: 3px solid transparent;
-}
-
-/* SPECIAL HEIGHT ADJUSTMENT FOR TOP ROW ONLY */
-/* Target only the image containers in the first 3 feature items (top row) */
-.features-grid .feature-item:nth-child(-n+3) .image-container-expenses {
-    height: 180px; /* Increased height for top row only */
-    min-height: 180px; /* Ensure consistent minimum height */
-}
-
-/* FIX FOR TOP ROW IMAGE CONTAINERS ONLY */
-/* Target only the image containers in the first 3 feature items (top row) */
-.features-grid .feature-item:nth-child(1) .image-container-expenses,
-.features-grid .feature-item:nth-child(2) .image-container-expenses,
-.features-grid .feature-item:nth-child(3) .image-container-expenses {
-    height: 180px; /* Taller containers for top row */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    padding: 0;
-    overflow: visible; /* Allow specific images to extend if needed */
-    background: none;
-}
-
-/* Image styles for top row only */
-.features-grid .feature-item:nth-child(1) .image-container-expenses img,
-.features-grid .feature-item:nth-child(2) .image-container-expenses img,
-.features-grid .feature-item:nth-child(3) .image-container-expenses img {
-    max-width: 100%;
-    max-height: 100%; 
-    width: auto;
-    height: auto;
-    object-fit: contain;
-}
-
-/* Special case for Healthcare image (card 2) */
-.features-grid .feature-item:nth-child(2) .image-container-expenses img {
-    transform: scale(0.9); /* Scale down to 90% */
-    max-height: 100%; /* Reset to standard height */
-}
-
-/* Special case for Ongoing Commitments image (card 1) */
-.features-grid .feature-item:nth-child(1) .image-container-expenses img {
-    transform: scale(0.9); /* Scale down to 90% */
-    max-height: 100%; /* Reset to standard height */
 }
 
 /* Features Section */
@@ -770,7 +671,41 @@ h1, h2, h3 {
     color: #ff3b30;
     font-size: 0.9em;
     margin-top: 0.2em;
-} /* Added missing closing brace */
+}
+
+/* Advanced Features Section */
+.advanced-features {
+    padding: 6rem 0;
+}
+
+.advanced-features h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.advanced-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.advanced-card {
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.advanced-card:hover {
+    transform: translateY(-5px);
+}
+
+.advanced-card h3 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
 
 /* CTA Section */
 .cta {
@@ -1024,45 +959,6 @@ h1, h2, h3 {
         grid-template-columns: repeat(2, 1fr);
         gap: 3rem 2rem;
     }
-
-    .section-header {
-        padding: 0 1rem;
-    }
-    
-    .section-header h2 {
-        font-size: 2rem;
-    }
-    
-    .features-grid {
-        grid-template-columns: 1fr;
-        padding: 0 1rem;
-    }
-    
-    .feature-item {
-        padding: 1rem;
-        border-left-width: 4px;
-    }
-
-    .feature-title {
-        font-size: 1rem;
-    }
-    
-    .feature-item-image {
-        max-height: 90px;
-    }
-    
-    /* Fix image containers at smaller screens */
-    .image-container-expenses,
-    .image-container-invest1,
-    .image-container-invest2,
-    .image-container-savinggrowth,
-    .image-container-ongoingincome {
-        height: 110px; /* Smaller on mobile but still visible */
-    }
-    
-    .image-container-savinggrowth {
-        height: 140px; /* Still larger than others */
-    }
 }
 
 @media (max-width: 480px) {
@@ -1132,47 +1028,4 @@ h1, h2, h3 {
     .menu-group .menu-item::after {
         display: none;
     }
-}
-
-/* Advanced Features Section */
-.advanced-features {
-    padding: 6rem 0;
-    background: white;
-}
-
-.advanced-features h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: var(--accent-color);
-}
-
-.advanced-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-
-.advanced-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-    height: 100%;
-    border-top: 3px solid var(--brand-color);
-}
-
-.advanced-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.advanced-card h3 {
-    margin-bottom: 1rem;
-    font-size: 1.25rem;
-    color: var(--accent-color);
 }
