@@ -534,8 +534,15 @@ h1, h2, h3 {
     margin-bottom: 1rem;
 }
 
-.image-wrapper-tall {
+.image-wrapper-exp {
     height: 156px; /* Increased by 20% from 130px */
+}
+
+.image-wrapper-invest1 {
+    height: 126px; /* Increased by 20% from 130px */
+}
+.image-wrapper-invest2 {
+    height: 137px; /* Increased by 20% from 130px */
 }
 
 .feature-item-image {
