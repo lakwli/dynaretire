@@ -8,6 +8,12 @@
     --text-color: #293132;
     --border-color: #e2e8f0;
     --gradient: linear-gradient(135deg, var(--brand-color) 0%, #3c4344 100%);
+    
+    /* New Feature Category Colors */
+    --expense-color: #2E7BD1;        /* Blue for Expense Management */
+    --growth-color: #009688;         /* Teal for Growth-Oriented Features */
+    --protection-color: #34495E;     /* Slate for Protection-Focused Investment */
+    --fire-color: #8E44AD;           /* Purple for FIRE Strategy */
 }
 
 * {
@@ -358,31 +364,31 @@ h1, h2, h3 {
 .feature-item:nth-child(1) .feature-tag,
 .feature-item:nth-child(2) .feature-tag,
 .feature-item:nth-child(3) .feature-tag {
-    background: #ebf5ff;
-    color: #3b82f6;
+    background: rgba(46, 123, 209, 0.1);
+    color: var(--expense-color);
 }
 
 .feature-item:nth-child(4) .feature-tag {
-    background: #eef2ff;
-    color: #4f46e5;
+    background: rgba(0, 150, 136, 0.1);
+    color: var(--growth-color);
 }
 
 .feature-item:nth-child(5) .feature-tag,
 .feature-item:nth-child(6) .feature-tag,
 .feature-item:nth-child(9) .feature-tag,
 .feature-item:nth-child(10) .feature-tag {
-    background: #f0fdf4;
-    color: #16a34a;
+    background: rgba(52, 73, 94, 0.1);
+    color: var(--protection-color);
 }
 
 .feature-item:nth-child(7) .feature-tag {
-    background: #fef2f2;
-    color: #dc2626;
+    background: rgba(0, 150, 136, 0.1);
+    color: var(--growth-color);
 }
 
 .feature-item:nth-child(8) .feature-tag {
-    background: #fff7ed;
-    color: #ea580c;
+    background: rgba(142, 68, 173, 0.1);
+    color: var(--fire-color);
 }
 
 /* Enhanced feature item styling with subtle backgrounds */
@@ -404,13 +410,13 @@ h1, h2, h3 {
 .feature-item:nth-child(1),
 .feature-item:nth-child(2),
 .feature-item:nth-child(3) {
-    border-left-color: rgba(59, 130, 246, 0.3); /* Must-Have items */
-    background: linear-gradient(to right, rgba(235, 245, 255, 0.3), white 15%);
+    border-left-color: var(--expense-color);
+    background: linear-gradient(to right, rgba(46, 123, 209, 0.05), white 15%);
 }
 
 .feature-item:nth-child(4) {
-    border-left-color: rgba(79, 70, 229, 0.3); /* Still Working */
-    background: linear-gradient(to right, rgba(238, 242, 255, 0.3), white 15%);
+    border-left-color: var(--growth-color);
+    background: linear-gradient(to right, rgba(0, 150, 136, 0.05), white 15%);
     display: flex;
     flex-direction: column;
 }
@@ -433,21 +439,21 @@ h1, h2, h3 {
 .feature-item:nth-child(6),
 .feature-item:nth-child(9),
 .feature-item:nth-child(10) {
-    border-left-color: rgba(22, 163, 74, 0.3); /* Have Investments */
-    background: linear-gradient(to right, rgba(240, 253, 244, 0.3), white 15%);
+    border-left-color: var(--protection-color);
+    background: linear-gradient(to right, rgba(52, 73, 94, 0.05), white 15%);
 }
 
 .feature-item:nth-child(7) {
-    border-left-color: rgba(79, 70, 229, 0.35); /* Changed to purple-blue for In Retirement */
-    background: linear-gradient(to right, rgba(238, 242, 255, 0.3), white 15%);
+    border-left-color: var(--growth-color);
+    background: linear-gradient(to right, rgba(0, 150, 136, 0.05), white 15%);
     display: flex;
     flex-direction: column;
 }
 
 
 .feature-item:nth-child(8) {
-    border-left-color: rgba(79, 70, 229, 0.4); /* Changed from orange to purple-blue */
-    background: linear-gradient(to right, rgba(238, 242, 255, 0.3), white 15%);
+    border-left-color: var(--fire-color);
+    background: linear-gradient(to right, rgba(142, 68, 173, 0.05), white 15%);
 }
 
 /* Enhanced hover effect */
