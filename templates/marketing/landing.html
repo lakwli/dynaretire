@@ -174,7 +174,7 @@
   <!-- ALL USERS - Start with features everyone cares about -->
   <div class="feature-item">
     <span class="feature-tag">Must-Have</span>
-    <div class="image-wrapper image-wrapper-tall scale-90">
+    <div class="image-container-expenses">
       <img src="{{ url_for('static', filename='images/landing/feature_commitment.svg') }}" alt="Financial Commitments" class="feature-item-image" />
     </div>
     <h3>Ongoing Commitments</h3>
@@ -183,7 +183,7 @@
   
   <div class="feature-item">
     <span class="feature-tag">Must-Have</span>
-    <div class="image-wrapper image-wrapper-tall">
+    <div class="image-container-expenses">
       <img src="{{ url_for('static', filename='images/landing/feature_medical.svg') }}" alt="Healthcare Costs" class="feature-item-image" />
     </div>
     <h3>Healthcare Costs Surge</h3>
@@ -192,52 +192,45 @@
   
   <div class="feature-item">
     <span class="feature-tag">Must-Have</span>
-    <div class="image-wrapper image-wrapper-tall">
+    <div class="image-container-expenses">
       <img src="{{ url_for('static', filename='images/landing/feature_irregular.svg') }}" alt="Irregular Expenses" class="feature-item-image" />
     </div>
     <h3>Irregular Expenses</h3>
-    <p>Plan for few-years-once recurring expenses  or 1-time costs </p>
-  </div>
-
-  
-  <!-- FUTURE RETIREES GROUP - For those planning ahead 
-  <div class="feature-item">
-    <span class="feature-tag">Future Retirees</span>
-    <img src="{{ url_for('static', filename='images/feature_workingSaving.png') }}" alt="Working Savings" class="feature-item-image" />
-    <h3>Saving for Retirement</h3>
-    <p>Contribute to pension and set aside extra savings with different returns for closer retirement projection</p>
+    <p>Plan for few-years-once recurring expenses or 1-time costs</p>
   </div>
   
-  <div class="feature-item">
-    <span class="feature-tag">Future Retirees</span>
-    <img src="{{ url_for('static', filename='images/feature_incomeGrowth.png') }}" alt="Working Savings" class="feature-item-image" />
-    <h3>How will savings grow?</h3>
-    <p>Adjust growth rates as careers progress</p>
-  </div>-->
+  <!-- Keep this card in its original form with large image -->
   <div class="feature-item">
     <span class="feature-tag">Still Working?</span>
-    <img src="{{ url_for('static', filename='images/landing/feature_workingSaving.svg') }}" alt="Working Savings" class="feature-item-image" />
+    <div class="image-container-savinggrowth">
+      <img src="{{ url_for('static', filename='images/landing/feature_workingSaving.svg') }}" alt="Working Savings" class="feature-item-image" />
+    </div>
     <h3>Saving & Growth Projection</h3>
     <p>Set pension contributions and extra savings with custom growth rates as career progresses for saving projections.</p>
   </div>
+  
+  <!-- Group 2: Expected Return and Spend Less should have identical containers -->
   <div class="feature-item">
     <span class="feature-tag">Have Investments?</span>
-    <img src="{{ url_for('static', filename='images/landing/feature_backtest.svg') }}" alt="Expected Returns" class="feature-item-image" />
+    <div class="image-container-invest1">
+      <img src="{{ url_for('static', filename='images/landing/feature_backtest.svg') }}" alt="Expected Returns" class="feature-item-image" />
+    </div>
     <h3>Expected Return Or Back-test</h3>
     <p>Set expected returns or back-test with historical data to see potential outcomes</p>
   </div>
   
-  <!-- INVESTORS GROUP - For those focused on investment strategies -->
   <div class="feature-item">
     <span class="feature-tag">Have Investments?</span>
-    <img src="{{ url_for('static', filename='images/landing/feature_reductionRate.svg') }}" alt="Minimum Spending" class="feature-item-image" />
+    <div class="image-container-invest1">
+      <img src="{{ url_for('static', filename='images/landing/feature_reductionRate.svg') }}" alt="Minimum Spending" class="feature-item-image" />
+    </div>
     <h3>Spend Less in a Tough Market</h3>
     <p>Cut down some expenses to acceptable level to reduce impact</p>
   </div>
   
   <div class="feature-item">
     <span class="feature-tag">In Retirement?</span>
-    <div class="image-wrapper scale-60">
+    <div class="image-container-ongoingincome">
       <img src="{{ url_for('static', filename='images/landing/feature_retirementIncome.svg') }}" alt="Continuous Income" class="feature-item-image" />
     </div>
     <h3>Ongoing Income Sources</h3>
@@ -247,7 +240,7 @@
   <div class="feature-item">
     <span class="feature-tag">Retiring Early?</span>
     <!-- Restructured layout with horizontal orientation -->
-    <div class="image-wrapper scale-20">
+    <div class="image-container-withdraw">
       <img src="{{ url_for('static', filename='images/landing/WithdrawAge.svg') }}" alt="Pension and Investment" class="feature-item-image" />
     </div>
     <div class="content-wrapper">
@@ -256,17 +249,21 @@
     </div>
   </div>
   
+  <!-- Group 3: Asset Allocation and Portfolio Rebalancing -->
   <div class="feature-item">
     <span class="feature-tag">Have Investments?</span>
-    <img src="{{ url_for('static', filename='images/landing/feature_assetAllocation.svg') }}" alt="Asset Allocation" class="feature-item-image" />
+    <div class="image-container-invest2">
+      <img src="{{ url_for('static', filename='images/landing/feature_assetAllocation.svg') }}" alt="Asset Allocation" class="feature-item-image" />
+    </div>
     <h3>Age-Based Asset Allocation</h3>
     <p>Automatically shift from growth to preservation, adjust asset allocation as age.</p>
   </div>
   
-  <!-- FIRE SEEKERS - More specialized audience -->
   <div class="feature-item">
     <span class="feature-tag">Have Investments?</span>
-    <img src="{{ url_for('static', filename='images/landing/feature_rebalanceOption.svg') }}" alt="Portfolio Rebalance" class="feature-item-image" />
+    <div class="image-container-invest2">
+      <img src="{{ url_for('static', filename='images/landing/feature_rebalanceOption.svg') }}" alt="Portfolio Rebalance" class="feature-item-image" />
+    </div>
     <h3>Portfolio Rebalancing</h3>
     <p>Control rebalancing frequency and pause fund transfers during market downturns to protect your investments.</p>
   </div>
