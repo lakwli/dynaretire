@@ -174,23 +174,29 @@
   <!-- ALL USERS - Start with features everyone cares about -->
   <div class="feature-item">
     <span class="feature-tag">Must-Have</span>
-    <img src="{{ url_for('static', filename='images/landing/feature_commitment.svg') }}" alt="Financial Commitments" class="feature-item-image" />
+    <div class="image-wrapper image-wrapper-tall scale-90">
+      <img src="{{ url_for('static', filename='images/landing/feature_commitment.svg') }}" alt="Financial Commitments" class="feature-item-image" />
+    </div>
     <h3>Ongoing Commitments</h3>
-    <p>Handle housing loans, kids' college costs, and other commitments that keep coming even after you retire.</p>
+    <p>Handle housing loans, and other commitments that occur even after retire.</p>
   </div>
   
   <div class="feature-item">
     <span class="feature-tag">Must-Have</span>
-    <img src="{{ url_for('static', filename='images/landing/feature_medical.svg') }}" alt="Healthcare Costs" class="feature-item-image" />
+    <div class="image-wrapper image-wrapper-tall">
+      <img src="{{ url_for('static', filename='images/landing/feature_medical.svg') }}" alt="Healthcare Costs" class="feature-item-image" />
+    </div>
     <h3>Healthcare Costs Surge</h3>
     <p>Be prepared for unavoidable medical costs that rise with age and high inflation.</p>
   </div>
   
   <div class="feature-item">
     <span class="feature-tag">Must-Have</span>
-    <img src="{{ url_for('static', filename='images/landing/feature_irregular.svg') }}" alt="Irregular Expenses" class="feature-item-image" />
+    <div class="image-wrapper image-wrapper-tall">
+      <img src="{{ url_for('static', filename='images/landing/feature_irregular.svg') }}" alt="Irregular Expenses" class="feature-item-image" />
+    </div>
     <h3>Irregular Expenses</h3>
-    <p>Plan for major one-time costs like renovations or recurring big expenses like car replacement every few years</p>
+    <p>Plan for few-years-once recurring expenses  or 1-time costs </p>
   </div>
 
   
@@ -215,48 +221,52 @@
     <p>Set pension contributions and extra savings with custom growth rates as career progresses for saving projections.</p>
   </div>
   <div class="feature-item">
-    <span class="feature-tag">In Retirement?</span>
-    <img src="{{ url_for('static', filename='images/landing/feature_retirementIncome.svg') }}" alt="Continuous Income" class="feature-item-image" />
-    <h3>Ongoing Income Sources</h3>
-    <p>Include rental income, part-time work, or other revenue streams that continue providing during retirement years.</p>
-  </div>
-  
-  <!-- INVESTORS GROUP - For those focused on investment strategies -->
-  <div class="feature-item">
     <span class="feature-tag">Have Investments?</span>
     <img src="{{ url_for('static', filename='images/landing/feature_backtest.svg') }}" alt="Expected Returns" class="feature-item-image" />
     <h3>Expected Return Or Back-test</h3>
     <p>Set expected returns or back-test with historical data to see potential outcomes</p>
   </div>
   
+  <!-- INVESTORS GROUP - For those focused on investment strategies -->
   <div class="feature-item">
     <span class="feature-tag">Have Investments?</span>
     <img src="{{ url_for('static', filename='images/landing/feature_reductionRate.svg') }}" alt="Minimum Spending" class="feature-item-image" />
     <h3>Spend Less in a Tough Market</h3>
-    <p>Reduce selective expenses to acceptable comfort level to speed portfolio recovery.</p>
+    <p>Cut down some expenses to acceptable level to reduce impact</p>
   </div>
   
   <div class="feature-item">
-    <span class="feature-tag">Have Investments?</span>
-    <img src="{{ url_for('static', filename='images/landing/feature_assetAllocation.svg') }}" alt="Asset Allocation" class="feature-item-image" />
-    <h3>Age-Based Asset Allocation</h3>
-    <p>Automatically shift from growth to preservation, adjust asset allocation as age.</p>
+    <span class="feature-tag">In Retirement?</span>
+    <div class="image-wrapper scale-60">
+      <img src="{{ url_for('static', filename='images/landing/feature_retirementIncome.svg') }}" alt="Continuous Income" class="feature-item-image" />
+    </div>
+    <h3>Ongoing Income Sources</h3>
+    <p>Include rental income, part-time work, or other revenue streams that continue providing during retirement years.</p>
   </div>
   
-  <div class="feature-item">
-    <span class="feature-tag">Have Investments?</span>
-    <img src="{{ url_for('static', filename='images/landing/feature_rebalanceOption.svg') }}" alt="Portfolio Rebalance" class="feature-item-image" />
-    <h3>Portfolio Rebalancing</h3>
-    <p>Control rebalancing frequency and pause fund transfers during market downturns to protect your investments.</p>
-  </div>
-  
-  <!-- FIRE SEEKERS - More specialized audience -->
-  <div class="feature-item">
-    <span class="feature-tag">Retiring Early?</span>
-    <img src="{{ url_for('static', filename='images/landing/WithdrawAge.svg') }}" alt="Pension and Investment" class="feature-item-image" />
+    <div class="feature-item">
+      <span class="feature-tag">Retiring Early?</span>
+      <div class="image-wrapper scale-20">
+        <img src="{{ url_for('static', filename='images/landing/WithdrawAge.svg') }}" alt="Pension and Investment" class="feature-item-image" />
+      </div>
     <h3>Withdrawal Constraint (FIRE)</h3>
-    <p>Manage cash flow before pension access—critical for early retirees relying on investments or savings.</p>
-  </div>
+      <p>Manage cash flow before pension access</p>
+    </div>
+    
+    <div class="feature-item">
+      <span class="feature-tag">Have Investments?</span>
+      <img src="{{ url_for('static', filename='images/landing/feature_assetAllocation.svg') }}" alt="Asset Allocation" class="feature-item-image" />
+    <h3>Age-Based Asset Allocation</h3>
+      <p>Automatically shift from growth to preservation, adjust asset allocation as age.</p>
+    </div>
+    
+    <!-- FIRE SEEKERS - More specialized audience -->
+    <div class="feature-item">
+      <span class="feature-tag">Have Investments?</span>
+      <img src="{{ url_for('static', filename='images/landing/feature_rebalanceOption.svg') }}" alt="Portfolio Rebalance" class="feature-item-image" />
+    <h3>Portfolio Rebalancing</h3>
+      <p>Control rebalancing frequency and pause fund transfers during market downturns to protect your investments.</p>
+    </div>
 </div>
 
 

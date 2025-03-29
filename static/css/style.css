@@ -257,64 +257,265 @@ h1, h2, h3 {
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+    /* Define 12 equal columns */
+    grid-template-columns: repeat(12, 1fr); 
+    /* Define 7 rows, height determined by content */
+    grid-template-rows: repeat(7, auto); 
+    gap: 1.25rem; /* Adjusted gap for better visual balance */
+    margin-top: 2.5rem;
+    /* align-items: start; /* Optional: Use if heights need to be strictly content-based */
 }
 
+/* Place items onto the 12x7 grid based on FINAL WxH spans */
+/* Row 1-2 */
+.features-grid .feature-item:nth-child(1) { grid-column: 1 / span 4; grid-row: 1 / span 2; } /* Ongoing Commitments 4x2 */
+.features-grid .feature-item:nth-child(2) { grid-column: 5 / span 4; grid-row: 1 / span 2; } /* Healthcare 4x2 */
+.features-grid .feature-item:nth-child(3) { grid-column: 9 / span 4; grid-row: 1 / span 2; } /* Irregular 4x2 */
+
+/* Row 3-5 */
+.features-grid .feature-item:nth-child(4) { grid-column: 1 / span 5; grid-row: 3 / span 3; } /* Saving & Growth 5x3 */
+.features-grid .feature-item:nth-child(5) { grid-column: 6 / span 4; grid-row: 3 / span 2; } /* Expected Return 4x2 */
+.features-grid .feature-item:nth-child(6) { grid-column: 10 / span 3; grid-row: 3 / span 2; } /* Spend Less 3x2 */
+
+/* Row 6-7 */
+.features-grid .feature-item:nth-child(7) { grid-column: 1 / span 5; grid-row: 6 / span 1; } /* Ongoing Income 5x1 */
+.features-grid .feature-item:nth-child(8) { grid-column: 1 / span 5; grid-row: 7 / span 1; } /* Withdrawal 5x1 */
+.features-grid .feature-item:nth-child(9) { grid-column: 6 / span 4; grid-row: 6 / span 2; } /* Asset Allocation 4x2 */
+.features-grid .feature-item:nth-child(10) { grid-column: 10 / span 3; grid-row: 6 / span 2; } /* Portfolio Rebalancing 3x2 */
+
 .feature-tag {
-    display: block;
+    display: inline-block;
     padding: 0.15rem 0.5rem;
     background: #e2e8f0;
     color: #64748b;
     border-radius: 15px;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 500;
-    width: fit-content;
-    margin: 0;
-    line-height: 0.8;
+    margin: 0 0 0.75rem 0;
+    line-height: 1;
 }
 
+/* Replace the non-working :contains selector with specific classes */
+.feature-tag[content="Must-Have"] {
+    background: #ebf5ff;
+    color: #3b82f6;
+}
+
+.feature-tag:has-text("Must-Have") {
+    background: #ebf5ff;
+    color: #3b82f6;
+}
+
+/* Category-based tag colors */
+.feature-tag:contains("Still Working") {
+    background: #eef2ff;
+    color: #4f46e5;
+}
+
+.feature-tag:contains("Have Investments") {
+    background: #f0fdf4;
+    color: #16a34a;
+}
+
+.feature-tag:contains("In Retirement") {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.feature-tag:contains("Retiring Early") {
+    background: #fff7ed;
+    color: #ea580c;
+}
+
+/* Add these specific selectors that will work in all browsers */
+.feature-item:nth-child(1) .feature-tag,
+.feature-item:nth-child(2) .feature-tag,
+.feature-item:nth-child(3) .feature-tag {
+    background: #ebf5ff;
+    color: #3b82f6;
+}
+
+.feature-item:nth-child(4) .feature-tag {
+    background: #eef2ff;
+    color: #4f46e5;
+}
+
+.feature-item:nth-child(5) .feature-tag,
+.feature-item:nth-child(6) .feature-tag,
+.feature-item:nth-child(9) .feature-tag,
+.feature-item:nth-child(10) .feature-tag {
+    background: #f0fdf4;
+    color: #16a34a;
+}
+
+.feature-item:nth-child(7) .feature-tag {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.feature-item:nth-child(8) .feature-tag {
+    background: #fff7ed;
+    color: #ea580c;
+}
+
+/* Enhanced feature item styling with subtle backgrounds */
 .feature-item {
     background: white;
-    padding: 1rem;
+    padding: 1.25rem;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    border-left: 3px solid transparent;
 }
 
+/* Category-based subtle left borders */
+.feature-item:nth-child(1),
+.feature-item:nth-child(2),
+.feature-item:nth-child(3) {
+    border-left-color: rgba(59, 130, 246, 0.3); /* Must-Have items */
+    background: linear-gradient(to right, rgba(235, 245, 255, 0.3), white 15%);
+}
+
+.feature-item:nth-child(4) {
+    border-left-color: rgba(79, 70, 229, 0.3); /* Still Working */
+    background: linear-gradient(to right, rgba(238, 242, 255, 0.3), white 15%);
+}
+
+.feature-item:nth-child(5),
+.feature-item:nth-child(6),
+.feature-item:nth-child(9),
+.feature-item:nth-child(10) {
+    border-left-color: rgba(22, 163, 74, 0.3); /* Have Investments */
+    background: linear-gradient(to right, rgba(240, 253, 244, 0.3), white 15%);
+}
+
+.feature-item:nth-child(7) {
+    border-left-color: rgba(79, 70, 229, 0.35); /* Changed to purple-blue for In Retirement */
+    background: linear-gradient(to right, rgba(238, 242, 255, 0.3), white 15%);
+}
+
+.feature-item:nth-child(8) {
+    border-left-color: rgba(79, 70, 229, 0.4); /* Changed from orange to purple-blue */
+    background: linear-gradient(to right, rgba(238, 242, 255, 0.3), white 15%);
+}
+
+/* Enhanced hover effect */
 .feature-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    border-left-width: 5px;
+}
+
+/* Improve title contrast and adjust description text */
+.feature-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+    color: var(--accent-color);
+    line-height: 1.3;
+    font-weight: 600;
+}
+
+/* Feature item description - final styling */
+.features-grid .feature-item p {
+    font-size: 0.75rem !important; 
+    color: var(--secondary-color);
+    line-height: 1.5;
+    margin-top: 0.4rem;
+    opacity: 0.6;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    /* Removed testing background color and padding */
+}
+
+.scale-90 {
+    width: 90%;
+    margin: 0 auto;
+    display: block;
+}
+
+.scale-80 {
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+}
+
+.scale-70 {
+    width: 70%;
+    margin: 0 auto;
+    display: block;
+}
+
+.scale-65 {
+    width: 65%;
+    margin: 0 auto;
+    display: block;
+}
+
+.scale-60 {
+    width: 60%;
+    margin: 0 auto;
+    display: block;
+}
+
+.scale-50 {
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+}
+
+.scale-30 {
+    width: 30%;
+    margin: 0 auto;
+    display: block;
+}
+
+.scale-20 {
+    width: 20%;
+    margin: 0 auto;
+    display: block;
+}
+
+.scale-120 {
+    width: 120%;
+    margin: 0 auto;
+    display: block;
+    transform: translateX(-8%); /* Center the oversized image */
 }
 
 .feature-item-image {
     width: 100%;
-    height: 160px;
+    height: auto;
     object-fit: contain;
-    margin: -0.25rem 0 0 0;
+    margin: 0 0 0.75rem 0;
     border-radius: 8px;
     display: block;
+    max-width: 100%; /* Ensure image doesn't overflow container */
+    max-height: 110px;
 }
 
-.feature-item .feature-icon {
-    font-size: 2rem;
-    margin-bottom: 0;
+.image-wrapper {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px; /* Standard height */
+    margin-bottom: 1rem;
 }
 
-.feature-item h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0;
-    color: var(--accent-color);
-    line-height: 1.2;
+.image-wrapper-tall {
+    height: 156px; /* Increased by 20% from 130px */
 }
 
-.feature-item p {
-    font-size: 1rem;
-    color: var(--secondary-color);
-    line-height: 1.3;
-    margin-top: 0.75rem;
+.feature-item-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
 }
 
 @media (max-width: 768px) {
@@ -332,7 +533,16 @@ h1, h2, h3 {
     }
     
     .feature-item {
-        padding: 1.5rem;
+        padding: 1rem;
+        border-left-width: 4px;
+    }
+
+    .feature-title {
+        font-size: 1rem;
+    }
+    
+    .feature-item-image {
+        max-height: 90px;
     }
 }
 
