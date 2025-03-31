@@ -207,18 +207,32 @@ p {
 
 /* Expenses Section */
 .features-section {
-    padding: 6rem 2rem;
-    background: linear-gradient(to bottom, var(--background-light) 0%, white 100%);
+    padding: 8rem 2rem 6rem;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.features-section::before {
+    content: '';
+    position: absolute;
+    top: 200px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--background-light);
+    z-index: -1;
 }
 
 .features-section .feature-item {
-    background: var(--background-light);
+    background: white;
 }
 
 .features-section .container {
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 .section-header {
@@ -618,21 +632,25 @@ p {
     }
 }
 
-/* Features Section */
+/* Why Section */
 .why-secion {
-    padding: 6rem 0;
+    padding: 8rem 0 6rem;
+    background: white;
 }
 
 .why-secion h2 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 3rem;
+    color: var(--accent-color);
 }
 
 .why-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
+    position: relative;
+    z-index: 1;
 }
 
 .why-card {
@@ -659,20 +677,36 @@ p {
 
 /* comparison-section Section */
 .comparison-section {
-    padding: 6rem 0;
-    background: var(--background-light);
+    padding: 8rem 0 6rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.comparison-section::before {
+    content: '';
+    position: absolute;
+    top: 200px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--background-light);
+    z-index: -1;
 }
 
 .comparison-section h2 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 3rem;
+    position: relative;
+    z-index: 1;
 }
 
 .comparison-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
+    position: relative;
+    z-index: 1;
 }
 
 .comparison-item {
@@ -741,19 +775,36 @@ p {
 
 /* Advanced Features Section */
 .advanced-features {
-    padding: 6rem 0;
+    padding: 8rem 0 6rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.advanced-features::before {
+    content: '';
+    position: absolute;
+    top: 200px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--background-light);
+    z-index: -1;
 }
 
 .advanced-features h2 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 3rem;
+    position: relative;
+    z-index: 1;
 }
 
 .advanced-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
+    position: relative;
+    z-index: 1;
 }
 
 .advanced-card {
@@ -1108,14 +1159,28 @@ p {
 
 /* Mission Section */
 .mission-section {
-  padding: 6rem 0;
-  background: var(--background-light);
+  padding: 8rem 0 6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.mission-section::before {
+  content: '';
+  position: absolute;
+  top: 200px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--background-light);
+  z-index: -1;
 }
 
 .mission-content {
   max-width: 1000px;
   margin: 0 auto;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .mission-section h2 {
