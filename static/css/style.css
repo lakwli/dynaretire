@@ -1,19 +1,26 @@
 /* Variables */
 :root {
-    --brand-color: #49c5c4;
-    --cta-color: #FF6B35;
-    --secondary-color: #3c4344;
-    --accent-color: #293132;
-    --background-light: #f8fafc;
-    --text-color: #293132;
-    --border-color: #e2e8f0;
-    --gradient: linear-gradient(135deg, var(--brand-color) 0%, #3c4344 100%);
+    /* Core Colors */
+    --brand-color: #41B4B3;          /* Refined turquoise */
+    --brand-color-hover: #3AA3A2;    /* Brand hover state */
+    --cta-color: #FF6B35;           /* Original orange */
+    --cta-color-hover: #FF7B4A;     /* CTA hover state */
+    --secondary-color: #424849;      /* Warmer gray */
+    --accent-color: #293132;         /* Original dark accent */
+    --background-light: #f8fafc;     /* Original background */
+    --text-color: #293132;          /* Original text */
+    --border-color: #e2e8f0;        /* Original border */
+    --gradient: linear-gradient(135deg, var(--brand-color) 0%, var(--secondary-color) 100%);
     
-    /* New Feature Category Colors */
-    --expense-color: #2E7BD1;        /* Blue for Expense Management */
-    --growth-color: #009688;         /* Teal for Growth-Oriented Features */
-    --protection-color: #34495E;     /* Slate for Protection-Focused Investment */
-    --fire-color: #8E44AD;           /* Purple for FIRE Strategy */
+    /* Enhanced Feature Category Colors */
+    --expense-color: #2D74C4;        /* Refined blue */
+    --expense-hover: #2666B0;        /* Blue hover */
+    --growth-color: #009688;         /* Original teal */
+    --growth-hover: #008578;         /* Teal hover */
+    --protection-color: #34495E;     /* Original slate */
+    --protection-hover: #2C3E50;     /* Slate hover */
+    --fire-color: #8541A4;          /* Refined purple */
+    --fire-hover: #773894;          /* Purple hover */
 }
 
 * {
@@ -126,7 +133,7 @@ p {
 }
 
 .nav-cta:hover {
-    background: var(--secondary-color);
+    background: var(--cta-color-hover);
     transform: translateY(-2px);
 }
 
@@ -142,7 +149,7 @@ p {
     color: var(--secondary-color);
     letter-spacing: 0.5px;
     margin-bottom: 1rem;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 .hero h1 {
@@ -258,7 +265,7 @@ p {
     font-size: 1rem;
     color: var(--secondary-color);
     line-height: 1.5;
-    opacity: 0.8;
+    opacity: 0.9;
     max-width: 600px;
     margin: 0 auto;
 }
@@ -496,10 +503,9 @@ p {
     color: var(--secondary-color);
     line-height: 1.5;
     margin-top: 0.4rem;
-    opacity: 0.6;
+    opacity: 0.85;
     font-weight: 400;
     letter-spacing: 0.01em;
-    /* Removed testing background color and padding */
 }
 
 .scale-90 {
@@ -855,7 +861,7 @@ p {
 }
 
 .primary-button:hover {
-    background: var(--secondary-color);
+    background: var(--brand-color-hover);
     transform: translateY(-2px);
 }
 
@@ -1012,7 +1018,7 @@ p {
 
 .footer-cta:hover {
     transform: translateY(-4px);
-    background: var(--secondary-color);
+    background: var(--cta-color-hover);
     box-shadow: 0 12px 20px rgba(255, 107, 53, 0.35);
 }
 
