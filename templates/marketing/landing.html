@@ -195,7 +195,7 @@
       <img src="{{ url_for('static', filename='images/landing/feature_irregular.svg') }}" alt="Irregular Expenses" class="feature-item-image" />
     </div>
     <h3>Irregular Expenses</h3>
-    <p>Plan for recurring expenses every few years  or 1-time costs </p>
+    <p>Plan for recurring expenses every few years like car replacement or 1-time costs like home renovation. </p>
   </div>
 
   <!-- Growth-Oriented Features - Teal -->
@@ -206,7 +206,7 @@
     </div>
     <div class="feature-text-wrapper">
       <h3>Retirement Money Projection</h3>
-      <p>Set pension contributions and extra savings with custom growth rates as career progresses for retirement money projections.</p>
+      <p>Project how your retirement funds will grow by setting different return rates for pension (typically 4%) and personal investments (typically 7%), with customizable growth patterns as your career progresses.</p>
     </div>
   </div>
     <!-- Protection-Focused Investment - Slate -->
@@ -283,28 +283,28 @@
         <h2>Why Choose DynaRetire?</h2>
         <div class="why-grid">
           <div class="why-card">
-            <div class="why-icon">📊</div>
+            <div class="why-icon"><i class="fas fa-layer-group"></i></div>
             <h3>Holistic Coverage</h3>
             <p>
               Covers both pre-retirement saving and post-retirement spending.  Addresses often-overlooked factors like healthcare inflation.
             </p>
           </div>
           <div class="why-card">
-            <div class="why-icon">🛡️</div>
+            <div class="why-icon"><i class="fas fa-sliders-h"></i></div>
             <h3>True Personalization</h3>
             <p>
               Adapt to your unique situation rather than standard templates. Fine-tune every aspect of your retirement plan.
             </p>
           </div>
           <div class="why-card">
-            <div class="why-icon">📈</div>
+            <div class="why-icon"><i class="fas fa-user-check"></i></div>
             <h3>Built By Early Retiree</h3>
             <p>
               Created by someone who understands real retirees' needs with real-world challenges built into every calculation.
             </p>
           </div>
           <div class="why-card">
-            <div class="why-icon">📈</div>
+            <div class="why-icon"><i class="fas fa-lock"></i></div>
             <h3>Privacy-First Approach</h3>
             <p>
               No account required, completely anonymous planning without data collection or tracking.
@@ -312,6 +312,36 @@
           </div>
         </div>
       </div>
+      </div>
+    </section>
+
+    <!-- New "Our Mission" section -->
+    <section class="mission-section">
+      <div class="container">
+        <div class="mission-content">
+          <h2>Our Mission</h2>
+          <p>DynaRetire was created as a contribution to the retirement planning community, built by someone who experienced firsthand the challenges of planning for financial independence.</p>
+          
+          <div class="mission-points">
+            <div class="mission-point">
+              <div class="mission-icon"><i class="fas fa-hand-holding-heart"></i></div>
+              <div>
+                <h3>A Tool, Not a Replacement</h3>
+                <p>While DynaRetire offers powerful simulations, we recognize the value of professional financial advisors who provide personalized guidance, tax expertise, and emotional support during financial decisions. This tool complements, rather than replaces, professional advice.</p>
+              </div>
+            </div>
+            
+            <div class="mission-point">
+              <div class="mission-icon"><i class="fas fa-users"></i></div>
+              <div>
+                <h3>Community-Minded</h3>
+                <p>We believe financial planning tools should be accessible to everyone. DynaRetire exists to help people understand the dynamics of retirement planning through interactive modeling, regardless of their wealth level or financial literacy.</p>
+              </div>
+            </div>
+          </div>
+          
+          <p class="mission-disclaimer">The simulations provided are educational tools to help with planning decisions. For comprehensive financial advice tailored to your specific situation, we encourage consulting with a qualified financial professional.</p>
+        </div>
       </div>
     </section>
 
@@ -339,48 +369,19 @@
                 <li>Adapts to changing expenses at different life stages</li>
                 <li>Different inflation rates for different expense types</li>
                 <li>Help you to project with contributions, returns, & growth</li>
-                <li>Real history market testing</li>
+                <li>Real history market testing*</li>
                 <li>Switch to Minimum Spending, Option of Pause Balancing</li>
                 <li>Cater for pension fund withdrawal constraints</li>
               </ul>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <section class="advanced-features">
-      <div class="container">
-        <h2>Advanced Features for Complex Needs</h2>
-        <div class="advanced-grid">
-          <div class="advanced-card">
-            <h3>Custom Asset Allocation</h3>
-            <p>
-              Set different asset allocations for different age periods based on
-              your risk tolerance.
-            </p>
+          
+          <div class="methodology-note">
+            <h4>* Why We Use Historical Testing Instead of Monte Carlo</h4>
+            <p>While many planners use Monte Carlo simulations, we deliberately chose historical market testing for two crucial reasons. First, sequence of returns risk—the devastating impact of market crashes early in retirement. Second, because while everything else changes, <em>human behavior doesn't</em>. Market crashes repeat not because history repeats exactly, but because human psychology remains constant. The 1929 crash, the 2000 dot-com bubble, the 2008 financial crisis—different circumstances, same human patterns. Testing against real historical crashes provides insights no random simulation can match, showing how your plan would fare against the human-driven market cycles that will inevitably occur again in some form.</p>
           </div>
-          <div class="advanced-card">
-            <h3>Flexible Income Planning</h3>
-            <p>
-              Support various income sources, with it's occur period and growth
-              pattern as how it expected.
-            </p>
-          </div>
-          <div class="advanced-card">
-            <h3>Early Retirement Planning</h3>
-            <p>
-              Account for pension fund eligibility and sequence of returns risk
-              with specialized early retirement features.
-            </p>
-          </div>
-          <div class="advanced-card">
-            <h3>Excel Export</h3>
-            <p>
-              Export detailed calculations to Excel for further analysis or
-              record keeping.
-            </p>
-          </div>
+          
         </div>
       </div>
     </section>

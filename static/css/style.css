@@ -714,6 +714,27 @@ h1, h2, h3 {
     margin-top: 0.2em;
 }
 
+/* Add to your existing CSS file */
+.methodology-note {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-radius: 8px;
+    background-color: rgba(240, 240, 240, 0.6);
+    border-left: 4px solid #3498db;
+  }
+  
+  .methodology-note h4 {
+    margin-top: 0;
+    color: #2c3e50;
+    font-size: 1.1rem;
+  }
+  
+  .methodology-note p {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
 /* Advanced Features Section */
 .advanced-features {
     padding: 6rem 0;
@@ -1079,4 +1100,108 @@ h1, h2, h3 {
     .menu-group .menu-item::after {
         display: none;
     }
+}
+
+/* Mission Section */
+.mission-section {
+  padding: 6rem 0;
+  background: var(--background-light);
+}
+
+.mission-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.mission-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--accent-color);
+}
+
+.mission-section > .container > .mission-content > p {
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  color: var(--secondary-color);
+  line-height: 1.6;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mission-points {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+  margin: 3rem 0;
+}
+
+.mission-point {
+  display: flex;
+  gap: 1.5rem;
+  text-align: left;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mission-point:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+}
+
+.mission-icon {
+  font-size: 2rem;
+  color: var(--brand-color);
+  flex-shrink: 0;
+}
+
+.mission-point h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--accent-color);
+}
+
+.mission-point p {
+  color: var(--secondary-color);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.mission-disclaimer {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--secondary-color);
+  max-width: 800px;
+  margin: 2rem auto 0;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background: rgba(73, 197, 196, 0.05);
+  border-left: 3px solid var(--brand-color);
+}
+
+/* Add responsive adjustments for the mission section */
+@media (max-width: 768px) {
+  .mission-points {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .mission-point {
+    padding: 1.5rem;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .mission-icon {
+    margin-bottom: 1rem;
+  }
+  
+  .mission-section > .container > .mission-content > p {
+    font-size: 1rem;
+  }
 }
