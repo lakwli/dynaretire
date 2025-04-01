@@ -85,15 +85,15 @@
             startmin=window.convertToInt(document.getElementById('curr-age').value)
             newGrowth.innerHTML = `
                 <div class="column">
-                    <input class="input inc-growth-rate is-primary" min=1 name="inc-growth-rate" type="number"  step='0.01'  placeholder="e.g. 3%" onchange="window.addValidationIfNeeded(this)">
+                    <input class="input inc-growth-rate is-primary has-text-right" min=1 name="inc-growth-rate" type="number"  step='0.01'  placeholder="e.g. 3%" onchange="window.addValidationIfNeeded(this)">
                 </div>
                 <div class="column">
-                    <input class="input inc-growth-starting-age is-primary" min=${startmin} name="inc-growth-starting-age"  type="number" placeholder="Starting Age">
+                    <input class="input inc-growth-starting-age is-primary has-text-right" min=${startmin} name="inc-growth-starting-age"  type="number" placeholder="Starting Age">
                 </div>
                 <div class="column">
                     <div class="field has-addons">
                         <div class="control is-expanded">
-                            <input class="input inc-growth-until-age is-info" name="inc-growth-until-age" type="number" placeholder="Last Age income" value="50" onchange="validateFirstUntilYear(this)">
+                            <input class="input inc-growth-until-age is-info has-text-right" name="inc-growth-until-age" type="number" placeholder="Last Age income" value="50" onchange="validateFirstUntilYear(this)">
                         </div>
                         <div class="control">
                             <button class="icon-button add-growth " aria-label="Add Growth"  title="Add a different growth rate for another period">
