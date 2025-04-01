@@ -20,21 +20,21 @@
             row_num=1
             newRebal.innerHTML = `
                 <div class="column">
-                    <input class="input is-primary risk-ratio" min=1 type="number" placeholder="e.g. 60" onChange="validateFirstRatio(this)">
+                    <input class="input is-primary risk-ratio has-text-right" min=1 type="number" placeholder="e.g. 60" onChange="validateFirstRatio(this)">
                 </div>
                 <div class="column">
-                    <input disabled class="input stg-ratio-second" min=1 type="number" >
+                    <input disabled class="input stg-ratio-second has-text-right" min=1 type="number" >
                 </div>
                 <div class="column">
-                    <input class="input is-primary stg-starting-age" type="number" min=${startmin} placeholder="When the rebalancing started?" onChange="onChangeStgStartYear(this)">
+                    <input class="input is-primary stg-starting-age has-text-right" type="number" min=${startmin} placeholder="When the rebalancing started?" onChange="onChangeStgStartYear(this)">
                 </div>
                 <div class="column">
-                    <input class="input is-info stg-until-age" type="number" placeholder="When the rebalancing ended?" value="100" onChange="validateStgUntilYear(this)">
+                    <input class="input is-info stg-until-age has-text-right" type="number" placeholder="When the rebalancing ended?" value="100" onChange="validateStgUntilYear(this)">
                 </div>
                 <div class="column">                          
                     <div class="field has-addons">
                         <div class="control is-expanded" >
-                            <input class="input is-primary stg-every-few-years" name="stg-every-few-years" type="number" min="1" placeholder="Is this rebalancing occurrance years"  value="${everyFewYearsValue}" onChange="validateStgFewYear(this)">
+                            <input class="input is-primary stg-every-few-years has-text-right" name="stg-every-few-years" type="number" min="1" placeholder="Is this rebalancing occurrance years"  value="${everyFewYearsValue}" onChange="validateStgFewYear(this)">
                         </div>
                         <div class="control" >
                             <button class="icon-button add-rebal " aria-label="Add Rebalance Ratio"  title="Add a different rebalance ratio for another period">
