@@ -971,6 +971,15 @@ p {
     width: 100%;
 }
 
+/* Style for icons within footer menu links */
+.menu-group .menu-item i {
+  margin-right: 0.5rem; /* Space between icon and text */
+  font-size: 1rem; /* Adjust icon size */
+  vertical-align: middle; /* Align icon with text */
+  width: 1em; /* Ensure icon takes up consistent space */
+  text-align: center; /* Center icon if needed */
+}
+
 .tag {
     font-size: 0.75rem;
     padding: 0.15rem 0.5rem;
@@ -980,24 +989,7 @@ p {
     font-weight: 500;
 }
 
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border-color);
-}
-
-.social-links a {
-    color: var(--secondary-color);
-    font-size: 1.2rem;
-    transition: all 0.2s ease;
-}
-
-.social-links a:hover {
-    color: var(--brand-color);
-    transform: translateY(-2px);
-}
+/* Removed .social-links styles as the element is no longer used */
 
 .footer-cta {
     position: fixed;

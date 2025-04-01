@@ -492,66 +492,45 @@
     <footer class="footer" id="footer-menu">
       <div class="footer-wrapper">
         <div class="menu-content">
+          <!-- Quick Links -->
           <div class="menu-group">
-            <div class="menu-group-title">Features</div>
+            <div class="menu-group-title">Quick Links</div>
             <div class="menu-group-links">
-              <a href="#" class="menu-item">Dynamic Planning</a>
-              <a href="#" class="menu-item">Risk Management</a>
-              <a href="#" class="menu-item">Investment Testing</a>
-              <a href="#" class="menu-item">Excel Export</a>
-              <a href="#" class="menu-item"
-                >Early Retirement <span class="tag">New</span></a
-              >
+              <a href="/" class="menu-item">Home</a>
+              <a href="/articles/tutorial" class="menu-item">Tutorial</a>
+              <a href="/plan" class="menu-item">Retirement Simulator</a>
             </div>
           </div>
+          <!-- Resources -->
           <div class="menu-group">
             <div class="menu-group-title">Resources</div>
             <div class="menu-group-links">
-              <a href="#" class="menu-item">Blog</a>
-              <a href="#" class="menu-item">Documentation</a>
-              <a href="#" class="menu-item">Community</a>
-              <a href="#" class="menu-item"
-                >Retirement Guide <span class="tag">New</span></a
-              >
+              <a href="{{ url_for('static', filename='resources/files/dynaRetire-SampleResult-Martin_2024.xlsx') }}" class="menu-item" download>Sample Result</a>
             </div>
           </div>
-          <div class="menu-group">
-            <div class="menu-group-title">Support</div>
-            <div class="menu-group-links">
-              <a href="#" class="menu-item">Help Center</a>
-              <a href="#" class="menu-item">Contact Us</a>
-              <a href="#" class="menu-item">FAQ</a>
-              <a href="#" class="menu-item">Video Tutorials</a>
-            </div>
-          </div>
+          <!-- Legal -->
           <div class="menu-group">
             <div class="menu-group-title">Legal</div>
             <div class="menu-group-links">
-              <a href="#" class="menu-item">Terms of Service</a>
-              <a href="#" class="menu-item">Privacy Policy</a>
-              <a href="#" class="menu-item">Security</a>
-              <a href="#" class="menu-item">GDPR Compliance</a>
+              <a href="/privacy" class="menu-item">Privacy Policy</a>
+            </div>
+          </div>
+          <!-- Source Code -->
+          <div class="menu-group">
+            <div class="menu-group-title">Source Code</div>
+            <div class="menu-group-links">
+              <a href="https://github.com/lakwli/dynaretire" class="menu-item" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i> GitHub
+              </a>
             </div>
           </div>
         </div>
-        <div class="social-links">
-          <a href="#" target="_blank" rel="noopener"
-            ><i class="fab fa-twitter"></i
-          ></a>
-          <a href="#" target="_blank" rel="noopener"
-            ><i class="fab fa-linkedin-in"></i
-          ></a>
-          <a href="#" target="_blank" rel="noopener"
-            ><i class="fab fa-youtube"></i
-          ></a>
-          <a href="#" target="_blank" rel="noopener"
-            ><i class="fab fa-github"></i
-          ></a>
-        </div>
+        <!-- Social links removed as per new structure, GitHub link is now under Source Code -->
       </div>
-      <a href="https://dynaretire.app/signup" class="footer-cta">
+      <!-- CTA button can remain if desired, or be removed -->
+      <!-- <a href="https://dynaretire.app/signup" class="footer-cta">
         Start Planning Free <i class="fas fa-arrow-right"></i>
-      </a>
+      </a> -->
       <div class="footer-copyright">
         © 2025 DynaRetire. All rights reserved.
       </div>
