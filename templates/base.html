@@ -39,20 +39,7 @@
             </a>
             <div class="nav-menu">
                 <a href="/articles/tutorial" class="nav-link">Tutorial</a>
-                <a href="/blog" class="nav-link">Blog</a>
-                <div class="resources-menu" onclick="this.classList.toggle('active')">
-                    <span class="resources-trigger">Resources</span>
-                    <div class="resources-content" onclick="event.stopPropagation()">
-                        <a href="{{ url_for('static', filename='downloads/files/dynaRetire-SampleResult-Martin_2024.xlsx') }}" target="_blank">
-                            Docs - Sample Result
-                            <span class="description">Example retirement simulation results</span>
-                        </a>
-                        <a href="#" target="_blank">
-                            Open Source - Run this locally
-                            <span class="description">Deploy on your own system</span>
-                        </a>
-                    </div>
-                </div>
+                <a href="{{ url_for('static', filename='resources/files/dynaRetire-SampleResult-Martin_2024.xlsx') }}" class="nav-link">Sample</a>
                 <a href="/plan" class="nav-cta">Launch App</a>
             </div>
         </div>
@@ -69,15 +56,5 @@
     </footer>
 
     {% block scripts %}{% endblock %}
-    
-    <script>
-        // Close resources menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const menu = document.querySelector('.resources-menu');
-            if (!menu.contains(event.target)) {
-                menu.classList.remove('active');
-            }
-        });
-    </script>
 </body>
 </html>
