@@ -133,7 +133,7 @@ p {
 }
 
 .nav-cta:hover {
-    background: var(--cta-color-hover);
+    background: var(--brand-color-hover); /* Match primary button hover */
     transform: translateY(-2px);
 }
 
@@ -1023,9 +1023,9 @@ p {
 }
 
 .footer-cta:hover {
-    transform: translateY(-4px);
-    background: var(--cta-color-hover);
-    box-shadow: 0 12px 20px rgba(255, 107, 53, 0.35);
+    transform: translateY(-2px); /* Match primary button hover */
+    background: var(--brand-color-hover); /* Match primary button hover */
+    /* Removed box-shadow to match primary button hover */
 }
 
 .footer-cta:hover i {
