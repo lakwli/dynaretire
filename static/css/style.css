@@ -266,8 +266,23 @@ p {
     color: var(--secondary-color);
     line-height: 1.5;
     opacity: 0.9;
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 700px; /* Standardized */
+    margin: 0 auto 3rem; /* Standardized */
+    font-size: 1.1rem; /* Standardized */
+    line-height: 1.6; /* Standardized */
+    opacity: 0.9; /* Keep subtle fade */
+    text-align: center; /* Ensure centered */
+}
+
+/* Standardized Section Subtitle Class */
+.section-subtitle {
+    font-size: 1.1rem; /* Standardized */
+    color: var(--secondary-color);
+    line-height: 1.6; /* Standardized */
+    opacity: 0.9; /* Keep subtle fade */
+    max-width: 700px; /* Standardized */
+    margin: 0 auto 3rem; /* Standardized bottom margin */
+    text-align: center; /* Ensure centered */
 }
 
 .main-feature {
@@ -639,15 +654,15 @@ p {
 }
 
 /* Why Section */
-.why-secion {
+.why-section { /* Corrected typo */
     padding: 8rem 0 6rem;
     background: white;
 }
 
-.why-secion h2 {
+.why-section h2 { /* Corrected typo */
     text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem; /* Standardized margin */
     color: var(--accent-color);
 }
 
@@ -657,6 +672,7 @@ p {
     gap: 2rem;
     position: relative;
     z-index: 1;
+    text-align: center; /* Ensure centered */
 }
 
 .why-card {
@@ -692,7 +708,7 @@ p {
 .comparison-section h2 {
     text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem; /* Standardized margin */
     position: relative;
     z-index: 1;
 }
@@ -1191,8 +1207,11 @@ p {
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
   color: var(--accent-color);
+  text-align: center; /* Ensure centered */
 }
 
+/* Remove specific styling for mission subtitle, will use .section-subtitle class */
+/*
 .mission-section > .container > .mission-content > p {
   font-size: 1.2rem;
   margin-bottom: 3rem;
@@ -1202,6 +1221,7 @@ p {
   margin-left: auto;
   margin-right: auto;
 }
+*/
 
 .mission-points {
   display: grid;
