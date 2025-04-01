@@ -1151,7 +1151,16 @@ p {
         display: none;
     }
 }
-
+.info-callout {
+    padding: 1.5rem;
+    border-radius: 8px;
+    background: rgba(73, 197, 196, 0.05); /* Your brand color, semi-transparent */
+    border-left: 3px solid var(--brand-color);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 2rem auto 0;
+    max-width: 800px;
+  }
 /* Mission Section */
 .mission-section {
   padding: 8rem 0 6rem;
