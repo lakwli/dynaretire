@@ -1032,6 +1032,14 @@ p {
     transform: translateX(4px);
 }
 
+.footer-copyright {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #a0aec0; /* Lighter gray color */
+  margin-top: 1rem; /* Space above the copyright */
+  padding-bottom: 1rem; /* Space below the copyright */
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     .nav-menu {
