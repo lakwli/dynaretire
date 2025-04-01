@@ -93,18 +93,18 @@
             startmin=window.convertToInt(document.getElementById('curr-age').value)+1
             newAmount.innerHTML = `
                 <div class="column">
-                    <input class="input exp-amt-amt is-primary" name="exp-amt-amt" type="text" placeholder="Amount" onchange="window.addValidationIfNeeded(this)" onkeyup="callKeyUpAmountFunction(this)">
+                    <input class="input exp-amt-amt is-primary has-text-right" name="exp-amt-amt" type="text" placeholder="Amount" onchange="window.addValidationIfNeeded(this)" onkeyup="callKeyUpAmountFunction(this)">
                 </div>
                 <div class="column">
-                    <input class="input exp-amt-starting-age is-primary" name="exp-amt-starting-age"  type="number" min="${startmin}" placeholder="Starting Age" >
+                    <input class="input exp-amt-starting-age is-primary has-text-right" name="exp-amt-starting-age"  type="number" min="${startmin}" placeholder="Starting Age" >
                 </div>
                 <div class="column">
-                    <input class="input exp-amt-until-age is-info" type="number" placeholder="Until Age">
+                    <input class="input exp-amt-until-age is-info has-text-right" type="number" placeholder="Until Age">
                 </div>
                 <div class="column">
                             <div class="field has-addons">
                                 <div class="control">
-                                    <input class="input exp-amt-every-few-years is-primary" name="exp-amt-every-few-years" type="number" placeholder="(Optional)Occur once for few years e.g 10 " value="${everyFewYearsValue}" onchange="window.addValidationIfNeeded(this)">
+                                    <input class="input exp-amt-every-few-years is-primary has-text-right" name="exp-amt-every-few-years" type="number" placeholder="(Optional)Occur once for few years e.g 10 " value="${everyFewYearsValue}" onchange="window.addValidationIfNeeded(this)">
                                 </div>
                                 <div class="control">
                                     <button class="icon-button add-amount " aria-label="Add Amount" title="Add different amount for another period">
@@ -479,4 +479,3 @@
         const formattedValue = numericValue.replace(/\B(?=(\d{3})+(?!\d))/g, ','); // Add commas
         inputElement.value = formattedValue;
     }
-    

@@ -31,7 +31,7 @@
                                 </span>
                             </label>
                             <div class="control">
-                                <input class="input exp-inflation is-primary" type="number" name="exp-inflation" min="0" step="5" placeholder="e.g. 3%" required onchange="window.addValidationIfNeeded(this)">
+                                <input class="input exp-inflation is-primary has-text-right" type="number" name="exp-inflation" min="0" step="5" placeholder="e.g. 3%" required onchange="window.addValidationIfNeeded(this)">
                             </div>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                                 </span>
                             </label>
                             <div class="control">
-                                <input class="input exp-minspend is-info" type="number" name="exp-minspend" step="5" min="0" placeholder="e.g. 80" onchange="window.addValidationIfNeeded(this)">
+                                <input class="input exp-minspend is-info has-text-right" type="number" name="exp-minspend" step="5" min="0" placeholder="e.g. 80" onchange="window.addValidationIfNeeded(this)">
                             </div>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                                     <i class="fas fa-question-circle" title="Enter this expense in TODAY'S DOLLARS (present value). For example, if you enter $6,000 for age 65, the tool will automatically calculate what this will actually cost at age 65 after inflation."></i>
                                 </span>
                             </label>
-                            <input class="input exp-amt-amt is-primary" name="exp-amt-amt" type="text" placeholder="Amount" onchange="window.addValidationIfNeeded(this)" onkeyup="callKeyUpAmountFunction(this)">
+                            <input class="input exp-amt-amt is-primary has-text-right" name="exp-amt-amt" type="text" placeholder="Amount" onchange="window.addValidationIfNeeded(this)" onkeyup="callKeyUpAmountFunction(this)">
                         </div>
                         <div class="column">
                             <label class="label">From Age (inclusive)                                                                       
@@ -70,7 +70,7 @@
                                     <i class="fas fa-question-circle" title="Enter the age when these expenses begin. For example, enter '55' if this expense starts at age 55."></i>
                                 </span>
                             </label>
-                            <input class="input exp-amt-starting-age is-primary" name="exp-amt-starting-age" type="number" min="1" placeholder="When the expenses start?" required onchange="validateExpStartingYearFromPage(this)">
+                            <input class="input exp-amt-starting-age is-primary has-text-right" name="exp-amt-starting-age" type="number" min="1" placeholder="When the expenses start?" required onchange="validateExpStartingYearFromPage(this)">
                         </div>
                         <div class="column">
                             <label class="label">To Age (inclusive)                                                                                                     
@@ -78,7 +78,7 @@
                                     <i class="fas fa-question-circle" title="Enter the last age when these expenses apply. For example, enter '65' if this expense ends at age 65."></i>
                                 </span>
                             </label>
-                            <input class="input exp-amt-until-age is-info " name="exp-amt-until-age" type="number" placeholder="When the expenses end?" value="100" onchange="validateExpFirstUntilYear(this)">
+                            <input class="input exp-amt-until-age is-info has-text-right" name="exp-amt-until-age" type="number" placeholder="When the expenses end?" value="100" onchange="validateExpFirstUntilYear(this)">
                         </div>
                         <div class="column">
                             <label class="label">Occurrence Interval                                                                                                       
@@ -89,7 +89,7 @@
                             </label>
                             <div class="field has-addons">
                                 <div class="control">
-                                    <input class="input exp-amt-every-few-years is-primary" name="exp-amt-every-few-years" type="number" placeholder="Occur once for few years e.g 10 " value="1" onchange="validateExpIntervalFromPage(this)">
+                                    <input class="input exp-amt-every-few-years is-primary has-text-right" name="exp-amt-every-few-years" type="number" placeholder="Occur once for few years e.g 10 " value="1" onchange="validateExpIntervalFromPage(this)">
                                 </div>
                                 <div class="control">
                                     <button class="icon-button add-amount " aria-label="Add Amount"  title="Add a different amount for another period">
@@ -115,4 +115,3 @@
 
 
 </script>
-
