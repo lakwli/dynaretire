@@ -17,10 +17,10 @@
     --expense-hover: #2666B0;        /* Blue hover */
     --growth-color: #009688;         /* Original teal */
     --growth-hover: #008578;         /* Teal hover */
-    --protection-color: #34495E;     /* Original slate */
-    --protection-hover: #2C3E50;     /* Slate hover */
-    --fire-color: #8541A4;          /* Refined purple */
-    --fire-hover: #773894;          /* Purple hover */
+    --protection-color: #6991ac;     /* Updated blue-gray */
+    --protection-hover: #5A7A93;     /* Updated blue-gray hover */
+    --fire-color: #9B6B9E;          /* Softened purple */
+    --fire-hover: #8A5F8D;          /* Softened purple hover */
 }
 
 * {
