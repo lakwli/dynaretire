@@ -13,7 +13,7 @@
                         <label class="label">Current Calendar Year</label>
                         <div class="field">
                             <div class="control">
-                                <input name="curr-cal-yr" id="curr-cal-yr"class="input curr-cal-yr is-primary" type="number" step="1" min=1900 placeholder="e.g. 2024" onchange="validateCurrentYear(this)">
+                                <input name="curr-cal-yr" id="curr-cal-yr"class="input curr-cal-yr is-primary has-text-right" type="number" step="1" min=1900 placeholder="e.g. 2024" onchange="validateCurrentYear(this)">
                             </div>
                         </div>
                     </div>
@@ -25,7 +25,7 @@
                         </label>
                         <div class="field">
                             <div class="control">
-                                <input name="curr-age" id="curr-age" class="input curr-age is-primary" type="number" step="1" min=15 max="80" placeholder="e.g. 30" onchange="changeCurrentAge(this)">
+                                <input name="curr-age" id="curr-age" class="input curr-age is-primary has-text-right" type="number" step="1" min=15 max="80" placeholder="e.g. 30" onchange="changeCurrentAge(this)">
                             </div>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                         </label>
                         <div class="field">
                             <div class="control">
-                                <input name="retire-age" id="retire-age" class="input retire-age is-primary"type="number" step="1" min=15 max="80" placeholder="e.g. 31" onchange="validateRetireAge(this)">                                         
+                                <input name="retire-age" id="retire-age" class="input retire-age is-primary has-text-right"type="number" step="1" min=15 max="80" placeholder="e.g. 31" onchange="validateRetireAge(this)">                                         
                             </div>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                         </label>
                         <div class="field">
                             <div class="control">
-                                <input name="fundamount" class="input fundamount is-normal is-primary" type="text" placeholder="Amount" required onchange="window.addValidationIfNeeded(this)" onkeyup="callKeyUpAmountFunction(this)">
+                                <input name="fundamount" class="input fundamount is-normal is-primary has-text-right" type="text" placeholder="Amount" required onchange="window.addValidationIfNeeded(this)" onkeyup="callKeyUpAmountFunction(this)">
                             </div>
                         </div>
                     </div>
@@ -120,7 +120,7 @@
                                       </select>
                                   </p>
                                   <p class="control funds-return-rate-wrap" name="funds-return-rate-wrap">
-                                    <input class="input is-primary funds-return-rate" name="funds-return-rate" type="number" min="1" step="0.01" placeholder="e.g. 5.5%" onchange="validateFundFlatReturnRate(this)">
+                                    <input class="input is-primary funds-return-rate has-text-right" name="funds-return-rate" type="number" min="1" step="0.01" placeholder="e.g. 5.5%" onchange="validateFundFlatReturnRate(this)">
                                   </p>
                                 </div>                            
                             </div>
@@ -134,7 +134,7 @@
                         </label>
                         <div class="field">
                             <div class="control">
-                                <input class="input is-primary funds-default-return" name="funds-default-return" type="number" min="1" max="100" step="0.1" placeholder="e.g. 9%" onchange="validateFundDefaultReturnRate(this)">
+                                <input class="input is-primary funds-default-return has-text-right" name="funds-default-return" type="number" min="1" max="100" step="0.1" placeholder="e.g. 9%" onchange="validateFundDefaultReturnRate(this)">
                             </div>
                         </div>
                     </div>
@@ -146,7 +146,7 @@
                         </label>
                         <div class="field">
                             <div class="control">
-                                <input class="input is-primary funds-mimic-year" name="funds-mimic-year" type="number" min="1981" max="2024" step="1" placeholder="e.g. 1981" onchange="validateFundMimicYear(this)">
+                                <input class="input is-primary funds-mimic-year has-text-right" name="funds-mimic-year" type="number" min="1981" max="2024" step="1" placeholder="e.g. 1981" onchange="validateFundMimicYear(this)">
                             </div>
                         </div>
                     </div>
@@ -158,7 +158,7 @@
                                 </span>
                             </label>
                             <div class="control">
-                                <input name="fundwithdrawage" class="input is-primary fundwithdrawage" type="number" step="1" min=1 placeholder="e.g. 1" value=1 max="80" required onchange="window.addValidationIfNeeded(this)">
+                                <input name="fundwithdrawage" class="input is-primary fundwithdrawage has-text-right" type="number" step="1" min=1 placeholder="e.g. 1" value=1 max="80" required onchange="window.addValidationIfNeeded(this)">
                             </div>
                         </div>
                     </div>
@@ -173,4 +173,3 @@
 <script defer type="text/javascript" src="{{ url_for('static', filename='js/funds/funds.js') }}"></script>
     <script defer type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script defer nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
