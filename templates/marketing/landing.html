@@ -156,7 +156,8 @@
           <!--<h2>Expense planning that evolves with your life stages</h2>-->
           <h2>Features That Make Real-World Retirement Planning Possible</h2>
           <p>
-            Customize expenses, test investments, model income sources, and handle risks that other planners ignore
+            Customize expenses, test investments, model income sources, and
+            handle risks that other planners ignore
           </p>
         </div>
         <div class="main-feature">
@@ -167,118 +168,187 @@
           />
         </div>
 
-  <!-- TODO: Create a 3-4-3 grid (3 items top row, 4 middle, 3 bottom) -->
+        <!-- TODO: Create a 3-4-3 grid (3 items top row, 4 middle, 3 bottom) -->
 
-<div class="features-grid">
-  <!-- ALL USERS - Start with features everyone cares about -->
-  <div class="feature-item">
-    <span class="feature-tag">Expenses</span>
-    <div class="image-wrapper image-wrapper-exp scale-90">
-      <img src="{{ url_for('static', filename='images/landing/feature_commitment.svg') }}" alt="Financial Commitments" class="feature-item-image" />
-    </div>
-    <h3>Ongoing Commitments</h3>
-    <p>Handle housing loans, child's education fees and other commitments that continue into retirement.</p>
-  </div>
-  
-  <div class="feature-item">
-    <span class="feature-tag">Expenses</span>
-    <div class="image-wrapper image-wrapper-exp">
-      <img src="{{ url_for('static', filename='images/landing/feature_medical.svg') }}" alt="Healthcare Costs" class="feature-item-image" />
-    </div>
-    <h3>Healthcare Costs Surge</h3>
-    <p>Be prepared for unavoidable medical costs that rise with age and high inflation.</p>
-  </div>
-  
-  <div class="feature-item">
-    <span class="feature-tag">Expenses</span>
-    <div class="image-wrapper image-wrapper-exp">
-      <img src="{{ url_for('static', filename='images/landing/feature_irregular.svg') }}" alt="Irregular Expenses" class="feature-item-image" />
-    </div>
-    <h3>Irregular Expenses</h3>
-    <p>Plan for recurring expenses every few years like car replacement or 1-time costs like home renovation. </p>
-  </div>
+        <div class="features-grid">
+          <!-- ALL USERS - Start with features everyone cares about -->
+          <div class="feature-item">
+            <span class="feature-tag">Expenses</span>
+            <div class="image-wrapper image-wrapper-exp scale-90">
+              <img
+                src="{{ url_for('static', filename='images/landing/feature_commitment.svg') }}"
+                alt="Financial Commitments"
+                class="feature-item-image"
+              />
+            </div>
+            <h3>Ongoing Commitments</h3>
+            <p>
+              Handle housing loans, child's education fees and other commitments
+              that continue into retirement.
+            </p>
+          </div>
 
-  <!-- Growth-Oriented Features - Teal -->
-  <div class="feature-item">
-    <span class="feature-tag">Working Years</span>
-    <div class="image-wrapper image-wrapper-work">
-      <img src="{{ url_for('static', filename='images/landing/feature_workingSaving.svg') }}" alt="Working Savings" class="feature-item-image" />
-    </div>
-    <div class="feature-text-wrapper">
-      <h3>Retirement Money Projection</h3>
-      <p>Project how your retirement funds will grow by setting different return rates for pension (typically 4%) and personal investments (typically 7%), with customizable growth patterns as your career progresses.</p>
-    </div>
-  </div>
-    <!-- Protection-Focused Investment - Slate -->
+          <div class="feature-item">
+            <span class="feature-tag">Expenses</span>
+            <div class="image-wrapper image-wrapper-exp">
+              <img
+                src="{{ url_for('static', filename='images/landing/feature_medical.svg') }}"
+                alt="Healthcare Costs"
+                class="feature-item-image"
+              />
+            </div>
+            <h3>Healthcare Costs Surge</h3>
+            <p>
+              Be prepared for unavoidable medical costs that rise with age and
+              high inflation.
+            </p>
+          </div>
 
-  <div class="feature-item">
-    <span class="feature-tag">Have Investments?</span>
-    <div class="image-wrapper image-wrapper-invest1">
-    <img src="{{ url_for('static', filename='images/landing/feature_backtest.svg') }}" alt="Expected Returns" class="feature-item-image" />
-    </div>
-    <h3>Expected Return Or Back-test</h3>
-    <p>Set expected returns or back-test with historical data to see potential outcomes</p>
-  </div>
-  
-<!-- INVESTORS GROUP - For those focused on investment strategies -->
- <!-- INVESTORS GROUP - For those focused on investment strategies -->
-  <div class="feature-item">
-    <span class="feature-tag">Have Investments?</span>
-    <div class="image-wrapper image-wrapper-invest1">
-    <img src="{{ url_for('static', filename='images/landing/feature_reductionRate.svg') }}" alt="Minimum Spending" class="feature-item-image" />
-    </div>
-    <h3>Spending Control</h3>
-    <p>Reduce selective expenses to acceptable level during tought market</p>
-  </div>
-  
-    <div class="feature-item">
-    <span class="feature-tag">In Retirement?</span>
-    <div class="image-wrapper image-wrapper-retireIncome scale-70">
-      <img src="{{ url_for('static', filename='images/landing/feature_retirementIncome.svg') }}" alt="Continuous Income" class="feature-item-image" />
-    </div>
-    <div class="feature-text-wrapper">
-      <h3>Retirement Income Planning</h3>
-      <p>Project additional revenue from rentals, property sales, and part-time work after retirement.</p>
-    </div>
-  </div>
-  
-    <div class="feature-item">
-    <span class="feature-tag">Retiring Early?</span>
-    <!-- Restructured layout with horizontal orientation -->
-    <div class="image-wrapper image-wrapper-fire scale-20">
-      <img src="{{ url_for('static', filename='images/landing/WithdrawAge.svg') }}" alt="Pension and Investment" class="feature-item-image" />
-    </div>
-    <div class="content-wrapper">
-      <h3>FIRE Transition Strategy</h3>
-      <p>Manage investment withdrawals during early retirement before pension access</p>
-    </div>
-  </div>
-  
-    <div class="feature-item">
-    <span class="feature-tag">Have Investments?</span>
-    <div class="image-wrapper scale-90 image-wrapper-invest2">
-    <img src="{{ url_for('static', filename='images/landing/feature_assetAllocation.svg') }}" alt="Asset Allocation" class="feature-item-image" />
-    </div>
-    <h3>Age-Based Asset Allocation</h3>
-    <p>Automatically shift from growth to preservation, adjust asset allocation as age to reduce risk.</p>
-  </div>
-  
-  <div class="feature-item">
-    <span class="feature-tag">Have Investments?</span>
-    <div class="image-wrapper image-wrapper-invest2">
-    <img src="{{ url_for('static', filename='images/landing/feature_rebalanceOption.svg') }}" alt="Portfolio Rebalance" class="feature-item-image" />
-    </div>
-    <h3>Portfolio Rebalancing</h3>
-    <p>Pause rebalance during tought market and control rebalancing frequency</p>
-  </div>
-</div>
+          <div class="feature-item">
+            <span class="feature-tag">Expenses</span>
+            <div class="image-wrapper image-wrapper-exp">
+              <img
+                src="{{ url_for('static', filename='images/landing/feature_irregular.svg') }}"
+                alt="Irregular Expenses"
+                class="feature-item-image"
+              />
+            </div>
+            <h3>Irregular Expenses</h3>
+            <p>
+              Plan for recurring expenses every few years like car replacement
+              or 1-time costs like home renovation.
+            </p>
+          </div>
 
+          <!-- Growth-Oriented Features - Teal -->
+          <div class="feature-item">
+            <span class="feature-tag">Working Years</span>
+            <div class="image-wrapper image-wrapper-work">
+              <img
+                src="{{ url_for('static', filename='images/landing/feature_workingSaving.svg') }}"
+                alt="Working Savings"
+                class="feature-item-image"
+              />
+            </div>
+            <div class="feature-text-wrapper">
+              <h3>Retirement Money Projection</h3>
+              <p>
+                Project how your retirement funds will grow by setting different
+                return rates for pension (typically 4%) and personal investments
+                (typically 7%), with customizable growth patterns as your career
+                progresses.
+              </p>
+            </div>
+          </div>
+          <!-- Protection-Focused Investment - Slate -->
 
+          <div class="feature-item">
+            <span class="feature-tag">Have Investments?</span>
+            <div class="image-wrapper image-wrapper-invest1">
+              <img
+                src="{{ url_for('static', filename='images/landing/feature_backtest.svg') }}"
+                alt="Expected Returns"
+                class="feature-item-image"
+              />
+            </div>
+            <h3>Expected Return Or Back-test</h3>
+            <p>
+              Set expected returns or back-test with historical data to see
+              potential outcomes
+            </p>
+          </div>
+
+          <!-- INVESTORS GROUP - For those focused on investment strategies -->
+          <!-- INVESTORS GROUP - For those focused on investment strategies -->
+          <div class="feature-item">
+            <span class="feature-tag">Have Investments?</span>
+            <div class="image-wrapper image-wrapper-invest1">
+              <img
+                src="{{ url_for('static', filename='images/landing/feature_reductionRate.svg') }}"
+                alt="Minimum Spending"
+                class="feature-item-image"
+              />
+            </div>
+            <h3>Spending Control</h3>
+            <p>
+              Reduce selective expenses to acceptable level during tought market
+            </p>
+          </div>
+
+          <div class="feature-item">
+            <span class="feature-tag">In Retirement?</span>
+            <div class="image-wrapper image-wrapper-retireIncome scale-70">
+              <img
+                src="{{ url_for('static', filename='images/landing/feature_retirementIncome.svg') }}"
+                alt="Continuous Income"
+                class="feature-item-image"
+              />
+            </div>
+            <div class="feature-text-wrapper">
+              <h3>Retirement Income Planning</h3>
+              <p>
+                Project additional revenue from rentals, property sales, and
+                part-time work after retirement.
+              </p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <span class="feature-tag">Retiring Early?</span>
+            <!-- Restructured layout with horizontal orientation -->
+            <div class="image-wrapper image-wrapper-fire scale-20">
+              <img
+                src="{{ url_for('static', filename='images/landing/WithdrawAge.svg') }}"
+                alt="Pension and Investment"
+                class="feature-item-image"
+              />
+            </div>
+            <div class="content-wrapper">
+              <h3>FIRE Transition Strategy</h3>
+              <p>
+                Manage investment withdrawals during early retirement before
+                pension access
+              </p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <span class="feature-tag">Have Investments?</span>
+            <div class="image-wrapper scale-90 image-wrapper-invest2">
+              <img
+                src="{{ url_for('static', filename='images/landing/feature_assetAllocation.svg') }}"
+                alt="Asset Allocation"
+                class="feature-item-image"
+              />
+            </div>
+            <h3>Age-Based Asset Allocation</h3>
+            <p>
+              Automatically shift from growth to preservation, adjust asset
+              allocation as age to reduce risk.
+            </p>
+          </div>
+
+          <div class="feature-item">
+            <span class="feature-tag">Have Investments?</span>
+            <div class="image-wrapper image-wrapper-invest2">
+              <img
+                src="{{ url_for('static', filename='images/landing/feature_rebalanceOption.svg') }}"
+                alt="Portfolio Rebalance"
+                class="feature-item-image"
+              />
+            </div>
+            <h3>Portfolio Rebalancing</h3>
+            <p>
+              Pause rebalance during tought market and control rebalancing
+              frequency
+            </p>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Hoslistic, Personalize, Risk-->
-    <section class="why-secion">
+    <section class="why-section">
       <div class="container">
         <h2>Why Choose DynaRetire?</h2>
         <div class="why-grid">
@@ -286,32 +356,35 @@
             <div class="why-icon"><i class="fas fa-layer-group"></i></div>
             <h3>Holistic Coverage</h3>
             <p>
-              Covers both pre-retirement saving and post-retirement spending.  Addresses often-overlooked factors like healthcare inflation.
+              Covers both pre-retirement saving and post-retirement spending.
+              Addresses often-overlooked factors like healthcare inflation.
             </p>
           </div>
           <div class="why-card">
             <div class="why-icon"><i class="fas fa-sliders-h"></i></div>
             <h3>True Personalization</h3>
             <p>
-              Adapt to your unique situation rather than standard templates. Fine-tune every aspect of your retirement plan.
+              Adapt to your unique situation rather than standard templates.
+              Fine-tune every aspect of your retirement plan.
             </p>
           </div>
           <div class="why-card">
             <div class="why-icon"><i class="fas fa-user-check"></i></div>
             <h3>Built By Early Retiree</h3>
             <p>
-              Created by someone who understands real retirees' needs with real-world challenges built into every calculation.
+              Created by someone who understands real retirees' needs with
+              real-world challenges built into every calculation.
             </p>
           </div>
           <div class="why-card">
             <div class="why-icon"><i class="fas fa-lock"></i></div>
             <h3>Privacy-First Approach</h3>
             <p>
-              No account required, completely anonymous planning without data collection or tracking.
+              No account required, completely anonymous planning without data
+              collection or tracking.
             </p>
           </div>
         </div>
-      </div>
       </div>
     </section>
 
@@ -320,27 +393,49 @@
       <div class="container">
         <div class="mission-content">
           <h2>Our Mission</h2>
-          <p>DynaRetire was created as a contribution to the retirement planning community, built by someone who experienced firsthand the challenges of planning for financial independence.</p>
-          
+          <p>
+            DynaRetire was created as a contribution to the retirement planning
+            community, built by someone who experienced firsthand the challenges
+            of planning for financial independence.
+          </p>
+
           <div class="mission-points">
             <div class="mission-point">
-              <div class="mission-icon"><i class="fas fa-hand-holding-heart"></i></div>
+              <div class="mission-icon">
+                <i class="fas fa-hand-holding-heart"></i>
+              </div>
               <div>
                 <h3>A Tool, Not a Replacement</h3>
-                <p>While DynaRetire offers powerful simulations, we recognize the value of professional financial advisors who provide personalized guidance, tax expertise, and emotional support during financial decisions. This tool complements, rather than replaces, professional advice.</p>
+                <p>
+                  While DynaRetire offers powerful simulations, we recognize the
+                  value of professional financial advisors who provide
+                  personalized guidance, tax expertise, and emotional support
+                  during financial decisions. This tool complements, rather than
+                  replaces, professional advice.
+                </p>
               </div>
             </div>
-            
+
             <div class="mission-point">
               <div class="mission-icon"><i class="fas fa-users"></i></div>
               <div>
                 <h3>Community-Minded</h3>
-                <p>We believe financial planning tools should be accessible to everyone. DynaRetire exists to help people understand the dynamics of retirement planning through interactive modeling, regardless of their wealth level or financial literacy.</p>
+                <p>
+                  We believe financial planning tools should be accessible to
+                  everyone. DynaRetire exists to help people understand the
+                  dynamics of retirement planning through interactive modeling,
+                  regardless of their wealth level or financial literacy.
+                </p>
               </div>
             </div>
           </div>
-          
-          <p class="mission-disclaimer">The simulations provided are educational tools to help with planning decisions. For comprehensive financial advice tailored to your specific situation, we encourage consulting with a qualified financial professional.</p>
+
+          <p class="mission-disclaimer">
+            The simulations provided are educational tools to help with planning
+            decisions. For comprehensive financial advice tailored to your
+            specific situation, we encourage consulting with a qualified
+            financial professional.
+          </p>
         </div>
       </div>
     </section>
@@ -368,7 +463,9 @@
               <ul>
                 <li>Adapts to changing expenses at different life stages</li>
                 <li>Different inflation rates for different expense types</li>
-                <li>Help you to project with contributions, returns, & growth</li>
+                <li>
+                  Help you to project with contributions, returns, & growth
+                </li>
                 <li>Real history market testing*</li>
                 <li>Switch to Minimum Spending, Option of Pause Balancing</li>
                 <li>Cater for pension fund withdrawal constraints</li>
@@ -376,12 +473,15 @@
             </div>
           </div>
 
-          
           <div class="methodology-note">
             <h4>* Why We Use Historical Testing Instead of Monte Carlo</h4>
-            <p>While many planners use Monte Carlo simulations, we deliberately chose historical market testing for two crucial reasons. First, sequence of returns risk—the devastating impact of market crashes early in retirement. Second, because while everything else changes, <em>human behavior doesn't</em>. Market crashes repeat not because history repeats exactly, but because human psychology remains constant. The 1929 crash, the 2000 dot-com bubble, the 2008 financial crisis—different circumstances, same human patterns. Testing against real historical crashes provides insights no random simulation can match, showing how your plan would fare against the human-driven market cycles that will inevitably occur again in some form.</p>
+            <p>
+              A market crash early in retirement can disrupt your plan. History
+              shows these crashes are recurring. We use historical testing to
+              simulate how they could impact your retirement cash flow, so you
+              can have a plan B or make adjustments if needed.
+            </p>
           </div>
-          
         </div>
       </div>
     </section>
