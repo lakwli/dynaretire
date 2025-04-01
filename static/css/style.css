@@ -204,7 +204,7 @@ p {
 
   .phase-label {
     font-size: 0.5rem;
-    color: #6c757d;
+    color: var(--brand-color);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-bottom: 0.5rem;
@@ -690,6 +690,7 @@ p {
 .why-icon {
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    color: var(--brand-color);
 }
 
 .why-card h3 {
