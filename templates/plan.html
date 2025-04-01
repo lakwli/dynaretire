@@ -23,30 +23,29 @@
 
 {% endblock %}
 
-{% block title %}DynaRetire: Dynamic Retirement Simulation Tool{% endblock %}
-<meta name="description" content="DynaRetire helps you track and manage your expenses effectively. Plan your spending and optimize your budget with advanced tools">
-<meta name="keywords" content="retirement planning, retirement simulation">
-
+{% block title %}DynaRetire: Strategic Retirement Simulation Tool{% endblock %}
+<meta name="description" content="Experience a comprehensive retirement simulation with DynaRetire. Dynamically model your savings, expenses, and retirement income while testing risk strategies against historical data for a plan that adapts as your life evolves." />
+<meta name="keywords" content="retirement planning, retirement simulation, dynamic expenses, savings forecast, market stress-test, income planning">
 <!-- Open Graph tags for social sharing -->
-<meta property="og:title" content="DynaRetire: Strategic Retirement Planning Tool">
-<meta property="og:description" content="Test your personalized retirement plan with simulation using DynaRetire dynamic expense modeling and strategic risk management options.">
+<meta property="og:title" content="DynaRetire: Comprehensive Retirement Simulation & Strategic Planning">
+<meta property="og:description" content="Customize your retirement plan with dynamic expense modeling, income projection, and risk management. Experience realistic simulations that adapt to your lifestyle changes." >
 <meta property="og:url" content="{{ request.url }}">
 <meta property="og:image" content="{{ url_for('static', filename='images/dynaretire-og.png', _external=True) }}">
 
 <!-- Twitter Card tags -->
-<meta name="twitter:title" content="DynaRetire Planning Tool">
-<meta name="twitter:description" content="Plan your retirement with dynamic modeling for expenses, income, and risk strategies.">
+<meta name="twitter:title" content="DynaRetire: Interactive Retirement Planning Simulator">
+<meta name="twitter:description" content="Plan your future with dynamic simulations for expenses, income, and risk strategies. Test real-world scenarios and build a personalized retirement plan that adapts with life." >
 <meta name="twitter:image" content="{{ url_for('static', filename='images/dynaretire-twitter.png', _external=True) }}">
-
 {% block meta %}{% endblock %}
 
 
 {% block content %}
 <div class="content-wrapper">
+    <!--
     <h2 class="subtitle has-text-centered">Optimized For Preferred Lifestyle & Peace Of Mind</h2>
 
     <br>
-    <br>
+    <br>-->
     <div class="container"> 
         <div id="message-container"></div>
         <div class="steps my-step-style has-content-centered" id="steps-plan" style="margin-bottom: 1rem;">
