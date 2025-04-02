@@ -359,43 +359,72 @@
     }
     function validateCurrentAge(inputElement){
         window.removeErrorComponent(inputElement)
-        isYrValid= window.gblChecYear(inputElement);
+
+        // Remove non-numeric characters and limit to 2 digits
+        let value = inputElement.value.replace(/[^\d]/g, '');
+        if (value.length > 2) {
+            value = value.slice(0, 2);
+        }
+        inputElement.value = value;
+
+        // During oninput event, only validate if we have 2 digits
+        let isInputEvent = this.event && this.event.type === 'input';
+        if (isInputEvent && value.length < 2) {
+            return true;
+        }
+
+        // Set up validation
+        isYrValid = true;
         if (isYrValid){
-            if (window.convertToInt(inputElement.value)<15){
-                isYrValid = false
-                addErrorComponent(inputElement, `Current Age Must Be At Least 15`)
+            if (window.convertToInt(value) < 15){
+                isYrValid = false;
+                addErrorComponent(inputElement, `Current Age Must Be At Least 15`);
             } 
-            else if (window.convertToInt(inputElement.value)>80){
-                isYrValid = false
-                addErrorComponent(inputElement, `Current Age Must not over 80`)
-            }else {                                  
+            else if (window.convertToInt(value) > 80){
+                isYrValid = false;
+                addErrorComponent(inputElement, `Current Age Must not over 80`);
+            } else {                                  
                 if (window.checkIfNotEmpty(document.getElementById('retire-age').value)){
-                    isYrValid=validateRetireAge(document.getElementById('retire-age'))
+                    isYrValid = validateRetireAge(document.getElementById('retire-age'));
                 }
             }
         }
-        return isYrValid
-      }
+        return isYrValid;
+    }
 
       
     function validateRetireAge(inputElement){
         window.removeErrorComponent(inputElement)
-        isYrValid= window.gblChecYear(inputElement);
+
+        // Remove non-numeric characters and limit to 2 digits
+        let value = inputElement.value.replace(/[^\d]/g, '');
+        if (value.length > 2) {
+            value = value.slice(0, 2);
+        }
+        inputElement.value = value;
+
+        // During oninput event, only validate if we have 2 digits
+        let isInputEvent = this.event && this.event.type === 'input';
+        if (isInputEvent && value.length < 2) {
+            return true;
+        }
+
+        // Set up validation
+        isYrValid = true;
         if (isYrValid){
-            if (isYrValid){ 
-                let current_age = document.getElementById('curr-age') 
-                isValidTemp=window.gblCheckGreaterEqual(current_age,inputElement,'Current Age','Retirement Age')
-                if(! isValidTemp)
-                    isYrValid=false                
-                else if (window.convertToInt(inputElement.value)>80){
-                    isYrValid = false
-                     addErrorComponent(inputElement, `Retirement Age Must not over 80`)
-                }
+            let current_age = document.getElementById('curr-age');
+            isValidTemp = window.gblCheckGreaterEqual(current_age, inputElement, 'Current Age', 'Retirement Age');
+            if (!isValidTemp) {
+                isYrValid = false;
+            } else if (window.convertToInt(value) > 80) {
+                isYrValid = false;
+                addErrorComponent(inputElement, `Retirement Age Must not over 80`);
             }
         }
-        if(isYrValid)
-            populateFirstRetiredYear()
-        return isYrValid
+        if(isYrValid) {
+            populateFirstRetiredYear();
+        }
+        return isYrValid;
     }
 
     function populateFirstRetiredYear(){
@@ -432,5 +461,3 @@
         const formattedValue = numericValue.replace(/\B(?=(\d{3})+(?!\d))/g, ','); // Add commas
         inputElement.value = formattedValue;
     }
-    
-    

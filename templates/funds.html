@@ -25,7 +25,7 @@
                         </label>
                         <div class="field">
                             <div class="control">
-                                <input name="curr-age" id="curr-age" class="input curr-age is-primary has-text-right" type="number" step="1" min=15 max="80" placeholder="e.g. 30" onchange="changeCurrentAge(this)">
+                                <input name="curr-age" id="curr-age" class="input curr-age is-primary has-text-right" type="text" pattern="\d{1,2}" maxlength="2" placeholder="e.g. 30" onchange="changeCurrentAge(this)" oninput="validateCurrentAge(this)">
                             </div>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                         </label>
                         <div class="field">
                             <div class="control">
-                                <input name="retire-age" id="retire-age" class="input retire-age is-primary has-text-right"type="number" step="1" min=15 max="80" placeholder="e.g. 31" onchange="validateRetireAge(this)">                                         
+                                <input name="retire-age" id="retire-age" class="input retire-age is-primary has-text-right" type="text" pattern="\d{1,2}" maxlength="2" placeholder="e.g. 31" onchange="validateRetireAge(this)" oninput="validateRetireAge(this)">                                         
                             </div>
                         </div>
                     </div>
