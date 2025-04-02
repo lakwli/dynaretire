@@ -115,11 +115,13 @@
               <input
                 class="input inc-growth-starting-age is-primary has-text-right"
                 name="inc-growth-starting-age"
-                min="1"
-                type="number"
+                type="text"
+                pattern="\d{1,2}"
+                maxlength="2"
                 placeholder="First year income"
                 required
                 onchange="validateStartingYearFromPage(this)"
+                oninput="validateStartingYearFromPage(this)"
               />
             </div>
             <div class="column">
@@ -137,10 +139,13 @@
                   <input
                     class="input inc-growth-until-age is-info has-text-right"
                     name="inc-growth-until-age"
-                    type="number"
+                    type="text"
+                    pattern="\d{1,2}"
+                    maxlength="2"
                     placeholder="Last year income"
                     value="50"
                     onchange="validateFirstUntilYear(this)"
+                    oninput="validateFirstUntilYear(this)"
                   />
                 </div>
                 <div class="control">

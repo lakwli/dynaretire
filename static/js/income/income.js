@@ -88,12 +88,12 @@
                     <input class="input inc-growth-rate is-primary has-text-right" min=1 name="inc-growth-rate" type="number"  step='0.01'  placeholder="e.g. 3%" onchange="window.addValidationIfNeeded(this)">
                 </div>
                 <div class="column">
-                    <input class="input inc-growth-starting-age is-primary has-text-right" min=${startmin} name="inc-growth-starting-age"  type="number" placeholder="Starting Age">
+                    <input class="input inc-growth-starting-age is-primary has-text-right" min=${startmin} name="inc-growth-starting-age" type="text" pattern="\\d{1,2}" maxlength="2" placeholder="Starting Age" onchange="validateStartingYearFromPage(this)" oninput="validateStartingYearFromPage(this)">
                 </div>
                 <div class="column">
                     <div class="field has-addons">
                         <div class="control is-expanded">
-                            <input class="input inc-growth-until-age is-info has-text-right" name="inc-growth-until-age" type="number" placeholder="Last Age income" value="50" onchange="validateFirstUntilYear(this)">
+                            <input class="input inc-growth-until-age is-info has-text-right" name="inc-growth-until-age" type="text" pattern="\\d{1,2}" maxlength="2" placeholder="Last Age income" value="50" onchange="validateFirstUntilYear(this)" oninput="validateFirstUntilYear(this)">
                         </div>
                         <div class="control">
                             <button class="icon-button add-growth " aria-label="Add Growth"  title="Add a different growth rate for another period">
@@ -197,21 +197,56 @@
     }
 
     function validateFirstUntilYear(inputElement){
-        let lastincome = document.querySelector('.income-item:last-child')
+        // Remove non-numeric characters and limit to 2 digits
+        let value = inputElement.value.replace(/[^\d]/g, '');
+        if (value.length > 2) {
+            value = value.slice(0, 2);
+        }
+        inputElement.value = value;
+
+        // During oninput event, only validate if we have 2 digits
+        let isInputEvent = this.event && this.event.type === 'input';
+        if (isInputEvent && value.length < 2) {
+            window.removeErrorComponent(inputElement);
+            return true;
+        }
+
+        let lastincome = document.querySelector('.income-item:last-child');
         let growthItemElm = lastincome.querySelectorAll('.growth-item')[0];
         
+        window.removeErrorComponent(inputElement);
+        let isValid = window.gblChecYear(inputElement);
+        if (isValid) {
+            window.gblCheckGreaterEqual(growthItemElm.querySelector('.inc-growth-starting-age'), inputElement, 'Start Age', ' Until Age');
+        }
+
         growthItemElm.querySelector('.inc-growth-until-age').addEventListener('change', function(event) {
-            window.removeErrorComponent(inputElement)
-            isValid=window.gblChecOptionalYear(event.target)
-            if (isValid)
-                window.gblCheckGreaterEqual(growthItemElm.querySelector('.inc-growth-starting-age'),event.target,'Start Age',' Until Age')
+            window.removeErrorComponent(inputElement);
+            isValid = window.gblChecOptionalYear(event.target);
+            if (isValid) {
+                window.gblCheckGreaterEqual(growthItemElm.querySelector('.inc-growth-starting-age'), event.target, 'Start Age', ' Until Age');
+            }
         });
     }
     
     function validateStartingYear(growthItemElm, inputElement){
-        isValidStart=window.gblChecYear(inputElement)
-        if (! isValidStart)
-            return false
+        // Remove non-numeric characters and limit to 2 digits
+        let value = inputElement.value.replace(/[^\d]/g, '');
+        if (value.length > 2) {
+            value = value.slice(0, 2);
+        }
+        inputElement.value = value;
+
+        // During oninput event, only validate if we have 2 digits
+        let isInputEvent = this.event && this.event.type === 'input';
+        if (isInputEvent && value.length < 2) {
+            window.removeErrorComponent(inputElement);
+            return true;
+        }
+
+        isValidStart = window.gblChecYear(inputElement);
+        if (!isValidStart)
+            return false;
         let previousGrowth = growthItemElm.previousElementSibling;
         if (previousGrowth) {
             elmGwothStarPrev= previousGrowth.querySelector('.inc-growth-starting-age')
@@ -349,10 +384,23 @@
     }
 
     function validateStartingYearFromPage(inputElement){        
-        //let lastincome = document.querySelector('.income-item:last-child')     
-        let lastincome = getCurrentIncomeItem(inputElement)   
+        // Remove non-numeric characters and limit to 2 digits
+        let value = inputElement.value.replace(/[^\d]/g, '');
+        if (value.length > 2) {
+            value = value.slice(0, 2);
+        }
+        inputElement.value = value;
+
+        // During oninput event, only validate if we have 2 digits
+        let isInputEvent = this.event && this.event.type === 'input';
+        if (isInputEvent && value.length < 2) {
+            window.removeErrorComponent(inputElement);
+            return true;
+        }
+
+        let lastincome = getCurrentIncomeItem(inputElement);
         let growthItemElm = lastincome.querySelectorAll('.growth-item')[0];
-        validateStartingYear(growthItemElm,inputElement)
+        validateStartingYear(growthItemElm, inputElement);
     }
 
 
