@@ -9,31 +9,39 @@ window.validateRateUponInput = function(inputElement, options = {}) {
         decimalPlaces = 2, // Maximum decimal places
         autoDecimal = true // Auto add decimal after single digit
     } = options;
-    
-    // Store cursor position before modification
-    const cursorPosition = inputElement.selectionStart;
-    
+
     let value = inputElement.value;
+
+    // Handle rotating digits for whole numbers when decimalPlaces is 0
+    if (decimalPlaces === 0) {
+        // Only allow digits
+        value = value.replace(/[^\d]/g, '');
+        // For 3 or more digits, keep only last 2
+        if (value.length > 2) {
+            value = value.slice(-2);
+        }
+        // Update but don't return - let validation continue
+        inputElement.value = value;
+    }
     
-    // First filter out any non-numeric and non-decimal characters
+    // For decimal numbers, continue with normal validation...
     const filteredValue = value.replace(/[^\d.]/g, '');
     
     // If the value changed due to invalid character, reject the input
     if (value !== filteredValue) {
-        value = inputElement.value = inputElement.value.slice(0, -1);
-        // Restore cursor position
-        inputElement.setSelectionRange(cursorPosition - 1, cursorPosition - 1);
-        return;
+        value = value.slice(0, -1);
+        inputElement.value = value;
     }
     
     // If already has max decimal places, prevent further input
     if (value.includes('.') && value.split('.')[1].length === decimalPlaces) {
-        return;
+        value = inputElement.value;
     }
     
     // Special handling for maximum value - no further input allowed
     if (value === max.toString()) {
-        return;
+        value = max.toString();
+        inputElement.value = value;
     }
     
     let processed = '';
@@ -63,17 +71,22 @@ window.validateRateUponInput = function(inputElement, options = {}) {
                 
                 if (processed.length === 1) {
                     if (wouldBeNum === max) {
-                        // If we hit max exactly, set to max and stop all further input
+                        // If we hit max exactly, set to max
                         processed = max.toString();
-                        return inputElement.value = processed;
+                        inputElement.value = processed;
                     } else if (wouldBeNum > max) {
-                        // If we would exceed max, add decimal
-                        processed += '.';
-                        hasDecimal = true;
+                        // If we would exceed max, handle based on decimal places
+                        if (decimalPlaces > 0) {
+                            processed += '.';
+                            hasDecimal = true;
+                        } else {
+                            processed = max.toString();
+                            inputElement.value = processed;
+                        }
                     }
                     // If less than max, just add the digit normally
-                } else if (processed.length === 2) {
-                    // Two digits already, next digit must be decimal
+                } else if (processed.length === 2 && decimalPlaces > 0) {
+                    // Two digits already, next digit must be decimal (only if decimals are allowed)
                     processed += '.';
                     hasDecimal = true;
                 }
@@ -208,18 +221,6 @@ window.gblCheckEmpty = function(inputElement) {
         removeErrorComponent(inputElement)
     }
     
-    return isValidEmpty
-};
-
-window.gblCheckEmptyValue = function(value) {
-    isValidEmpty=true
-    var trimmedInput = trimVal(value);
-
-    if (trimmedInput === '') {
-        isValidEmpty=false
-    } else { 
-        isValidEmpty=true
-    }    
     return isValidEmpty
 };
 

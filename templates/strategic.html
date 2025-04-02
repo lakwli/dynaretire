@@ -92,7 +92,15 @@
                                     <i class="fas fa-question-circle" title="'Risky Fund Allocation' refers to the portion of an investment portfolio allocated to Risky Fund"></i>
                                 </span>
                             </label>
-                            <input class="input is-primary risk-ratio has-text-right" name="risk-ratio" min=1 type="number" placeholder="e.g. 60" onChange="validateFirstRatio(this)">
+                            <input class="input is-primary risk-ratio has-text-right" 
+                                   name="risk-ratio"
+                                   type="text"
+                                   pattern="[0-9.]*"
+                                   inputmode="decimal"
+                                   placeholder="e.g. 60"
+                           oninput="validateRateUponInput(this, {min: 0, max: 99, decimalPlaces: 0}); validateFirstRatio(this)"
+                           onchange="validateFirstRatio(this)"
+                            >
                         </div>
                         <div class="column">
                             <label class="label">Safer Fund Allocation %                                                               

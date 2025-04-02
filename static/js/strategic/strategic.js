@@ -20,7 +20,13 @@
             row_num=1
             newRebal.innerHTML = `
                 <div class="column">
-                    <input class="input is-primary risk-ratio has-text-right" min=1 type="number" placeholder="e.g. 60" onChange="validateFirstRatio(this)">
+                    <input class="input is-primary risk-ratio has-text-right" 
+                           type="text"
+                           pattern="[0-9.]*"
+                           inputmode="decimal"
+                           placeholder="e.g. 60"
+                           oninput="validateRateUponInput(this, {min: 0, max: 99, decimalPlaces: 0}); validateFirstRatio(this)"
+                           onchange="validateFirstRatio(this)">
                 </div>
                 <div class="column">
                     <input disabled class="input stg-ratio-second has-text-right" min=1 type="number" >
@@ -181,12 +187,12 @@
         window.removeErrorComponent(inputElement)        
         isRValid = window.gblCheckEmpty(inputElement)
         if (isRValid){
-            isRValid= window.gblCheckNumberRange(inputElement,'Ratio',0,100)
+            isRValid = window.gblCheckNumberRange(inputElement,'Ratio',0,99)
         }    
         if (isRValid){
             elmRebal = inputElement.closest('.rebal-item'); 
-            elmNext=elmRebal.querySelector('.stg-ratio-second')
-            elmNext.value = 100-inputElement.value
+            elmNext = elmRebal.querySelector('.stg-ratio-second')
+            elmNext.value = 100 - inputElement.value
         }
         return isRValid
       }
@@ -491,11 +497,12 @@
 
         let firstRebal = document.querySelector('.rebal-item:first-child'); 
         while (firstRebal) {
-            elmRiskRatio= firstRebal.querySelector('.risk-ratio')
+            elmRiskRatio = firstRebal.querySelector('.risk-ratio')
             window.removeErrorComponent(elmRiskRatio)
             is_temp_Valid = validateFirstRatio(elmRiskRatio)
-            if (! is_temp_Valid)
-                isRebTbValid=false            
+            if (!is_temp_Valid) {
+                isRebTbValid = false;
+            }
 
             //console.log('dddccccccccccccccddddddddddd: '+isRebTbValid)
             elmStartYear= firstRebal.querySelector('.stg-starting-age')
