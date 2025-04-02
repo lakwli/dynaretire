@@ -96,10 +96,10 @@
                     <input class="input exp-amt-amt is-primary has-text-right" name="exp-amt-amt" type="text" placeholder="Amount" onchange="window.addValidationIfNeeded(this)" onkeyup="callKeyUpAmountFunction(this)">
                 </div>
                 <div class="column">
-                    <input class="input exp-amt-starting-age is-primary has-text-right" name="exp-amt-starting-age"  type="number" min="${startmin}" placeholder="Starting Age" >
+                    <input class="input exp-amt-starting-age is-primary has-text-right" name="exp-amt-starting-age"  type="text" pattern="\\d{1,2}" maxlength="2" min="${startmin}" placeholder="Starting Age" onchange="validateExpStartingYear(this.closest('.amount-item'), this)" oninput="validateExpStartingYear(this.closest('.amount-item'), this)">
                 </div>
                 <div class="column">
-                    <input class="input exp-amt-until-age is-info has-text-right" type="number" placeholder="Until Age">
+                    <input class="input exp-amt-until-age is-info has-text-right" type="text" pattern="\\d{1,2}" maxlength="2" placeholder="Until Age" onchange="validateExpFirstUntilYear(this)" oninput="validateExpFirstUntilYear(this)">
                 </div>
                 <div class="column">
                             <div class="field has-addons">
@@ -210,20 +210,34 @@
         return elmExpItem
     }
     function validateExpFirstUntilYear(inputElement){
-        //window.gblChecOptionalYear(inputElement)
-        let lastExp = document.querySelector('.expense-item:last-child')
-        let amtItemElm = lastExp.querySelectorAll('.amount-item')[0];
-        window.removeErrorComponent(inputElement)
-        isValid=window.gblChecYear(inputElement)
-        if (isValid)
-            window.gblCheckGreaterEqual(amtItemElm.querySelector('.exp-amt-starting-age'),inputElement,'Start Age',' Until Age')
+        // Remove non-numeric characters and limit to 2 digits
+        let value = inputElement.value.replace(/[^\d]/g, '');
+        if (value.length > 2) {
+            value = value.slice(0, 2);
+        }
+        inputElement.value = value;
 
-        //console.log(amtItemElm)
+        // Only validate if event is not input OR we have 2 digits
+        let isInputEvent = this.event && this.event.type === 'input';
+        if (isInputEvent && value.length < 2) {
+            window.removeErrorComponent(inputElement);
+            return true;
+        }
+
+        let lastExp = document.querySelector('.expense-item:last-child');
+        let amtItemElm = lastExp.querySelectorAll('.amount-item')[0];
+        window.removeErrorComponent(inputElement);
+        isValid = window.gblChecYear(inputElement);
+        if (isValid) {
+            window.gblCheckGreaterEqual(amtItemElm.querySelector('.exp-amt-starting-age'), inputElement, 'Start Age', ' Until Age');
+        }
+
         amtItemElm.querySelector('.exp-amt-until-age').addEventListener('change', function(event) {
-            window.removeErrorComponent(inputElement)
-            isValid=window.gblChecOptionalYear(event.target)
-            if (isValid)
-                window.gblCheckGreaterEqual(amtItemElm.querySelector('.exp-amt-starting-age'),event.target,'Start Age',' Until Age')
+            window.removeErrorComponent(inputElement);
+            isValid = window.gblChecOptionalYear(event.target);
+            if (isValid) {
+                window.gblCheckGreaterEqual(amtItemElm.querySelector('.exp-amt-starting-age'), event.target, 'Start Age', ' Until Age');
+            }
         });
     }
 
@@ -262,10 +276,24 @@
                 }
    }
     function validateExpStartingYear(amountItemElm, inputElement){
-        //console.log('----------------'+inputElement.value, amountItemElm)
-        isValidExpStYr=window.gblChecYear(inputElement)
-        if (! isValidExpStYr)
-            return false
+        // Remove non-numeric characters and limit to 2 digits
+        let value = inputElement.value.replace(/[^\d]/g, '');
+        if (value.length > 2) {
+            value = value.slice(0, 2);
+        }
+        inputElement.value = value;
+
+        // During oninput event, only validate if we have 2 digits
+        let isInputEvent = this.event && this.event.type === 'input';
+        if (isInputEvent && value.length < 2) {
+            window.removeErrorComponent(inputElement);
+            return true;
+        }
+
+        isValidExpStYr = window.gblChecYear(inputElement);
+        if (!isValidExpStYr) {
+            return false;
+        }
         let previousAmt = amountItemElm.previousElementSibling;
         if (previousAmt) {
             elmAmtStarPrevAge= previousAmt.querySelector('.exp-amt-starting-age')
@@ -371,11 +399,23 @@
         return isExpTabValid
     }
     function validateExpStartingYearFromPage(inputElement){
-        //let lastamount = document.querySelector('.expense-item:last-child')  
-        let elmExpItem = getCurrentExpenseItem(inputElement)      
+        // Remove non-numeric characters and limit to 2 digits
+        let value = inputElement.value.replace(/[^\d]/g, '');
+        if (value.length > 2) {
+            value = value.slice(0, 2);
+        }
+        inputElement.value = value;
+
+        // Only validate if event is not input OR we have 2 digits
+        let isInputEvent = this.event && this.event.type === 'input';
+        if (isInputEvent && value.length < 2) {
+            window.removeErrorComponent(inputElement);
+            return true;
+        }
+
+        let elmExpItem = getCurrentExpenseItem(inputElement);
         let amountItemElm = elmExpItem.querySelectorAll('.amount-item')[0];
-        //console.log(inputElement)
-        validateExpStartingYear(amountItemElm,inputElement)
+        validateExpStartingYear(amountItemElm, inputElement);
     }
 
     function validateExpIntervalFromPage(inputElement){        

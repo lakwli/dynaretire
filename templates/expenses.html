@@ -70,7 +70,7 @@
                                     <i class="fas fa-question-circle" title="Enter the age when these expenses begin. For example, enter '55' if this expense starts at age 55."></i>
                                 </span>
                             </label>
-                            <input class="input exp-amt-starting-age is-primary has-text-right" name="exp-amt-starting-age" type="number" min="1" placeholder="When the expenses start?" required onchange="validateExpStartingYearFromPage(this)">
+                            <input class="input exp-amt-starting-age is-primary has-text-right" name="exp-amt-starting-age" type="text" pattern="\d{1,2}" maxlength="2" placeholder="When the expenses start?" required onchange="validateExpStartingYearFromPage(this)" oninput="validateExpStartingYearFromPage(this)">
                         </div>
                         <div class="column">
                             <label class="label">To Age (inclusive)                                                                                                     
@@ -78,7 +78,7 @@
                                     <i class="fas fa-question-circle" title="Enter the last age when these expenses apply. For example, enter '65' if this expense ends at age 65."></i>
                                 </span>
                             </label>
-                            <input class="input exp-amt-until-age is-info has-text-right" name="exp-amt-until-age" type="number" placeholder="When the expenses end?" value="100" onchange="validateExpFirstUntilYear(this)">
+                            <input class="input exp-amt-until-age is-info has-text-right" name="exp-amt-until-age" type="text" pattern="\d{1,2}" maxlength="2" placeholder="When the expenses end?" value="100" onchange="validateExpFirstUntilYear(this)" oninput="validateExpFirstUntilYear(this)">
                         </div>
                         <div class="column">
                             <label class="label">Occurrence Interval                                                                                                       
