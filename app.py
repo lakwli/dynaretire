@@ -1,7 +1,7 @@
 # A very simple Flask Hello World app for you to get started with...
 #FLASK_DEBUG=1 FLASK_APP=app.py flask run --host=0.0.0.0 --port=5005
 
-from flask import Flask, render_template, request, jsonify, send_file, Response, session, send_from_directory, redirect, url_for, abort
+from flask import Flask, render_template, request, jsonify, send_file, Response, session, send_from_directory, redirect, url_for, abort, after_this_request
 from werkzeug.security import safe_join
 from classes.web.helper import Helper
 from classes.web.json import json_data as j
@@ -11,6 +11,7 @@ import os
 from core import output as op
 from core import plan as pl
 from datetime import datetime
+import random
 from classes.content import blog_manager  # Import our blog manager
 
 app = Flask(__name__, static_url_path='/static', static_folder='static')
@@ -84,28 +85,39 @@ def planSubmit():
         data = request.json.get('jsonData')
         plan_data = j.Plan_Data.from_json(data)
 
+        random_number = str(random.randint(1000, 9999))
+        fileGivenName=f"dynaretireResult{random_number}"
+
         i=ij.InputJson(plan_data)
         i.process()
         exp=i.expenses
         la=i.funds
         strategic=i.strategic
         nla=i.incomes
-        out= op.Excel(name="web_request",isPaymentAtBegin=i.isPaymentAtBegin,expenses=exp,liq_accts=la,nonliq_accts=nla)
+        out= op.Excel(name=fileGivenName,isPaymentAtBegin=i.isPaymentAtBegin,expenses=exp,liq_accts=la,nonliq_accts=nla)
         p = pl.Plan(i.isPaymentAtBegin, plan_data.current_age,i.current_calendar_year,exp,la,nla,out)
         p.set_strategic(strategic)
         year, lack_fund=p.execute_plan()
         out.close()
 
         # Fix: Use the correct path where the file is actually created
-        filename='web_request.xlsx'
-        
-        if os.path.isfile(filename):
-            print(f'File exists at: {os.path.abspath(filename)}')
-        else:
-            print(f'File not found at: {os.path.abspath(filename)}')
-            return jsonify({'error': 'Generated file not found'})
+        filename=fileGivenName+'.xlsx'
             
-        response = send_file(filename, as_attachment=True, mimetype='application/octet-stream')
+        # Function to clean up file after response
+        @after_this_request
+        def cleanup(response):
+            try:
+                if os.path.exists(filename):
+                    os.remove(filename)
+            except Exception as e:
+                print(f"Error cleaning up file {filename}: {str(e)}")
+            return response
+
+        # Include the filename in the download to ensure browser uses the correct name
+        response = send_file(filename, 
+                           as_attachment=True, 
+                           download_name=filename,
+                           mimetype='application/octet-stream')
         response.headers['Message'] = 'Successfully generated file'
         return response
 
