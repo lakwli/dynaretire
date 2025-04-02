@@ -78,7 +78,11 @@
         </a>
         <div class="nav-menu">
           <a href="/articles/tutorial" class="nav-link">Tutorial</a>
-          <a href="{{ url_for('static', filename='resources/files/dynaRetire-SampleResult-Martin_2024.xlsx') }}" class="nav-link">Sample</a>
+          <a
+            href="{{ url_for('static', filename='resources/files/dynaRetire-SampleResult-Martin_2024.xlsx') }}"
+            class="nav-link"
+            >Sample</a
+          >
           <a href="/plan" class="nav-cta">Launch App</a>
         </div>
       </div>
@@ -233,10 +237,10 @@
             <div class="feature-text-wrapper">
               <h3>Retirement Money Projection</h3>
               <p>
-                Project how your retirement funds will grow by setting different
-                return rates for pension (e.g. 4%) and personal investments
-                (e.g. 7%), with customizable growth patterns as your career
-                progresses.
+                Project how your retirement funds will grow from your
+                contributions by allocating them to various funds—each with its
+                own return rate—using customizable incremental patterns as your
+                career progresses.
               </p>
             </div>
           </div>
@@ -348,7 +352,8 @@
     </section>
 
     <!-- Hoslistic, Personalize, Risk-->
-    <section class="why-section"> <!-- Corrected typo -->
+    <section class="why-section">
+      <!-- Corrected typo -->
       <div class="container">
         <h2>Why Choose DynaRetire?</h2>
         <!-- No subtitle here, but the h2 margin was standardized in CSS -->
@@ -505,7 +510,12 @@
           <div class="menu-group">
             <div class="menu-group-title">Resources</div>
             <div class="menu-group-links">
-              <a href="{{ url_for('static', filename='resources/files/dynaRetire-SampleResult-Martin_2024.xlsx') }}" class="menu-item" download>Sample Result</a>
+              <a
+                href="{{ url_for('static', filename='resources/files/dynaRetire-SampleResult-Martin_2024.xlsx') }}"
+                class="menu-item"
+                download
+                >Sample Result</a
+              >
             </div>
           </div>
           <!-- Legal -->
@@ -519,7 +529,12 @@
           <div class="menu-group">
             <div class="menu-group-title">Source Code</div>
             <div class="menu-group-links">
-              <a href="https://github.com/lakwli/dynaretire" class="menu-item" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://github.com/lakwli/dynaretire"
+                class="menu-item"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i class="fab fa-github"></i> GitHub
               </a>
             </div>
