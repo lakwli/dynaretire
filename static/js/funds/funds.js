@@ -178,34 +178,6 @@
             return isValid
     }
 
-    function validateFundFlatReturnRate(inputElement){  
-        elmFundItem = inputElement.closest('.fund-item'); 
-        elmRType = elmFundItem.querySelector('.funds-return-type');
-        if (elmRType.selectedIndex==0){
-            window.removeErrorComponent(inputElement)
-            if (!window.gblCheckEmpty(inputElement)){
-                return false
-            }
-            if (! window.gblCheckNumberRange(inputElement,'Rate',1,100)){
-                return false
-            }
-        }
-        return true
-    }
-    function validateFundDefaultReturnRate(inputElement){  
-        elmFundItem = inputElement.closest('.fund-item'); 
-        elmRType = elmFundItem.querySelector('.funds-return-type');
-        if (elmRType.selectedIndex==1){
-            window.removeErrorComponent(inputElement)
-            if (!window.gblCheckEmpty(inputElement)){
-                return false
-            }
-            if (! window.gblCheckNumberRange(inputElement,'Rate',1,100)){
-                return false
-            }
-        }
-        return true
-    }
     function validateFundMimicYear(inputElement){  
         elmFundItem = inputElement.closest('.fund-item'); 
         elmRType = elmFundItem.querySelector('.funds-return-type');
@@ -257,14 +229,25 @@
             //if (! window.gblCheckEmpty(elmFName))
                 //isFundsTbValid=false
 
-            if (elmRType.selectedIndex==0 && ! validateFundFlatReturnRate(elmRRate))
-                isFundsTbValid=false
+            if (elmRType.selectedIndex==0) {
+                isTempValid = window.validateRateUponChange(elmRRate, {
+                    min: 0,
+                    max: 20,
+                    fieldName: 'Return rate'
+                });
+                if (!isTempValid)
+                    isFundsTbValid=false;
+            }
 
 
-            if (! elmDefRRateWrap.classList.contains('is-hidden')){
-                isTempFValid = validateFundDefaultReturnRate(elmDefRRate)
-                if (! isTempFValid)
-                    isFundsTbValid=false
+            if (!elmDefRRateWrap.classList.contains('is-hidden')) {
+                isTempValid = window.validateRateUponChange(elmDefRRate, {
+                    min: 0,
+                    max: 20,
+                    fieldName: 'Default return rate'
+                });
+                if (!isTempValid)
+                    isFundsTbValid = false;
             }
 
             if (! elmMimicYearWrap.classList.contains('is-hidden')){

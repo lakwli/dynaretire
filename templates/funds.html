@@ -120,7 +120,14 @@
                                       </select>
                                   </p>
                                   <p class="control funds-return-rate-wrap" name="funds-return-rate-wrap">
-                                    <input class="input is-primary funds-return-rate has-text-right" name="funds-return-rate" type="number" min="1" step="0.01" placeholder="e.g. 5.5%" onchange="validateFundFlatReturnRate(this)">
+                                    <input class="input is-primary funds-return-rate has-text-right" 
+                                           name="funds-return-rate" 
+                                           type="text" 
+                                           pattern="[0-9.]*"
+                                           inputmode="decimal"
+                                           placeholder="e.g. 5.5%" 
+                                           oninput="validateRateUponInput(this, {min: 0, max: 20, decimalPlaces: 2, autoDecimal: true})"
+                                           onchange="validateRateUponChange(this, {min: 0, max: 20, fieldName: 'Return rate'})">
                                   </p>
                                 </div>                            
                             </div>
@@ -134,7 +141,14 @@
                         </label>
                         <div class="field">
                             <div class="control">
-                                <input class="input is-primary funds-default-return has-text-right" name="funds-default-return" type="number" min="1" max="100" step="0.1" placeholder="e.g. 9%" onchange="validateFundDefaultReturnRate(this)">
+                                <input class="input is-primary funds-default-return has-text-right" 
+                                       name="funds-default-return" 
+                                       type="text" 
+                                       pattern="[0-9.]*"
+                                       inputmode="decimal"
+                                       placeholder="e.g. 9%" 
+                                       oninput="validateRateUponInput(this, {min: 0, max: 20, decimalPlaces: 2, autoDecimal: true})"
+                                       onchange="validateRateUponChange(this, {min: 0, max: 20, fieldName: 'Default return rate'})">
                             </div>
                         </div>
                     </div>

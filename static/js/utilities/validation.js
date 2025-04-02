@@ -1,6 +1,135 @@
 
 var gbl_err_required= 'This field is required';
 
+// Generic rate validation functions
+window.validateRateUponInput = function(inputElement, options = {}) {
+    const {
+        min = 0,           // Minimum allowed value
+        max = 100,         // Maximum allowed value
+        decimalPlaces = 2, // Maximum decimal places
+        autoDecimal = true // Auto add decimal after single digit
+    } = options;
+    
+    // Store cursor position before modification
+    const cursorPosition = inputElement.selectionStart;
+    
+    let value = inputElement.value;
+    
+    // First filter out any non-numeric and non-decimal characters
+    const filteredValue = value.replace(/[^\d.]/g, '');
+    
+    // If the value changed due to invalid character, reject the input
+    if (value !== filteredValue) {
+        value = inputElement.value = inputElement.value.slice(0, -1);
+        // Restore cursor position
+        inputElement.setSelectionRange(cursorPosition - 1, cursorPosition - 1);
+        return;
+    }
+    
+    // If already has max decimal places, prevent further input
+    if (value.includes('.') && value.split('.')[1].length === decimalPlaces) {
+        return;
+    }
+    
+    // Special handling for maximum value - no further input allowed
+    if (value === max.toString()) {
+        return;
+    }
+    
+    let processed = '';
+    let hasDecimal = false;
+    
+    for (let i = 0; i < value.length; i++) {
+        const char = value[i];
+        
+        // Only allow digits and decimal point
+        if (char !== '.' && !/\d/.test(char)) {
+            continue;
+        }
+        
+        if (char === '.') {
+            if (!hasDecimal) {
+                hasDecimal = true;
+                processed += char;
+            }
+            continue;
+        }
+        
+        if (/\d/.test(char)) {
+            // For digits before decimal
+            if (!hasDecimal) {
+                // For digits before decimal, check what number would be formed
+                const wouldBeNum = parseInt(processed + char);
+                
+                if (processed.length === 1) {
+                    if (wouldBeNum === max) {
+                        // If we hit max exactly, set to max and stop all further input
+                        processed = max.toString();
+                        return inputElement.value = processed;
+                    } else if (wouldBeNum > max) {
+                        // If we would exceed max, add decimal
+                        processed += '.';
+                        hasDecimal = true;
+                    }
+                    // If less than max, just add the digit normally
+                } else if (processed.length === 2) {
+                    // Two digits already, next digit must be decimal
+                    processed += '.';
+                    hasDecimal = true;
+                }
+            }
+            
+            // Stop after max decimal places
+            if (hasDecimal && processed.split('.')[1].length === decimalPlaces) {
+                break;
+            }
+            
+            processed += char;
+        }
+    }
+    
+    inputElement.value = processed;
+    
+    // Place cursor at end
+    const newPosition = processed.length;
+    inputElement.setSelectionRange(newPosition, newPosition);
+};
+
+window.validateRateUponChange = function(inputElement, options = {}) {
+    const {
+        min = 0,           // Minimum allowed value
+        max = 100,         // Maximum allowed value
+        fieldName = 'Rate' // Field name for error messages
+    } = options;
+    
+    removeErrorComponent(inputElement);
+    
+    // Allow empty for initial input
+    if (!inputElement.value) {
+        return true;
+    }
+    
+    // Allow during typing if ends with decimal
+    if (inputElement.value.endsWith('.')) {
+        return true;
+    }
+    
+    const value = parseFloat(inputElement.value);
+    
+    if (isNaN(value)) {
+        addErrorComponent(inputElement, `${fieldName} must be a valid number`);
+        return false;
+    }
+    
+    if (value < min || value > max) {
+        addErrorComponent(inputElement, `${fieldName} must be between ${min} and ${max}`);
+        return false;
+    }
+    
+    return true;
+};
+
+
 
 window.gblCheckName = function(inputElement) {
     removeErrorComponent(inputElement)
