@@ -26,10 +26,10 @@
                     <input disabled class="input stg-ratio-second has-text-right" min=1 type="number" >
                 </div>
                 <div class="column">
-                    <input class="input is-primary stg-starting-age has-text-right" type="number" min=${startmin} placeholder="When the rebalancing started?" onChange="onChangeStgStartYear(this)">
+                    <input class="input is-primary stg-starting-age has-text-right" type="text" pattern="\\d{1,2}" maxlength="2" min=${startmin} placeholder="When the rebalancing started?" onchange="onChangeStgStartYear(this)" oninput="onChangeStgStartYear(this)">
                 </div>
                 <div class="column">
-                    <input class="input is-info stg-until-age has-text-right" type="number" placeholder="When the rebalancing ended?" value="100" onChange="validateStgUntilYear(this)">
+                    <input class="input is-info stg-until-age has-text-right" type="text" pattern="\\d{1,2}" maxlength="2" placeholder="When the rebalancing ended?" value="100" onchange="validateStgUntilYear(this)" oninput="validateStgUntilYear(this)">
                 </div>
                 <div class="column">                          
                     <div class="field has-addons">
@@ -193,17 +193,31 @@
 
       
       function validateStgUntilYear(inputElement){
-        isValidStgUnYr=true
+        // Remove non-numeric characters and limit to 2 digits
+        let value = inputElement.value.replace(/[^\d]/g, '');
+        if (value.length > 2) {
+            value = value.slice(0, 2);
+        }
+        inputElement.value = value;
+
+        // During oninput event, only validate if we have 2 digits
+        let isInputEvent = this.event && this.event.type === 'input';
+        if (isInputEvent && value.length < 2) {
+            window.removeErrorComponent(inputElement);
+            return true;
+        }
+
+        isValidStgUnYr = true;
         elmRebal = inputElement.closest('.rebal-item');
         elmRebalStarting = elmRebal.querySelector('.stg-starting-age')
         window.removeErrorComponent(inputElement)
-        isValidTemp=window.gblChecOptionalYear(inputElement)
-        if (! isValidTemp)
-            isValidStgUnYr=false
+        isValidTemp = window.gblChecOptionalYear(inputElement)
+        if (!isValidTemp)
+            isValidStgUnYr = false
         if (isValidTemp)
-            isValidTemp=window.gblCheckGreaterEqual(elmRebalStarting, inputElement,'Start Age',' Until Age')
-        if (! isValidTemp)
-            isValidStgUnYr=false
+            isValidTemp = window.gblCheckGreaterEqual(elmRebalStarting, inputElement, 'Start Age', ' Until Age')
+        if (!isValidTemp)
+            isValidStgUnYr = false
         return isValidStgUnYr
       }
 
@@ -213,9 +227,23 @@
       }
 
       function validateStgStartYear(inputElement){
-        isValidStgStYr=window.gblChecYear(inputElement)
-        if (! isValidStgStYr)
-            return false
+        // Remove non-numeric characters and limit to 2 digits
+        let value = inputElement.value.replace(/[^\d]/g, '');
+        if (value.length > 2) {
+            value = value.slice(0, 2);
+        }
+        inputElement.value = value;
+
+        // During oninput event, only validate if we have 2 digits
+        let isInputEvent = this.event && this.event.type === 'input';
+        if (isInputEvent && value.length < 2) {
+            window.removeErrorComponent(inputElement);
+            return true;
+        }
+
+        isValidStgStYr = window.gblChecYear(inputElement)
+        if (!isValidStgStYr)
+            return false;
         elmRebal = inputElement.closest('.rebal-item');
 
         let previousRebal = elmRebal.previousElementSibling;  
