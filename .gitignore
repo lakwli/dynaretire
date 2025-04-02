@@ -48,6 +48,7 @@ Thumbs.db
 
 # Project specific
 *.log
+logs/
 .coverage
 .pytest_cache/
 web_request.xlsx

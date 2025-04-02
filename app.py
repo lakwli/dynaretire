@@ -13,6 +13,10 @@ from core import plan as pl
 from datetime import datetime
 import random
 from classes.content import blog_manager  # Import our blog manager
+from classes.logging_config import initialize_logger
+
+# Initialize logging
+logger = initialize_logger()
 
 app = Flask(__name__, static_url_path='/static', static_folder='static')
 app.config["DEBUG"] = True
@@ -20,14 +24,26 @@ app.config["SECRET_KEY"] = "lkmaslkdsldsamdlsdmaseewe2ldsmkdd"
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0  # Disable caching for development
 
+# Error handler for all exceptions
+@app.errorhandler(Exception)
+def handle_exception(e):
+    logger.error(f"Unhandled exception: {str(e)}", exc_info=True)
+    return jsonify({"error": "An internal error occurred"}), 500
+
 # Add context processor for current year
 @app.context_processor
 def inject_year():
     return {'current_year': datetime.now().year}
 
+# Request logging middleware
+@app.before_request
+def log_request():
+    logger.info(f"Request to {request.path} [Method: {request.method}]")
+
 # Blog routes
 @app.route('/blog')
 def blog_list():
+    logger.info("Accessing blog list page")
     featured_blog, blog_posts = blog_manager.get_blog_list()
     return render_template('content/blog_list.html',
                           featured_blog=featured_blog,
@@ -35,8 +51,10 @@ def blog_list():
 
 @app.route('/blog/<string:blog_id>')
 def blog_post(blog_id):
+    logger.info(f"Accessing blog post: {blog_id}")
     blog = blog_manager.get_article(blog_id)  # Function name unchanged for now
     if blog is None:
+        logger.warning(f"Blog post not found: {blog_id}")
         abort(404)
     return render_template('content/blog_post.html', blog=blog)  # Pass as blog=
 
@@ -81,6 +99,7 @@ def plan():
 
 @app.route('/planSubmit', methods=['POST'])
 def planSubmit():
+    logger.info("Starting plan submission")
     try:
         data = request.json.get('jsonData')
         plan_data = j.Plan_Data.from_json(data)
@@ -88,13 +107,18 @@ def planSubmit():
         random_number = str(random.randint(1000, 9999))
         fileGivenName=f"dynaretireResult{random_number}"
 
+        logger.debug("Processing input data...")
         i=ij.InputJson(plan_data)
         i.process()
         exp=i.expenses
         la=i.funds
         strategic=i.strategic
         nla=i.incomes
+        
+        logger.debug("Generating Excel output...")
         out= op.Excel(name=fileGivenName,isPaymentAtBegin=i.isPaymentAtBegin,expenses=exp,liq_accts=la,nonliq_accts=nla)
+        
+        logger.debug("Executing retirement plan...")
         p = pl.Plan(i.isPaymentAtBegin, plan_data.current_age,i.current_calendar_year,exp,la,nla,out)
         p.set_strategic(strategic)
         year, lack_fund=p.execute_plan()
@@ -102,6 +126,7 @@ def planSubmit():
 
         # Fix: Use the correct path where the file is actually created
         filename=fileGivenName+'.xlsx'
+        logger.info(f"Plan generated successfully: {filename}")
             
         # Function to clean up file after response
         @after_this_request
@@ -109,8 +134,9 @@ def planSubmit():
             try:
                 if os.path.exists(filename):
                     os.remove(filename)
+                    logger.debug(f"Cleaned up temporary file: {filename}")
             except Exception as e:
-                print(f"Error cleaning up file {filename}: {str(e)}")
+                logger.error(f"Error cleaning up file {filename}: {str(e)}")
             return response
 
         # Include the filename in the download to ensure browser uses the correct name
@@ -122,8 +148,7 @@ def planSubmit():
         return response
 
     except Exception as e:
-        print(f"  Errors")
-        print(f"   exception: {str(e)}")
+        logger.error(f"Error in plan submission: {str(e)}", exc_info=True)
         return jsonify({'error': str(e)})
 
 @app.route('/expenses')
@@ -155,4 +180,5 @@ def robots():
     return send_from_directory('static', 'robots.txt')
 
 if __name__ == '__main__':
+    logger.info("Starting DynaRetire application")
     app.run(debug=True)
