@@ -373,8 +373,8 @@ window.convertToFloat = function(inputValue) {
 var field_name = []//'fundname','exp-name','inc-name','stg-retire-year'
 var field_amount = ['fundamount','exp-amt-amt','inc-amount']
 var field_rate = ['fundreturn']//,'stg-min_rate'
-var field_rate_allow0 = ['exp-inflation','inc-growth-rate']//,'stg-min_rate'
-var field_rate_optional = ['exp-minspend','stg-min_rate']
+var field_rate_allow0 = ['inc-growth-rate']//,'stg-min_rate'
+var field_rate_optional = ['stg-min_rate']
 var field_year = ['fundwithdrawyr','exp-amt-starting-year','inc-growth-starting-year']//'stg-retire-year',
 var field_year_optional = ['exp-amt-until-year','inc-growth-until-year', 'exp-amt-every-few-years']
 function addValidationIfNeeded(inputElement) {

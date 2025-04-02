@@ -31,7 +31,15 @@
                                 </span>
                             </label>
                             <div class="control">
-                                <input class="input exp-inflation is-primary has-text-right" type="number" name="exp-inflation" min="0" step="5" placeholder="e.g. 3%" required onchange="window.addValidationIfNeeded(this)">
+                                <input class="input exp-inflation is-primary has-text-right" 
+                                       type="text"
+                                       name="exp-inflation"
+                                       pattern="[0-9.]*"
+                                       inputmode="decimal"
+                                       placeholder="e.g. 3%. max 15%" 
+                                       required
+                                       oninput="validateRateUponInput(this, {min: 0, max: 15, decimalPlaces: 2, autoDecimal: true})"
+                                       onchange="validateRateUponChange(this, {min: 0, max: 15, fieldName: 'Inflation rate'})">
                             </div>
                         </div>
                     </div>
@@ -39,11 +47,18 @@
                         <div class="field">
                             <label class="label">Reduction Rate%                                                                                     
                                 <span class="icon">
-                                    <i class="fas fa-question-circle" title="'Expense Reduction Rate' refer to feature that works similar to a battery saving mode. In case of a downturn in the market, the system projects that you will spend less on your expenses based on the rate you set here. For example, if you set 80, it means that during a market downturn, you would only spend 80% of the originally allocated amount for your expenses. However, when the market turns good, the system will revert to projecting expenses based on the original amount. Please note that inflation continues to be calculated on the original amount and does not pause during a market downturn. This feature allows you to see how adjusting your spending during market downturns can help your retirement savings."></i>
+                                    <i class="fas fa-question-circle" title="Works similar to a battery saving mode. In case of market downturn, you might spend less. If you set 80, you would only spend 80% of the originally budgeted. If you set 0 means you will not spend any. If you left empty means this expenses is fix expenses regardless how is market doing"></i>
                                 </span>
                             </label>
                             <div class="control">
-                                <input class="input exp-minspend is-info has-text-right" type="number" name="exp-minspend" step="5" min="0" placeholder="e.g. 80" onchange="window.addValidationIfNeeded(this)">
+                                <input class="input exp-minspend is-info has-text-right"
+                                       type="text"
+                                       name="exp-minspend"
+                                       pattern="[0-9.]*"
+                                       inputmode="decimal"
+                                       placeholder="e.g. 80%"
+                                       oninput="validateRateUponInput(this, {min: 0, max: 100, decimalPlaces: 2, autoDecimal: true})"
+                                       onchange="validateRateUponChange(this, {min: 0, max: 100, fieldName: 'Reduction rate'})">
                             </div>
                         </div>
                     </div>

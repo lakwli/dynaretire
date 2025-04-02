@@ -382,6 +382,30 @@
             //console.log('============1====='+isExpTabValid)
             preNames.push(currentName);
 
+            // Validate inflation rate
+            let elmInflation = firstExp.querySelector('.exp-inflation');
+            let isValidInflation = window.validateRateUponChange(elmInflation, {
+                min: 0,
+                max: 15,
+                fieldName: 'Inflation rate'
+            });
+            if (!isValidInflation) {
+                isExpTabValid = false;
+            }
+
+            // Validate reduction rate
+            let elmMinSpend = firstExp.querySelector('.exp-minspend');
+            if (elmMinSpend.value) { // Only validate if has value since it's optional
+                let isValidMinSpend = window.validateRateUponChange(elmMinSpend, {
+                    min: 0,
+                    max: 100,
+                    fieldName: 'Reduction rate'
+                });
+                if (!isValidMinSpend) {
+                    isExpTabValid = false;
+                }
+            }
+
             let amountItemElms = firstExp.querySelectorAll('.amount-item');
             amountItemElms.forEach((item, index) => {
                 //console.log(item)
