@@ -85,7 +85,15 @@
             startmin=window.convertToInt(document.getElementById('curr-age').value)
             newGrowth.innerHTML = `
                 <div class="column">
-                    <input class="input inc-growth-rate is-primary has-text-right" min=1 name="inc-growth-rate" type="number"  step='0.01'  placeholder="e.g. 3%" onchange="window.addValidationIfNeeded(this)">
+                    <input class="input inc-growth-rate is-primary has-text-right"
+                           name="inc-growth-rate"
+                           type="text"
+                           pattern="[0-9.]*"
+                           inputmode="decimal"
+                           placeholder="e.g. 3%"
+                           required
+                           oninput="validateRateUponInput(this, {min: 0, max: 15, decimalPlaces: 2, autoDecimal: true})"
+                           onchange="validateRateUponChange(this, {min: 0, max: 15, fieldName: 'Income growth rate', isRequired: true})">
                 </div>
                 <div class="column">
                     <input class="input inc-growth-starting-age is-primary has-text-right" min=${startmin} name="inc-growth-starting-age" type="text" pattern="\\d{1,2}" maxlength="2" placeholder="Starting Age" onchange="validateStartingYearFromPage(this)" oninput="validateStartingYearFromPage(this)">
@@ -330,10 +338,24 @@
 
             let growthItemElms = firstIncome.querySelectorAll('.growth-item');
             growthItemElms.forEach((item, index) => {
-                elmGwothStart= item.querySelector('.inc-growth-starting-age')
-                isValidTemp = validateStartingYear(item,elmGwothStart)
-                if (! isValidTemp)
-                    isIncValid=false
+                // Validate Growth Rate
+                let elmGrowthRate = item.querySelector('.inc-growth-rate');
+                let isValidRate = window.validateRateUponChange(elmGrowthRate, {
+                    min: 0,
+                    max: 15,
+                    fieldName: 'Income growth rate',
+                    isRequired: true
+                });
+                if (!isValidRate) {
+                    isIncValid = false;
+                }
+
+                // Validate Starting Age
+                elmGwothStart = item.querySelector('.inc-growth-starting-age');
+                isValidTemp = validateStartingYear(item, elmGwothStart);
+                if (!isValidTemp) {
+                    isIncValid = false;
+                }
             });
 
             firstIncome = firstIncome.nextElementSibling;
