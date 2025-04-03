@@ -104,7 +104,7 @@
                 <div class="column">
                             <div class="field has-addons">
                                 <div class="control">
-                                    <input class="input exp-amt-every-few-years is-primary has-text-right" name="exp-amt-every-few-years" type="number" placeholder="(Optional)Occur once for few years e.g 10 " value="${everyFewYearsValue}" onchange="window.addValidationIfNeeded(this)">
+                                    <input class="input exp-amt-every-few-years is-primary has-text-right" name="exp-amt-every-few-years" type="text" placeholder="(Optional)Occur once for few years e.g 10 " value="${everyFewYearsValue}" onchange="validateRateUponChange(this, {min: 1, max: 15, fieldName: 'Occurrence Interval', isRequired: true})" oninput="validateRateUponInput(this, {min: 1, max: 15, decimalPlaces: 0, autoDecimal: false})">
                                 </div>
                                 <div class="control">
                                     <button class="icon-button add-amount " aria-label="Add Amount" title="Add different amount for another period">
