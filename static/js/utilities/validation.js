@@ -454,7 +454,7 @@ function addValidationIfNeeded(inputElement) {
     }
     // Check if the input name is in the array
     if (field_rate_optional.indexOf(inputName) !== -1) {
-        console.log('--------------------------------------')
+        
         inputElement.addEventListener('change', function() {
             gblChecOptionalRate(this);
         });
