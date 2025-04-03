@@ -162,7 +162,16 @@
                         </label>
                         <div class="field">
                             <div class="control">
-                                <input class="input is-primary funds-mimic-year has-text-right" name="funds-mimic-year" type="number" min="1981" max="2024" step="1" placeholder="e.g. 1981" onchange="validateFundMimicYear(this)">
+                                <input class="input is-primary funds-mimic-year has-text-right" 
+                                       name="funds-mimic-year" 
+                                       type="text" 
+                                       pattern="[12][0-9]{3}"
+                                       maxlength="4"
+                                       placeholder="e.g. 1981" 
+                                       oninput="handleMimicYearInput(this)"
+                                       onchange="validateFundMimicYear(this)"
+                                       required
+                                       autocomplete="off">
                             </div>
                         </div>
                     </div>

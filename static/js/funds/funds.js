@@ -176,21 +176,59 @@
             return isValid
     }
 
-    function validateFundMimicYear(inputElement){  
-        elmFundItem = inputElement.closest('.fund-item'); 
-        elmRType = elmFundItem.querySelector('.funds-return-type');
-        if (elmRType.selectedIndex==1){
-            window.removeErrorComponent(inputElement)
-            if (!window.gblCheckEmpty(inputElement)){
-                return false
-            }
-            if (! window.gblCheckNumberRange(inputElement,'Year',1981,2024)){
-                return false
-            }
+    function handleMimicYearInput(inputElement) {
+        // Allow only numbers and limit to 4 digits
+        let value = inputElement.value.replace(/[^\d]/g, '').slice(0, 4);
+        
+        // If first digit entered, validate it's 1 or 2
+        if (value.length === 1 && !['1', '2'].includes(value)) {
+            value = '';
         }
-        //to update all the index fund use the same matched year
-        populateFirstRetiredYearWithYear(inputElement.value)
-        return true
+        
+        inputElement.value = value;
+
+        // Validate on input if we have 4 digits
+        if (value.length === 4) {
+            validateFundMimicYear(inputElement);
+        } else {
+            window.removeErrorComponent(inputElement);
+        }
+    }
+
+    function validateFundMimicYear(inputElement) {
+        const elmFundItem = inputElement.closest('.fund-item'); 
+        const elmRType = elmFundItem.querySelector('.funds-return-type');
+        const currentYear = new Date().getFullYear();
+        const maxYear = currentYear - 1;
+
+        if (elmRType.selectedIndex === 1) {
+            window.removeErrorComponent(inputElement);
+            
+            // Basic empty check
+            if (!window.gblCheckEmpty(inputElement)) {
+                return false;
+            }
+
+            const value = inputElement.value;
+            
+            // Validate format (4 digits, starting with 1 or 2)
+            if (!/^[12]\d{3}$/.test(value)) {
+                window.addErrorComponent(inputElement, 'Year must be 4 digits starting with 1 or 2');
+                return false;
+            }
+
+            // Validate range
+            const year = parseInt(value);
+            if (year < 1981 || year > maxYear) {
+                window.addErrorComponent(inputElement, `Year must be between 1981 and ${maxYear}`);
+                return false;
+            }
+
+            // Update all index funds to use the same year
+            populateFirstRetiredYearWithYear(inputElement.value);
+            return true;
+        }
+        return true;
     }
     window.validateFundsTabsExtra = function() {        
         isFundsTbValid= validateFundNameDuplicatedFullOpt(true)        
