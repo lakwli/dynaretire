@@ -296,69 +296,109 @@
                     isFundsTbValid=false
             }
 
-
-            window.removeErrorComponent(elmWith)
-            if (! isRetiredAgeValid)
-                isWithrawableAfterRetiredAgePlus=true
-            else if(window.convertToInt(elmWith.value)<=retire+1){
-                isWithrawableAfterRetiredAgePlus=true
-            }else{
-                elmMarkWithdrawProblem=elmWith
+            // Validate Withdraw Age (Optional) - Moved inside the loop
+            isTempFValid = validateWithdrawAge(elmWith);
+            if (!isTempFValid) {
+                isFundsTbValid = false;
             }
-        });   
 
-        if(! isWithrawableAfterRetiredAgePlus){
-            window.addErrorComponent(elmMarkWithdrawProblem, `At least one Fund is withdrawable at age ${retire+1}`)
-            isFundsTbValid=false
+        }); // End of fundsItems.forEach loop
+
+        // Removed the isWithrawableAfterRetiredAgePlus check entirely
+
+        return isFundsTbValid; // Return the overall validity status
+    } // End of validateFundsTabsExtra function
+
+    function validateWithdrawAge(inputElement) {
+        window.removeErrorComponent(inputElement);
+
+        // Remove non-numeric characters and limit to 2 digits
+        let value = inputElement.value.replace(/[^\d]/g, '');
+        if (value.length > 2) {
+            value = value.slice(0, 2);
         }
-        return isFundsTbValid
+        inputElement.value = value;
+
+        // If the value is empty, it's valid (optional field)
+        if (value === '') {
+            return true;
+        }
+
+        // During oninput event, only validate fully if we have 2 digits or on blur/submit
+        let isInputEvent = this.event && this.event.type === 'input';
+        if (isInputEvent && value.length < 2 && value.length > 0) { // Don't validate range yet if only 1 digit entered
+             return true; // Still valid at this point
+        }
+
+        // Validate range (similar to current age)
+        let isValid = true;
+        const age = window.convertToInt(value);
+        if (age < 15) {
+            isValid = false;
+            addErrorComponent(inputElement, `Withdraw Age Must Be At Least 15`);
+        } else if (age > 80) { // Assuming same upper limit as current/retire age
+            isValid = false;
+            addErrorComponent(inputElement, `Withdraw Age Must not over 80`);
+        }
+        // Add any other necessary cross-field validation if needed (e.g., compare with current/retire age)
+        // For now, just the basic range check.
+
+        return isValid;
     }
 
+
     function changeReturnType(inputElement){
-        elmFundItem = inputElement.closest('.fund-item'); 
+        elmFundItem = inputElement.closest('.fund-item');
         elmReturnRateWrap=elmFundItem.querySelector('.funds-return-rate-wrap')
         elmReturnRate=elmFundItem.querySelector('.funds-return-rate')
         elmIndexWrap=elmFundItem.querySelector('.funds-index-ref-wrap')
         elmIMimicYearWrap=elmFundItem.querySelector('.funds-mimic-year-wrap')
         elmIDefRetrWrap=elmFundItem.querySelector('.funds-default-return-wrap')
         elmDefReturn=elmFundItem.querySelector('.funds-default-return')
-        
-        if(inputElement.value=='Flat'){            
+
+        if(inputElement.value=='Flat'){
             elmReturnRateWrap.classList.remove('is-hidden');
             elmIMimicYearWrap.classList.add('is-hidden');
             elmIndexWrap.classList.add('is-hidden');
             elmIDefRetrWrap.classList.add('is-hidden');
-            
+
             // Just clear the fields
             elmDefReturn.value = '';
+            // Also clear mimic year if switching back to Flat
+            const elmMimicYear = elmFundItem.querySelector('.funds-mimic-year');
+            if (elmMimicYear) elmMimicYear.value = '';
+            window.removeErrorComponent(elmReturnRate); // Clear potential errors from Index mode
         }
-        else{
+        else{ // Index selected
             elmReturnRateWrap.classList.add('is-hidden');
             elmIndexWrap.classList.remove('is-hidden');
             elmIMimicYearWrap.classList.remove('is-hidden');
             elmIDefRetrWrap.classList.remove('is-hidden');
-            
-            // Just clear the fields 
-            elmReturnRate.value = '';
-        }
-    }
 
- 
-    window.getRisksFundName = function() {           
+            // Just clear the fields
+            elmReturnRate.value = '';
+            // Optionally populate mimic year if empty and others exist
+            populateFirstRetiredYearWithYear(null); // Check and potentially populate mimic year
+            window.removeErrorComponent(elmDefReturn); // Clear potential errors from Flat mode
+        }
+    } // End of changeReturnType function
+
+
+    window.getRisksFundName = function() {
         riskFundNames=[]
         let fundsItems = document.querySelectorAll('.fund-item');
         //nm=null
         fundsItems.forEach((item,index) => {
-            elmRType = item.querySelector('.funds-return-type'); 
-            if (elmRType.selectedIndex!=0){                
-                elmNm = item.querySelector('.fundname');  
+            elmRType = item.querySelector('.funds-return-type');
+            if (elmRType.selectedIndex!=0){
+                elmNm = item.querySelector('.fundname');
                 nm=elmNm.value
                 riskFundNames.push(nm);
             }
-        });  
-        return riskFundNames 
+        });
+        return riskFundNames
     }
-   
+
     function validateCurrentYear(inputElement){
         window.removeErrorComponent(inputElement)
         isYrValid= window.gblChecYear(inputElement);

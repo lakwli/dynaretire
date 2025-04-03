@@ -1,200 +1,319 @@
-
-
 <section class="section">
-    <div class="container">
-        <div id="fund-container">
-            <div class="box" >
-                <div class="columns is-multiline">
-                    <div class="icon-placeholder">
-                        ::
-                    </div>
-    
-                    <div class="column  is-2 is-hidden">
-                        <label class="label">Current Calendar Year</label>
-                        <div class="field">
-                            <div class="control">
-                                <input name="curr-cal-yr" id="curr-cal-yr"class="input curr-cal-yr is-primary has-text-right" type="number" step="1" min=1900 placeholder="e.g. 2024" onchange="validateCurrentYear(this)">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column  is-2">
-                        <label class="label">Current Age
-                            <span class="icon">
-                                <i class="fas fa-question-circle" title="'Current Age' refers to your current age at the time of planning"></i>
-                            </span>
-                        </label>
-                        <div class="field">
-                            <div class="control">
-                                <input name="curr-age" id="curr-age" class="input curr-age is-primary has-text-right" type="text" pattern="\d{1,2}" maxlength="2" placeholder="e.g. 30" onchange="changeCurrentAge(this)" oninput="validateCurrentAge(this)">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column  is-2">
-                        <label class="label">Retirement Age
-                            <span class="icon">
-                                <i class="fas fa-question-circle" title="'Retirement Age' refers to the age at which you plan to stop working and start your retirement"></i>
-                              </span>
-                        </label>
-                        <div class="field">
-                            <div class="control">
-                                <input name="retire-age" id="retire-age" class="input retire-age is-primary has-text-right" type="text" pattern="\d{1,2}" maxlength="2" placeholder="e.g. 31" onchange="validateRetireAge(this)" oninput="validateRetireAge(this)">                                         
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column  is-2">
-                        <label class="label">
-                            Full Retirement Year
-                            <span class="icon">
-                                <i class="fas fa-question-circle" title="'Full Retirement Year' Year refers to the first full year of your retirement. If you retire in the middle of a year, that year is considered as your last working year, and the following year is your Retirement Commencement Year. This is the year when you start living fully on your retirement savings and investments."></i>
-                              </span>
-                        </label>
-                        <div class="align-middle">
-                            <label id="retired-Calendar-Year"></label>
-                        </div>
-                    </div>
-                </div>
+  <div class="container">
+    <div id="fund-container">
+      <div class="box">
+        <div class="columns is-multiline">
+          <div class="icon-placeholder">::</div>
+
+          <div class="column is-2 is-hidden">
+            <label class="label">Current Calendar Year</label>
+            <div class="field">
+              <div class="control">
+                <input
+                  name="curr-cal-yr"
+                  id="curr-cal-yr"
+                  class="input curr-cal-yr is-primary has-text-right"
+                  type="number"
+                  step="1"
+                  min="1900"
+                  placeholder="e.g. 2024"
+                  onchange="validateCurrentYear(this)"
+                />
+              </div>
             </div>
-            <!-- Funds Template -->
-            <div class="box fund-item draggable" draggable="true">
-                <button class="delete-fund is-hidden is-danger" aria-label="Delete Expense">
-                    <i class="fas fa-times"></i>
-                </button>
-                <div class="columns is-multiline">
-                    <div class="align-middle">
-                        ::
-                    </div>
-    
-                    <div class="column  is-2">
-                        <label class="label">Saving Name
-                            <span class="icon">
-                                <i class="fas fa-question-circle" title="'Saving Name' refers to the name or type of your savings account, investment, or retirement fund (e.g., Unit Trust, EPF, Fixed Deposit)"></i>
-                            </span>
-                        </label>
-                        <div class="field">
-                            <div class="control">
-                                <input name="fundname" class="input fundname is-primary" type="text" placeholder="Unit Trust, EPF" onchange="validateFundNameDuplicated(this)">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column  is-1 is-hidden">
-                        <label class="label">Description</label>
-                        <div class="field">
-                            <div class="control">
-                                <input name="funddesc" class="input funddesc is-info" type="text" placeholder="For Retirement" >
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column is-1">
-                        <label class="label">
-                            Amount
-                            <span class="icon">
-                                <i class="fas fa-question-circle" title="'Saving Amount' refers to the total amount of money you have saved"></i>
-                              </span>
-                        </label>
-                        <div class="field">
-                            <div class="control">
-                                <input name="fundamount" class="input fundamount is-normal is-primary has-text-right" type="text" placeholder="Amount" required onchange="window.addValidationIfNeeded(this)" onkeyup="callKeyUpAmountFunction(this)">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column is-7">
-                        <label class="label">Return                            
-                            <span class="icon">
-                                <i class="fas fa-question-circle" title="'Expected Return' refer to estimated growth rate of your savings. You can choose a flat rate (e.g., 5.5%) for consistent growth over time, or link your return to an index fund's performance from a specific year to simulate potential market-based growth."></i>
-                              </span>
-                        </label>
-                        <div class="field">
-                            <div class="control is-expanded">
-                                <div class="field has-addons has-addons-centered">
-                                  <p class="control">
-                                    <span class="select is-primary">
-                                      <select class='funds-return-type' name='funds-return-type' onchange="changeReturnType(this)">
-                                        <option>Flat</option>
-                                        <option>Index</option>
-                                      </select>
-                                    </span>
-                                  </p>
-                                  <p class="control select is-primary is-hidden funds-index-ref-wrap" name="funds-index-ref-wrap">
-                                        <select class="funds-index-ref" name="funds-index-ref">
-                                            <option value="S&P500">S&P500</option>
-                                      </select>
-                                  </p>
-                                  <p class="control funds-return-rate-wrap" name="funds-return-rate-wrap">
-                                    <input class="input is-primary funds-return-rate has-text-right" 
-                                           name="funds-return-rate" 
-                                           type="text" 
-                                           pattern="[0-9.]*"
-                                           inputmode="decimal"
-                                           placeholder="e.g. 5.5%" 
-                                           required
-                                           oninput="validateRateUponInput(this, {min: 0, max: 20, decimalPlaces: 2, autoDecimal: true})"
-                                           onchange="validateRateUponChange(this, {min: 0, max: 20, fieldName: 'Return rate', isRequired: true})">
-                                  </p>
-                                </div>                            
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column is-1 funds-default-return-wrap is-hidden" name="funds-default-return-wrap">
-                        <label class="label">Default Rate
-                            <span class="icon">
-                                <i class="fas fa-question-circle" title="'Default Rate' is the return rate that will be used when historical data is not available. For example, if you're using index returns up to 2024, this rate will be applied for 2025 onwards. It should reflect your expected future returns"></i>
-                            </span>
-                        </label>
-                        <div class="field">
-                            <div class="control">
-                                <input class="input is-primary funds-default-return has-text-right" 
-                                       name="funds-default-return" 
-                                       type="text" 
-                                       pattern="[0-9.]*"
-                                       inputmode="decimal"
-                                       placeholder="e.g. 9%" 
-                                       required
-                                       oninput="validateRateUponInput(this, {min: 0, max: 20, decimalPlaces: 2, autoDecimal: true})"
-                                       onchange="validateRateUponChange(this, {min: 0, max: 20, fieldName: 'Default return rate', isRequired: true})">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column is-1 funds-mimic-year-wrap is-hidden" name="funds-mimic-year-wrap">
-                        <label class="label">Backtest Year                            
-                            <span class="icon">
-                                <i class="fas fa-question-circle" title="'Backtest Year' refers to the year used to backtest your retirement plan with an index fund such as S&P500. If you enter 1998, for example, the system will backtest assuming your Retirement Commencement Year would happen in 1998. This allows you to see how your retirement plan would have performed if you had retired in a specific past year"></i>
-                              </span>
-                        </label>
-                        <div class="field">
-                            <div class="control">
-                                <input class="input is-primary funds-mimic-year has-text-right" 
-                                       name="funds-mimic-year" 
-                                       type="text" 
-                                       pattern="[12][0-9]{3}"
-                                       maxlength="4"
-                                       placeholder="e.g. 1981" 
-                                       oninput="handleMimicYearInput(this)"
-                                       onchange="validateFundMimicYear(this)"
-                                       required
-                                       autocomplete="off">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column is-1">
-                        <div class="field">
-                            <label class="label">WithdrawAge                            
-                                <span class="icon">
-                                    <i class="fas fa-question-circle" title="'Withdrawal Age' refers to the age at the beginning of the year when you start withdrawing from your saving. If your eligible withdrawal age is, for example, 55, you should enter 56 here"></i>
-                                </span>
-                            </label>
-                            <div class="control">
-                                <input name="fundwithdrawage" class="input is-primary fundwithdrawage has-text-right" type="number" step="1" min=1 placeholder="e.g. 1" value=1 max="80" required onchange="window.addValidationIfNeeded(this)">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <div class="column is-2">
+            <label class="label"
+              >Current Age
+              <span class="icon">
+                <i
+                  class="fas fa-question-circle"
+                  title="'Current Age' refers to your current age at the time of planning"
+                ></i>
+              </span>
+            </label>
+            <div class="field">
+              <div class="control">
+                <input
+                  name="curr-age"
+                  id="curr-age"
+                  class="input curr-age is-primary has-text-right"
+                  type="text"
+                  pattern="\d{1,2}"
+                  maxlength="2"
+                  placeholder="e.g. 30"
+                  onchange="changeCurrentAge(this)"
+                  oninput="validateCurrentAge(this)"
+                />
+              </div>
             </div>
+          </div>
+          <div class="column is-2">
+            <label class="label"
+              >Retirement Age
+              <span class="icon">
+                <i
+                  class="fas fa-question-circle"
+                  title="'Retirement Age' refers to the age at which you plan to stop working and start your retirement"
+                ></i>
+              </span>
+            </label>
+            <div class="field">
+              <div class="control">
+                <input
+                  name="retire-age"
+                  id="retire-age"
+                  class="input retire-age is-primary has-text-right"
+                  type="text"
+                  pattern="\d{1,2}"
+                  maxlength="2"
+                  placeholder="e.g. 31"
+                  onchange="validateRetireAge(this)"
+                  oninput="validateRetireAge(this)"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="column is-2">
+            <label class="label">
+              Full Retirement Year
+              <span class="icon">
+                <i
+                  class="fas fa-question-circle"
+                  title="'Full Retirement Year' Year refers to the first full year of your retirement. If you retire in the middle of a year, that year is considered as your last working year, and the following year is your Retirement Commencement Year. This is the year when you start living fully on your retirement savings and investments."
+                ></i>
+              </span>
+            </label>
+            <div class="align-middle">
+              <label id="retired-Calendar-Year"></label>
+            </div>
+          </div>
         </div>
-        <button class="button is-primary add-fund">Add Fund</button>
+      </div>
+      <!-- Funds Template -->
+      <div class="box fund-item draggable" draggable="true">
+        <button
+          class="delete-fund is-hidden is-danger"
+          aria-label="Delete Expense"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="columns is-multiline">
+          <div class="align-middle">::</div>
+
+          <div class="column is-2">
+            <label class="label"
+              >Saving Name
+              <span class="icon">
+                <i
+                  class="fas fa-question-circle"
+                  title="'Saving Name' refers to the name or type of your savings account, investment, or retirement fund (e.g., Unit Trust, EPF, Fixed Deposit)"
+                ></i>
+              </span>
+            </label>
+            <div class="field">
+              <div class="control">
+                <input
+                  name="fundname"
+                  class="input fundname is-primary"
+                  type="text"
+                  placeholder="Unit Trust, EPF"
+                  onchange="validateFundNameDuplicated(this)"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="column is-1 is-hidden">
+            <label class="label">Description</label>
+            <div class="field">
+              <div class="control">
+                <input
+                  name="funddesc"
+                  class="input funddesc is-info"
+                  type="text"
+                  placeholder="For Retirement"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="column is-1">
+            <label class="label">
+              Amount
+              <span class="icon">
+                <i
+                  class="fas fa-question-circle"
+                  title="'Saving Amount' refers to the total amount of money you have saved"
+                ></i>
+              </span>
+            </label>
+            <div class="field">
+              <div class="control">
+                <input
+                  name="fundamount"
+                  class="input fundamount is-normal is-primary has-text-right"
+                  type="text"
+                  placeholder="Amount"
+                  required
+                  onchange="window.addValidationIfNeeded(this)"
+                  onkeyup="callKeyUpAmountFunction(this)"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="column is-7">
+            <label class="label"
+              >Return
+              <span class="icon">
+                <i
+                  class="fas fa-question-circle"
+                  title="'Expected Return' refer to estimated growth rate of your savings. You can choose a flat rate (e.g., 5.5%) for consistent growth over time, or link your return to an index fund's performance from a specific year to simulate potential market-based growth."
+                ></i>
+              </span>
+            </label>
+            <div class="field">
+              <div class="control is-expanded">
+                <div class="field has-addons has-addons-centered">
+                  <p class="control">
+                    <span class="select is-primary">
+                      <select
+                        class="funds-return-type"
+                        name="funds-return-type"
+                        onchange="changeReturnType(this)"
+                      >
+                        <option>Flat</option>
+                        <option>Index</option>
+                      </select>
+                    </span>
+                  </p>
+                  <p
+                    class="control select is-primary is-hidden funds-index-ref-wrap"
+                    name="funds-index-ref-wrap"
+                  >
+                    <select class="funds-index-ref" name="funds-index-ref">
+                      <option value="S&P500">S&P500</option>
+                    </select>
+                  </p>
+                  <p
+                    class="control funds-return-rate-wrap"
+                    name="funds-return-rate-wrap"
+                  >
+                    <input
+                      class="input is-primary funds-return-rate has-text-right"
+                      name="funds-return-rate"
+                      type="text"
+                      pattern="[0-9.]*"
+                      inputmode="decimal"
+                      placeholder="e.g. 5.5%"
+                      required
+                      oninput="validateRateUponInput(this, {min: 0, max: 20, decimalPlaces: 2, autoDecimal: true})"
+                      onchange="validateRateUponChange(this, {min: 0, max: 20, fieldName: 'Return rate', isRequired: true})"
+                    />
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="column is-1 funds-default-return-wrap is-hidden"
+            name="funds-default-return-wrap"
+          >
+            <label class="label"
+              >Default Rate
+              <span class="icon">
+                <i
+                  class="fas fa-question-circle"
+                  title="'Default Rate' is the return rate that will be used when historical data is not available. For example, if you're using index returns up to 2024, this rate will be applied for 2025 onwards. It should reflect your expected future returns"
+                ></i>
+              </span>
+            </label>
+            <div class="field">
+              <div class="control">
+                <input
+                  class="input is-primary funds-default-return has-text-right"
+                  name="funds-default-return"
+                  type="text"
+                  pattern="[0-9.]*"
+                  inputmode="decimal"
+                  placeholder="e.g. 9%"
+                  required
+                  oninput="validateRateUponInput(this, {min: 0, max: 20, decimalPlaces: 2, autoDecimal: true})"
+                  onchange="validateRateUponChange(this, {min: 0, max: 20, fieldName: 'Default return rate', isRequired: true})"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="column is-1 funds-mimic-year-wrap is-hidden"
+            name="funds-mimic-year-wrap"
+          >
+            <label class="label"
+              >Backtest Year
+              <span class="icon">
+                <i
+                  class="fas fa-question-circle"
+                  title="'Backtest Year' refers to the year used to backtest your retirement plan with an index fund such as S&P500. If you enter 1998, for example, the system will backtest assuming your Retirement Commencement Year would happen in 1998. This allows you to see how your retirement plan would have performed if you had retired in a specific past year"
+                ></i>
+              </span>
+            </label>
+            <div class="field">
+              <div class="control">
+                <input
+                  class="input is-primary funds-mimic-year has-text-right"
+                  name="funds-mimic-year"
+                  type="text"
+                  pattern="[12][0-9]{3}"
+                  maxlength="4"
+                  placeholder="e.g. 1981"
+                  oninput="handleMimicYearInput(this)"
+                  onchange="validateFundMimicYear(this)"
+                  required
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="column is-1">
+            <div class="field">
+              <label class="label"
+                >Withdraw Age
+                <span class="icon">
+                                  <i class="fas fa-question-circle" title="'Withdrawal Age' (Optional): The minimum age when you can withdraw from this fund. Examples: 60 for pension funds, 55 for insurance saving funds. Leave blank if there are no age restrictions on this fund."></i>
+                </span>
+              </label>
+              <div class="control">
+                <input
+                  name="fundwithdrawage"
+                  class="input is-info fundwithdrawage has-text-right"
+                  type="text"
+                  pattern="\d{1,2}"
+                  maxlength="2"
+                  placeholder="e.g. 56"
+                  onchange="validateWithdrawAge(this)"
+                  oninput="validateWithdrawAge(this)"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <button class="button is-primary add-fund">Add Fund</button>
+  </div>
 </section>
 
 <!-- Application scripts - load at end of body -->
-<script defer type="text/javascript" src="{{ url_for('static', filename='js/funds/funds.js') }}"></script>
-    <script defer type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script defer nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script
+  defer
+  type="text/javascript"
+  src="{{ url_for('static', filename='js/funds/funds.js') }}"
+></script>
+<script
+  defer
+  type="module"
+  src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+></script>
+<script
+  defer
+  nomodule
+  src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+></script>
