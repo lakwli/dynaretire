@@ -387,7 +387,8 @@
             let isValidInflation = window.validateRateUponChange(elmInflation, {
                 min: 0,
                 max: 15,
-                fieldName: 'Inflation rate'
+                fieldName: 'Inflation rate',
+                isRequired: true
             });
             if (!isValidInflation) {
                 isExpTabValid = false;
@@ -408,13 +409,18 @@
 
             let amountItemElms = firstExp.querySelectorAll('.amount-item');
             amountItemElms.forEach((item, index) => {
-                //console.log(item)
-                elmAmtStart= item.querySelector('.exp-amt-starting-age')
-                isValidTemp = validateExpStartingYear(item,elmAmtStart)
-                //console.log(isValidTemp+'=8==============='+isExpTabValid)                
-                if (! isValidTemp)
-                    isExpTabValid=false
-                //console.log('=2================'+isExpTabValid)
+                // Validate Amount
+                let elmAmount = item.querySelector('.exp-amt-amt');
+                if (!window.gblCheckEmpty(elmAmount)) {
+                    isExpTabValid = false;
+                }
+
+                // Validate Starting Age
+                elmAmtStart = item.querySelector('.exp-amt-starting-age');
+                isValidTemp = validateExpStartingYear(item, elmAmtStart);
+                if (!isValidTemp) {
+                    isExpTabValid = false;
+                }
             });
             firstExp = firstExp.nextElementSibling;
             //console.log('==========3======='+isExpTabValid)
