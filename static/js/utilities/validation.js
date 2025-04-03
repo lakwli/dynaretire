@@ -22,14 +22,17 @@ window.validateRateUponInput = function(inputElement, options = {}) {
     if (decimalPlaces === 0) {
         // Only allow digits
         value = value.replace(/[^\d]/g, '');
-        // For 3 or more digits, keep only last 2
-        if (value.length > 2) {
-            value = value.slice(-2);
+
+        // If value exceeds max, take the last entered digit
+        if (parseInt(value) > max) {
+            value = value.slice(-1);
         }
-        // Update but don't return - let validation continue
+
         inputElement.value = value;
+        // Skip further processing for decimalPlaces === 0 as it's handled here
+        return; 
     }
-    
+
     // For decimal numbers, continue with normal validation...
     const filteredValue = value.replace(/[^\d.]/g, '');
     
