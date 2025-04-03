@@ -11,6 +11,12 @@ window.validateRateUponInput = function(inputElement, options = {}) {
     } = options;
 
     let value = inputElement.value;
+    
+    // Clear error message when user starts typing or has valid content
+    const parsedValue = parseFloat(value.replace(/[^\d.]/g, ''));
+    if (value && !isNaN(parsedValue)) {
+        removeErrorComponent(inputElement);
+    }
 
     // Handle rotating digits for whole numbers when decimalPlaces is 0
     if (decimalPlaces === 0) {
@@ -112,22 +118,33 @@ window.validateRateUponChange = function(inputElement, options = {}) {
     const {
         min = 0,           // Minimum allowed value
         max = 100,         // Maximum allowed value
-        fieldName = 'Rate' // Field name for error messages
+        fieldName = 'Rate', // Field name for error messages
+        isRequired = false // Whether the field is required
     } = options;
     
     removeErrorComponent(inputElement);
     
-    // Allow empty for initial input
-    if (!inputElement.value) {
+    const currentValue = inputElement.value;
+    // Only skip validation if there's a value and it's a valid but incomplete number
+    if (currentValue && (
+        currentValue.endsWith('.') || // Typing decimal
+        (currentValue.includes('.') && /^\d+\.\d*$/.test(currentValue)) || // Valid decimal number
+        /^\d+$/.test(currentValue)) // Valid whole number
+    ) {
+        return true;
+    }
+
+    // Empty field validation
+    const trimmedValue = trimVal(inputElement.value);
+    if (trimmedValue === '') {
+        if (isRequired) {
+            addErrorComponent(inputElement, `${fieldName} is required`);
+            return false;
+        }
         return true;
     }
     
-    // Allow during typing if ends with decimal
-    if (inputElement.value.endsWith('.')) {
-        return true;
-    }
-    
-    const value = parseFloat(inputElement.value);
+    const value = parseFloat(trimmedValue);
     
     if (isNaN(value)) {
         addErrorComponent(inputElement, `${fieldName} must be a valid number`);
@@ -371,7 +388,7 @@ window.convertToFloat = function(inputValue) {
     return num
 }
 
-var field_name = []//'fundname','exp-name','inc-name','stg-retire-year'
+var field_name = ['fundname']//'exp-name','inc-name','stg-retire-year'
 var field_amount = ['fundamount','exp-amt-amt','inc-amount']
 var field_rate = ['fundreturn']//,'stg-min_rate'
 var field_rate_allow0 = ['inc-growth-rate']//,'stg-min_rate'

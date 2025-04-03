@@ -126,8 +126,9 @@
                                            pattern="[0-9.]*"
                                            inputmode="decimal"
                                            placeholder="e.g. 5.5%" 
+                                           required
                                            oninput="validateRateUponInput(this, {min: 0, max: 20, decimalPlaces: 2, autoDecimal: true})"
-                                           onchange="validateRateUponChange(this, {min: 0, max: 20, fieldName: 'Return rate'})">
+                                           onchange="validateRateUponChange(this, {min: 0, max: 20, fieldName: 'Return rate', isRequired: true})">
                                   </p>
                                 </div>                            
                             </div>
@@ -147,8 +148,9 @@
                                        pattern="[0-9.]*"
                                        inputmode="decimal"
                                        placeholder="e.g. 9%" 
+                                       required
                                        oninput="validateRateUponInput(this, {min: 0, max: 20, decimalPlaces: 2, autoDecimal: true})"
-                                       onchange="validateRateUponChange(this, {min: 0, max: 20, fieldName: 'Default return rate'})">
+                                       onchange="validateRateUponChange(this, {min: 0, max: 20, fieldName: 'Default return rate', isRequired: true})">
                             </div>
                         </div>
                     </div>

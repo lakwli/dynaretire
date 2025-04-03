@@ -21,13 +21,11 @@
                 if (errorMessage && errorMessage.classList.contains('help') && errorMessage.classList.contains('is-danger')) {
                     errorMessage.remove();
                 }
-                //console.log(input.name+'  has change event? '+(input.hasOwnProperty('onchange')))
                 if (input.name == 'fundname') {
                     //input.addEventListener('change', validateFundNameDuplicated(input));
                 } else {
                     window.addValidationIfNeeded(input);
                 }
-                
             });
            // newFund.querySelectorAll('.label').forEach((el) => {
            //     el.remove();
@@ -229,25 +227,29 @@
             //if (! window.gblCheckEmpty(elmFName))
                 //isFundsTbValid=false
 
+            // Validate return rates based on type
             if (elmRType.selectedIndex==0) {
+                // For Flat rate type
                 isTempValid = window.validateRateUponChange(elmRRate, {
                     min: 0,
                     max: 20,
-                    fieldName: 'Return rate'
-                });
-                if (!isTempValid)
-                    isFundsTbValid=false;
-            }
-
-
-            if (!elmDefRRateWrap.classList.contains('is-hidden')) {
-                isTempValid = window.validateRateUponChange(elmDefRRate, {
-                    min: 0,
-                    max: 20,
-                    fieldName: 'Default return rate'
+                    fieldName: 'Return rate',
+                    isRequired: true
                 });
                 if (!isTempValid)
                     isFundsTbValid = false;
+            } else {
+                // For Index type
+                if (!elmDefRRateWrap.classList.contains('is-hidden')) {
+                    isTempValid = window.validateRateUponChange(elmDefRRate, {
+                        min: 0,
+                        max: 20,
+                        fieldName: 'Default return rate',
+                        isRequired: true
+                    });
+                    if (!isTempValid)
+                        isFundsTbValid = false;
+                }
             }
 
             if (! elmMimicYearWrap.classList.contains('is-hidden')){
@@ -275,24 +277,31 @@
     }
 
     function changeReturnType(inputElement){
-        
         elmFundItem = inputElement.closest('.fund-item'); 
         elmReturnRateWrap=elmFundItem.querySelector('.funds-return-rate-wrap')
+        elmReturnRate=elmFundItem.querySelector('.funds-return-rate')
         elmIndexWrap=elmFundItem.querySelector('.funds-index-ref-wrap')
         elmIMimicYearWrap=elmFundItem.querySelector('.funds-mimic-year-wrap')
         elmIDefRetrWrap=elmFundItem.querySelector('.funds-default-return-wrap')
+        elmDefReturn=elmFundItem.querySelector('.funds-default-return')
+        
         if(inputElement.value=='Flat'){            
             elmReturnRateWrap.classList.remove('is-hidden');
             elmIMimicYearWrap.classList.add('is-hidden');
             elmIndexWrap.classList.add('is-hidden');
             elmIDefRetrWrap.classList.add('is-hidden');
-
+            
+            // Just clear the fields
+            elmDefReturn.value = '';
         }
         else{
             elmReturnRateWrap.classList.add('is-hidden');
             elmIndexWrap.classList.remove('is-hidden');
             elmIMimicYearWrap.classList.remove('is-hidden');
             elmIDefRetrWrap.classList.remove('is-hidden');
+            
+            // Just clear the fields 
+            elmReturnRate.value = '';
         }
     }
 
