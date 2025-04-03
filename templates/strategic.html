@@ -38,7 +38,7 @@
                             </span>
                         </label>
                         
-                            <input class="input is-primary has-text-right" type="number" id="stg-min_rate" name="stg-min_rate" step="0.01" min=1  placeholder="e.g. 3%" onChange="validateStgReturnRate(this)">
+                            <input class="input is-primary has-text-right" type="text" id="stg-min_rate" name="stg-min_rate" placeholder="e.g. 3%" onchange="validateRateUponChange(this, {min: 1, max: 5, fieldName: 'Minimum Annual Return', isRequired: true})" oninput="validateRateUponInput(this, {min: 1, max: 5, decimalPlaces: 0, autoDecimal: false})">
                    
                     </div>
                     <div class="control is-expanded is-hidden" id="stg-risky-fund">
