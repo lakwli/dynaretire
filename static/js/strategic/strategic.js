@@ -35,7 +35,7 @@
                     <input class="input is-primary stg-starting-age has-text-right" type="text" pattern="\\d{1,2}" maxlength="2" min=${startmin} placeholder="When the rebalancing started?" onchange="onChangeStgStartYear(this)" oninput="onChangeStgStartYear(this)">
                 </div>
                 <div class="column">
-                    <input class="input is-info stg-until-age has-text-right" type="text" pattern="\\d{1,2}" maxlength="2" placeholder="When the rebalancing ended?" value="100" onchange="validateStgUntilYear(this)" oninput="validateStgUntilYear(this)">
+                    <input class="input is-info stg-until-age has-text-right" type="text" pattern="\\d{1,2}" maxlength="2" placeholder="When the rebalancing ended?" value="99" onchange="validateStgUntilYear(this)" oninput="validateStgUntilYear(this)">
                 </div>
                 <div class="column">                          
                     <div class="field has-addons">
@@ -83,7 +83,8 @@
             prev_until.classList.remove('is-info');
             prev_until.classList.add('is-normal');            
             window.removeErrorComponent(prev_until)
-            curr_until.value=prev_until.value
+            // Set the current until value, ensuring it doesn't exceed 99
+            curr_until.value = Math.min(parseInt(prev_until.value) || 99, 99)
             rebalsContainer.appendChild(newRebal);
             setTimeout(() => {
                 newRebal.scrollIntoView({ behavior: 'smooth', block: 'center' });
