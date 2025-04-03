@@ -410,10 +410,10 @@
             let amountItemElms = firstExp.querySelectorAll('.amount-item');
             amountItemElms.forEach((item, index) => {
                 // Validate Amount
-                let elmAmount = item.querySelector('.exp-amt-amt');
-                if (!window.gblCheckEmpty(elmAmount)) {
-                    isExpTabValid = false;
-                }
+                //let elmAmount = item.querySelector('.exp-amt-amt');
+                //if (!window.gblCheckEmpty(elmAmount)) {
+                //    isExpTabValid = false;
+                //}
 
                 // Validate Starting Age
                 elmAmtStart = item.querySelector('.exp-amt-starting-age');
