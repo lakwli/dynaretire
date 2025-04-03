@@ -40,7 +40,7 @@
                 <div class="column">                          
                     <div class="field has-addons">
                         <div class="control is-expanded" >
-                            <input class="input is-primary stg-every-few-years has-text-right" name="stg-every-few-years" type="number" min="1" placeholder="Is this rebalancing occurrance years"  value="${everyFewYearsValue}" onChange="validateStgFewYear(this)">
+                            <input class="input is-primary stg-every-few-years has-text-right" name="stg-every-few-years" type="text" placeholder="Is this rebalancing occurrance years"  value="${everyFewYearsValue}" onchange="validateRateUponChange(this, {min: 1, max: 5, fieldName: 'Rebalance Freq.', isRequired: true})" oninput="validateRateUponInput(this, {min: 1, max: 5, decimalPlaces: 0, autoDecimal: false})">
                         </div>
                         <div class="control" >
                             <button class="icon-button add-rebal " aria-label="Add Rebalance Ratio"  title="Add a different rebalance ratio for another period">

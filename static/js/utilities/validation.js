@@ -23,14 +23,40 @@ window.validateRateUponInput = function(inputElement, options = {}) {
         // Only allow digits
         value = value.replace(/[^\d]/g, '');
 
-        // If value exceeds max, take the last entered digit
-        if (parseInt(value) > max) {
-            value = value.slice(-1);
+        // Handle leading zeros and minimum value
+        if (value === '0' || value.startsWith('0')) {
+            // If min >= 1, don't allow zero
+            if (min >= 1) {
+                value = '';
+            } else {
+                value = '0';
+            }
+        } else {
+            // Get max number of digits based on max value
+            const maxDigits = max.toString().length;
+
+            // Limit input length to max value's length
+            if (value.length > maxDigits) {
+                value = value.slice(-maxDigits);
+            }
+
+            // After length is limited, check both min and max
+            const numValue = parseInt(value);
+            if (numValue > max) {
+                value = value.slice(-1);
+            } else if (numValue < min && value !== '') {
+                // If value is less than min but not empty, take last digit
+                value = value.slice(-1);
+                // If still less than min, clear it
+                if (parseInt(value) < min) {
+                    value = '';
+                }
+            }
         }
 
         inputElement.value = value;
         // Skip further processing for decimalPlaces === 0 as it's handled here
-        return; 
+        return;
     }
 
     // For decimal numbers, continue with normal validation...
@@ -146,9 +172,8 @@ window.validateRateUponChange = function(inputElement, options = {}) {
         }
         return true;
     }
-    
+
     const value = parseFloat(trimmedValue);
-    
     if (isNaN(value)) {
         addErrorComponent(inputElement, `${fieldName} must be a valid number`);
         return false;
