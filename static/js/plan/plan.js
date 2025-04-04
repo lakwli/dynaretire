@@ -25,59 +25,177 @@ $(document).ready(function() {
     // Handle file selection
     $('#file-input').change(function(e) {
         const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const jsonData = JSON.parse(e.target.result);
-                    const plan_data = new Plan_Data(
-                        jsonData.current_age,
-                        jsonData.retire_age
-                    );
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = async function(e) {
+            try {
+                const jsonData = JSON.parse(e.target.result);
+
+                // Helper function to setup a fund
+                async function setupFund(fundItem, fundData) {
+                    if (!fundItem || !fundData) {
+                        console.warn('Missing fund item or data');
+                        return;
+                    }
+
+                    try {
+                        fundItem.querySelector('.fundname').value = fundData.name || '';
+                        fundItem.querySelector('.funddesc').value = fundData.desc || '';
+                        fundItem.querySelector('.fundamount').value = fundData.amount || '';
+                        fundItem.querySelector('.fundwithdrawage').value = fundData.wt_age || '';
+
+                        const returnTypeSelect = fundItem.querySelector('.funds-return-type');
+                        if (returnTypeSelect) {
+                            returnTypeSelect.value = fundData.return_type;
+                            returnTypeSelect.dispatchEvent(new Event('change'));
+                            await new Promise(resolve => setTimeout(resolve, 100));
+
+                            if (fundData.return_type === 'Flat') {
+                                fundItem.querySelector('.funds-return-rate').value = fundData.return_rate || '';
+                            } else {
+                                fundItem.querySelector('.funds-index-ref').value = fundData.return_rate || '';
+                                fundItem.querySelector('.funds-default-return').value = fundData.default_rate || '';
+                                fundItem.querySelector('.funds-mimic-year').value = fundData.mimic_calendar_year || '';
+                            }
+
+                            // Verify all inputs are set correctly
+                            await new Promise(resolve => setTimeout(resolve, 50));
+                            const verifyInputs = fundItem.querySelectorAll('input[required]');
+                            verifyInputs.forEach(input => {
+                                if (!input.value) {
+                                    console.warn(`Required field ${input.className} is empty`);
+                                }
+                            });
+                        }
+                    } catch (err) {
+                        console.error('Error setting up fund:', err);
+                        throw new Error('Failed to setup fund properly');
+                    }
+                }
+
+                // Helper function to load tab with progress
+                async function loadTabWithProgress(tabName, message) {
+                    populateMessage('Info', 'is-info', message);
+                    await loadTabContent(tabName);
+                    $(`#${tabName}-content`).hide();
+                    await new Promise(resolve => setTimeout(resolve, 200));
+                }
+
+                // Start loading process
+                populateMessage('Info', 'is-info', 'Loading plan configuration...');
+
+                // Load funds tab first
+                await loadTabContent('funds');
+                $('#funds-content').show();
+
+                // Set basic fields
+                document.getElementById('curr-age').value = jsonData.current_age || '';
+                document.getElementById('retire-age').value = jsonData.retire_age || '';
+
+                // Process funds
+                if (jsonData.funds && jsonData.funds.length > 0) {
+                    populateMessage('Info', 'is-info', 'Loading fund data...');
                     
-                    // Load funds
-                    if (jsonData.funds) {
-                        jsonData.funds.forEach(fundData => {
-                            plan_data.add_fund(new Fund(
-                                fundData.name,
-                                fundData.desc,
-                                fundData.amount,
-                                fundData.return_type,
-                                fundData.return_rate,
-                                fundData.default_rate,
-                                fundData.mimic_calendar_year,
-                                fundData.wt_age
-                            ));
+                    // Setup first fund
+                    await setupFund(document.querySelector('.fund-item'), jsonData.funds[0]);
+
+                    // Add remaining funds
+                    const addFundButton = document.querySelector('.add-fund');
+                    for (let i = 1; i < jsonData.funds.length; i++) {
+                        populateMessage('Info', 'is-info', `Loading fund ${i + 1} of ${jsonData.funds.length}...`);
+                        if (addFundButton) {
+                            try {
+                                addFundButton.click();
+                                await new Promise(resolve => setTimeout(resolve, 200));
+                                const newFund = document.querySelector('.fund-item:last-child');
+                                if (!newFund) {
+                                    throw new Error('Failed to create new fund item');
+                                }
+                                await setupFund(newFund, jsonData.funds[i]);
+                                
+                                // Trigger validation on required fields
+                                newFund.querySelectorAll('input[required]').forEach(input => {
+                                    input.dispatchEvent(new Event('change'));
+                                });
+                            } catch (err) {
+                                console.error(`Error adding fund ${i + 1}:`, err);
+                                populateMessage('Warning', 'is-warning', `Issue loading fund ${i + 1}. Please verify data.`);
+                                await new Promise(resolve => setTimeout(resolve, 500));
+                            }
+                        }
+                    }
+                }
+
+                // Load and validate other tabs
+                try {
+                    // Load expenses tab
+                    await loadTabWithProgress('expenses', 'Loading expenses data...');
+                    if (window.onExpTabLoad) {
+                        await new Promise(resolve => {
+                            window.onExpTabLoad();
+                            setTimeout(resolve, 200);
+                        });
+                    }
+                    
+                    // Load income tab
+                    await loadTabWithProgress('income', 'Loading income data...');
+                    if (window.onIncomeTabLoad) {
+                        await new Promise(resolve => {
+                            window.onIncomeTabLoad();
+                            setTimeout(resolve, 200);
+                        });
+                    }
+                    
+                    // Load strategic tab
+                    await loadTabWithProgress('strategic', 'Loading strategy data...');
+                    if (window.onStgTabLoad) {
+                        await new Promise(resolve => {
+                            window.onStgTabLoad();
+                            setTimeout(resolve, 200);
                         });
                     }
 
-                    // Load strategic settings
-                    if (jsonData.strategic) {
-                        const stg = new Strategic(
-                            jsonData.strategic.apply_min,
-                            jsonData.strategic.apply_bucket,
-                            jsonData.strategic.risk_fund,
-                            jsonData.strategic.safer_fund,
-                            jsonData.strategic.rebal_pause_option,
-                            jsonData.strategic.expected_return_rate
-                        );
-                        plan_data.set_strategic(stg);
+                    // Final validation and cleanup
+                    const validate = () => {
+                        const requiredFields = document.querySelectorAll('#funds-content input[required]');
+                        const invalidFields = Array.from(requiredFields).filter(field => !field.value);
+                        
+                        invalidFields.forEach(field => {
+                            field.classList.add('is-danger');
+                            field.addEventListener('input', function() {
+                                this.classList.remove('is-danger');
+                            }, { once: true });
+                        });
+                        
+                        return invalidFields.length === 0;
+                    };
+
+                    const isValid = validate();
+                    if (!isValid) {
+                        populateMessage('Warning', 'is-warning', 'Some required fields are incomplete. Please verify and fix highlighted fields.');
+                    } else {
+                        populateMessage('Success', 'is-success', 'Plan data loaded successfully.');
                     }
 
-                    // Set form fields
-                    document.getElementById('curr-age').value = jsonData.current_age;
-                    document.getElementById('retire-age').value = jsonData.retire_age;
-
-                    // Populate form with loaded data
-                    to_load_submit_data_funds(plan_data);
-                    populateMessage('Success', 'is-success', 'Plan data loaded successfully');
-                } catch (error) {
-                    console.error('Error loading plan data:', error);
-                    populateMessage('Error', 'is-danger', 'Failed to load plan data. Please check the file format.');
+                    // Finalize loading
+                    await new Promise(resolve => setTimeout(resolve, 300));
+                    $('#funds-content').show();
+                    $('.steps-segment').removeClass('is-active');
+                    $('#funds').addClass('is-active');
+                } catch (err) {
+                    console.error('Error loading tabs:', err);
+                    populateMessage('Warning', 'is-warning', 'Some content may not have loaded properly. Please verify data.');
                 }
-            };
-            reader.readAsText(file);
-        }
+                updateStepButtons();
+                populateMessage('Success', 'is-success', 'Plan data loaded successfully');
+
+            } catch (error) {
+                console.error('Error processing plan data:', error);
+                populateMessage('Error', 'is-danger', 'Failed to process plan data. Please try again.');
+            }
+        };
+        reader.readAsText(file);
     });
     var content = {}; // Object to store the content for each tab
     var loadingStatus = {
