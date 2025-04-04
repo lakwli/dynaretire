@@ -625,7 +625,7 @@ p {
     display: block;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .section-header {
         padding: 0 1rem;
     }
@@ -635,13 +635,32 @@ p {
     }
     
     .features-grid {
-        grid-template-columns: 1fr;
+        display: block;
         padding: 0 1rem;
     }
     
-    .feature-item {
-        padding: 1rem;
+    .features-grid .feature-item {
+        width: 100%;
+        margin-bottom: 2rem;
+        padding: 1.5rem;
         border-left-width: 4px;
+    }
+
+    /* Reset the special horizontal layout for FIRE card on mobile */
+    .features-grid .feature-item:nth-child(8) {
+        flex-direction: column;
+    }
+    
+    .features-grid .feature-item:nth-child(8) .image-wrapper {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+
+    /* Ensure images are properly sized on mobile */
+    .image-wrapper {
+        height: auto;
+        max-height: 120px;
     }
 
     .feature-title {
