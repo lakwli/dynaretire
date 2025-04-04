@@ -1,5 +1,20 @@
 // main.js
 
+function downloadJsonData(jsonString, filename) {
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.style.display = 'none';
+    link.href = url;
+    link.download = filename || 'data.json';
+    document.body.appendChild(link);
+    link.click();
+    setTimeout(() => {
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+    }, 100);
+}
+
 $(document).ready(function() {
     var content = {}; // Object to store the content for each tab
     var loadingStatus = {
@@ -118,29 +133,48 @@ $(document).ready(function() {
 
 /** CONTROL PREV and NEXT button end */
     
+    // Get current plan data from all form fields
+    function getCurrentPlanData() {
+        const plan_data = new Plan_Data(
+            window.convertToInt(document.getElementById('curr-age').value),
+            window.convertToInt(document.getElementById('retire-age').value)
+        );
+        to_load_submit_data_funds(plan_data);
+        return plan_data;
+    }
+
+    $('#save-btn').click(function(e) {
+        e.preventDefault();
+        try {
+            const plan_data = getCurrentPlanData();
+            const prettyJSON = JSON.stringify(plan_data, null, 2);
+            downloadJsonData(prettyJSON, 'retirement_plan_snapshot.json');
+            populateMessage('Success', 'is-success', 'Plan data has been saved to your downloads folder.');
+        } catch (error) {
+            console.error('Error saving plan data:', error);
+            populateMessage('Error', 'is-danger', 'Failed to save plan data. Please try again.');
+        }
+    });
+
     $('#submit-btn').click(function(e) {
             e.preventDefault(); // Prevent form submission
-            plan_data = new Plan_Data(
-                window.convertToInt(document.getElementById('curr-age').value),
-                window.convertToInt(document.getElementById('retire-age').value)
-            )
 
             var activeStep = $('.steps .steps-segment.is-active');
             var activeStepContent = $('.content-tab').eq(activeStep.index());
             
             if (! isTabValid(activeStepContent)) {
-                return
+                return;
             }
             
-            updateSuccessStepIcon(activeStep.attr('id'))
-            removeErrorMessageIfAllTabsCorrect()
-            let msgs=[]
-            let msg=null
-            let currId=null
-            let tabname=null
+            updateSuccessStepIcon(activeStep.attr('id'));
+            removeErrorMessageIfAllTabsCorrect();
+            let msgs = [];
+            let msg = null;
+            let currId = null;
+            let tabname = null;
             for (let i = 0; i <= 3; i++) {
-                if(i==activeStep.index())
-                    continue
+                if(i == activeStep.index())
+                    continue;
                 var content = $('.content-tab').eq(i);
 
                 switch(i){                        
@@ -150,21 +184,22 @@ $(document).ready(function() {
                     case 3:tabname='Resilient Saving Playgound';currId='strategic';break; 
                 }
                 if(! isTabValid(content)){
-                    msg='An error occurred in the '+tabname+' step. Please revisit the step for necessary corrections.'
-                    msgs.push(msg)
-                    populateMessage('Error', 'is-danger', msg)
-                    updateErrorStepIcon(currId)
-                    return
+                    msg='An error occurred in the '+tabname+' step. Please revisit the step for necessary corrections.';
+                    msgs.push(msg);
+                    populateMessage('Error', 'is-danger', msg);
+                    updateErrorStepIcon(currId);
+                    return;
                 }else{
                     if(! isStepInfo(currId))
-                        updateSuccessStepIcon(currId)
+                        updateSuccessStepIcon(currId);
                 }
             }
 
-            elmSubmitBtn = document.getElementById('submit-btn')
-            elmSubmitBtn.classList.add('is-loading')
-            populateMessage('Info', 'is-info', 'Submitting data... Please wait')
-            to_load_submit_data_funds(plan_data,e )
+            elmSubmitBtn = document.getElementById('submit-btn');
+            elmSubmitBtn.classList.add('is-loading');
+            populateMessage('Info', 'is-info', 'Submitting data... Please wait');
+
+            const plan_data = getCurrentPlanData();
             const prettyJSON = JSON.stringify(plan_data, null, 2);
             console.log(prettyJSON);
 
