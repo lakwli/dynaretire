@@ -16,6 +16,69 @@ function downloadJsonData(jsonString, filename) {
 }
 
 $(document).ready(function() {
+    // Add event listener for load button
+    $('#load-btn').click(function(e) {
+        e.preventDefault();
+        $('#file-input').click();
+    });
+    
+    // Handle file selection
+    $('#file-input').change(function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const jsonData = JSON.parse(e.target.result);
+                    const plan_data = new Plan_Data(
+                        jsonData.current_age,
+                        jsonData.retire_age
+                    );
+                    
+                    // Load funds
+                    if (jsonData.funds) {
+                        jsonData.funds.forEach(fundData => {
+                            plan_data.add_fund(new Fund(
+                                fundData.name,
+                                fundData.desc,
+                                fundData.amount,
+                                fundData.return_type,
+                                fundData.return_rate,
+                                fundData.default_rate,
+                                fundData.mimic_calendar_year,
+                                fundData.wt_age
+                            ));
+                        });
+                    }
+
+                    // Load strategic settings
+                    if (jsonData.strategic) {
+                        const stg = new Strategic(
+                            jsonData.strategic.apply_min,
+                            jsonData.strategic.apply_bucket,
+                            jsonData.strategic.risk_fund,
+                            jsonData.strategic.safer_fund,
+                            jsonData.strategic.rebal_pause_option,
+                            jsonData.strategic.expected_return_rate
+                        );
+                        plan_data.set_strategic(stg);
+                    }
+
+                    // Set form fields
+                    document.getElementById('curr-age').value = jsonData.current_age;
+                    document.getElementById('retire-age').value = jsonData.retire_age;
+
+                    // Populate form with loaded data
+                    to_load_submit_data_funds(plan_data);
+                    populateMessage('Success', 'is-success', 'Plan data loaded successfully');
+                } catch (error) {
+                    console.error('Error loading plan data:', error);
+                    populateMessage('Error', 'is-danger', 'Failed to load plan data. Please check the file format.');
+                }
+            };
+            reader.readAsText(file);
+        }
+    });
     var content = {}; // Object to store the content for each tab
     var loadingStatus = {
         funds: false,
@@ -253,35 +316,50 @@ $(document).ready(function() {
         return isValid;
     }
     
-    function to_load_submit_data_funds(plan_data,event){        
+    function to_load_submit_data_funds(plan_data,event){
         row_num=0
-        const tabfund = document.getElementById('funds-content');   
-        if (tabfund) {  
+        const tabfund = document.getElementById('funds-content');
+        if (tabfund) {
             tabfund.querySelectorAll('.fund-item').forEach(function(currentFundItem) {
-                let fname = currentFundItem.querySelector('.fundname').value
-                let fdesc = currentFundItem.querySelector('.funddesc').value
-                let famount = window.convertToFloat(currentFundItem.querySelector('.fundamount').value)
-                let fwithdrawage = window.convertToInt(currentFundItem.querySelector('.fundwithdrawage').value)
+                let fname = currentFundItem.querySelector('.fundname').value.trim()
+                let fdesc = currentFundItem.querySelector('.funddesc').value.trim()
+                let famount = currentFundItem.querySelector('.fundamount').value.trim()
+                let fwithdrawage = currentFundItem.querySelector('.fundwithdrawage').value.trim()
         
-                freturnType=currentFundItem.querySelector('.funds-return-type').value
-                freturnRate=null
-                if(freturnType==='Flat'){
-                    freturnRate=currentFundItem.querySelector('.funds-return-rate').value
-               }else{
-                freturnRate=currentFundItem.querySelector('.funds-index-ref').value
-                }            
-                //console.log(fname+'-------------------------'+freturnRate)
-                freturnDefaultRate=window.convertToFloat(currentFundItem.querySelector('.funds-default-return').value)
-                fmimicYear=window.convertToInt(currentFundItem.querySelector('.funds-mimic-year').value)
-                freturnIndex=currentFundItem.querySelector('.funds-index-ref').value
-                //if(freturnType==='Flat'){
-                //    plan_data.add_fund (new Fund(fname,fdesc, famount,freturnRate,fwithdrawage));
-               // }else{
-                 //   plan_data.add_fund (new Fund(fname,fdesc, famount,freturnIndex,fwithdrawage));
-                //}                
-                plan_data.add_fund (new Fund(fname,fdesc, famount,freturnType, freturnRate,freturnDefaultRate,fmimicYear,fwithdrawage));
+                // Skip empty fund items
+                if (!fname || !famount) {
+                    return;
+                }
+
+                freturnType = currentFundItem.querySelector('.funds-return-type').value
+                freturnRate = null
+                if(freturnType === 'Flat') {
+                    freturnRate = currentFundItem.querySelector('.funds-return-rate').value.trim()
+                } else {
+                    freturnRate = currentFundItem.querySelector('.funds-index-ref').value.trim()
+                }
+
+                freturnDefaultRate = currentFundItem.querySelector('.funds-default-return').value.trim()
+                fmimicYear = currentFundItem.querySelector('.funds-mimic-year').value.trim()
+
+                // Convert values only if they're not empty
+                famount = window.convertToFloat(famount)
+                fwithdrawage = window.convertToInt(fwithdrawage || '0')
+                freturnDefaultRate = window.convertToFloat(freturnDefaultRate || '0')
+                fmimicYear = window.convertToInt(fmimicYear || '0')
+
+                plan_data.add_fund(new Fund(
+                    fname,
+                    fdesc,
+                    famount,
+                    freturnType,
+                    freturnRate,
+                    freturnDefaultRate,
+                    fmimicYear,
+                    fwithdrawage
+                ));
             });
-        }        
+        }
 
 /** 
         $('input[name="fundname"]').each(function() {
