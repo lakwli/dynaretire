@@ -29,6 +29,7 @@ $(document).ready(function() {
 
         const reader = new FileReader();
         reader.onload = async function(e) {
+            isLoadingContent = true;  // Set loading state
             try {
                 const jsonData = JSON.parse(e.target.result);
 
@@ -509,8 +510,10 @@ $(document).ready(function() {
                 }
                 updateStepButtons();
                 populateMessage('Success', 'is-success', 'Plan data loaded successfully');
+                isLoadingContent = false;  // Clear loading state on success
 
             } catch (error) {
+                isLoadingContent = false;  // Clear loading state on error
                 console.error('Error processing plan data:', error);
                 populateMessage('Error', 'is-danger', 'Failed to process plan data. Please try again.');
             }
@@ -518,6 +521,7 @@ $(document).ready(function() {
         reader.readAsText(file);
     });
     var content = {}; // Object to store the content for each tab
+    let isLoadingContent = false; // Track loading state
     var loadingStatus = {
         funds: false,
         expenses: false,
@@ -570,6 +574,11 @@ $(document).ready(function() {
     // Handle clicking on tabs
     $('#steps-plan .steps-segment a').click(function(e) {
         e.preventDefault();
+
+        if (isLoadingContent) {
+            populateMessage('Info', 'is-info', 'Please wait while content is loading...');
+            return;
+        }
         
         var activeStep = $('.steps .steps-segment.is-active');
         var activeStepContent = $('.content-tab').eq(activeStep.index());
@@ -587,13 +596,16 @@ $(document).ready(function() {
 
         // Check if content is loaded
         if (!loadingStatus[target]) {
+            isLoadingContent = true;
             showLoadingIndicator(target);
             loadTabContent(target).then(() => {
                 $('#' + target + '-content').show();
                 updateStepButtons();
                 triggerTabLoadEvents(target);
+                isLoadingContent = false;
             }).catch(() => {
                 $('#' + target + '-content').html('<div class="notification is-danger">Error loading content. Please try again.</div>');
+                isLoadingContent = false;
             });
         } else {
             $('#' + target + '-content').show();
@@ -616,6 +628,12 @@ $(document).ready(function() {
 /** CONTROL PREV and NEXT button start */
     $('#prev-btn').click(function(e) {
       e.preventDefault();
+      
+      if (isLoadingContent) {
+          populateMessage('Info', 'is-info', 'Please wait while content is loading...');
+          return;
+      }
+      
       var activeStep = $('#steps-plan .steps-segment.is-active');
       var prevStep = activeStep.prev('.steps-segment');
       if (prevStep.length) {
@@ -625,6 +643,12 @@ $(document).ready(function() {
   
     $('#next-btn').click(function(e) {
       e.preventDefault();
+      
+      if (isLoadingContent) {
+          populateMessage('Info', 'is-info', 'Please wait while content is loading...');
+          return;
+      }
+      
       var activeStep = $('#steps-plan .steps-segment.is-active');
       var nextStep = activeStep.next('.steps-segment');
       if (nextStep.length) {
@@ -647,6 +671,11 @@ $(document).ready(function() {
     // --- New Save Plan Logic (using File System Access API) ---
     $('#save-btn').click(async function(e) {
         e.preventDefault();
+        
+        if (isLoadingContent) {
+            populateMessage('Info', 'is-info', 'Please wait while content is loading...');
+            return;
+        }
 
         // Helper function to write data to a file handle (defined locally for clarity)
         async function writeToFile(fileHandle, data) {
@@ -699,11 +728,16 @@ $(document).ready(function() {
 
     $('#submit-btn').click(function(e) {
             e.preventDefault(); // Prevent form submission
+            
+            if (isLoadingContent) {
+                populateMessage('Info', 'is-info', 'Please wait while content is loading...');
+                return;
+            }
 
             var activeStep = $('.steps .steps-segment.is-active');
             var activeStepContent = $('.content-tab').eq(activeStep.index());
             
-            if (! isTabValid(activeStepContent)) {
+            if (!isTabValid(activeStepContent)) {
                 return;
             }
             
