@@ -644,18 +644,58 @@ $(document).ready(function() {
         return plan_data;
     }
 
-    $('#save-btn').click(function(e) {
+    // --- New Save Plan Logic (using File System Access API) ---
+    $('#save-btn').click(async function(e) {
         e.preventDefault();
+
+        // Helper function to write data to a file handle (defined locally for clarity)
+        async function writeToFile(fileHandle, data) {
+            const writable = await fileHandle.createWritable();
+            await writable.write(data);
+            await writable.close();
+        }
+
+        // Define options here
+        const saveFilePickerOptions = {
+            suggestedName: 'retirement_plan.dynaretire.json',
+            startIn: 'documents', // Suggest starting in Documents folder
+            types: [
+                {
+                    description: 'DynaRetire Plan Files',
+                    accept: {
+                        'application/json': ['.dynaretire.json'],
+                    },
+                },
+            ],
+        };
+
+        if (!window.showSaveFilePicker) {
+             // Use the existing populateMessage function
+             populateMessage('Error', 'is-danger', 'Your browser does not support the modern File System Access API needed for saving files this way. Please use a compatible browser (like Chrome, Edge, or Opera).');
+             return; // Exit if API not supported
+        }
+
         try {
+            // Use the existing getCurrentPlanData function
             const plan_data = getCurrentPlanData();
             const prettyJSON = JSON.stringify(plan_data, null, 2);
-            downloadJsonData(prettyJSON, 'retirement_plan_snapshot.json');
-            populateMessage('Success', 'is-success', 'Plan data has been saved to your downloads folder.');
-        } catch (error) {
-            console.error('Error saving plan data:', error);
-            populateMessage('Error', 'is-danger', 'Failed to save plan data. Please try again.');
+
+            const handle = await window.showSaveFilePicker(saveFilePickerOptions);
+            await writeToFile(handle, prettyJSON);
+
+            // Use the existing populateMessage function
+            populateMessage('Success', 'is-success', `Plan saved successfully as ${handle.name}.`);
+
+        } catch (err) {
+            // Don't show error if user simply cancelled the dialog
+            if (err.name !== 'AbortError') {
+                console.error('Error saving file:', err);
+                 // Use the existing populateMessage function
+                populateMessage('Error', 'is-danger', `Failed to save plan data: ${err.message}.`);
+            }
         }
     });
+    // --- End New Save Plan Logic ---
 
     $('#submit-btn').click(function(e) {
             e.preventDefault(); // Prevent form submission
