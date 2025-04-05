@@ -353,10 +353,114 @@ $(document).ready(function() {
                     }
                 }
 
-                // Load and validate other tabs
-                try {
+                // Helper function to setup a rebalancing detail
+                async function setupRebalDetail(rebalItem, rebalData) {
+                    if (!rebalItem || !rebalData) {
+                        console.warn('Missing rebal item or data');
+                        return;
+                    }
+
+                    try {
+                        const riskRatioInput = rebalItem.querySelector('.risk-ratio');
+                        riskRatioInput.value = rebalData.risk_fund_ratio || '';
+                        // Directly call validateFirstRatio to calculate second ratio
+                        window.validateFirstRatio(riskRatioInput);
+
+                        // Set starting age first and trigger change to update previous until_age
+                        const startAgeInput = rebalItem.querySelector('.stg-starting-age');
+                        startAgeInput.value = rebalData.start_age || '';
+                        startAgeInput.dispatchEvent(new Event('change'));
+
+                        // Then set until age and trigger change to update next starting_age
+                        const untilAgeInput = rebalItem.querySelector('.stg-until-age');
+                        untilAgeInput.value = rebalData.until_age || '';
+                        untilAgeInput.dispatchEvent(new Event('change'));
+                        rebalItem.querySelector('.stg-every-few-years').value = rebalData.occur_yr || '1';
+
+                        // Trigger validation on required fields
+                        rebalItem.querySelectorAll('input[required]').forEach(input => {
+                            input.dispatchEvent(new Event('change'));
+                        });
+                    } catch (err) {
+                        console.error('Error setting up rebal detail:', err);
+                        throw new Error('Failed to setup rebal detail properly');
+                    }
+                }
+
+                // Helper function to setup strategic section
+                async function setupStrategic(strategicData) {
+                    if (!strategicData) {
+                        console.warn('Missing strategic data');
+                        return;
+                    }
+
+                    try {
+                        // Set checkbox states first to trigger UI updates
+                        const applyMinCheckbox = document.getElementById('stg-min_spend');
+                        const applyBucketCheckbox = document.getElementById('stg-apply-bucket');
+                        
+                        applyMinCheckbox.checked = strategicData.apply_min;
+                        applyMinCheckbox.dispatchEvent(new Event('change'));
+                        applyBucketCheckbox.checked = strategicData.apply_bucket;
+                        applyBucketCheckbox.dispatchEvent(new Event('change'));
+                        
+                        await new Promise(resolve => setTimeout(resolve, 200));
+
+                        // Set fund selections and other fields
+                        if (strategicData.apply_bucket) {
+                            document.getElementById('stg-risky-fund-sel').value = strategicData.risk_fund || '';
+                            document.getElementById('stg-safer-fund-sel').value = strategicData.safer_fund || '';
+                            document.getElementById('fundSelect-stg-pause-opt').value = strategicData.rebal_pause_option || 'psr';
+                        }
+                        
+                        if (strategicData.apply_min || strategicData.apply_bucket) {
+                            document.getElementById('stg-min_rate').value = strategicData.expected_return_rate || '';
+                        }
+
+                        // Setup rebalancing details
+                        if (strategicData.apply_bucket && strategicData.rebals && strategicData.rebals.length > 0) {
+                            // Setup first rebal detail
+                            const firstRebal = document.querySelector('.rebal-item');
+                            if (firstRebal) {
+                                await setupRebalDetail(firstRebal, strategicData.rebals[0]);
+
+                                // Add remaining rebal details
+                                const addRebalButton = document.querySelector('.add-rebal');
+                                for (let i = 1; i < strategicData.rebals.length; i++) {
+                                    if (addRebalButton) {
+                                        try {
+                                            addRebalButton.click();
+                                            await new Promise(resolve => setTimeout(resolve, 200));
+                                            const newRebal = document.querySelector('.rebal-item:last-child');
+                                            if (!newRebal) {
+                                                throw new Error('Failed to create new rebal detail');
+                                            }
+                                            await setupRebalDetail(newRebal, strategicData.rebals[i]);
+                                        } catch (err) {
+                                            console.error(`Error adding rebal detail ${i + 1}:`, err);
+                                            populateMessage('Warning', 'is-warning', `Issue loading rebalancing detail ${i + 1}. Please verify data.`);
+                                            await new Promise(resolve => setTimeout(resolve, 500));
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        // Trigger validation on required fields
+                        document.querySelectorAll('#strategic-content input[required]').forEach(input => {
+                            input.dispatchEvent(new Event('change'));
+                        });
+                    } catch (err) {
+                        console.error('Error setting up strategic:', err);
+                        throw new Error('Failed to setup strategic section properly');
+                    }
+                }
+
+                // Process strategic section
+                if (jsonData.strategic) {
+                    populateMessage('Info', 'is-info', 'Loading strategy data...');
                     
-                    // Load strategic tab
+                    // Load strategic tab first
                     await loadTabWithProgress('strategic', 'Loading strategy data...');
                     if (window.onStgTabLoad) {
                         await new Promise(resolve => {
@@ -364,6 +468,13 @@ $(document).ready(function() {
                             setTimeout(resolve, 200);
                         });
                     }
+
+                    // Setup strategic section
+                    await setupStrategic(jsonData.strategic);
+                }
+
+                // Load and validate other tabs
+                try {
 
                     // Final validation and cleanup
                     const validate = () => {
