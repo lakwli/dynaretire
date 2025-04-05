@@ -22,6 +22,23 @@ $(document).ready(function() {
         $('#file-input').click();
     });
     
+    // Function to reset steps to initial state
+    function resetSteps() {
+        // Reset all segments
+        $('#steps-plan .steps-segment').removeClass('is-active');
+        $('#steps-plan .steps-segment:first').addClass('is-active');
+        
+        // Reset markers to initial state
+        $('#funds .steps-marker').removeClass().addClass('steps-marker is-primary').html('1');
+        $('#expenses .steps-marker').removeClass().addClass('steps-marker is-primary').html('2');
+        $('#income .steps-marker').removeClass().addClass('steps-marker is-info').html('?');
+        $('#strategic .steps-marker').removeClass().addClass('steps-marker is-info').html('?');
+        
+        // Reset content tabs
+        $('#tab-content .content-tab').hide();
+        $('#funds-content').show();
+    }
+
     // Handle file selection
     $('#file-input').change(function(e) {
         const file = e.target.files[0];
@@ -30,6 +47,31 @@ $(document).ready(function() {
         const reader = new FileReader();
         reader.onload = async function(e) {
             isLoadingContent = true;  // Set loading state
+            
+            // Reset steps to initial state
+            resetSteps();
+            
+            // Reset tab contents
+            content = {}; // Clear cached content
+            loadingStatus = {
+                funds: false,
+                expenses: false,
+                income: false,
+                strategic: false
+            };
+            
+            // Load fresh content for all tabs
+            await Promise.all([
+                loadTabContent('funds'),
+                loadTabContent('expenses'),
+                loadTabContent('income'),
+                loadTabContent('strategic')
+            ]).catch(error => {
+                console.error('Error reloading tabs:', error);
+                populateMessage('Error', 'is-danger', 'Failed to reload tabs. Please try again.');
+                return;
+            });
+            
             try {
                 const jsonData = JSON.parse(e.target.result);
 
