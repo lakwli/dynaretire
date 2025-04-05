@@ -185,7 +185,8 @@ body {
 }
 
 .nav-cta:hover {
-    background: var(--secondary-color);
+    background: #3BA9A8; /* Darker shade of primary teal */
+    color: white; /* Ensure text stays white on hover */
     transform: translateY(-2px);
 }
 
