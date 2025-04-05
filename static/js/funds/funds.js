@@ -30,7 +30,7 @@
            // newFund.querySelectorAll('.label').forEach((el) => {
            //     el.remove();
            // });
-            newFund.querySelector('.fundwithdrawage').value = window.convertToInt(document.getElementById('curr-age').value)+1;
+            //newFund.querySelector('.fundwithdrawage').value = window.convertToInt(document.getElementById('curr-age').value)+1;
 
             newFund.querySelector('.funds-return-type').selectedIndex=0
             newFund.querySelector('.funds-return-rate-wrap').classList.remove('is-hidden')
@@ -422,9 +422,9 @@
             
             let fundsItems = document.querySelectorAll('.fund-item');
             elmFirstWithAge=fundsItems[0].querySelector('.fundwithdrawage')
-            if (elmFirstWithAge.value === "1"){
-                elmFirstWithAge.value = window.convertToInt(document.getElementById('curr-age').value)+1;
-            }   
+            //if (elmFirstWithAge.value === "1"){
+            //    elmFirstWithAge.value = window.convertToInt(document.getElementById('curr-age').value)+1;
+            //}   
         }         
     }
     function validateCurrentAge(inputElement){
