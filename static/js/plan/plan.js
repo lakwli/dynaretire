@@ -127,9 +127,81 @@ $(document).ready(function() {
                     }
                 }
 
-                // Load and validate other tabs
-                try {
-                    // Load expenses tab
+                // Helper function to setup an expense amount detail
+                async function setupAmountDetail(amountItem, amountData) {
+                    if (!amountItem || !amountData) {
+                        console.warn('Missing amount item or data');
+                        return;
+                    }
+
+                    try {
+                        amountItem.querySelector('.exp-amt-amt').value = amountData.amount || '';
+                        amountItem.querySelector('.exp-amt-starting-age').value = amountData.start_age || '';
+                        amountItem.querySelector('.exp-amt-until-age').value = amountData.until_age || '';
+                        amountItem.querySelector('.exp-amt-every-few-years').value = amountData.occur_yr || '1';
+
+                        // Trigger validation on required fields
+                        amountItem.querySelectorAll('input[required]').forEach(input => {
+                            input.dispatchEvent(new Event('change'));
+                        });
+                    } catch (err) {
+                        console.error('Error setting up amount detail:', err);
+                        throw new Error('Failed to setup amount detail properly');
+                    }
+                }
+
+                // Helper function to setup an expense
+                async function setupExpense(expenseItem, expenseData) {
+                    if (!expenseItem || !expenseData) {
+                        console.warn('Missing expense item or data');
+                        return;
+                    }
+
+                    try {
+                        expenseItem.querySelector('.exp-name').value = expenseData.name || '';
+                        expenseItem.querySelector('.exp-inflation').value = expenseData.inflation || '';
+                        expenseItem.querySelector('.exp-minspend').value = expenseData.min_rate || '';
+
+                        // Setup first amount detail
+                        if (expenseData.amounts && expenseData.amounts.length > 0) {
+                            await setupAmountDetail(expenseItem.querySelector('.amount-item'), expenseData.amounts[0]);
+
+                            // Add remaining amount details
+                            const addAmountButton = expenseItem.querySelector('.add-amount');
+                            for (let i = 1; i < expenseData.amounts.length; i++) {
+                                if (addAmountButton) {
+                                    try {
+                                        addAmountButton.click();
+                                        await new Promise(resolve => setTimeout(resolve, 200));
+                                        const newAmount = expenseItem.querySelector('.amount-item:last-child');
+                                        if (!newAmount) {
+                                            throw new Error('Failed to create new amount detail');
+                                        }
+                                        await setupAmountDetail(newAmount, expenseData.amounts[i]);
+                                    } catch (err) {
+                                        console.error(`Error adding amount detail ${i + 1}:`, err);
+                                        populateMessage('Warning', 'is-warning', `Issue loading amount detail ${i + 1}. Please verify data.`);
+                                        await new Promise(resolve => setTimeout(resolve, 500));
+                                    }
+                                }
+                            }
+                        }
+
+                        // Trigger validation on required fields
+                        expenseItem.querySelectorAll('input[required]').forEach(input => {
+                            input.dispatchEvent(new Event('change'));
+                        });
+                    } catch (err) {
+                        console.error('Error setting up expense:', err);
+                        throw new Error('Failed to setup expense properly');
+                    }
+                }
+
+                // Process expenses
+                if (jsonData.expenses && jsonData.expenses.length > 0) {
+                    populateMessage('Info', 'is-info', 'Loading expenses data...');
+                    
+                    // Load expenses tab first
                     await loadTabWithProgress('expenses', 'Loading expenses data...');
                     if (window.onExpTabLoad) {
                         await new Promise(resolve => {
@@ -137,6 +209,34 @@ $(document).ready(function() {
                             setTimeout(resolve, 200);
                         });
                     }
+
+                    // Setup first expense
+                    await setupExpense(document.querySelector('.expense-item'), jsonData.expenses[0]);
+
+                    // Add remaining expenses
+                    const addExpenseButton = document.querySelector('.add-expense');
+                    for (let i = 1; i < jsonData.expenses.length; i++) {
+                        populateMessage('Info', 'is-info', `Loading expense ${i + 1} of ${jsonData.expenses.length}...`);
+                        if (addExpenseButton) {
+                            try {
+                                addExpenseButton.click();
+                                await new Promise(resolve => setTimeout(resolve, 200));
+                                const newExpense = document.querySelector('.expense-item:last-child');
+                                if (!newExpense) {
+                                    throw new Error('Failed to create new expense item');
+                                }
+                                await setupExpense(newExpense, jsonData.expenses[i]);
+                            } catch (err) {
+                                console.error(`Error adding expense ${i + 1}:`, err);
+                                populateMessage('Warning', 'is-warning', `Issue loading expense ${i + 1}. Please verify data.`);
+                                await new Promise(resolve => setTimeout(resolve, 500));
+                            }
+                        }
+                    }
+                }
+
+                // Load and validate other tabs
+                try {
                     
                     // Load income tab
                     await loadTabWithProgress('income', 'Loading income data...');
