@@ -235,10 +235,80 @@ $(document).ready(function() {
                     }
                 }
 
-                // Load and validate other tabs
-                try {
+                // Helper function to setup a growth detail
+                async function setupGrowthDetail(growthItem, growthData) {
+                    if (!growthItem || !growthData) {
+                        console.warn('Missing growth item or data');
+                        return;
+                    }
+
+                    try {
+                        growthItem.querySelector('.inc-growth-rate').value = growthData.growth_rate || '';
+                        growthItem.querySelector('.inc-growth-starting-age').value = growthData.start_age || '';
+                        growthItem.querySelector('.inc-growth-until-age').value = growthData.until_age || '';
+
+                        // Trigger validation on required fields
+                        growthItem.querySelectorAll('input[required]').forEach(input => {
+                            input.dispatchEvent(new Event('change'));
+                        });
+                    } catch (err) {
+                        console.error('Error setting up growth detail:', err);
+                        throw new Error('Failed to setup growth detail properly');
+                    }
+                }
+
+                // Helper function to setup an income
+                async function setupIncome(incomeItem, incomeData) {
+                    if (!incomeItem || !incomeData) {
+                        console.warn('Missing income item or data');
+                        return;
+                    }
+
+                    try {
+                        incomeItem.querySelector('.inc-name').value = incomeData.name || '';
+                        incomeItem.querySelector('.inc-amount').value = incomeData.amount || '';
+                        incomeItem.querySelector('.fundSelect-inc-dep').value = incomeData.dep_to_fund || '';
+
+                        // Setup first growth detail
+                        if (incomeData.growths && incomeData.growths.length > 0) {
+                            await setupGrowthDetail(incomeItem.querySelector('.growth-item'), incomeData.growths[0]);
+
+                            // Add remaining growth details
+                            const addGrowthButton = incomeItem.querySelector('.add-growth');
+                            for (let i = 1; i < incomeData.growths.length; i++) {
+                                if (addGrowthButton) {
+                                    try {
+                                        addGrowthButton.click();
+                                        await new Promise(resolve => setTimeout(resolve, 200));
+                                        const newGrowth = incomeItem.querySelector('.growth-item:last-child');
+                                        if (!newGrowth) {
+                                            throw new Error('Failed to create new growth detail');
+                                        }
+                                        await setupGrowthDetail(newGrowth, incomeData.growths[i]);
+                                    } catch (err) {
+                                        console.error(`Error adding growth detail ${i + 1}:`, err);
+                                        populateMessage('Warning', 'is-warning', `Issue loading growth detail ${i + 1}. Please verify data.`);
+                                        await new Promise(resolve => setTimeout(resolve, 500));
+                                    }
+                                }
+                            }
+                        }
+
+                        // Trigger validation on required fields
+                        incomeItem.querySelectorAll('input[required]').forEach(input => {
+                            input.dispatchEvent(new Event('change'));
+                        });
+                    } catch (err) {
+                        console.error('Error setting up income:', err);
+                        throw new Error('Failed to setup income properly');
+                    }
+                }
+
+                // Process incomes
+                if (jsonData.incomes && jsonData.incomes.length > 0) {
+                    populateMessage('Info', 'is-info', 'Loading income data...');
                     
-                    // Load income tab
+                    // Load income tab first
                     await loadTabWithProgress('income', 'Loading income data...');
                     if (window.onIncomeTabLoad) {
                         await new Promise(resolve => {
@@ -246,6 +316,45 @@ $(document).ready(function() {
                             setTimeout(resolve, 200);
                         });
                     }
+
+                    // Setup first income
+                    const addIncomeButton = document.querySelector('.add-income');
+                    if (addIncomeButton) {
+                        try {
+                            addIncomeButton.click();
+                            await new Promise(resolve => setTimeout(resolve, 200));
+                            const firstIncome = document.querySelector('.income-item');
+                            if (!firstIncome) {
+                                throw new Error('Failed to create first income item');
+                            }
+                            await setupIncome(firstIncome, jsonData.incomes[0]);
+
+                            // Add remaining incomes
+                            for (let i = 1; i < jsonData.incomes.length; i++) {
+                                populateMessage('Info', 'is-info', `Loading income ${i + 1} of ${jsonData.incomes.length}...`);
+                                try {
+                                    addIncomeButton.click();
+                                    await new Promise(resolve => setTimeout(resolve, 200));
+                                    const newIncome = document.querySelector('.income-item:last-child');
+                                    if (!newIncome) {
+                                        throw new Error('Failed to create new income item');
+                                    }
+                                    await setupIncome(newIncome, jsonData.incomes[i]);
+                                } catch (err) {
+                                    console.error(`Error adding income ${i + 1}:`, err);
+                                    populateMessage('Warning', 'is-warning', `Issue loading income ${i + 1}. Please verify data.`);
+                                    await new Promise(resolve => setTimeout(resolve, 500));
+                                }
+                            }
+                        } catch (err) {
+                            console.error('Error setting up incomes:', err);
+                            populateMessage('Warning', 'is-warning', 'Issue loading incomes. Please verify data.');
+                        }
+                    }
+                }
+
+                // Load and validate other tabs
+                try {
                     
                     // Load strategic tab
                     await loadTabWithProgress('strategic', 'Loading strategy data...');
