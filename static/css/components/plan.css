@@ -76,3 +76,42 @@ ink
         right: 20px; /* Reset to viewport edge on smaller screens */
     }
 }
+
+/* Tablet and smaller adjustments */
+@media (max-width: 768px) {
+    .floating-nav {
+        padding: 10px 16px;
+        gap: 8px;
+    }
+
+    .floating-nav .button {
+        padding: 6px 12px;
+    }
+
+    .floating-nav .button i {
+        font-size: 16px;
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+    .floating-nav {
+        flex-direction: column;
+        right: 10px;
+        bottom: 10px;
+        padding: 8px;
+        gap: 4px;
+    }
+
+    .floating-nav .button {
+        width: 100%;
+        padding: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .floating-nav .button i {
+        font-size: 14px;
+    }
+}
