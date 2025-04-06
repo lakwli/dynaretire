@@ -719,51 +719,54 @@ $(document).ready(function() {
             return;
         }
 
-        // Helper function to write data to a file handle (defined locally for clarity)
-        async function writeToFile(fileHandle, data) {
-            const writable = await fileHandle.createWritable();
-            await writable.write(data);
-            await writable.close();
-        }
-
-        // Define options here
-        const saveFilePickerOptions = {
-            suggestedName: 'retirement_plan.dynaretire.json',
-            startIn: 'documents', // Suggest starting in Documents folder
-            types: [
-                {
-                    description: 'DynaRetire Plan Files',
-                    accept: {
-                        'application/json': ['.dynaretire.json'],
-                    },
-                },
-            ],
-        };
-
-        if (!window.showSaveFilePicker) {
-             // Use the existing populateMessage function
-             populateMessage('Error', 'is-danger', 'Your browser does not support the modern File System Access API needed for saving files this way. Please use a compatible browser (like Chrome, Edge, or Opera).');
-             return; // Exit if API not supported
-        }
-
         try {
-            // Use the existing getCurrentPlanData function
             const plan_data = getCurrentPlanData();
             const prettyJSON = JSON.stringify(plan_data, null, 2);
+            const fileName = 'retirement_plan.dynaretire.json';
 
-            const handle = await window.showSaveFilePicker(saveFilePickerOptions);
-            await writeToFile(handle, prettyJSON);
+            if (window.showSaveFilePicker) {
+                // Modern browser - use File System Access API
+                const saveFilePickerOptions = {
+                    suggestedName: fileName,
+                    startIn: 'documents',
+                    types: [{
+                        description: 'DynaRetire Plan Files',
+                        accept: {
+                            'application/json': ['.dynaretire.json'],
+                        },
+                    }],
+                };
 
-            // Use the existing populateMessage function
-            populateMessage('Success', 'is-success', `Plan saved successfully as ${handle.name}.`);
-
-        } catch (err) {
-            // Don't show error if user simply cancelled the dialog
-            if (err.name !== 'AbortError') {
-                console.error('Error saving file:', err);
-                 // Use the existing populateMessage function
-                populateMessage('Error', 'is-danger', `Failed to save plan data: ${err.message}.`);
+                try {
+                    const handle = await window.showSaveFilePicker(saveFilePickerOptions);
+                    const writable = await handle.createWritable();
+                    await writable.write(prettyJSON);
+                    await writable.close();
+                    populateMessage('Success', 'is-success', `Plan saved successfully as ${handle.name}.`);
+                } catch (err) {
+                    if (err.name !== 'AbortError') {
+                        throw err; // Re-throw if it's not a user cancellation
+                    }
+                }
+            } else {
+                // Fallback for Firefox and other browsers
+                const blob = new Blob([prettyJSON], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.style.display = 'none';
+                link.href = url;
+                link.download = fileName;
+                document.body.appendChild(link);
+                link.click();
+                setTimeout(() => {
+                    document.body.removeChild(link);
+                    URL.revokeObjectURL(url);
+                }, 100);
+                populateMessage('Success', 'is-success', `Plan saved as ${fileName}.`);
             }
+        } catch (err) {
+            console.error('Error saving file:', err);
+            populateMessage('Error', 'is-danger', `Failed to save plan data: ${err.message}.`);
         }
     });
     // --- End New Save Plan Logic ---
