@@ -202,8 +202,8 @@ $(document).ready(function() {
 
                     try {
                         expenseItem.querySelector('.exp-name').value = expenseData.name || '';
-                        expenseItem.querySelector('.exp-inflation').value = expenseData.inflation || '';
-                        expenseItem.querySelector('.exp-minspend').value = expenseData.min_rate || '';
+                        expenseItem.querySelector('.exp-inflation').value = expenseData.inflation ?? '';
+                        expenseItem.querySelector('.exp-minspend').value = expenseData.min_rate ?? '';
 
                         // Setup first amount detail
                         if (expenseData.amounts && expenseData.amounts.length > 0) {
@@ -286,7 +286,7 @@ $(document).ready(function() {
                     }
 
                     try {
-                        growthItem.querySelector('.inc-growth-rate').value = growthData.growth_rate || '';
+                        growthItem.querySelector('.inc-growth-rate').value = growthData.growth_rate ?? '';
                         growthItem.querySelector('.inc-growth-starting-age').value = growthData.start_age || '';
                         growthItem.querySelector('.inc-growth-until-age').value = growthData.until_age || '';
 
