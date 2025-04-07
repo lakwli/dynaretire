@@ -42,37 +42,20 @@ $(document).ready(function() {
     // Handle file selection
     $('#file-input').change(function(e) {
         const file = e.target.files[0];
-        console.log('File selection triggered', {
-            hasFile: !!file,
-            fileName: file?.name,
-            timestamp: new Date().toISOString()
-        });
         
         if (!file) {
-            console.log('No file selected');
             return;
         }
 
-        console.log('Starting file read operation');
         const reader = new FileReader();
         reader.onload = async function(e) {
-            console.log('File read complete, beginning load process');
-            console.log('Pre-load state:', {
-                isLoadingContent,
-                contentCache: {...content},
-                loadingStatus: {...loadingStatus},
-                timestamp: new Date().toISOString()
-            });
             
             isLoadingContent = true;  // Set loading state
-            console.log('Loading state set to true');
             
             // Reset steps to initial state
-            console.log('Resetting steps...');
             resetSteps();
             
             // Reset tab contents
-            console.log('Clearing content cache and resetting loading status');
             content = {}; // Clear cached content
             loadingStatus = {
                 funds: false,
@@ -94,17 +77,7 @@ $(document).ready(function() {
             });
             
             try {
-                console.log('Processing file content...');
                 const jsonData = JSON.parse(e.target.result);
-                console.log('File content parsed successfully', {
-                    hasCurrentAge: !!jsonData.current_age,
-                    hasRetireAge: !!jsonData.retire_age,
-                    fundCount: jsonData.funds?.length || 0,
-                    expenseCount: jsonData.expenses?.length || 0,
-                    incomeCount: jsonData.incomes?.length || 0,
-                    hasStrategic: !!jsonData.strategic,
-                    timestamp: new Date().toISOString()
-                });
 
                 // Helper function to setup a fund
                 async function setupFund(fundItem, fundData) {
@@ -745,21 +718,13 @@ $(document).ready(function() {
     $('#save-btn').click(async function(e) {
         e.preventDefault();
         
-        console.log('Save operation starting...', {
-            isLoadingContent,
-            loadingStatus: {...loadingStatus},
-            contentCache: Object.keys(content).length,
-            timestamp: new Date().toISOString()
-        });
         
         if (isLoadingContent) {
-            console.log('Save prevented - Loading in progress');
             populateMessage('Info', 'is-info', 'Please wait while content is loading...');
             return;
         }
 
         try {
-            console.log('Getting current plan data...');
             const plan_data = getCurrentPlanData();
             const prettyJSON = JSON.stringify(plan_data, null, 2);
             const fileName = 'retirement_plan.dynaretire.json';
@@ -861,7 +826,6 @@ $(document).ready(function() {
 
             const plan_data = getCurrentPlanData();
             const prettyJSON = JSON.stringify(plan_data, null, 2);
-            console.log(prettyJSON);
 
             fetch('/planSubmit', {
                 method: 'POST',
@@ -872,7 +836,6 @@ $(document).ready(function() {
             })
             .then(response => {
                 const message = response.headers.get('Message');
-                console.log(message); // Log the message from the server
             
                 // Check if the content type is a file
                 if (response.headers.get('Content-Type') === 'application/octet-stream') {
@@ -889,7 +852,6 @@ $(document).ready(function() {
                 a.click(); // This will download the file
             })
             .then(result => {
-                console.log('Success','Data saved successfully:', result);
                 //populateMessage('Info', 'is-success', 'Testing')
                 populateMessage('Success','is-success', 'Your simulation has been processed successfully and `dynaRetire.xlsx` is now ready for download. Please check your download folder')             
                 elmSubmitBtn.classList.remove('is-loading')
@@ -903,7 +865,6 @@ $(document).ready(function() {
 
     function isTabValid(tabContent) {
         //var inputs = tabContent.find('input');
-        //console.log(tabContent)  
         var activeTabContentId = tabContent.attr('id');
         
         //if ((activeTabContentId != 'funds-content'))
@@ -970,7 +931,6 @@ $(document).ready(function() {
             freturnRate=$('input[name="funds-return-rate"]:eq(' + row_num + ')').val()
             freturnIndex=$('input[name="funds-index-ref"]:eq(' + row_num + ')').val()
             freturn = (freturnType==='Flat')?freturnRate:freturnIndex
-            console.log(freturnType+'.'+freturnRate+'.'+freturnIndex+'.'+freturn)
 
             plan_data.add_fund (new Fund(fname, famount,freturn,fwithdrawyr));
             row_num=row_num+1
