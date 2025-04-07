@@ -1,0 +1,242 @@
+{
+  "current_age": 45,
+  "retire_age": 50,
+  "incomes": [
+    {
+      "name": "Pension Contribution",
+      "amount": 36000,
+      "dep_to_fund": "Pension Fund",
+      "growths": [
+        {
+          "growth_rate": 2,
+          "start_age": 45,
+          "until_age": 50
+        }
+      ]
+    },
+    {
+      "name": "Extra Earning",
+      "amount": 20000,
+      "dep_to_fund": "Investment",
+      "growths": [
+        {
+          "growth_rate": 10,
+          "start_age": 45,
+          "until_age": 50
+        }
+      ]
+    },
+    {
+      "name": "Rental",
+      "amount": 10000,
+      "dep_to_fund": "",
+      "growths": [
+        {
+          "growth_rate": 5,
+          "start_age": 45,
+          "until_age": 54
+        },
+        {
+          "growth_rate": 2,
+          "start_age": 55,
+          "until_age": 99
+        }
+      ]
+    }
+  ],
+  "funds": [
+    {
+      "name": "Pension Fund",
+      "amount": 1000000,
+      "desc": "",
+      "return_type": "Flat",
+      "return_rate": "5.5",
+      "default_rate": 0,
+      "mimic_calendar_year": 0,
+      "wt_age": 55
+    },
+    {
+      "name": "Investment",
+      "amount": 500000,
+      "desc": "",
+      "return_type": "Index",
+      "return_rate": "S&P500",
+      "default_rate": 7,
+      "mimic_calendar_year": 1999,
+      "wt_age": 0
+    }
+  ],
+  "expenses": [
+    {
+      "name": "Travel",
+      "min_rate": 0,
+      "inflation": 3,
+      "amounts": [
+        {
+          "amount": 100000,
+          "start_age": 51,
+          "until_age": 52,
+          "occur_yr": 2,
+          "tied_to_age": false
+        },
+        {
+          "amount": 10000,
+          "start_age": 53,
+          "until_age": 100,
+          "occur_yr": 1,
+          "tied_to_age": false
+        }
+      ]
+    },
+    {
+      "name": "Housing Loan",
+      "min_rate": 0,
+      "inflation": 0,
+      "amounts": [
+        {
+          "amount": 10000,
+          "start_age": 51,
+          "until_age": 60,
+          "occur_yr": 1,
+          "tied_to_age": false
+        }
+      ]
+    },
+    {
+      "name": "Insurance",
+      "min_rate": 0,
+      "inflation": 0,
+      "amounts": [
+        {
+          "amount": 4000,
+          "start_age": 51,
+          "until_age": 55,
+          "occur_yr": 1,
+          "tied_to_age": false
+        },
+        {
+          "amount": 7000,
+          "start_age": 56,
+          "until_age": 100,
+          "occur_yr": 1,
+          "tied_to_age": false
+        }
+      ]
+    },
+    {
+      "name": "Medical Bills",
+      "min_rate": 0,
+      "inflation": 8,
+      "amounts": [
+        {
+          "amount": 20000,
+          "start_age": 70,
+          "until_age": 100,
+          "occur_yr": 1,
+          "tied_to_age": false
+        }
+      ]
+    },
+    {
+      "name": "Food",
+      "min_rate": 80,
+      "inflation": 6,
+      "amounts": [
+        {
+          "amount": 24000,
+          "start_age": 51,
+          "until_age": 60,
+          "occur_yr": 1,
+          "tied_to_age": false
+        },
+        {
+          "amount": 15000,
+          "start_age": 61,
+          "until_age": 100,
+          "occur_yr": 1,
+          "tied_to_age": false
+        }
+      ]
+    },
+    {
+      "name": "Change Car",
+      "min_rate": 0,
+      "inflation": 2,
+      "amounts": [
+        {
+          "amount": 60000,
+          "start_age": 51,
+          "until_age": 73,
+          "occur_yr": 7,
+          "tied_to_age": false
+        }
+      ]
+    },
+    {
+      "name": "Transport",
+      "min_rate": 0,
+      "inflation": 4,
+      "amounts": [
+        {
+          "amount": 4000,
+          "start_age": 51,
+          "until_age": 65,
+          "occur_yr": 1,
+          "tied_to_age": false
+        },
+        {
+          "amount": 3000,
+          "start_age": 66,
+          "until_age": 80,
+          "occur_yr": 1,
+          "tied_to_age": false
+        }
+      ]
+    },
+    {
+      "name": "Others",
+      "min_rate": 0,
+      "inflation": 3.5,
+      "amounts": [
+        {
+          "amount": 20000,
+          "start_age": 51,
+          "until_age": 100,
+          "occur_yr": 1,
+          "tied_to_age": false
+        }
+      ]
+    }
+  ],
+  "strategic": {
+    "apply_min": true,
+    "apply_bucket": true,
+    "risk_fund": "Investment",
+    "safer_fund": "Pension Fund",
+    "rebal_pause_option": "psr",
+    "expected_return_rate": 3,
+    "rebals": [
+      {
+        "risk_fund_ratio": 70,
+        "safer_fund_ratio": 30,
+        "start_age": 51,
+        "until_age": 59,
+        "occur_yr": 1
+      },
+      {
+        "risk_fund_ratio": 60,
+        "safer_fund_ratio": 40,
+        "start_age": 60,
+        "until_age": 64,
+        "occur_yr": 1
+      },
+      {
+        "risk_fund_ratio": 50,
+        "safer_fund_ratio": 50,
+        "start_age": 65,
+        "until_age": 99,
+        "occur_yr": 1
+      }
+    ]
+  }
+}
