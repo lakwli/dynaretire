@@ -20,484 +20,227 @@
     <article>
       <div class="article-content">
         <p>
-          After completing your retirement simulation in DynaRetire, you've received an Excel file with your personalized results. While the spreadsheet contains valuable information about your financial future, the numbers and columns might seem overwhelming at first glance. This guide will help you understand what this data actually means for your retirement. 
+          After completing your retirement simulation in DynaRetire, you've received an Excel file with your personalized results. While the spreadsheet contains valuable information about your financial future, it might seem overwhelming at first. This guide will help you understand what this data means for your retirement planning. 
         </p>
 
         <h2 data-toc-text="Excel Structure">
-          <i class="fas fa-file-excel"></i> Getting to Know Your Excel File (No Financial Degree Required!)
+          <i class="fas fa-file-excel"></i> Excel Structure: Your Retirement Story in Four Chapters
         </h2>
-        <p>
-          Your DynaRetire results are split into four main sheets (or tabs) in Excel. Think of them like different chapters of your retirement story:
-        </p>
+
+        <p>Your DynaRetire results are organized into four main sheets:</p>
+
         <ul class="block-list">
           <li>
-            <strong>Summary Sheet:</strong> This is the "big picture" view. It shows what happens to your money year by year from now until the end of your retirement. It specifically helps you understand "When will my money run out?" by simulating your cash flow until there's not enough left to cover the next year's expenses, so you can see if that matches your expectations. It also shows "How much will I have each year?" throughout your retirement journey.
+            <strong>Summary Sheet:</strong> The "big picture" view showing year-by-year cash flow from now until retirement end
           </li>
           <li>
-            <strong>Expenses Sheet:</strong> This is your spending plan – everything from groceries to healthcare to those vacations you've been dreaming about. It shows how your costs change as you get older and (importantly) what happens to your spending if the market takes a nosedive.
+            <strong>Expenses Sheet:</strong> Your detailed spending plan across all categories over time
           </li>
           <li>
-            <strong>Cash-in Incomes Sheet:</strong> This tracks all the money coming in – like rental income, part-time work, or any other money flowing into your accounts besides your investments. It's like keeping tabs on all the "side hustles" that help fund your retirement.
+            <strong>Cash-in Incomes Sheet:</strong> All money flowing into your accounts (besides investments)
           </li>
           <li>
-            <strong>Retirement Funds Sheet:</strong> This gets into the details of your different accounts – like your pension, 401(k), or investment accounts. It shows how money moves around, grows (hopefully!), and gets used for expenses. Think of it as tracking the different "buckets" your money lives in.
+            <strong>Retirement Funds Sheet:</strong> How money moves between accounts, grows, and gets used
           </li>
         </ul>
 
         <h2 data-toc-text="Summary Sheet">
-          <i class="fas fa-chart-line"></i> Reading the Summary Sheet: Your Yearly Financial Story
+          <i class="fas fa-chart-line"></i> Reading the Summary Sheet: Your Financial Journey
         </h2>
 
-        <p>
-          The Summary sheet is like your retirement financial diary, with each row representing one year of your life. Think of it as a checkbook that tracks your money's journey through each year:
-        </p>
+        <p>The Summary sheet tracks your money's journey each year:</p>
 
-        <div class="money-flow-chart">
-          <p><strong>The money flow in each year follows this path:</strong></p>
-          <ol class="flow-steps">
-            <li>You start the year with money in your accounts (<strong>Beginning Balance</strong>)</li>
-            <li>You set aside money for the year's expenses (<strong>Budgeted Expenses</strong>)</li>
-            <li>Your remaining money earns returns (or experiences losses) (<strong>Investment P/L</strong>)</li>
-            <li>You receive additional income from various sources (<strong>Income</strong>)</li>
-            <li>These all combine to give your ending balance (<strong>Ending Balance</strong>), which becomes next year's starting point</li>
-          </ol>
-        </div>
-
-        <h3 data-toc-text="Column Guide"><i class="fas fa-table"></i> Understanding Each Column with Examples</h3>
-
-        <div class="column-explanations">
-          <p><strong>Let's walk through the key columns using Martin's retirement scenario as an example:</strong></p>
-          
-          <ul class="block-list">
-            <li>
-              <strong>#, Year, and Age:</strong> Row "#6" shows calendar year 1999 when Martin is 51 years old. This marks his retirement transition year - the first year when expenses begin.
-            </li>
-            <li>
-              <strong>BOY BAL ($3,235,336):</strong> This is how much money Martin has at the beginning of his retirement at age 51 – his total savings across all accounts.
-            </li>
-            <li>
-              <strong>BOY Expenses ($264,666):</strong> This shows Martin has budgeted about $265,000 for all his expenses in his first retirement year, including major initial retirement expenses.
-            </li>
-            <li>
-              <strong>BOY BAL AFTER EXPENSES ($2,970,670):</strong> After setting aside money for the year's expenses, Martin has nearly $3 million remaining to generate investment returns.
-            </li>
-            <li>
-              <strong>P/L ($349,469):</strong> Martin's investments perform well in his first retirement year, earning about $350,000 in profit – providing a strong start to his retirement.
-            </li>
-            <li>
-              <strong>Income ($13,401):</strong> Martin receives additional income of about $13,400 from his rental property.
-            </li>
-            <li>
-              <strong>EOY BAL ($3,333,540):</strong> By the end of Martin's first retirement year, his total balance grows to over $3.33 million, which becomes his starting balance for age 52.
-            </li>
-            <li>
-              <strong>Important:</strong> The simulation automatically stops when the EOY BAL becomes insufficient to cover the next year's expenses. In Martin's example, the simulation ends at age 87 with $506,934 remaining because this amount would not cover the projected expenses for age 88 (which would be even higher than age 87's $806,577).
-            </li>
-          </ul>
-        </div>
-
-        <h3 data-toc-text="Important Patterns"><i class="fas fa-search"></i> Important Patterns to Watch For</h3>
-
-        <p>Understanding these numbers helps you spot important trends in Martin's retirement plan:</p>
+        <ol class="flow-steps">
+          <li><strong>Beginning Balance (BOY BAL):</strong> Your starting funds</li>
+          <li><strong>Expenses (BOY Expenses):</strong> Money set aside for that year's costs</li>
+          <li><strong>Balance After Expenses:</strong> What remains to earn returns</li>
+          <li><strong>Investment Returns (P/L):</strong> What your investments earned/lost</li>
+          <li><strong>Income:</strong> Additional money from sources like rental income</li>
+          <li><strong>Ending Balance (EOY BAL):</strong> Year-end total becoming next year's starting point</li>
+        </ol>
+        
+        <h3 data-toc-text="Key Insights">
+          <i class="fas fa-table"></i> Key Insights from the Summary Sheet
+        </h3>
 
         <ul class="bullet-list">
           <li>
-            <strong>Pre-Retirement Growth:</strong> Notice how Martin's balance grows significantly during working years (ages 45-50), increasing from $1.5 million to $3.23 million without any withdrawals and with steady contributions.
+            <strong>The Money Flow Cycle:</strong> Follow how each year progresses from beginning balance → expenses → investment returns → income → ending balance
           </li>
           <li>
-            <strong>Sporadic Major Expenses:</strong> Martin's plan shows significant expense jumps at specific points: initial retirement (age 51: $264,666) with travel and first car purchase, age 58 ($188,193) with another car replacement, and age 65 ($201,264) with another major expenditure. These one-time or periodic expenses create noticeable spikes in specific years.
+            <strong>Simulation End Point:</strong> The simulation automatically stops when your ending balance becomes insufficient to cover the next year's expenses
           </li>
           <li>
-            <strong>Medical Cost Impact:</strong> The most dramatic and consistent expense increase happens at age 70, when Martin's expenses nearly double from the previous year to $284,548. This jump occurs because Martin starts allocating $20,000 per year (in today's dollars) for medical expenses at age 70. While $20,000 sounds manageable, medical costs inflate at 8% annually—much higher than regular expenses. After 25 years of this compounding, what started as $20,000 grows to nearly $137,000 per year! This high inflation rate dramatically impacts his total expenses, which reach over $800,000 annually by age 87, with medical costs representing over 60% of his total expenses.
+            <strong>Pre-Retirement Growth:</strong> Watch how your balance grows during working years
           </li>
           <li>
-            <strong>Market Volatility Impact:</strong> The P/L column reveals dramatic market swings - especially at age 60 (2008) with a substantial loss of over $1 million, followed by recovery years. Another significant downturn occurs at age 74 (2022) with a loss of about $390,000.
+            <strong>Major Expense Impact:</strong> Notice how one-time expenses (like car purchases) create spikes
           </li>
           <li>
-            <strong>Balance Trajectory:</strong> Following the EOY BAL column shows Martin's money continues growing even after retirement, peaking at age 76 with about $4.8 million before steadily declining in later years.
+            <strong>Market Volatility:</strong> Identify years with dramatic market swings in the P/L column
           </li>
           <li>
-            <strong>Longevity Indication:</strong> The simulation ends at age 87 with a final balance of $506,934. <strong>Important:</strong> This does NOT mean Martin has adequate funds beyond this point. Rather, it indicates this amount is insufficient to cover the next year's expenses. The simulation stops precisely because he would run out of money if he lived to age 88 or beyond.
+            <strong>Balance Trajectory:</strong> Follow your EOY BAL to see if your money grows or shrinks over time
+          </li>
+          <li>
+            <strong>Longevity Indication:</strong> Check when the simulation ends to see if your money lasts your expected lifetime
           </li>
         </ul>
 
-        <h3 data-toc-text="Warning Signs"><i class="fas fa-exclamation-circle"></i> Warning Signs in Your Summary</h3>
-
-        <p>Your Summary sheet might reveal potential issues with your retirement plan:</p>
+        <h3 data-toc-text="Warning Signs">
+          <i class="fas fa-exclamation-circle"></i> Warning Signs to Watch For
+        </h3>
 
         <ul class="bullet-list">
           <li>
-            <strong>Early End:</strong> If your simulation stops before your planned maximum age, it means you may run out of money. 
+            <strong>Early End:</strong> Simulation stops before your planned maximum age
           </li>
           <li>
-            <strong>Declining Balance:</strong> If your EOY BAL consistently decreases year after year, check if this decline is sustainable through your expected lifetime.
+            <strong>Consistently Declining Balance:</strong> EOY BAL decreases year after year
           </li>
           <li>
-            <strong>Expenses Exceed Income:</strong> During retirement, if your BOY Expenses are regularly much higher than your Income, you're relying heavily on your savings and investment returns.
+            <strong>Expenses Exceed Income:</strong> Relying heavily on savings rather than ongoing income sources
           </li>
         </ul>
-
-        <h3 data-toc-text="Interactive Tips"><i class="fas fa-hand-pointer"></i> Interactive Tips for Reading Your Summary</h3>
-
-        <ul class="bullet-list">
-          <li>
-            <strong>Run your finger down the EOY BAL column</strong> to quickly see if your money is growing or shrinking over time.
-          </li>
-          <li>
-            <strong>Compare the BOY BAL with EOY BAL in each row</strong> to see if you're gaining or losing money each year.
-          </li>
-          <li>
-            <strong>Look for particularly large or small numbers</strong> in the P/L column to identify years with unusual investment performance.
-          </li>
-          <li>
-            <strong>Check your final balance</strong> against your planned legacy or emergency funds to ensure your plan meets your goals.
-          </li>
-        </ul>
-
-        <p><strong>Important Note:</strong> The simulation automatically stops if your **EOY BAL** becomes insufficient to cover the *next* year's **BOY Expenses**. If the simulation ends before your planned lifespan, it indicates a potential shortfall in your plan under the simulated conditions.</p>
 
         <h2 data-toc-text="Expenses Sheet">
-          <i class="fas fa-receipt"></i> Understanding the Expenses Sheet: Where Your Money Goes
+          <i class="fas fa-receipt"></i> The Expenses Sheet: Where Your Money Goes
         </h2>
-        <h3 data-toc-text="Expense Breakdown">
-          <i class="fas fa-table"></i> Your Expense Timeline: Year-by-Year Breakdown
-        </h3>
-        <p>
-          The Expenses sheet is like a detailed calendar of your spending throughout retirement. Each row represents a year, and each column shows a specific expense category you set up in your plan. Looking at Martin's example:
-        </p>
-        <ul class="bullet-list">
-            <li><strong>Big-ticket items stand out:</strong> Notice how Martin's travel expense is $119,405 in his first retirement year (age 51), then drops to about $12-13k in later years, before stopping at age 87. This reflects his plan to travel extensively right after retirement.</li>
-            <li><strong>One-time purchases create spikes:</strong> The "Change Car" column shows $67,570 at age 51, then again at $77,616 at age 58, $89,157 at age 65, and $102,413 at age 72 - clearly showing his 7-year car replacement cycle with inflation factored in.</li>
-            <li><strong>The power of inflation becomes clear:</strong> Martin's medical expenses start at $136,970 at age 70 (in future dollars) and balloon to $506,790 by age 87 - dramatically showing how the 8% medical inflation compounds over time.</li>
-            <li><strong>Life transitions appear in the data:</strong> You can spot when expenses decrease (like food dropping from $46,014 at age 60 to $30,484 at age 61) or stop completely (transport expenses ending at age 80).</li>
-        </ul>
+        
+        <p>The Expenses sheet provides a detailed breakdown of your spending over time:</p>
 
-        <p>
-          <strong>Pro tip:</strong> The final "Total" column is the number that gets transferred to the Summary sheet as "BOY Expenses" for each year. This is what your retirement fund needs to cover annually.
-        </p>
-
-        <h3 data-toc-text="Inflation Effects">
-          <i class="fas fa-chart-line"></i> The Hidden Impact of Inflation
+        <h3 data-toc-text="Key Features">
+          <i class="fas fa-table"></i> Key Features to Understand
         </h3>
-        <p>
-          While Martin entered expenses in today's dollars when creating his plan (like $20,000 for medical expenses), the Expenses sheet shows the actual future amounts after inflation. This reveals some eye-opening realities:
-        </p>
-        <ul class="bullet-list">
-            <li><strong>Different inflation rates create dramatically different outcomes:</strong> Compare Martin's medical expenses (8% inflation) with his housing loan (0% inflation). While his $10,000 housing loan stays constant until age 60, his $20,000 medical expense becomes $137,000 by age 70 and over $500,000 by age 87!</li>
-            <li><strong>Total annual expenses grow significantly:</strong> Martin's total expenses start at $264,666 in his first retirement year and grow to $806,577 by age 87 - more than tripling over his retirement lifetime.</li>
-            <li><strong>Expense categories shift in importance:</strong> When Martin starts retirement, travel and housing are major expenses. By his 80s, medical costs dominate his budget, representing over 60% of his total expenses.</li>
-        </ul>
-
-        <h3 data-toc-text="Risk Management">
-          <i class="fas fa-exclamation-triangle"></i> Minimum Spending Mode: Your Financial Safety Net
-        </h3>
-        <p>
-          If you've set up risk management strategies, the Expenses sheet is where you'll see them in action. In Martin's case, he configured his food expenses with a minimum spending level of 80% during market downturns:
-        </p>
+        
         <ul class="bullet-list">
           <li>
-            <strong>Red numbers tell a story:</strong> During poor market years, certain expenses will appear in <span style="color: red;">red font</span>, showing they've been reduced to help preserve your savings.
+            <strong>Year-by-Year Expense Calendar:</strong> Each row is a year, each column a spending category
           </li>
           <li>
-            <strong>Comment details:</strong> Hovering over a red cell reveals a comment explaining "Minimum spending applied" along with the original amount and the percentage reduction.
+            <strong>Big-Ticket Items:</strong> One-time or periodic major purchases show as spikes
           </li>
           <li>
-            <strong>Strategic cuts:</strong> Only expenses with a minimum spending percentage (like Martin's food budget at 80%) will be reduced. Essential expenses without this setting remain unchanged.
+            <strong>Inflation's Impact:</strong> See how expenses grow over time due to inflation
+          </li>
+          <li>
+            <strong>Minimum Spending Mode:</strong> During market downturns, reducible expenses appear in red, showing your risk management strategy in action
+          </li>
+          <li>
+            <strong>Expense Evolution:</strong> Watch how spending categories shift in importance over time (e.g., travel early, healthcare later)
           </li>
         </ul>
 
-        <h3 data-toc-text="Using This Data">
-          <i class="fas fa-search-dollar"></i> How to Use the Expenses Sheet Effectively
+        <h3 data-toc-text="Using Effectively">
+          <i class="fas fa-search-dollar"></i> Using the Expenses Sheet Effectively
         </h3>
-        <p>
-          This sheet helps you answer critical questions about your retirement spending:
-        </p>
+        
         <ul class="bullet-list">
-          <li>
-            <strong>Are my priorities reflected?</strong> Check if the relative size of expenses matches your retirement vision. In Martin's case, he's prioritizing travel early and healthcare later.
-          </li>
-          <li>
-            <strong>Can I handle expense spikes?</strong> Look for years with unusually high total expenses (like when Martin replaces his car) and verify that your funds can manage these spikes.
-          </li>
-          <li>
-            <strong>Is inflation impacting me more than expected?</strong> If certain categories grow faster than anticipated, you might need to adjust your inflation assumptions or budget allocations.
-          </li>
-          <li>
-            <strong>Do I need to reconsider certain expenses?</strong> If total expenses in later years seem unsustainable, you might need to adjust discretionary spending or find additional income sources.
-          </li>
+          <li>Check if your spending priorities match your retirement vision</li>
+          <li>Identify years with expense spikes to ensure your funds can manage them</li>
+          <li>Monitor inflation's impact, especially in categories with higher inflation rates</li>
+          <li>Evaluate if later-year expenses seem sustainable</li>
         </ul>
 
         <h2 data-toc-text="Income Sheet">
-          <i class="fas fa-money-bill-wave"></i> Analyzing the Cash-in Incomes Sheet: Your Money Sources
+          <i class="fas fa-money-bill-wave"></i> Cash-in Incomes Sheet: Your Money Sources
         </h2>
         
-        <h3 data-toc-text="Income Sources">
-          <i class="fas fa-hand-holding-dollar"></i> Understanding Your Income Timeline
+        <p>This sheet maps money flowing into your retirement accounts besides investment returns:</p>
+
+        <h3 data-toc-text="Income Elements">
+          <i class="fas fa-hand-holding-dollar"></i> Key Elements to Understand
         </h3>
-        <p>
-          The Cash-in Incomes sheet maps out all the money flowing into your retirement accounts besides investment returns. In Martin's case, his income pattern tells an important story:
-        </p>
         
         <ul class="bullet-list">
-          <li><strong>Working years contribution strategy:</strong> During ages 45-50, Martin has three income streams totaling $66,000 initially. His pension contribution ($36,000/year) increases at a modest 2% annually (matching his salary increases), while his extra retirement savings ($20,000/year) increases more aggressively at 10% annually as he prioritizes retirement preparation.</li>
-          
-          <li><strong>The retirement transition:</strong> At age 51 when Martin retires, his pension and extra contributions stop completely, leaving only his rental income ($13,401). This dramatic drop (from $84,720 to $13,401) highlights the fundamental change in cash flow that retirement brings.</li>
-          
-          <li><strong>The reliable ongoing income:</strong> Martin's rental income continues throughout retirement, increasing at 5% annually until age 54, then slowing to 2% per year afterward. This provides a steady supplemental income stream that reaches $29,820 by age 87 - helping to reduce how much he needs to withdraw from his investment accounts.</li>
-        </ul>
-
-        <h3 data-toc-text="Column Structure">
-          <i class="fas fa-table"></i> Reading the Income Sheet Columns
-        </h3>
-        <p>
-          The Income sheet has a straightforward structure that makes it easy to track each revenue source:
-        </p>
-        <ul class="bullet-list">
-          <li><strong>Income Source Columns:</strong> Each income stream has its own column with a header showing both the name you assigned (like "Rental") and sometimes its type in brackets [Rental]. These columns show exactly how much comes in from each source each year.</li>
-          
-          <li><strong>Increase Patterns:</strong> Looking down each column reveals the increase pattern you configured. For example, Martin's rental income increases at different rates (5% until age 54, then 2% afterward), which is clearly visible in the numbers.</li>
-          
-          <li><strong>Deposit Destination:</strong> The income sheet reflects your configuration of where each income source goes. For example, Martin's pension contributions are directed to his Pension Fund, while his extra savings go to his Investment account. This destination is important because each fund has its own distinct return rate - making the contribution allocation a key strategic decision.</li>
-          
-          <li><strong>Total Column:</strong> The far-right column adds up all income sources for each year, matching the "Income" column on the Summary sheet.</li>
-        </ul>
-
-        <h3 data-toc-text="Income Planning Insights">
-          <i class="fas fa-lightbulb"></i> Valuable Income Planning Insights
-        </h3>
-        <p>
-          The Income sheet reveals important aspects of your retirement strategy:
-        </p>
-        <ul class="bullet-list">
-          <li><strong>Income stability check:</strong> After retirement, Martin's investment returns are his primary income source, with his rental property providing an important supplemental income stream that isn't affected by market volatility.</li>
-          
-          <li><strong>Increase rate impact:</strong> Even with a seemingly small 2% annual increase rate, Martin's rental income more than doubles from retirement to age 87. This demonstrates how even modest increases compound meaningfully over a 30+ year retirement.</li>
+          <li>
+            <strong>Income Timeline:</strong> Track how income sources change from working years to retirement
+          </li>
+          <li>
+            <strong>Increase Patterns:</strong> See how each income source grows over time
+          </li>
+          <li>
+            <strong>Deposit Destinations:</strong> Where each income source goes (which affects returns)
+          </li>
+          <li>
+            <strong>Income Stability:</strong> Evaluate how reliable your various income streams are
+          </li>
         </ul>
 
         <h2 data-toc-text="Funds Sheet">
-          <i class="fas fa-chart-pie"></i> Retirement Funds Sheet: Following Your Money's Journey
+          <i class="fas fa-chart-pie"></i> Retirement Funds Sheet: Following Money's Journey
         </h2>
-        <p>
-          The Retirement Funds sheet is the most detailed and complex tab, showing exactly how money flows through each of your investment accounts. It reveals the behind-the-scenes mechanics of how your retirement strategy actually works.
-        </p>
+        
+        <p>The most detailed sheet showing how money flows through each investment account:</p>
 
-        <h3 data-toc-text="Fund Structure">
-          <i class="fas fa-columns"></i> Understanding the Sheet's Organization
+        <h3 data-toc-text="Fund Activity">
+          <i class="fas fa-columns"></i> Understanding Fund Activity
         </h3>
-        <p>
-          This sheet is organized by fund, with each fund (like Martin's Pension Fund and Investment fund) having its own group of columns. The sheet tracks every transaction for each fund independently, then connects them through actions like rebalancing:
-        </p>
+
+        <p>For each fund, you'll see:</p>
         <ul class="bullet-list">
-          <li><strong>Grouped by fund:</strong> All columns for one fund appear together (for Martin, first all Pension Fund columns, then all Investment fund columns).</li>
-          <li><strong>Consistent pattern:</strong> Each fund follows the same column structure: beginning balance → expenses → remaining balance → returns → deposits → rebalancing → ending balance.</li>
-          <li><strong>Color coding:</strong> Usually the columns are color-coded to help distinguish between funds and transaction types.</li>
+          <li><strong>Beginning Balance:</strong> Starting amount</li>
+          <li><strong>Expenses:</strong> Withdrawals based on your fund access rules</li>
+          <li><strong>Remaining Balance:</strong> What's left after expenses</li>
+          <li><strong>Return Rate:</strong> Percentage gained/lost that year</li>
+          <li><strong>Profit/Loss:</strong> Actual dollar amount gained/lost</li>
+          <li><strong>Deposits:</strong> New money coming in</li>
+          <li><strong>Rebalancing:</strong> Money transferred between funds to maintain target allocations</li>
+          <li><strong>Ending Balance:</strong> Final amount after all transactions</li>
         </ul>
 
-        <h3 data-toc-text="Cash Flow Tracking">
-          <i class="fas fa-calendar-day"></i> Understanding Fund Activity Columns
-        </h3>
-        <p>For each fund (like Martin's 'Pension Fund' and 'Investment'), here's what each column shows:</p>
-        <ul class="bullet-list">
-          <li>
-            <strong>[Fund Name] [BOY Bal]:</strong> The starting balance for the year. For example, Martin's Pension Fund starts at $1,644,354 when he's 51.
-          </li>
-          <li>
-            <strong>[Fund Name] [BOY Expenses]:</strong> Money withdrawn to cover expenses. A critical pattern in Martin's case: his Pension Fund shows "-" (no withdrawals) until age 55 because he configured it as ineligible for withdrawals until then. After 55, expenses are drawn proportionally from both funds.
-          </li>
-          <li>
-            <strong>[Fund Name] [BOY BAL AFTER EXPENSES]:</strong> The remaining balance after expense withdrawals. 
-          </li>
-          <li>
-            <strong>[Fund Name] [EOY Return]:</strong> The percentage return for the year. Notice Martin's Pension Fund has a consistent 5.50% (flat rate as configured), while his Investment fund has variable returns (like -38.49% during the 2008 market crash when he was 60).
-          </li>
-          <li>
-            <strong>[Fund Name] [EOY P/L]:</strong> The actual dollar amount gained or lost based on the return percentage. This dramatically shows how different market conditions impact different fund types.
-          </li>
-          <li>
-            <strong>[Fund Name] [EOY Deposit]:</strong> New money coming into the fund - for Martin, this includes his rental income (deposited according to his configuration).
-          </li>
-          <li>
-            <strong>[Fund Name] [EOY Rebal]:</strong> Money transferred between funds to maintain your target asset allocation. Positive numbers show money received from other funds; negative numbers show money transferred out. For example, at age 71, Martin's portfolio rebalanced by moving $401,327 from investments to his pension fund to maintain his target 50/50 allocation.
-          </li>
-          <li>
-            <strong>[Fund Name] [EOY Net Bal]:</strong> The final balance after all transactions, which becomes next year's beginning balance.
-          </li>
-        </ul>
-
-        <h3 data-toc-text="Withdrawal Rules">
-          <i class="fas fa-hand-holding-usd"></i> Fund Withdrawal Rules In Action
-        </h3>
-        <p>
-          The Retirement Funds sheet clearly shows how your withdrawal eligibility rules work:
-        </p>
-        <ul class="bullet-list">
-          <li><strong>Withdrawal restrictions honored:</strong> In Martin's plan, his Pension Fund can't be touched until age 55. That's why in rows for ages 51-54, his Pension Fund shows "-" for expenses while the Investment fund covers all costs.</li>
-          <li><strong>Strategic transition:</strong> At age 55 (row 10), Martin can finally access his Pension Fund. You'll see $95,956 withdrawn from it, part of that year's total expenses.</li>
-          <li><strong>Emergency adaptations:</strong> By age 65, Martin's Investment fund balance is growing significantly while his Pension Fund is dwindling after paying expenses. At this point, system comments might appear explaining fund distribution adjustments.</li>
-        </ul>
-        <p>You might see comments in cells where withdrawal restrictions impact expense distributions, explaining why certain funds were used or not used.</p>
-
-        <h3 data-toc-text="Rebalancing">
-          <i class="fas fa-balance-scale"></i> Rebalancing: Maintaining Your Target Allocation
-        </h3>
-        <p>
-          One of the most important aspects of this sheet is how it shows your rebalancing strategy in action:
-        </p>
-        <ul class="bullet-list">
-          <li><strong>Automatic rebalancing:</strong> Martin configured different asset allocations for different age ranges: 70/30 (stocks/bonds) until age 59, then 60/40 until 64, and finally 50/50 from 65 onward.</li>
-          <li><strong>Visible transfers:</strong> At age 55, you'll see a substantial rebalance of $1,200,457 moved from Pension to Investment - this rebalancing maintains the target allocation after Martin can finally access his Pension Fund.</li>
-          <li><strong>Market response:</strong> At age 60 (2008), a significant market downturn caused Martin's investment fund to lose 38.49%. Look closely at the [EOY Rebal] column and you might find a comment indicating "Rebalancing paused - PSR active" - this shows Martin's risk management strategy (pause selling risky funds during downturns) activating to prevent selling depreciated assets.</li>
-        </ul>
-
-        <h3 data-toc-text="Return Differences">
-          <i class="fas fa-chart-line"></i> Fund Return Patterns
-        </h3>
-        <p>
-          This sheet clearly reveals how different fund types respond to market conditions:
-        </p>
-        <ul class="bullet-list">
-          <li><strong>Stability vs. volatility:</strong> Martin's Pension Fund maintains a consistent 5.5% return throughout the simulation, while his Investment fund shows dramatic variations - from a 29.6% gain (age 65) to a 38.49% loss (age 60).</li>
-          <li><strong>Long-term patterns:</strong> Following the EOY P/L columns for both funds reveals how market cycles impact each differently. During the 2008 downturn (age 60), Martin's investment fund lost $1,101,960 while his pension fund steadily earned $28,657.</li>
-          <li><strong>Risk/reward tradeoff:</strong> Over time, Martin's Investment fund generally produces higher returns in good years, but with significant volatility. The alternating pattern of gains and losses shows why diversification matters.</li>
-        </ul>
-
-        <h3 data-toc-text="Key Insights">
+        <h3 data-toc-text="Critical Insights">
           <i class="fas fa-search"></i> Critical Insights from the Funds Sheet
         </h3>
-        <p>
-          When reviewing your own Funds sheet, look for these key patterns:
-        </p>
+        
         <ul class="bullet-list">
-          <li><strong>Balance evolution:</strong> Follow each fund's EOY Net Bal column to see if it's growing, stable, or declining over time.</li>
-          <li><strong>Withdrawal impact:</strong> Notice how expenses are distributed across funds, especially once all funds become eligible for withdrawals.</li>
-          <li><strong>Rebalancing frequency:</strong> Check how often significant rebalancing occurs and whether it follows your intended strategy.</li>
-          <li><strong>Risk management activation:</strong> Look for comments in rebalancing columns during market downturns, which indicate your protective strategies in action.</li>
-          <li><strong>Last year analysis:</strong> In the final row (age 87 for Martin), notice how the Pension Fund's withdrawal is limited to its available balance ($626,239), with the remaining expenses ($180,338) coming from the Investment fund - showing how the system handles the final expense allocation when funds are depleted.</li>
+          <li><strong>Fund Access Rules:</strong> See how withdrawal restrictions affect which funds cover expenses</li>
+          <li><strong>Rebalancing Strategy:</strong> Watch how your portfolio maintains target allocations over time</li>
+          <li><strong>Return Differences:</strong> Compare how different fund types respond to market conditions</li>
+          <li><strong>Risk Management:</strong> Observe protective strategies activating during market downturns</li>
         </ul>
 
         <h2 data-toc-text="Risk Management">
-          <i class="fas fa-shield-halved"></i> Understanding Risk Management Features in the Excel
+          <i class="fas fa-shield-halved"></i> Risk Management Features in Action
         </h2>
-        <p>
-          Your risk management strategies directly affect how your retirement unfolds. The Excel file clearly shows these strategies in action:
-        </p>
 
-        <h3 data-toc-text="Minimum Spending">
-          <i class="fas fa-hand-holding-dollar"></i> Minimum Spending Mode
-        </h3>
-        <p>
-          When market returns fall below your threshold (Martin's was 3%), this protective feature activates:
-        </p>
+        <p>Your risk management strategies directly affect how your retirement unfolds:</p>
+        
         <ul class="bullet-list">
-          <li>
-            <strong>Visual indicators:</strong> Affected expenses in the <strong>Expenses Sheet</strong> appear in <span style="color: red;">red font</span>, making it easy to spot years when this protection kicked in.
-          </li>
-          <li>
-            <strong>Detailed explanations:</strong> Cell comments provide the original planned amount, the reduction percentage applied, and confirmation that "Minimum spending applied" due to poor market conditions.
-          </li>
-          <li>
-            <strong>Strategic impact:</strong> This feature helps preserve capital during market downturns by reducing withdrawals - particularly important since selling investments during downturns can amplify losses.
-          </li>
-        </ul>
-
-        <h3 data-toc-text="Rebalancing">
-          <i class="fas fa-balance-scale"></i> Rebalancing Strategies & Pauses
-        </h3>
-        <p>
-          The <strong>Retirement Funds Sheet</strong> reveals your asset allocation strategy in action:
-        </p>
-        <ul class="bullet-list">
-          <li>
-            <strong>Visible transactions:</strong> The <strong>[EOY Rebal]</strong> columns show exactly how much money moves between funds to maintain your target allocations (like Martin's shift from 70/30 to 60/40 to 50/50 at different ages).
-          </li>
-          <li>
-            <strong>Protection mechanisms:</strong> If rebalancing is paused during poor markets (based on your settings like 'psr' - pause selling risky assets), a comment will appear explaining why certain rebalancing actions weren't performed that year.
-          </li>
-          <li>
-            <strong>Long-term patterns:</strong> Following these columns across years shows how your portfolio becomes increasingly conservative with age, as configured in your plan.
-          </li>
+          <li><strong>Minimum Spending Mode:</strong> Reduces discretionary expenses during poor market years</li>
+          <li><strong>Rebalancing Strategies:</strong> Maintains target allocations and potentially pauses selling risky assets during downturns</li>
+          <li><strong>Asset Allocation Shifts:</strong> Shows how your portfolio becomes more conservative with age</li>
         </ul>
 
         <h2 data-toc-text="Reading Tips">
-          <i class="fas fa-lightbulb"></i> Tips for Reading Your Results
+          <i class="fas fa-lightbulb"></i> Tips for Reading Your Results Effectively
         </h2>
 
-        <h3 data-toc-text="Excel Features">
-          <i class="fas fa-search"></i> Utilize Excel Features
-        </h3>
-         <ul class="bullet-list">
-          <li>
-            <strong>Frozen Panes:</strong> The top row (headers) and initial columns (Year, Age) are typically frozen, allowing you to scroll through years or across funds/expenses while keeping context.
-          </li>
-           <li>
-            <strong>Comments:</strong> Hover over cells with small red triangles in the corner to read comments providing extra details (e.g., minimum spending activation, rebalancing pauses, fund withdrawal eligibility).
-          </li>
-           <li>
-            <strong>Color Coding:</strong> Pay attention to font colors (<span style="color: red;">red</span> for minimum expenses, <span style="color: blue;">blue</span>/<span style="color: red;">red</span> for returns) and background colors which help visually group related columns (e.g., BOY vs EOY figures, different funds).
-          </li>
-        </ul>
-
-        <h3 data-toc-text="Year-to-Year Changes">
-          <i class="fas fa-calendar"></i> Track Year-to-Year Changes
-        </h3>
         <ul class="bullet-list">
-          <li>
-            <strong>Follow key transitions:</strong> Pay special attention to significant age milestones in your plan (like Martin at 55 when his Pension Fund becomes accessible, or at 70 when medical expenses begin).
-          </li>
-          <li>
-            <strong>Spot balance trends:</strong> Compare BOY BAL with EOY BAL on the Summary sheet to quickly assess whether each year was financially positive or negative.
-          </li>
-          <li>
-            <strong>Identify expense patterns:</strong> Watch how expenses evolve and which categories dominate at different life stages - this reveals the changing nature of retirement needs over time.
-          </li>
+          <li><strong>Use Excel Features:</strong> Leverage frozen panes, cell comments, and color coding</li>
+          <li><strong>Track Key Transitions:</strong> Pay special attention to milestone ages in your plan</li>
+          <li><strong>Monitor Risk Effects:</strong> Look for how protective strategies activate during market downturns</li>
+          <li><strong>Verify Cross-Sheet Flows:</strong> Confirm values match across different sheets</li>
+          <li><strong>Focus on Trends:</strong> Look for patterns rather than fixating on specific numbers</li>
         </ul>
 
-        <h3 data-toc-text="Risk Management">
-          <i class="fas fa-shield-alt"></i> Monitor Risk Management Effects
-        </h3>
-        <ul class="bullet-list">
-          <li>
-            <strong>Market correlation:</strong> Look for years with negative P/L values and check whether your risk management features activated in response.
-          </li>
-          <li>
-            <strong>Protection effectiveness:</strong> After market downturns, observe how quickly your portfolio recovers and whether your protective strategies helped preserve capital.
-          </li>
-          <li>
-            <strong>Strategy validation:</strong> The pattern of red expense numbers and rebalancing pauses helps validate whether your risk settings are triggering appropriately for your comfort level.
-          </li>
-        </ul>
-
-        <h3 data-toc-text="Verify Flows">
-          <i class="fas fa-check-double"></i> Verify Flows Between Sheets
-        </h3>
-        <ul class="bullet-list">
-          <li>
-            <strong>Cross-check totals:</strong> Confirm that values match across sheets - like the Sum column in the Expenses sheet matching BOY Expenses in the Summary sheet.
-          </li>
-           <li>
-            <strong>Follow the money:</strong> Track how specific deposits and withdrawals flow through your funds according to the rules you've established.
-          </li>
-           <li>
-            <strong>Sequence check:</strong> Verify the order of operations - expenses withdrawn first, then investment returns calculated on the remaining balance, followed by deposits and rebalancing.
-          </li>
-        </ul>
-
-        <h2 data-toc-text="Conclusion">
+        <h2 data-toc-text="Making the Most">
           <i class="fas fa-check-circle"></i> Making the Most of Your Results
         </h2>
+
         <p>
-          Your DynaRetire Excel file is more than just numbers—it's a detailed blueprint of your financial future based on your unique inputs and priorities. By understanding how to interpret each sheet:
+          Your DynaRetire Excel file is more than just numbers—it's a detailed blueprint of your financial future based on your unique inputs. Use it to:
         </p>
 
         <ul class="bullet-list">
-          <li><strong>You can identify potential risks</strong> decades before they impact you, giving you time to adjust</li>
-          <li><strong>You'll see how your risk management strategies</strong> perform under various market conditions</li>
-          <li><strong>You can refine your plans</strong> by testing different scenarios and comparing outcomes</li>
-          <li><strong>You gain confidence</strong> in retirement decisions through transparent, detailed projections</li>
+          <li><strong>Identify potential risks</strong> decades before they impact you</li>
+          <li><strong>See how your risk management strategies</strong> perform in various market scenarios</li>
+          <li><strong>Refine your plans</strong> by comparing different scenarios</li>
+          <li><strong>Gain confidence</strong> in retirement decisions through transparent projections</li>
         </ul>
         
         <p>
-          Most importantly, this data helps transform retirement planning from abstract worry to concrete action. Your personalized Excel file becomes a living document you can revisit and refine as your circumstances and plans evolve.
+          This data transforms retirement planning from abstract worry to concrete action—a living document you can revisit as your circumstances evolve.
         </p>
       </div>
     </article>
