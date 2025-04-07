@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Understanding Your DynaRetire Excel Results</title>
+    <script id="article-metadata" type="application/json">
+      {
+        "title": "Understanding Your DynaRetire Excel Results",
+        "description": "A comprehensive guide to reading and interpreting your DynaRetire Excel results. Learn how to understand fund flows, track expenses, analyze income sources, and monitor risk management strategies in your retirement plan.",
+        "type": "article",
+        "card_image": "/content/articles/assets/images/tutorial/dynaretire-generated-result-explained.svg",
+        "updated_at": "2025-04-07T05:22:00Z",
+        "card_image": "/content/articles/assets/images/tutorial/dynaretire-generated-result-explained.svg",
+        "custom_styles": ".article-content h3 { color: #28a745; font-size: 1.3em; margin-top: 1.5em; } .article-content h3 i { color: #28a745; margin-right: 0.5em; }"
+      }
+    </script>
+  </head>
+  <body>
+    <article>
+      <div class="article-content">
+        <p>
+          After running your retirement simulation in DynaRetire, you'll receive a detailed Excel file that serves as your personalized retirement blueprint. This guide will help you understand every aspect of your results and how to use them effectively for retirement planning.
+        </p>
+
+        <h2 data-toc-text="Excel Structure">
+          <i class="fas fa-file-excel"></i> Understanding Your Excel File Structure
+        </h2>
+        <p>
+          Your DynaRetire results are organized into four essential sheets, each providing different insights into your retirement plan:
+        </p>
+        <ul class="block-list">
+          <li>
+            <strong>Summary Sheet:</strong> Provides a high-level view of your retirement journey year by year, showing total balances, expenses, and income
+          </li>
+          <li>
+            <strong>Expenses Sheet:</strong> Details all your configured expenses, including how they change over time and adapt to market conditions
+          </li>
+          <li>
+            <strong>Cash-in Incomes Sheet:</strong> Tracks all sources of income, from rental properties to pension contributions
+          </li>
+          <li>
+            <strong>Retirement Funds Sheet:</strong> Shows detailed fund movements, including investment returns, rebalancing, and risk management actions
+          </li>
+        </ul>
+
+        <h2 data-toc-text="Summary Sheet">
+          <i class="fas fa-chart-line"></i> Reading the Summary Sheet
+        </h2>
+        <p>
+          The Summary sheet gives you a year-by-year overview of your retirement journey. Each row represents one year, and the columns show:
+        </p>
+        <ul class="block-list">
+          <li>
+            <strong>#:</strong> Year number (starting from 0 for your current age)
+          </li>
+          <li>
+            <strong>Year:</strong> The actual calendar year
+          </li>
+          <li>
+            <strong>Age:</strong> Your age in that year
+          </li>
+          <li>
+            <strong>BOY BAL:</strong> Beginning of Year Balance - your total funds at the start
+          </li>
+          <li>
+            <strong>EOY P/L:</strong> End of Year Profit/Loss from your investments
+          </li>
+          <li>
+            <strong>EOY Expenses:</strong> Total expenses withdrawn for that year
+          </li>
+          <li>
+            <strong>Income:</strong> Total income received from all sources
+          </li>
+          <li>
+            <strong>Net Deposit/Withdraw:</strong> The net amount added to or taken from your funds
+          </li>
+        </ul>
+
+        <h2 data-toc-text="Expenses Sheet">
+          <i class="fas fa-receipt"></i> Understanding the Expenses Sheet
+        </h2>
+        <h3>
+          <i class="fas fa-table"></i> Expense Categories and Tracking
+        </h3>
+        <p>
+          The Expenses sheet breaks down all your configured expenses. Each column represents a different expense category (like Food, Medical, Travel), with a total at the end. The amounts shown are what will be withdrawn for the coming year's expenses.
+        </p>
+
+        <h3>
+          <i class="fas fa-exclamation-triangle"></i> Market Response Indicators
+        </h3>
+        <p>
+          When market conditions are challenging, you'll notice:
+        </p>
+        <ul class="bullet-list">
+          <li>
+            Expenses in <span style="color: red;">red</span> indicate reduced spending due to poor market performance
+          </li>
+          <li>
+            Hover over red numbers to see the original planned amount and the reduction percentage applied
+          </li>
+          <li>
+            Comments explaining why the reduction was triggered (based on historical returns)
+          </li>
+        </ul>
+
+        <h2 data-toc-text="Income Sheet">
+          <i class="fas fa-money-bill-wave"></i> Analyzing the Cash-in Incomes Sheet
+        </h2>
+        <p>
+          This sheet details all your income sources and how they grow over time. For each income source, you'll see:
+        </p>
+        <ul class="block-list">
+          <li>
+            <strong>Income Type:</strong> Such as rental income, pension contributions, or additional savings
+          </li>
+          <li>
+            <strong>Amount:</strong> The income amount for each year
+          </li>
+          <li>
+            <strong>Growth Rate:</strong> How the income increases over time
+          </li>
+          <li>
+            <strong>Deposit Account:</strong> Which investment account receives this income
+          </li>
+        </ul>
+
+        <h2 data-toc-text="Funds Sheet">
+          <i class="fas fa-chart-pie"></i> Retirement Funds Sheet: Following Your Money
+        </h2>
+        <p>
+          This is your most detailed sheet, showing how money moves between different investment accounts. For each account (like Stock Fund or Bond Fund), you'll see:
+        </p>
+
+        <h3>
+          <i class="fas fa-calendar-day"></i> Beginning of Year (BOY) Details
+        </h3>
+        <ul class="bullet-list">
+          <li>
+            <strong>BOY Bal:</strong> Starting balance for the year
+          </li>
+          <li>
+            <strong>BOY Expenses:</strong> Money withdrawn for expenses (if applicable)
+          </li>
+          <li>
+            <strong>BOY BAL AFTER EXPENSES:</strong> Remaining balance after withdrawals
+          </li>
+        </ul>
+
+        <h3>
+          <i class="fas fa-calendar-check"></i> End of Year (EOY) Details
+        </h3>
+        <ul class="bullet-list">
+          <li>
+            <strong>EOY Return:</strong> Investment return percentage (blue for positive, red for negative)
+          </li>
+          <li>
+            <strong>EOY P/L:</strong> Profit or Loss amount
+          </li>
+          <li>
+            <strong>EOY Deposit:</strong> New money added to the account
+          </li>
+          <li>
+            <strong>EOY Rebal:</strong> Amount moved due to rebalancing
+          </li>
+          <li>
+            <strong>EOY Net Bal:</strong> Final balance after all transactions
+          </li>
+        </ul>
+
+        <h2 data-toc-text="Risk Management">
+          <i class="fas fa-shield-halved"></i> Understanding Risk Management Features
+        </h2>
+        <p>
+          DynaRetire includes several protective measures that appear in your Excel results:
+        </p>
+
+        <h3>
+          <i class="fas fa-hand-holding-dollar"></i> Minimum Spending Mode
+        </h3>
+        <p>
+          When investment returns fall below your specified threshold, the system activates minimum spending mode:
+        </p>
+        <ul class="bullet-list">
+          <li>
+            Expenses appear in red to indicate reduced spending
+          </li>
+          <li>
+            Comments show original amounts and reduction percentages
+          </li>
+          <li>
+            Based on historical annualized returns since retirement
+          </li>
+        </ul>
+
+        <h3>
+          <i class="fas fa-balance-scale"></i> Rebalancing Strategy
+        </h3>
+        <p>
+          The Retirement Funds sheet shows how your investments are rebalanced between risky and safer funds:
+        </p>
+        <ul class="bullet-list">
+          <li>
+            Regular rebalancing to maintain your target allocation
+          </li>
+          <li>
+            Paused during poor market conditions (indicated by comments)
+          </li>
+          <li>
+            Different pause options shown:
+            <ul>
+              <li>'psr': Pause selling risky assets</li>
+              <li>'pbr': Pause all rebalancing</li>
+              <li>'none': Continue rebalancing regardless</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h2 data-toc-text="Reading Tips">
+          <i class="fas fa-lightbulb"></i> Tips for Reading Your Results
+        </h2>
+        
+        <h3>
+          <i class="fas fa-calendar"></i> Track Year-to-Year Changes
+        </h3>
+        <ul class="bullet-list">
+          <li>
+            Use frozen panes to keep headers visible while scrolling
+          </li>
+          <li>
+            Compare BOY and EOY balances to understand annual performance
+          </li>
+          <li>
+            Monitor how expenses adjust in different market conditions
+          </li>
+        </ul>
+
+        <h3>
+          <i class="fas fa-shield-alt"></i> Monitor Risk Management
+        </h3>
+        <ul class="bullet-list">
+          <li>
+            Watch for red numbers indicating expense reductions
+          </li>
+          <li>
+            Check for rebalancing pauses in poor markets
+          </li>
+          <li>
+            Review annual returns against your minimum expectations
+          </li>
+        </ul>
+
+        <h3>
+          <i class="fas fa-check-double"></i> Verify Income Integration
+        </h3>
+        <ul class="bullet-list">
+          <li>
+            Confirm income is deposited into the right accounts
+          </li>
+          <li>
+            Verify growth rates are applied correctly
+          </li>
+          <li>
+            Monitor the impact on total available funds
+          </li>
+        </ul>
+
+        <h2 data-toc-text="Conclusion">
+          <i class="fas fa-check-circle"></i> Making the Most of Your Results
+        </h2>
+        <p>
+          Your DynaRetire Excel file is more than just numbers - it's a dynamic tool that shows how your retirement plan adapts to different market conditions and life stages. By understanding each component and how they work together, you can make informed decisions about your retirement strategy and adjust your plan as needed.
+        </p>
+        
+        <p>
+          Remember that the Excel file automatically updates formulas and highlights important changes, making it easier to spot potential issues and opportunities in your retirement plan. Use this detailed view to ensure your retirement journey stays on track and aligns with your financial goals.
+        </p>
+      </div>
+    </article>
+  </body>
+</html>
