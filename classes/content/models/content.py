@@ -4,7 +4,7 @@ Provides common attributes and methods used by both content types.
 """
 from dataclasses import dataclass, field
 from typing import List, Optional
-import re
+from bs4 import BeautifulSoup
 
 @dataclass(kw_only=True)
 class Content:
@@ -21,7 +21,11 @@ class Content:
         """Determine if content should show TOC based on heading count.
         
         Returns:
-            bool: True if content has more than 3 h2/h3 headings
+            bool: True if content has more than 3 h2/h3 headings that aren't
+                 explicitly marked to be skipped with data-toc-skip
         """
-        heading_count = len(re.findall(r'<h[23][^>]*>.*?</h[23]>', self.content))
-        return heading_count > 3
+        soup = BeautifulSoup(self.content, 'html.parser')
+        headings = soup.find_all(['h2', 'h3'])
+        # Only count headings that don't have data-toc-skip
+        visible_headings = [h for h in headings if not h.get('data-toc-skip')]
+        return len(visible_headings) > 3
