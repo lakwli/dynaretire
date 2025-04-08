@@ -25,6 +25,7 @@
 
     <!-- Common CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dropdown.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     {% block css %}{% endblock %}
@@ -48,12 +49,12 @@
                             <div class="dropdown-container">
                                 <div class="dropdown-items">
                                     <a href="/articles/tutorial" class="dropdown-item" role="menuitem">
-                                        <span class="dropdown-item-title">How-To Use</span>
-                                        <span class="dropdown-item-subtitle">Martin Step by Step</span>
+                                        <span class="dropdown-item-title">How-To Use DynaRetire</span>
+                                        <span class="dropdown-item-subtitle">Martin's Story</span>
                                     </a>
                                     <a href="/articles/reading-excel-results" class="dropdown-item" role="menuitem">
-                                        <span class="dropdown-item-title">How-To Read</span>
-                                        <span class="dropdown-item-subtitle">Excel File Guide</span>
+                                        <span class="dropdown-item-title">Understanding Excel</span>
+                                        <span class="dropdown-item-subtitle">Interpret Excel File Result</span>
                                     </a>
                                 </div>
                             </div>
