@@ -17,6 +17,106 @@ body {
     line-height: 1.6;
 }
 
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-trigger {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 0.5em;
+}
+
+.chevron-icon {
+    margin-left: 0.25em;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 0.8em;
+}
+
+.chevron-icon.rotated {
+    transform: rotate(180deg);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: calc(100% + 0.5rem);
+    transform: translateX(-50%);
+    width: 100vw;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dropdown-content.active {
+    display: block;
+    opacity: 1;
+}
+
+.dropdown-overlay {
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.97),
+        rgba(255, 255, 255, 0.95)
+    );
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.dropdown-container {
+    max-width: var(--container-width, 1200px);
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.dropdown-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 100%;
+}
+
+@media (min-width: 1024px) {
+    .dropdown-items {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.dropdown-item {
+    display: block;
+    padding: 1.25rem;
+    text-decoration: none;
+    color: var(--text-color);
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: transparent;
+}
+
+.dropdown-item:hover {
+    background: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+}
+
+.dropdown-item-title {
+    display: block;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.dropdown-item-subtitle {
+    display: block;
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
 .container {
     width: 90%;
     min-width: 768px;

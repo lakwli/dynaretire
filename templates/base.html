@@ -38,7 +38,28 @@
                 <span class="logo-text">DynaRetire</span>
             </a>
             <div class="nav-menu">
-                <a href="/articles/tutorial" class="nav-link">Tutorial</a>
+                <div class="dropdown" aria-haspopup="true">
+                    <a href="#" class="nav-link dropdown-trigger" aria-expanded="false">
+                        Tutorial
+                        <i class="fas fa-chevron-down chevron-icon" aria-hidden="true"></i>
+                    </a>
+                    <div class="dropdown-content" role="menu">
+                        <div class="dropdown-overlay">
+                            <div class="dropdown-container">
+                                <div class="dropdown-items">
+                                    <a href="/articles/tutorial" class="dropdown-item" role="menuitem">
+                                        <span class="dropdown-item-title">How-To Use</span>
+                                        <span class="dropdown-item-subtitle">Martin Step by Step</span>
+                                    </a>
+                                    <a href="/articles/reading-excel-results" class="dropdown-item" role="menuitem">
+                                        <span class="dropdown-item-title">How-To Read</span>
+                                        <span class="dropdown-item-subtitle">Excel File Guide</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <a href="{{ url_for('static', filename='resources/files/dynaRetire-SampleResult-Martin_2025.xlsx') }}" class="nav-link">Sample</a>
                 <a href="/plan" class="nav-cta">Launch App</a>
             </div>
@@ -56,5 +77,39 @@
     </footer>
 
     {% block scripts %}{% endblock %}
+    <script>
+        const dropdownTrigger = document.querySelector('.dropdown-trigger');
+        const dropdownContent = document.querySelector('.dropdown-content');
+        const chevronIcon = document.querySelector('.chevron-icon');
+        let isHoveringTrigger = false;
+        let isHoveringContent = false;
+
+        function updateDropdownState() {
+            const isActive = isHoveringTrigger || isHoveringContent;
+            dropdownContent.classList.toggle('active', isActive);
+            chevronIcon.classList.toggle('rotated', isActive);
+            dropdownTrigger.setAttribute('aria-expanded', isActive);
+        }
+
+        dropdownTrigger.addEventListener('mouseenter', () => {
+            isHoveringTrigger = true;
+            updateDropdownState();
+        });
+
+        dropdownTrigger.addEventListener('mouseleave', () => {
+            isHoveringTrigger = false;
+            setTimeout(updateDropdownState, 100);
+        });
+
+        dropdownContent.addEventListener('mouseenter', () => {
+            isHoveringContent = true;
+            updateDropdownState();
+        });
+
+        dropdownContent.addEventListener('mouseleave', () => {
+            isHoveringContent = false;
+            setTimeout(updateDropdownState, 100);
+        });
+    </script>
 </body>
 </html>
