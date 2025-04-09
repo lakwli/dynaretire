@@ -1154,7 +1154,8 @@ p {
     }
 
     .hero {
-        padding: 10rem 0 3rem;
+        /* Increased top padding for taller mobile navbar */
+        padding: 14rem 0 3rem; 
     }
     
     .hero h1 {
