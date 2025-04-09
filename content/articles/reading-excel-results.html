@@ -4,17 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Understanding DynaRetire Excel Results</title>
-    <script id="article-metadata" type="application/json">
-      {
-        "title": "Understanding DynaRetire Excel Results",
-        "description": "A comprehensive guide to reading and interpreting DynaRetire Excel results. Learn how to understand fund flows, track expenses, analyze income sources, and monitor risk management strategies in retirement plan.",
-        "type": "article",
-        "card_image": "/content/articles/assets/images/tutorial/dynaretire-generated-result-explained.svg",
-        "updated_at": "2025-04-07T05:22:00Z",
-        "card_image": "/content/articles/assets/images/tutorial/dynaretire-generated-result-explained.svg",
-        "custom_styles": ".article-content h3 { color: #28a745; font-size: 1.3em; margin-top: 1.5em; } .article-content h3 i { color: #28a745; margin-right: 0.5em; }"
-      }
-    </script>
+<script id="article-metadata" type="application/json">
+{
+  "title": "Understanding DynaRetire Excel Results",
+  "description": "A comprehensive guide to reading and interpreting DynaRetire Excel results. Learn how to understand fund flows, track expenses, analyze income sources, and monitor risk management strategies in retirement plan.",
+  "type": "article",
+  "card_image": "/content/articles/assets/images/tutorial/dynaretire-generated-result-explained.svg",
+  "updated_at": "2025-04-07T05:22:00Z",
+  "card_image": "/content/articles/assets/images/tutorial/dynaretire-generated-result-explained.svg",
+  "custom_styles": ""
+}
+</script>
   </head>
   <body>
     <article>
@@ -54,37 +54,57 @@
           </li>
         </ul>
 
-        <h2 data-toc-text="Summary Sheet">
-          <i class="fas fa-chart-line"></i> Summary Sheet: Overall Picture
-        </h2>
+             <h2 data-toc-text="Summary Sheet">
+        <i class="fas fa-chart-line"></i> Summary Sheet: Overall Picture
+      </h2>
+      
+      <p>The Summary sheet tracks money's cash flow each year:</p>
+      
+      <div class="excel-explainer">
+        <table class="column-explainer">
+          <thead>
+            <tr>
+              <th>Column</th>
+              <th>Description</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-name">Beginning Balance (BOY BAL)</td>
+              <td>Starting funds at the beginning of the year</td>
+              <td class="col-numeric">$500,000</td>
+            </tr>
+            <tr>
+              <td class="col-name">Expenses (BOY Expenses)</td>
+              <td>Money set aside for that year's costs</td>
+              <td class="col-numeric">$45,000</td>
+            </tr>
+            <tr>
+              <td class="col-name">Balance After Expenses</td>
+              <td>What remains to earn returns</td>
+              <td class="col-numeric">$455,000</td>
+            </tr>
+            <tr>
+              <td>Investment Returns (P/L)</td>
+              <td>What investments earned/lost</td>
+              <td class="col-numeric">$36,400</td>
+            </tr>
+            <tr>
+              <td class="col-name">Income</td>
+              <td>Additional money from sources like rental income</td>
+              <td class="col-numeric">$15,000</td>
+            </tr>
+            <tr>
+              <td class="col-name">Ending Balance (EOY BAL)</td>
+              <td>Year-end total becoming next year's starting point</td>
+              <td class="col-numeric">$506,400</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-        <p>The Summary sheet tracks money's cash flow each year:</p>
 
-        <ol class="flow-steps">
-          <li>
-            <strong>Beginning Balance (BOY BAL):</strong> Starting funds
-          </li>
-          <li>
-            <strong>Expenses (BOY Expenses):</strong> Money set aside for that
-            year's costs
-          </li>
-          <li>
-            <strong>Balance After Expenses:</strong> What remains to earn
-            returns
-          </li>
-          <li>
-            <strong>Investment Returns (P/L):</strong> What investments
-            earned/lost
-          </li>
-          <li>
-            <strong>Income:</strong> Additional money from sources like rental
-            income
-          </li>
-          <li>
-            <strong>Ending Balance (EOY BAL):</strong> Year-end total becoming
-            next year's starting point
-          </li>
-        </ol>
         <img
           src="/content/articles/assets/images/reading-excel-results/summary-tab.svg"
           alt="DynaRetire Summary Sheet: The big picture view showing
@@ -246,8 +266,7 @@
           investment returns"
         />
         <h2 data-toc-text="Funds Sheet">
-          <i class="fas fa-chart-pie"></i> Retirement Funds Sheet: Following
-          Money's Journey
+          <i class="fas fa-chart-pie"></i> Retirement Funds Sheet: Fund Flows
         </h2>
 
         <p>
@@ -260,30 +279,59 @@
         </h3>
 
         <p>For each fund, the following details are provided:</p>
-        <ul class="bullet-list">
-          <li><strong>Beginning Balance:</strong> Starting amount</li>
-          <li>
-            <strong>Expenses:</strong> Withdrawals based on fund access
-            rules
-          </li>
-          <li>
-            <strong>Remaining Balance:</strong> What's left after expenses
-          </li>
-          <li>
-            <strong>Return Rate:</strong> Percentage gained/lost that year
-          </li>
-          <li>
-            <strong>Profit/Loss:</strong> Actual dollar amount gained/lost
-          </li>
-          <li><strong>Deposits:</strong> New money coming in</li>
-          <li>
-            <strong>Rebalancing:</strong> Money transferred between funds to
-            maintain target allocations
-          </li>
-          <li>
-            <strong>Ending Balance:</strong> Final amount after all transactions
-          </li>
-        </ul>
+        <div class="excel-explainer">
+          <table class="column-explainer">
+            <thead>
+              <tr>
+                <th>Column</th>
+                <th>Description</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="col-name">Beginning Balance</td>
+                <td>Starting amount in the fund at the beginning of the year</td>
+                <td class="col-numeric">$300,000</td>
+              </tr>
+              <tr>
+                <td class="col-name">Expenses</td>
+                <td>Withdrawals based on fund access rules</td>
+                <td class="col-numeric">$20,000</td>
+              </tr>
+              <tr>
+                <td class="col-name">Remaining Balance</td>
+                <td>What's left after expenses are withdrawn</td>
+                <td class="col-numeric">$280,000</td>
+              </tr>
+              <tr>
+                <td class="col-name">Return Rate</td>
+                <td>Percentage gained/lost that year</td>
+                <td class="col-numeric">7.2%</td>
+              </tr>
+              <tr>
+                <td class="col-name">Profit/Loss</td>
+                <td>Actual dollar amount gained/lost from investments</td>
+                <td class="col-numeric">$20,160</td>
+              </tr>
+              <tr>
+                <td class="col-name">Deposits</td>
+                <td>New money coming into the fund</td>
+                <td class="col-numeric">$12,000</td>
+              </tr>
+              <tr>
+                <td class="col-name">Rebalancing</td>
+                <td>Money transferred between funds to maintain target allocations</td>
+                <td class="col-numeric">$5,000</td>
+              </tr>
+              <tr>
+                <td class="col-name">Ending Balance</td>
+                <td>Final amount after all transactions, becomes next year's starting point</td>
+                <td class="col-numeric">$317,160</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <h3 data-toc-text="Critical Insights">
           <i class="fas fa-search"></i> Critical Insights from the Funds Sheet
