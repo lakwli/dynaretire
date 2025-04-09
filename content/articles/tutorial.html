@@ -477,56 +477,34 @@
           alt="DynaRetire how-to: Go To different step"
         />
 
+        <h2 data-toc-text="Save and Load">
+          <i class="fas fa-save"></i> Save and Load Your Plan
+        </h2>
+        <p>
+          DynaRetire allows you to save your retirement plan configuration and load it later, making it easy to
+          iterate on your plan over time or try different scenarios. This feature is particularly useful as you
+          refine your retirement strategy and want to compare different approaches.
+        </p>
+        
+        <p>
+          Once you've entered your retirement plan details, you can save them to your local computer by clicking
+          the Save button. Your plan will be saved as a <code>.dynaretire.json</code> file.
+        </p>
+
+        <p>
+          To load a previously saved plan, click the Load button and select your <code>.dynaretire.json</code> file. Please note that you won't be able to proceed to the next step until the loading process is complete,  Progress messages will keep you informed about the loading status
+        </p>
+        <img
+          src="/content/articles/assets/images/tutorial/save-load.svg"
+          alt="DynaRetire save and load functionality interface"
+        />
+
         <h2 data-toc-text="Interpret Result">
           <i class="fas fa-file-excel"></i> Interpret Result: Excel
         </h2>
         <p>
-          What I particularly value about DynaRetire is how it creates something
-          tangible you can keep and reference. This tool provides a
-          comprehensive Excel file that becomes your personalized retirement
-          blueprint.
+          After submitting your retirement plan, DynaRetire will generate an Excel file containing detailed calculations and projections. For a complete guide on how to read and interpret the Excel results, please refer to our dedicated article: <a href="/articles/reading-excel-results">Reading Excel Results</a>.
         </p>
-        <h3 data-toc-skip>Excel File Structure</h3>
-        <ul class="block-list">
-          <li>
-            <strong>Summary:</strong> The first sheet is a summary that displays
-            the total fund balance, expenses, incomes, and profit and loss. It
-            also shows the net balance for the year.
-          </li>
-          <li>
-            <strong>Expenses:</strong> The second sheet will provide a detailed
-            breakdown of individual expenses as they occur throughout the year
-            and the total expenses for that year. In the case of an unfavourable
-            market year, a user can configure expenses to switch to minimum
-            spending. In that case, a comment in the column will indicate that
-            the expense amount is based on minimum spending due to the
-            unfavourable market conditions.
-          </li>
-          <li>
-            <strong>Income:</strong> The third sheet will provide a detailed
-            breakdown of individual income as it occurs throughout the year and
-            the total income for that year.
-          </li>
-          <li>
-            <strong>Funds Flow:</strong> The fourth screen illustrates the cash
-            flow into and out of the fund. This movement can result from pension
-            fund contributions (directed into the pension fund), additional
-            savings (allocated to the investment fund), profit and loss,
-            withdrawals for expenses (based on withdrawal eligibility and
-            sequence), and rebalancing (which may involve transferring funds
-            from Fund A to Fund B). If a year is marked as an unfavourable
-            market year and there's a pause in balancing from a risky fund to a
-            safer fund, the rebalance column will display a comment indicating
-            the pause.
-          </li>
-        </ul>
-        <div class="image-container">
-          <img
-            src="/content/articles/assets/images/tutorial/dynaretire-generated-result-explained.svg"
-            alt="DynaRetire Excel output structure showing summary, expenses, income, and funds flow sheets"
-            data-zoomable
-          />
-        </div>
 
         <h2 data-toc-text="Conclusion">
           <i class="fas fa-check-circle"></i> Conclusion: Test Your Retirement
