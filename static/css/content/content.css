@@ -618,10 +618,16 @@
 @media (max-width: 768px) {
     .content-container {
         padding: 1rem;
+        margin-top: 1rem;
     }
 
     .content-title {
         font-size: 2rem;
+        padding-top: 2rem; /* Ensure title is visible below navbar */
+    }
+
+    .content-wrapper {
+        padding-top: 1rem;
     }
 
     .content-body {
@@ -650,6 +656,15 @@
 @media (max-width: 480px) {
     .content-container {
         padding: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .content-wrapper {
+        margin-top: calc(var(--navbar-height) + 1rem);
+    }
+
+    .content-title {
+        padding-top: 2.5rem; /* Additional padding for mobile */
     }
 
     .social-share-list {

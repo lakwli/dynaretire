@@ -1,6 +1,7 @@
 # A very simple Flask Hello World app for you to get started with...
 #FLASK_DEBUG=1 FLASK_APP=app.py flask run --host=0.0.0.0 --port=5005
-#tail -f /logs/app.log
+#tail -f /logs/app.log 
+#git config --global --add safe.directory /workspaces/dynaretire 
 
 from flask import Flask, render_template, request, jsonify, send_file, Response, session, send_from_directory, redirect, url_for, abort, after_this_request
 from werkzeug.security import safe_join

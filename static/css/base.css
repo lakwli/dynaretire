@@ -236,6 +236,10 @@ main {
 }
 
 @media (max-width: 480px) {
+    :root {
+        --navbar-height: 140px;  /* Increased height for mobile */
+    }
+
     .nav-menu {
         flex-wrap: wrap;
         justify-content: center;
@@ -247,6 +251,10 @@ main {
     .navbar .container {
         flex-direction: column;
         padding: 0.5rem 0;
+    }
+
+    main {
+        margin-top: calc(var(--navbar-height) + 1rem);  /* Additional margin for mobile */
     }
 
     .logo-img {
