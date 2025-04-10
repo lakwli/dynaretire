@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How-To Run DynaRetire Locally</title>
+    <script id="article-metadata" type="application/json">
+      {
+        "title": "How-To Run DynaRetire Locally",
+        "description": "Learn how to run DynaRetire on your own computer using Docker. This step-by-step guide helps non-technical users set up and use DynaRetire locally for better privacy and offline access.",
+        "type": "article",
+        "updated_at": "2025-04-10T10:00:00Z",
+
+        "card_image": "/content/articles/assets/images/tutorial/dynaretire-how-to-go-to-different-step.svg",
+        "custom_styles": ""
+      }
+    </script>
+  </head>
+  <body>
+    <article>
+      <div class="article-content">
+        
+        <p>Docker allows you to run DynaRetire locally on your own computer without needing to access the website. This guide will walk you through installing Docker and setting up DynaRetire on your personal machine.</p>
+
+        <div class="key-info">
+          <p><strong>What you'll get:</strong> A private copy of DynaRetire running on your computer that works even without internet access and keeps your financial data completely private.</p>
+        </div>
+
+        <h2 data-toc-text="Installing Docker">Part 1: Installing Docker on Your Computer</h2>
+        
+        <h3 data-toc-text="Windows">For Windows Users:</h3>
+        <ul>
+          <li>
+            <strong>Check your Windows version</strong>
+            <p>Make sure you have Windows 10 or newer.</p>
+          </li>
+          <li>
+            <strong>Download Docker Desktop</strong>
+            <ul>
+              <li>Visit <a href="https://www.docker.com/products/docker-desktop" target="_blank">Docker's official download page</a></li>
+              <li>Click the "Download for Windows" button</li>
+              <li>Wait for the installer file to download</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Install Docker Desktop</strong>
+            <ul>
+              <li>Double-click the downloaded file and follow the simple installation instructions</li>
+              <li>Restart your computer when prompted</li>
+              <li>After restarting, Docker will start automatically (look for the whale icon in your taskbar)</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3 data-toc-text="Mac">For Mac Users:</h3>
+        <ul>
+          <li>
+            <strong>Check your Mac</strong>
+            <p>Make sure you have macOS version 10.15 (Catalina) or newer.</p>
+          </li>
+          <li>
+            <strong>Download Docker Desktop</strong>
+            <ul>
+              <li>Visit <a href="https://www.docker.com/products/docker-desktop" target="_blank">Docker's official download page</a></li>
+              <li>Click the "Download for Mac" button</li>
+              <li>Wait for the installer file to download</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Install Docker Desktop</strong>
+            <ul>
+              <li>Open the downloaded .dmg file</li>
+              <li>Drag the Docker icon to your Applications folder</li>
+              <li>Open Docker from your Applications folder</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3 data-toc-text="Linux">For Linux Users:</h3>
+         
+        <p>Visit the <a href="https://docs.docker.com/engine/install/" target="_blank">Docker's official installation guide for Linux</a> and select your distribution for specific instructions.</p>
+
+        <h2 data-toc-text="Running DynaRetire Locally">Part 2: Running DynaRetire Using Our Simple Script</h2>
+        
+        <p>The deployment script handles all technical details automatically. Here's how to use it:</p>
+
+        <h3 data-toc-skip>Step 1: Download the Deployment Script</h3>
+        <ul>
+          <li>For Windows users: Download the <a href="/static/resources/files/deploy_script.bat" download>deploy_script.bat</a> file</li>
+          <li>For Mac/Linux users: Download the <a href="/static/resources/files/deploy_script.sh" download>deploy_script.sh</a> file</li>
+          <li>Save it somewhere easy to find, like your Downloads folder or Desktop</li>
+        </ul>
+
+        <h3 data-toc-text="Environment Setup">Step 2: Set Up Your Environment</h3>
+        <div class="key-info">
+          <p>You'll need to provide two pieces of information to access DynaRetire:</p>
+          <ul>
+            <li>Your GitHub username</li>
+            <li>A personal access token (like a special password for GitHub)</li>
+          </ul>
+        </div>
+
+        <h4 data-toc-skip>For Windows users:</h4>
+        <p>Open Command Prompt and type:</p>
+        <div class="code-block">
+          <pre><code class="language-batch">set DOCKER_USER=your_github_username
+set DOCKER_TOKEN=your_personal_access_token
+set DOCKER_PORT=5000</code></pre>
+        </div>
+
+        <h4 data-toc-skip>For Mac and Linux users:</h4>
+        <p>Open Terminal and type:</p>
+        <div class="code-block">
+          <pre><code class="language-bash">export DOCKER_USER=your_github_username
+export DOCKER_TOKEN=your_personal_access_token
+export DOCKER_PORT=5000</code></pre>
+        </div>
+        
+        <div class="variable-guide">
+          <strong>Note:</strong> Replace the values with your personal information:
+          <ul>
+            <li><code>your_github_username</code>: Your GitHub username</li>
+            <li><code>your_personal_access_token</code>: Your GitHub personal access token</li>
+            <li><code>5000</code>: The port number (can be changed if needed)</li>
+          </ul>
+        </div>
+
+        <div class="variable-explanation">
+          <h5>What these variables mean:</h5>
+          <ul>
+            <li><code>DOCKER_USER</code>: Your GitHub username for authentication</li>
+            <li><code>DOCKER_TOKEN</code>: Your GitHub personal access token (serves as a password)</li>
+            <li><code>DOCKER_PORT</code>: The port number where DynaRetire will be available (default: 5000)</li>
+          </ul>
+        </div>
+
+        <p><strong>Note:</strong> Replace "your_github_username" with your actual GitHub username and "your_github_token" with your personal access token. To use a different port than 5000, you can change that number.</p>
+
+        <h3 data-toc-text="Running the Script">Step 3: Run the Script</h3>
+
+        <h4 data-toc-skip>For Windows users:</h4>
+        <p>In the same Command Prompt window, navigate to where you saved the script and run it:</p>
+        <div class="code-block">
+          <pre><code class="language-batch">cd C:\path\to\folder
+deploy_script.bat</code></pre>
+        </div>
+
+        <h4 data-toc-skip>For Mac and Linux users:</h4>
+        <p>In the same Terminal window, navigate to where you saved the script and run it:</p>
+        <div class="code-block">
+          <pre><code class="language-bash">cd /path/to/folder
+chmod +x deploy_script.sh
+./deploy_script.sh</code></pre>
+        </div>
+
+        <h3 data-toc-text="Accessing the App">Step 4: Access DynaRetire</h3>
+        <ul>
+          <li>Once the script completes successfully, open your web browser</li>
+          <li>Go to: <strong>http://localhost:5000</strong> (or the port you specified)</li>
+          <li>You should now see DynaRetire running locally on your computer!</li>
+        </ul>
+
+        <div class="key-info">
+          <p><strong>Privacy Benefit:</strong> When running locally, your financial data never leaves your computer.</p>
+        </div>
+
+        <h2 data-toc-text="Checking Logs">Checking Logs (If Something Goes Wrong)</h2>
+        
+        <p>If you encounter issues, you can check the log files to see what happened:</p>
+        
+        <ul>
+          <li>For Windows: Look in <code>C:\logs\dynaretire\</code> (or the folder you specified with LOG_DIR environment variable)</li>
+          <li>For Mac/Linux: Look in <code>/var/log/dynaretire/</code> (or the folder you specified with LOG_DIR environment variable)</li>
+          <li>You can view the logs with any text editor or using these commands:</li>
+        </ul>
+        
+        <h4 data-toc-skip>For Windows users:</h4>
+        <div class="code-block">
+          <pre><code class="language-powershell">type C:\logs\dynaretire\app.log           # View application logs
+type C:\logs\dynaretire\error.log         # View error logs
+findstr "ERROR" "C:\logs\dynaretire\*.log" # Search for errors in all logs</code></pre>
+        </div>
+
+        <h4 data-toc-skip>For Mac and Linux users:</h4>
+        <div class="code-block">
+          <pre><code class="language-bash">tail -f /var/log/dynaretire/app.log    # View live application logs
+less /var/log/dynaretire/error.log     # Browse error logs</code></pre>
+        </div>
+
+        <h2 data-toc-text="Managing DynaRetire">Stopping and Starting DynaRetire</h2>
+        
+        <p>To stop DynaRetire:</p>
+        
+        <h4 data-toc-skip>For all users:</h4>
+        <div class="code-block">
+          <pre><code class="language-bash">docker stop dynaretire</code></pre>
+        </div>
+
+        <p>To restart it later:</p>
+        
+        <div class="code-block">
+          <pre><code class="language-bash">docker start dynaretire</code></pre>
+        </div>
+
+        <h2 data-toc-text="Troubleshooting">Troubleshooting Common Issues</h2>
+        
+        <h3 data-toc-text="Docker Issues">If Docker won't start:</h3>
+        <ul>
+          <li>Restart your computer and try again</li>
+          <li>Make sure your computer meets the minimum requirements for Docker</li>
+          <li>On Windows, you might need to enable virtualization in your BIOS settings</li>
+        </ul>
+
+        <h3 data-toc-text="Authentication Errors">If you see "Authentication Error":</h3>
+        <ul>
+          <li>Double-check your GitHub username and token</li>
+          <li>Make sure you typed them correctly in the environment variables</li>
+          <li>If you're not sure about your token, you can create a new one on the GitHub website</li>
+        </ul>
+
+        <h3 data-toc-text="Access Problems">If you can't access DynaRetire at localhost:5000:</h3>
+        <ul>
+          <li>Make sure Docker is running (look for the whale icon in your taskbar)</li>
+          <li>Check if the script finished successfully without error messages</li>
+          <li>Try using a different port by setting DOCKER_PORT to another number (like 8080)</li>
+          <li>Check if another program is already using port 5000 on your computer</li>
+          <li>For Windows users: Make sure you're running Command Prompt as an administrator if you encounter permission issues</li>
+          <li>For Windows users: Check Windows Defender Firewall settings if you can't access the port</li>
+        </ul>
+
+        <h3 data-toc-text="Getting Support">Need More Help?</h3>
+        <p>If you continue to experience issues, please:</p>
+        <ul>
+          <li>Take a screenshot of any error messages</li>
+          <li>Contact support at support@dynaretire.com</li>
+          <li>Include the log files if possible</li>
+        </ul>
+
+        <h2 data-toc-text="Benefits">Benefits of Running DynaRetire Locally</h2>
+        <ul>
+          <li><strong>Privacy:</strong> Your financial data stays on your computer</li>
+          <li><strong>Offline Access:</strong> Use DynaRetire even without internet connection</li>
+          <li><strong>Performance:</strong> Faster response times than the web version</li>
+          <li><strong>Availability:</strong> Use DynaRetire even when the website is undergoing maintenance</li>
+        </ul>
+
+      </div>
+    </article>
+  </body>
+</html>

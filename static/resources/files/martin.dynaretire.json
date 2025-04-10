@@ -117,7 +117,7 @@
         {
           "amount": 7000,
           "start_age": 56,
-          "until_age": 100,
+          "until_age": 80,
           "occur_yr": 1,
           "tied_to_age": false
         }
