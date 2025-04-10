@@ -23,6 +23,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/content/content.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/content/modal.css') }}">
     
+    <!-- Remove the colorful Prism themes -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css"> -->
+    
     <!-- Custom CSS file if specified -->
     {% if article is defined and article.custom_css_file %}
     <link rel="stylesheet" href="{{ url_for('static', filename=article.custom_css_file) }}">
@@ -91,6 +95,53 @@
         <!-- TOC functionality -->
         <script src="{{ url_for('static', filename='js/content/toc.js') }}" defer></script>
     {% endif %}
+
+    <!-- Add Prism.js core and autoloader for code highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <!-- Removed Prism toolbar and copy-to-clipboard plugins as custom script handles the button -->
+    
+    <!-- Custom script to add hover copy button -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add copy button icon to code blocks
+        document.querySelectorAll('.code-block pre').forEach(function(pre) {
+            const parent = pre.parentElement; // This is the .code-block div
+            
+            // Create copy button with icon
+            const copyBtn = document.createElement('button');
+            copyBtn.innerHTML = '<i class="far fa-copy"></i>'; // Use Font Awesome icon
+            copyBtn.className = 'copy-button';
+            copyBtn.setAttribute('aria-label', 'Copy code'); // Accessibility
+            copyBtn.addEventListener('click', function() {
+                const code = pre.textContent;
+                navigator.clipboard.writeText(code).then(function() {
+                    const feedback = document.createElement('div');
+                    feedback.className = 'prism-copy-feedback';
+                    feedback.textContent = 'Copied!';
+                    parent.appendChild(feedback); // Append feedback to code block
+                    
+                    // Show feedback
+                    setTimeout(function() {
+                      feedback.classList.add('active');
+                    }, 10);
+                    
+                    // Hide and remove feedback
+                    setTimeout(function() {
+                      feedback.classList.remove('active');
+                      setTimeout(function() {
+                        feedback.remove();
+                      }, 300); // Wait for fade out
+                    }, 1500); // Shorter duration
+                });
+            });
+            parent.appendChild(copyBtn); // Append button directly to code block
+            
+            // Note: Removed toolbar creation and variable highlighting logic
+            // Prism.js handles syntax highlighting based on CSS rules now.
+        });
+    });
+    </script>
 
     {% block content_scripts %}{% endblock %}
 {% endblock %}
