@@ -141,6 +141,58 @@
     color: var(--secondary-color);
 }
 
+/* Link Styling with Indicators */
+.content-body a {
+    color: var(--primary-color); /* Use primary theme color */
+    text-decoration: none; /* Remove default underline */
+    border-bottom: 1px solid rgba(73, 197, 196, 0.3); /* Subtle underline */
+    transition: border-bottom-color 0.2s ease, color 0.2s ease;
+    padding-right: 1.2em; /* Space for potential icon */
+    position: relative; /* Needed for icon positioning */
+}
+
+.content-body a:hover,
+.content-body a:focus {
+    color: var(--accent-color); /* Use accent color on hover/focus */
+    border-bottom-color: var(--accent-color); /* Stronger underline */
+}
+
+/* External link icon */
+.content-body a[target="_blank"]::after {
+    content: ' ↗'; /* Unicode arrow */
+    font-size: 0.8em;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 0.1em; /* Adjust vertical alignment */
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+    text-decoration: none !important; /* Ensure icon isn't underlined */
+    border-bottom: none !important; /* Ensure icon has no border */
+}
+.content-body a[target="_blank"]:hover::after {
+     opacity: 1;
+}
+
+/* Download link icon (for .sh files) */
+.content-body a[href$=".sh"]::after {
+    content: ' 💾'; /* Unicode floppy disk */
+    font-size: 0.8em;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 0.1em; /* Adjust vertical alignment */
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+    text-decoration: none !important; /* Ensure icon isn't underlined */
+    border-bottom: none !important; /* Ensure icon has no border */
+}
+.content-body a[href$=".sh"]:hover::after {
+     opacity: 1;
+}
+/* --- End Link Styling --- */
+
+
 /* Enhanced section transitions */
 .content-body h2 {
     margin: 3rem 0 1.5rem;
