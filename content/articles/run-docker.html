@@ -86,7 +86,8 @@
 
         <h3 data-toc-skip>Step 1: Download the Deployment Script</h3>
         <ul>
-          <li>Download the <a href="/static/resources/files/deploy_script.sh" download>deploy_script.sh</a> file</li>
+          <li>For Windows users: Download the <a href="/static/resources/files/deploy_script.bat" download>deploy_script.bat</a> file</li>
+          <li>For Mac/Linux users: Download the <a href="/static/resources/files/deploy_script.sh" download>deploy_script.sh</a> file</li>
           <li>Save it somewhere easy to find, like your Downloads folder or Desktop</li>
         </ul>
 
@@ -141,7 +142,7 @@ export DOCKER_PORT=5000</code></pre>
         <p>In the same Command Prompt window, navigate to where you saved the script and run it:</p>
         <div class="code-block">
           <pre><code class="language-batch">cd C:\path\to\folder
-bash deploy_script.sh</code></pre>
+deploy_script.bat</code></pre>
         </div>
 
         <h4 data-toc-skip>For Mac and Linux users:</h4>
@@ -168,13 +169,16 @@ chmod +x deploy_script.sh
         <p>If you encounter issues, you can check the log files to see what happened:</p>
         
         <ul>
-          <li>Look in the folder: <code>/var/log/dynaretire/</code> (or the folder you specified with LOG_DIR environment variable)</li>
+          <li>For Windows: Look in <code>C:\logs\dynaretire\</code> (or the folder you specified with LOG_DIR environment variable)</li>
+          <li>For Mac/Linux: Look in <code>/var/log/dynaretire/</code> (or the folder you specified with LOG_DIR environment variable)</li>
           <li>You can view the logs with any text editor or using these commands:</li>
         </ul>
         
-        <h4 data-toc-skip>For Windows users (PowerShell):</h4>
+        <h4 data-toc-skip>For Windows users:</h4>
         <div class="code-block">
-          <pre><code class="language-powershell">type C:\var\log\dynaretire\app.log</code></pre>
+          <pre><code class="language-powershell">type C:\logs\dynaretire\app.log           # View application logs
+type C:\logs\dynaretire\error.log         # View error logs
+findstr "ERROR" "C:\logs\dynaretire\*.log" # Search for errors in all logs</code></pre>
         </div>
 
         <h4 data-toc-skip>For Mac and Linux users:</h4>
@@ -216,10 +220,12 @@ less /var/log/dynaretire/error.log     # Browse error logs</code></pre>
 
         <h3 data-toc-text="Access Problems">If you can't access DynaRetire at localhost:5000:</h3>
         <ul>
-          <li>Make sure Docker is running (look for the whale icon)</li>
+          <li>Make sure Docker is running (look for the whale icon in your taskbar)</li>
           <li>Check if the script finished successfully without error messages</li>
           <li>Try using a different port by setting DOCKER_PORT to another number (like 8080)</li>
           <li>Check if another program is already using port 5000 on your computer</li>
+          <li>For Windows users: Make sure you're running Command Prompt as an administrator if you encounter permission issues</li>
+          <li>For Windows users: Check Windows Defender Firewall settings if you can't access the port</li>
         </ul>
 
         <h3 data-toc-text="Getting Support">Need More Help?</h3>
