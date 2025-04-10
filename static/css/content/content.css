@@ -589,20 +589,6 @@
     padding: 0;
 }
 
-.code-block .toolbar {
-    background: #f0f0f0; /* Slightly darker gray for toolbar */
-    padding: 0.5rem 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    border-bottom: 1px solid #e0e0e0; /* Match container border */
-    font-size: 0.85rem;
-    color: #555555; /* Medium gray text for toolbar */
-    /* Remove toolbar if only copy button is desired on hover */
-    /* display: none; */ /* Optional: Hide entire toolbar */
-}
-
 /* Style the copy button for hover effect */
 .code-block .copy-button {
     position: absolute;
