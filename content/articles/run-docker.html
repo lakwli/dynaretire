@@ -7,9 +7,9 @@
     <script id="article-metadata" type="application/json">
       {
         "title": "How-To Run DynaRetire Locally",
-        "description": "Explore DynaRetire's step-by-step retirement simulation tool with Martin's real-life scenario. Learn how to test early retirement with dynamic expenses, investment strategies, and risk management.",
+        "description": "Learn how to run DynaRetire on your own computer using Docker. This step-by-step guide helps non-technical users set up and use DynaRetire locally for better privacy and offline access.",
         "type": "article",
-        "updated_at": "2025-04-10T13:34:10Z",
+        "updated_at": "2023-09-15T10:00:00Z",
 
         "card_image": "/content/articles/assets/images/tutorial/dynaretire-how-to-go-to-different-step.svg",
         "custom_styles": ""
@@ -20,53 +20,48 @@
     <article>
       <div class="article-content">
         
-        <p>Docker allows you to run applications locally on your computer. This guide will walk you through installing Docker and running your app locally</p>
+        <p>Docker allows you to run DynaRetire locally on your own computer without needing to access our website. This guide will walk you through installing Docker and setting up DynaRetire on your personal machine.</p>
 
-        <h2>Part 1: Installing Docker on Your Computer</h2>
+        <div class="key-info">
+          <p><strong>What you'll get:</strong> A private copy of DynaRetire running on your computer that works even without internet access and keeps your financial data completely private.</p>
+        </div>
+
+        <h2 data-toc-text="Installing Docker">Part 1: Installing Docker on Your Computer</h2>
         
-        <h3>For Windows Users:</h3>
+        <h3 data-toc-text="Windows">For Windows Users:</h3>
         <ul>
           <li>
             <strong>Check your Windows version</strong>
-            <p>First, make sure you have Windows 10 or newer.</p>
+            <p>Make sure you have Windows 10 or newer.</p>
           </li>
           <li>
             <strong>Download Docker Desktop</strong>
             <ul>
-              <li>Visit Docker's official download page</li>
+              <li>Visit <a href="https://www.docker.com/products/docker-desktop" target="_blank">Docker's official download page</a></li>
               <li>Click the "Download for Windows" button</li>
-              <li>Wait for the installer file (Docker Desktop Installer.exe) to download</li>
+              <li>Wait for the installer file to download</li>
             </ul>
           </li>
           <li>
             <strong>Install Docker Desktop</strong>
             <ul>
-              <li>Open the downloaded installer file</li>
-              <li>Follow the installation wizard instructions, keeping all default settings</li>
-              <li>When prompted, click "Ok" to allow Docker to make changes to your device</li>
-              <li>After installation completes, restart your computer</li>
-            </ul>
-          </li>
-          <li>
-            <strong>Start Docker Desktop</strong>
-            <ul>
-              <li>After restarting, Docker Desktop should start automatically</li>
-              <li>You'll see a small Docker icon (looks like a whale) in your taskbar at the bottom right</li>
-              <li>The first time you run Docker, it may take a few minutes to start up</li>
+              <li>Double-click the downloaded file and follow the simple installation instructions</li>
+              <li>Restart your computer when prompted</li>
+              <li>After restarting, Docker will start automatically (look for the whale icon in your taskbar)</li>
             </ul>
           </li>
         </ul>
 
-        <h3>For Mac Users:</h3>
+        <h3 data-toc-text="Mac">For Mac Users:</h3>
         <ul>
           <li>
             <strong>Check your Mac</strong>
-            <p>Make sure you have a Mac with macOS version 10.15 (Catalina) or newer.</p>
+            <p>Make sure you have macOS version 10.15 (Catalina) or newer.</p>
           </li>
           <li>
             <strong>Download Docker Desktop</strong>
             <ul>
-              <li>Visit Docker's official download page</li>
+              <li>Visit <a href="https://www.docker.com/products/docker-desktop" target="_blank">Docker's official download page</a></li>
               <li>Click the "Download for Mac" button</li>
               <li>Wait for the installer file to download</li>
             </ul>
@@ -77,109 +72,152 @@
               <li>Open the downloaded .dmg file</li>
               <li>Drag the Docker icon to your Applications folder</li>
               <li>Open Docker from your Applications folder</li>
-              <li>You may need to enter your password to allow installation</li>
-              <li>Wait for Docker to complete its setup</li>
             </ul>
           </li>
         </ul>
 
-        <h3>For Linux Users:</h3>
-        <p>Linux installation varies by distribution. Visit the official Docker installation guide for Linux and select your Linux distribution for specific instructions.</p>
+        <h3 data-toc-text="Linux">For Linux Users:</h3>
+        <p>Linux installation varies by distribution. Visit the <a href="https://docs.docker.com/engine/install/" target="_blank">official Docker installation guide for Linux</a> and select your distribution for specific instructions.</p>
 
-        <h2>Part 2: Running Your App Locally</h2>
-        <p>Once Docker is installed and running (you'll see the Docker icon in your taskbar/menu bar), you can run your app locally:</p>
-
-        <h3>Download your app's Docker image</h3>
-        <ul>
-          <li>Open a command prompt (Windows) or terminal (Mac/Linux)</li>
-          <li>Type the following command, replacing your-app-name with the actual name of your app:
-            <div class="key-info">
-              <p><code>docker pull your-app-name</code></p>
-            </div>
-          </li>
-          <li>Wait for the download to complete (this might take a few minutes depending on your internet speed)</li>
-        </ul>
-
-        <h3>Run your app</h3>
-        <ul>
-          <li>In the same command prompt/terminal, type:
-            <div class="key-info">
-              <p><code>docker run -p 8080:8080 your-app-name</code></p>
-            </div>
-          </li>
-          <li>Note: The numbers (8080:8080) might be different for your specific app. Check your app's documentation for the correct values.</li>
-        </ul>
-
-        <h3>Access your app</h3>
-        <ul>
-          <li>Open your web browser</li>
-          <li>Type http://localhost:8080 in the address bar (again, the number might be different for your app)</li>
-          <li>Your app should now appear in the browser, running locally on your computer</li>
-        </ul>
-
-        <h3>To stop your app</h3>
-        <ul>
-          <li>Go back to the command prompt/terminal</li>
-          <li>Press Ctrl+C on your keyboard</li>
-          <li>The app will shut down</li>
-        </ul>
-
-        <h2>Troubleshooting Common Issues</h2>
+        <h2 data-toc-text="Running DynaRetire Locally">Part 2: Running DynaRetire Using Our Simple Script</h2>
         
-        <h3>If Docker won't start:</h3>
+        <p>We've created an easy-to-use script that handles all the technical details for you. Here's how to use it:</p>
+
+        <h3 data-toc-skip>Step 1: Download the Deployment Script</h3>
         <ul>
-          <li>Make sure your computer meets the system requirements</li>
-          <li>Try restarting your computer</li>
-          <li>On Windows, check if virtualization is enabled in your BIOS (you might need to look up how to access your computer's BIOS settings)</li>
+          <li>Download our <a href="/downloads/deploy_script.sh">deploy_script.sh</a> file</li>
+          <li>Save it somewhere easy to find, like your Downloads folder or Desktop</li>
         </ul>
 
-        <h3>If your app won't run:</h3>
-        <ul>
-          <li>Make sure Docker is running (look for the Docker icon in your taskbar/menu bar)</li>
-          <li>Double-check that you typed the commands correctly</li>
-          <li>Try restarting Docker Desktop</li>
-        </ul>
-
-        <h3>If your app runs but doesn't work properly:</h3>
-        <ul>
-          <li>Check if your app needs specific configuration</li>
-          <li>Look at your app's documentation for additional setup steps</li>
-        </ul>
-
-        <h2>Suggested Images to Include</h2>
-        <ul>
-          <li>Docker Desktop icon - A screenshot of the Docker icon in the taskbar/menu bar
-            <p><em>Caption: "The Docker Desktop icon indicates Docker is running"</em></p>
-          </li>
-          <li>Docker Desktop welcome screen - A screenshot of Docker Desktop when it first opens
-            <p><em>Caption: "The Docker Desktop welcome screen"</em></p>
-          </li>
-          <li>Command prompt/terminal with commands - A screenshot showing the commands being typed
-            <p><em>Caption: "Typing Docker commands to download and run your app"</em></p>
-          </li>
-          <li>Web browser showing the app - A screenshot of a browser accessing localhost
-            <p><em>Caption: "Your app running locally in a web browser"</em></p>
-          </li>
-          <li>Docker container list - A screenshot showing running containers
-            <p><em>Caption: "View of your running Docker containers"</em></p>
-          </li>
-        </ul>
-
-        <h2>Benefits of Running Your App Locally</h2>
-        <p>By running the app locally via Docker:</p>
-        <ul>
-          <li>You can use the app without an internet connection</li>
-          <li>Your data stays on your computer</li>
-          <li>The app may run faster than the web version</li>
-          <li>You can use the app even when the website is down for maintenance</li>
-        </ul>
-
-        <p>Remember, when your app runs locally, it's using your computer's resources rather than a remote server, but Docker makes this process simple and hassle-free.</p>
-
+        <h3 data-toc-text="Environment Setup">Step 2: Set Up Your Environment</h3>
         <div class="key-info">
-          <p>Need more detailed help? Visit Docker's official documentation for comprehensive guides and tutorials.</p>
+          <p>You'll need to provide two pieces of information to access DynaRetire:</p>
+          <ul>
+            <li>Your GitHub username</li>
+            <li>A personal access token (like a special password for GitHub)</li>
+          </ul>
         </div>
 
+        <h4 data-toc-skip>For Windows users:</h4>
+        <p>Open Command Prompt and type:</p>
+        <div class="code-block">
+          <pre><code>set DOCKER_USER=your_github_username
+set DOCKER_TOKEN=your_github_token
+set DOCKER_PORT=5000</code></pre>
+        </div>
+
+        <h4 data-toc-skip>For Mac and Linux users:</h4>
+        <p>Open Terminal and type:</p>
+        <div class="code-block">
+          <pre><code>export DOCKER_USER=your_github_username
+export DOCKER_TOKEN=your_github_token
+export DOCKER_PORT=5000</code></pre>
+        </div>
+
+        <p><strong>Note:</strong> Replace "your_github_username" with your actual GitHub username and "your_github_token" with your personal access token. If you want DynaRetire to use a different port than 5000, you can change that number.</p>
+
+        <h3 data-toc-text="Running the Script">Step 3: Run the Script</h3>
+
+        <h4 data-toc-skip>For Windows users:</h4>
+        <p>In the same Command Prompt window, navigate to where you saved the script and run it:</p>
+        <div class="code-block">
+          <pre><code>cd C:\path\to\folder
+bash deploy_script.sh</code></pre>
+        </div>
+
+        <h4 data-toc-skip>For Mac and Linux users:</h4>
+        <p>In the same Terminal window, navigate to where you saved the script and run it:</p>
+        <div class="code-block">
+          <pre><code>cd /path/to/folder
+chmod +x deploy_script.sh
+./deploy_script.sh</code></pre>
+        </div>
+
+        <h3 data-toc-text="Accessing the App">Step 4: Access DynaRetire</h3>
+        <ul>
+          <li>Once the script completes successfully, open your web browser</li>
+          <li>Go to: <strong>http://localhost:5000</strong> (or the port you specified)</li>
+          <li>You should now see DynaRetire running locally on your computer!</li>
+        </ul>
+
+        <div class="key-info">
+          <p><strong>Privacy Benefit:</strong> When running locally, your financial data never leaves your computer.</p>
+        </div>
+
+        <h2 data-toc-text="Checking Logs">Checking Logs (If Something Goes Wrong)</h2>
+        
+        <p>If you encounter issues, you can check the log files to see what happened:</p>
+        
+        <ul>
+          <li>Look in the folder: <code>/var/log/dynaretire/</code> (or the folder you specified with LOG_DIR environment variable)</li>
+          <li>You can view the logs with any text editor or using these commands:</li>
+        </ul>
+        
+        <h4 data-toc-skip>For Windows users (PowerShell):</h4>
+        <div class="code-block">
+          <pre><code>type C:\var\log\dynaretire\app.log</code></pre>
+        </div>
+
+        <h4 data-toc-skip>For Mac and Linux users:</h4>
+        <div class="code-block">
+          <pre><code>tail -f /var/log/dynaretire/app.log    # View live application logs
+less /var/log/dynaretire/error.log     # Browse error logs</code></pre>
+        </div>
+
+        <h2 data-toc-text="Managing DynaRetire">Stopping and Starting DynaRetire</h2>
+        
+        <p>When you're done using DynaRetire:</p>
+        
+        <h4 data-toc-skip>For all users:</h4>
+        <div class="code-block">
+          <pre><code>docker stop dynaretire</code></pre>
+        </div>
+
+        <p>To restart it later:</p>
+        
+        <div class="code-block">
+          <pre><code>docker start dynaretire</code></pre>
+        </div>
+
+        <h2 data-toc-text="Troubleshooting">Troubleshooting Common Issues</h2>
+        
+        <h3 data-toc-text="Docker Issues">If Docker won't start:</h3>
+        <ul>
+          <li>Restart your computer and try again</li>
+          <li>Make sure your computer meets the minimum requirements for Docker</li>
+          <li>On Windows, you might need to enable virtualization in your BIOS settings</li>
+        </ul>
+
+        <h3 data-toc-text="Authentication Errors">If you see "Authentication Error":</h3>
+        <ul>
+          <li>Double-check your GitHub username and token</li>
+          <li>Make sure you typed them correctly in the environment variables</li>
+          <li>If you're not sure about your token, you can create a new one on the GitHub website</li>
+        </ul>
+
+        <h3 data-toc-text="Access Problems">If you can't access DynaRetire at localhost:5000:</h3>
+        <ul>
+          <li>Make sure Docker is running (look for the whale icon)</li>
+          <li>Check if the script finished successfully without error messages</li>
+          <li>Try using a different port by setting DOCKER_PORT to another number (like 8080)</li>
+          <li>Check if another program is already using port 5000 on your computer</li>
+        </ul>
+
+        <h3 data-toc-text="Getting Support">Need More Help?</h3>
+        <p>If you continue to experience issues, please:</p>
+        <ul>
+          <li>Take a screenshot of any error messages</li>
+          <li>Contact our support team at support@dynaretire.com</li>
+          <li>Include the log files if possible</li>
+        </ul>
+
+        <h2 data-toc-text="Benefits">Benefits of Running DynaRetire Locally</h2>
+        <ul>
+          <li><strong>Privacy:</strong> Your financial data stays on your computer</li>
+          <li><strong>Offline Access:</strong> Use DynaRetire even without internet connection</li>
+          <li><strong>Performance:</strong> Faster response times than the web version</li>
+          <li><strong>Availability:</strong> Use DynaRetire even when our website is undergoing maintenance</li>
+        </ul>
 
       </div>
     </article>
