@@ -19,7 +19,166 @@
   <body>
     <article>
       <div class="article-content">
+        
+        <p>Docker allows you to run applications locally on your computer. This guide will walk you through installing Docker and running your app locally</p>
 
+        <h2>Part 1: Installing Docker on Your Computer</h2>
+        
+        <h3>For Windows Users:</h3>
+        <ul>
+          <li>
+            <strong>Check your Windows version</strong>
+            <p>First, make sure you have Windows 10 or newer.</p>
+          </li>
+          <li>
+            <strong>Download Docker Desktop</strong>
+            <ul>
+              <li>Visit Docker's official download page</li>
+              <li>Click the "Download for Windows" button</li>
+              <li>Wait for the installer file (Docker Desktop Installer.exe) to download</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Install Docker Desktop</strong>
+            <ul>
+              <li>Open the downloaded installer file</li>
+              <li>Follow the installation wizard instructions, keeping all default settings</li>
+              <li>When prompted, click "Ok" to allow Docker to make changes to your device</li>
+              <li>After installation completes, restart your computer</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Start Docker Desktop</strong>
+            <ul>
+              <li>After restarting, Docker Desktop should start automatically</li>
+              <li>You'll see a small Docker icon (looks like a whale) in your taskbar at the bottom right</li>
+              <li>The first time you run Docker, it may take a few minutes to start up</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3>For Mac Users:</h3>
+        <ul>
+          <li>
+            <strong>Check your Mac</strong>
+            <p>Make sure you have a Mac with macOS version 10.15 (Catalina) or newer.</p>
+          </li>
+          <li>
+            <strong>Download Docker Desktop</strong>
+            <ul>
+              <li>Visit Docker's official download page</li>
+              <li>Click the "Download for Mac" button</li>
+              <li>Wait for the installer file to download</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Install Docker Desktop</strong>
+            <ul>
+              <li>Open the downloaded .dmg file</li>
+              <li>Drag the Docker icon to your Applications folder</li>
+              <li>Open Docker from your Applications folder</li>
+              <li>You may need to enter your password to allow installation</li>
+              <li>Wait for Docker to complete its setup</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3>For Linux Users:</h3>
+        <p>Linux installation varies by distribution. Visit the official Docker installation guide for Linux and select your Linux distribution for specific instructions.</p>
+
+        <h2>Part 2: Running Your App Locally</h2>
+        <p>Once Docker is installed and running (you'll see the Docker icon in your taskbar/menu bar), you can run your app locally:</p>
+
+        <h3>Download your app's Docker image</h3>
+        <ul>
+          <li>Open a command prompt (Windows) or terminal (Mac/Linux)</li>
+          <li>Type the following command, replacing your-app-name with the actual name of your app:
+            <div class="key-info">
+              <p><code>docker pull your-app-name</code></p>
+            </div>
+          </li>
+          <li>Wait for the download to complete (this might take a few minutes depending on your internet speed)</li>
+        </ul>
+
+        <h3>Run your app</h3>
+        <ul>
+          <li>In the same command prompt/terminal, type:
+            <div class="key-info">
+              <p><code>docker run -p 8080:8080 your-app-name</code></p>
+            </div>
+          </li>
+          <li>Note: The numbers (8080:8080) might be different for your specific app. Check your app's documentation for the correct values.</li>
+        </ul>
+
+        <h3>Access your app</h3>
+        <ul>
+          <li>Open your web browser</li>
+          <li>Type http://localhost:8080 in the address bar (again, the number might be different for your app)</li>
+          <li>Your app should now appear in the browser, running locally on your computer</li>
+        </ul>
+
+        <h3>To stop your app</h3>
+        <ul>
+          <li>Go back to the command prompt/terminal</li>
+          <li>Press Ctrl+C on your keyboard</li>
+          <li>The app will shut down</li>
+        </ul>
+
+        <h2>Troubleshooting Common Issues</h2>
+        
+        <h3>If Docker won't start:</h3>
+        <ul>
+          <li>Make sure your computer meets the system requirements</li>
+          <li>Try restarting your computer</li>
+          <li>On Windows, check if virtualization is enabled in your BIOS (you might need to look up how to access your computer's BIOS settings)</li>
+        </ul>
+
+        <h3>If your app won't run:</h3>
+        <ul>
+          <li>Make sure Docker is running (look for the Docker icon in your taskbar/menu bar)</li>
+          <li>Double-check that you typed the commands correctly</li>
+          <li>Try restarting Docker Desktop</li>
+        </ul>
+
+        <h3>If your app runs but doesn't work properly:</h3>
+        <ul>
+          <li>Check if your app needs specific configuration</li>
+          <li>Look at your app's documentation for additional setup steps</li>
+        </ul>
+
+        <h2>Suggested Images to Include</h2>
+        <ul>
+          <li>Docker Desktop icon - A screenshot of the Docker icon in the taskbar/menu bar
+            <p><em>Caption: "The Docker Desktop icon indicates Docker is running"</em></p>
+          </li>
+          <li>Docker Desktop welcome screen - A screenshot of Docker Desktop when it first opens
+            <p><em>Caption: "The Docker Desktop welcome screen"</em></p>
+          </li>
+          <li>Command prompt/terminal with commands - A screenshot showing the commands being typed
+            <p><em>Caption: "Typing Docker commands to download and run your app"</em></p>
+          </li>
+          <li>Web browser showing the app - A screenshot of a browser accessing localhost
+            <p><em>Caption: "Your app running locally in a web browser"</em></p>
+          </li>
+          <li>Docker container list - A screenshot showing running containers
+            <p><em>Caption: "View of your running Docker containers"</em></p>
+          </li>
+        </ul>
+
+        <h2>Benefits of Running Your App Locally</h2>
+        <p>By running the app locally via Docker:</p>
+        <ul>
+          <li>You can use the app without an internet connection</li>
+          <li>Your data stays on your computer</li>
+          <li>The app may run faster than the web version</li>
+          <li>You can use the app even when the website is down for maintenance</li>
+        </ul>
+
+        <p>Remember, when your app runs locally, it's using your computer's resources rather than a remote server, but Docker makes this process simple and hassle-free.</p>
+
+        <div class="key-info">
+          <p>Need more detailed help? Visit Docker's official documentation for comprehensive guides and tutorials.</p>
+        </div>
 
 
       </div>
