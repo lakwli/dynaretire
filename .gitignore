@@ -51,5 +51,4 @@ Thumbs.db
 logs/
 .coverage
 .pytest_cache/
-web_request.xlsx
-web_request.xlsx
+results/

@@ -1,0 +1,41 @@
+{
+  "name": "pause_strategy_analysis",
+  "description": "Analyzing different pause strategies to understand their impact on portfolio sustainability",
+  "base_input_file": "static/resources/files/martin.dynaretire.json",
+  "result_directory": "results/pause_strategies",
+  "scenarios": [
+    {
+      "comment": "Using PSR pause option - Testing market-driven rebalancing pauses",
+      "changes": {
+        "strategic.rebal_pause_option": "psr",
+        "strategic.rebals[0].risk_fund_ratio": 60,
+        "strategic.rebals[0].safer_fund_ratio": 40
+      },
+      "result": {
+        "prefix": "psr_pause"
+      }
+    },
+    {
+      "comment": "Using no pause option - Baseline for comparison",
+      "changes": {
+        "strategic.rebal_pause_option": "none",
+        "strategic.rebals[0].risk_fund_ratio": 60,
+        "strategic.rebals[0].safer_fund_ratio": 40
+      },
+      "result": {
+        "prefix": "no_pause"
+      }
+    },
+    {
+      "comment": "Using custom pause option - Testing fixed threshold pauses",
+      "changes": {
+        "strategic.rebal_pause_option": "custom",
+        "strategic.rebals[0].risk_fund_ratio": 60,
+        "strategic.rebals[0].safer_fund_ratio": 40
+      },
+      "result": {
+        "prefix": "custom_pause"
+      }
+    }
+  ]
+}
