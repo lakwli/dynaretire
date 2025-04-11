@@ -71,6 +71,11 @@ class StudyOutput(op.Output):
         """Not needed for JSON output"""
         pass
         
+    def record_yearly_result(self, expenses, liq_accts, nonliq_accts, year_num, year, age):
+        """Record results for a single year"""
+        logger.debug(f"Recording year {year_num} results")
+        self.write_summary(False, expenses, liq_accts, nonliq_accts, year_num, year, age)
+        
     def close(self):
         """No cleanup needed for JSON output"""
         logger.info(f"Closing StudyOutput with {len(self.yearly_results)} years of data")

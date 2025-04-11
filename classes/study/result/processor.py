@@ -5,6 +5,7 @@ import os
 from typing import Dict, List
 from datetime import datetime
 from classes.web.json import input_json as ij
+from classes.web.json import json_data as j
 from core import plan as pl
 from .output import StudyOutput
 from classes.logging_config import initialize_logger
@@ -83,18 +84,18 @@ class StudyProcessor:
                 content = f.read()
                 logger.debug(f"File content:\n{content}")
                 
-                # Parse JSON
-                data = json.loads(content)
+                # Parse into Plan_Data object
+                plan_data = j.Plan_Data.from_json(content)
             
             # Setup plan configuration
-            i = ij.InputJson(data)
+            i = ij.InputJson(plan_data)
             i.process()
             
             # Create study output handler
             study_output = StudyOutput(i.isPaymentAtBegin, i.expenses, i.funds, i.incomes)
             
             # Create and run plan
-            p = pl.Plan(i.isPaymentAtBegin, data['current_age'], 
+            p = pl.Plan(i.isPaymentAtBegin, i.current_age, 
                        i.current_calendar_year, i.expenses, i.funds, 
                        i.incomes, study_output)
             p.set_strategic(i.strategic)
