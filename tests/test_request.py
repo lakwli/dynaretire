@@ -1,5 +1,5 @@
 """Integration tests for retirement plan study functionality"""
-from classes.study.generator import StudyGenerator, generate_min_spend_study
+from classes.study.request.generator import StudyGenerator, generate_min_spend_study
 
 def test_study_scenarios():
     """Test different ways to create and run studies"""
