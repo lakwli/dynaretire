@@ -29,6 +29,8 @@ jobs:
       with:
         context: .
         push: true
+        build-args: |
+          ENABLE_CONSOLE_OUTPUT=false
         tags: |
           ghcr.io/${{ github.repository }}:latest
           ghcr.io/${{ github.repository }}:${{ github.sha }}

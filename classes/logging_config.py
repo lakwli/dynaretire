@@ -5,6 +5,8 @@ import json
 from datetime import datetime
 from pathlib import Path
 
+ENABLE_CONSOLE_OUTPUT = os.environ.get('ENABLE_CONSOLE_OUTPUT', 'true').lower() == 'true'
+
 class LoggerManager:
     """Manages application logging configuration and formatting"""
     
@@ -54,9 +56,20 @@ class LoggerManager:
         
         for handler in handlers.values():
             root_logger.addHandler(handler)
+            
+        # Add console handler if enabled (default in development)
+        if ENABLE_CONSOLE_OUTPUT:
+            console_handler = logging.StreamHandler()
+            console_handler.setLevel(logging.INFO)
+            console_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+            console_handler.setFormatter(console_formatter)
+            root_logger.addHandler(console_handler)
+            logger_status = "with console output"
+        else:
+            logger_status = "console output disabled"
 
         # Log initial setup message
-        root_logger.info(f"Logging initialized in {log_dir}")
+        root_logger.info(f"Logging initialized in {log_dir} ({logger_status})")
         return root_logger
 
     @classmethod
