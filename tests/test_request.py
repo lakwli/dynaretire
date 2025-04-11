@@ -1,3 +1,4 @@
+#cd /workspaces/dynaretire && rm -rf results/* && PYTHONPATH=/workspaces/dynaretire python tests/test_request.py
 """Integration tests for retirement plan study functionality"""
 from classes.study.request.generator import StudyGenerator, generate_min_spend_study
 
