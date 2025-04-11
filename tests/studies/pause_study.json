@@ -18,12 +18,12 @@
     {
       "comment": "Using no pause option - Baseline for comparison",
       "changes": {
-        "strategic.rebal_pause_option": "none",
+        "strategic.rebal_pause_option": "pbr",
         "strategic.rebals[0].risk_fund_ratio": 60,
         "strategic.rebals[0].safer_fund_ratio": 40
       },
       "result": {
-        "prefix": "no_pause"
+        "prefix": "pbr_pause"
       }
     },
     {
