@@ -623,6 +623,67 @@
     box-shadow: var(--shadow-lg);
 }
 
+/* Tables - Base Styles */
+.content-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.content-body th {
+    background-color: #f8f9fa;
+    text-align: left;
+    padding: 12px 10px;
+    font-weight: 600;
+}
+
+.content-body td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #dee2e6;
+    vertical-align: top;
+}
+
+.content-body tr:nth-child(even) {
+    background-color: rgba(248, 249, 250, 0.5);
+}
+
+.content-body tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Excel-Specific Table Styles */
+.excel-explainer {
+    margin: 1.5em 0;
+    font-size: 0.9em;
+}
+
+.column-explainer .col-name {
+    font-weight: 500;
+}
+
+.column-explainer .col-numeric {
+    font-family: monospace;
+    text-align: right;
+    color: #28a745;
+    font-size: 0.85em;
+    font-variant-numeric: tabular-nums;
+}
+
+.column-explainer .col-formula {
+    font-family: monospace;
+    color: #6c757d;
+    background-color: rgba(0,0,0,0.02);
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+.column-explainer .col-text {
+    font-size: 0.9em;
+    color: #333;
+}
+
 /* Code Blocks - Notion-Inspired Design */
 .code-block {
     margin: 1.5rem 0;
