@@ -1029,6 +1029,13 @@
     text-decoration: none;
 }
 
+.reference-note {
+    font-size: 0.75rem;
+    color: #666;
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
 .reference-link:hover {
     text-decoration: underline;
 }

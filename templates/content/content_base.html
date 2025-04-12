@@ -164,13 +164,20 @@
                 const url = e.target.dataset.refUrl;
                 const citation = e.target.dataset.refCitation;
                 
-                hoverCard.innerHTML = `
-                    <div class="reference-preview">
-                        <iframe class="website-preview" src="${url}" loading="lazy"></iframe>
-                    </div>
-                    <div class="reference-citation">${citation}</div>
-                    <a href="${url}" target="_blank" class="reference-link">View full reference</a>
-                `;
+                if (e.target.dataset.refType === 'article') {
+                    hoverCard.innerHTML = `
+                        <div class="reference-citation">${citation}</div>
+                        <div class="reference-note">Journal article reference</div>
+                    `;
+                } else {
+                    hoverCard.innerHTML = `
+                        <div class="reference-preview">
+                            <iframe class="website-preview" src="${url}" loading="lazy"></iframe>
+                        </div>
+                        <div class="reference-citation">${citation}</div>
+                        <a href="${url}" target="_blank" class="reference-link">View full reference</a>
+                    `;
+                }
                 
                 // Position card near reference
                 hoverCard.style.left = `${rect.left + window.scrollX}px`;
