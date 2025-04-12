@@ -995,6 +995,7 @@
     opacity: 0;
     transform: translateY(10px);
     transition: all 0.3s ease;
+    pointer-events: all;
 }
 
 .reference-hover-card.visible {

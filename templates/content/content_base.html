@@ -153,9 +153,13 @@
         hoverCard.className = 'reference-hover-card';
         document.body.appendChild(hoverCard);
 
+        let hideTimeout;
+        const hideDelay = 200; // ms
+
         // Handle reference hover events
         document.querySelectorAll('.reference').forEach(ref => {
             ref.addEventListener('mouseenter', (e) => {
+                clearTimeout(hideTimeout);
                 const rect = e.target.getBoundingClientRect();
                 const url = e.target.dataset.refUrl;
                 const citation = e.target.dataset.refCitation;
@@ -175,6 +179,17 @@
             });
 
             ref.addEventListener('mouseleave', () => {
+                hideTimeout = setTimeout(() => {
+                    hoverCard.classList.remove('visible');
+                }, hideDelay);
+            });
+
+            // Handle hover card events
+            hoverCard.addEventListener('mouseenter', () => {
+                clearTimeout(hideTimeout);
+            });
+
+            hoverCard.addEventListener('mouseleave', () => {
                 hoverCard.classList.remove('visible');
             });
         });
