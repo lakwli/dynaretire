@@ -4,11 +4,7 @@ setlocal enabledelayedexpansion
 ::######################################
 :: DynaRetire Deployment Script (Windows)
 ::######################################
-:: STEP 1: Set these environment variables first!
-::
-:: Required:
-::   set DOCKER_USER=your_github_username    # Your GitHub username
-::   set DOCKER_TOKEN=your_github_token      # Your Personal Access Token
+:: STEP 1: Set these environment variables if needed!
 ::
 :: Optional (shown with defaults):
 ::   set DOCKER_PORT=5000       # App will be at localhost:5000
@@ -16,8 +12,6 @@ setlocal enabledelayedexpansion
 ::   set LOG_DIR=C:\logs       # Where to store logs on your host machine
 ::
 :: Example deployment:
-::   set DOCKER_USER=laudev
-::   set DOCKER_TOKEN=ghp_1234567890abcdef
 ::   set DOCKER_PORT=8080
 ::   set DEPLOY_NAME=myapp
 ::   set LOG_DIR=D:\logs
@@ -32,21 +26,6 @@ setlocal enabledelayedexpansion
 ::    - No need to enter the container to view logs
 ::######################################
 
-:: Check required settings
-if "%DOCKER_USER%"=="" (
-    echo ERROR: DOCKER_USER environment variable is required
-    echo Please set it first:
-    echo   set DOCKER_USER=your_github_username
-    exit /b 1
-)
-
-if "%DOCKER_TOKEN%"=="" (
-    echo ERROR: DOCKER_TOKEN environment variable is required
-    echo Please set it first:
-    echo   set DOCKER_TOKEN=your_github_token
-    exit /b 1
-)
-
 :: Settings
 set IMAGE_NAME=ghcr.io/lakwli/dynaretire:latest
 if "%DEPLOY_NAME%"=="" set DEPLOY_NAME=dynaretire
@@ -58,15 +37,6 @@ set HOST_LOGS=%LOG_DIR%\%DEPLOY_NAME%
 :: Create logs directory
 echo Setting up logs directory at: %HOST_LOGS%
 if not exist "%HOST_LOGS%" mkdir "%HOST_LOGS%"
-
-:: Log in to registry
-echo Logging in to ghcr.io...
-echo %DOCKER_TOKEN%| docker login ghcr.io --username %DOCKER_USER% --password-stdin
-
-if errorlevel 1 (
-    echo Failed to log in to ghcr.io. Exiting.
-    exit /b 1
-)
 
 :: Clean up old container
 echo Cleaning up old container...

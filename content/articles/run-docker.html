@@ -91,50 +91,24 @@
           <li>Save it somewhere easy to find, like your Downloads folder or Desktop</li>
         </ul>
 
-        <h3 data-toc-text="Environment Setup">Step 2: Set Up Your Environment</h3>
-        <div class="key-info">
-          <p>You'll need to provide two pieces of information to access DynaRetire:</p>
-          <ul>
-            <li>Your GitHub username</li>
-            <li>A personal access token (like a special password for GitHub)</li>
-          </ul>
-        </div>
+        <h3 data-toc-text="Optional Settings">Step 2: Optional Settings</h3>
+        <p>You can customize how DynaRetire runs on your computer by setting these optional environment variables:</p>
 
         <h4 data-toc-skip>For Windows users:</h4>
-        <p>Open Command Prompt and type:</p>
         <div class="code-block">
-          <pre><code class="language-batch">set DOCKER_USER=your_github_username
-set DOCKER_TOKEN=your_personal_access_token
-set DOCKER_PORT=5000</code></pre>
+          <pre><code class="language-batch">set DOCKER_PORT=5000       # App will run on localhost:5000
+set DEPLOY_NAME=dynaretire # Container name
+set LOG_DIR=C:\logs       # Where to store logs</code></pre>
         </div>
 
         <h4 data-toc-skip>For Mac and Linux users:</h4>
-        <p>Open Terminal and type:</p>
         <div class="code-block">
-          <pre><code class="language-bash">export DOCKER_USER=your_github_username
-export DOCKER_TOKEN=your_personal_access_token
-export DOCKER_PORT=5000</code></pre>
-        </div>
-        
-        <div class="variable-guide">
-          <strong>Note:</strong> Replace the values with your personal information:
-          <ul>
-            <li><code>your_github_username</code>: Your GitHub username</li>
-            <li><code>your_personal_access_token</code>: Your GitHub personal access token</li>
-            <li><code>5000</code>: The port number (can be changed if needed)</li>
-          </ul>
+          <pre><code class="language-bash">export DOCKER_PORT=5000      # App will run on localhost:5000
+export DEPLOY_NAME=dynaretire # Container name
+export LOG_DIR=/var/log      # Where to store logs</code></pre>
         </div>
 
-        <div class="variable-explanation">
-          <h5>What these variables mean:</h5>
-          <ul>
-            <li><code>DOCKER_USER</code>: Your GitHub username for authentication</li>
-            <li><code>DOCKER_TOKEN</code>: Your GitHub personal access token (serves as a password)</li>
-            <li><code>DOCKER_PORT</code>: The port number where DynaRetire will be available (default: 5000)</li>
-          </ul>
-        </div>
-
-        <p><strong>Note:</strong> Replace "your_github_username" with your actual GitHub username and "your_github_token" with your personal access token. To use a different port than 5000, you can change that number.</p>
+        <p><strong>Note:</strong> These settings are completely optional. If you don't set them, the script will use default values.</p>
 
         <h3 data-toc-text="Running the Script">Step 3: Run the Script</h3>
 
@@ -209,13 +183,6 @@ less /var/log/dynaretire/error.log     # Browse error logs</code></pre>
           <li>Restart your computer and try again</li>
           <li>Make sure your computer meets the minimum requirements for Docker</li>
           <li>On Windows, you might need to enable virtualization in your BIOS settings</li>
-        </ul>
-
-        <h3 data-toc-text="Authentication Errors">If you see "Authentication Error":</h3>
-        <ul>
-          <li>Double-check your GitHub username and token</li>
-          <li>Make sure you typed them correctly in the environment variables</li>
-          <li>If you're not sure about your token, you can create a new one on the GitHub website</li>
         </ul>
 
         <h3 data-toc-text="Access Problems">If you can't access DynaRetire at localhost:5000:</h3>
