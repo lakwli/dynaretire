@@ -143,18 +143,22 @@
 
 /* Link Styling with Indicators */
 .content-body a {
-    color: var(--primary-color); /* Use primary theme color */
-    text-decoration: none; /* Remove default underline */
-    border-bottom: 1px solid rgba(73, 197, 196, 0.3); /* Subtle underline */
-    transition: border-bottom-color 0.2s ease, color 0.2s ease;
-    padding-right: 1.2em; /* Space for potential icon */
-    position: relative; /* Needed for icon positioning */
+    color: var(--primary-color);     /* Unvisited: current teal color */
+    text-decoration: none;           /* No underline */
+    border-bottom: none;             /* Remove underline */
+    padding-right: 1.2em;           /* Space for potential icon */
+    position: relative;              /* For icon positioning */
+    transition: color 0.2s ease;     /* Smooth color transition */
+}
+
+.content-body a:visited {
+    color: #3BA9A8;                 /* Align with CTA hover */
 }
 
 .content-body a:hover,
 .content-body a:focus {
-    color: var(--accent-color); /* Use accent color on hover/focus */
-    border-bottom-color: var(--accent-color); /* Stronger underline */
+    color: #3BA9A8;                 /* Align with CTA hover */
+    /* Removed border-bottom-color change as there's no border */
 }
 
 /* External link icon */
@@ -164,30 +168,35 @@
     display: inline-block;
     position: absolute;
     right: 0;
-    top: 0.1em; /* Adjust vertical alignment */
+    top: 0; /* Align icon with text baseline */
     opacity: 0.7;
     transition: opacity 0.2s ease;
     text-decoration: none !important; /* Ensure icon isn't underlined */
     border-bottom: none !important; /* Ensure icon has no border */
 }
-.content-body a[target="_blank"]:hover::after {
-     opacity: 1;
-}
 
-/* Download link icon (for .sh files) */
-.content-body a[href$=".sh"]::after {
+/* Download link icon (for any link with 'download' attribute) */
+.content-body a[download]::after {
     content: ' 💾'; /* Unicode floppy disk */
     font-size: 0.8em;
     display: inline-block;
     position: absolute;
     right: 0;
-    top: 0.1em; /* Adjust vertical alignment */
+    top: 0; /* Align icon with text baseline */
     opacity: 0.7;
     transition: opacity 0.2s ease;
     text-decoration: none !important; /* Ensure icon isn't underlined */
     border-bottom: none !important; /* Ensure icon has no border */
 }
-.content-body a[href$=".sh"]:hover::after {
+
+/* Keep icon visible even when link is visited */
+.content-body a[download]:visited::after,
+.content-body a[target="_blank"]:visited::after {
+    opacity: 0.7; /* Keep icon visible */
+}
+
+/* Hover effect for icons */
+.content-body a:hover::after {
      opacity: 1;
 }
 /* --- End Link Styling --- */
