@@ -46,9 +46,10 @@ def log_request():
 @app.route('/blog')
 def blog_list():
     logger.info("Accessing blog list page")
-    featured_blog, blog_posts = blog_manager.get_blog_list()
+    featured_limit = 2  # Show 2 featured posts
+    featured_blogs, blog_posts = blog_manager.get_blog_list(featured_limit=featured_limit)
     return render_template('content/blog_list.html',
-                          featured_blog=featured_blog,
+                          featured_blogs=featured_blogs,
                           blog_posts=blog_posts)
 
 @app.route('/blog/<string:blog_id>')

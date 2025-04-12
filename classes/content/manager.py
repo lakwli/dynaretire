@@ -15,16 +15,19 @@ class ContentManager:
         self._blog_repository = blog_repository
         self._article_repository = article_repository
 
-    def get_blog_list(self) -> Tuple[Optional[Blog], List[Blog]]:
+    def get_blog_list(self, featured_limit: int = 1) -> Tuple[List[Blog], List[Blog]]:
         """
-        Get the featured post and regular posts for the blog list page.
+        Get the featured posts and regular posts for the blog list page.
         
+        Args:
+            featured_limit: Number of featured posts to display (default: 1)
+            
         Returns:
-            A tuple of (featured_post, regular_posts)
+            A tuple of (featured_posts, regular_posts)
         """
-        featured = self._blog_repository.get_featured()
-        regular_posts = self._blog_repository.get_regular_posts()
-        return featured, regular_posts
+        featured_posts = self._blog_repository.get_featured(limit=featured_limit)
+        regular_posts = self._blog_repository.get_regular_posts(featured_limit=featured_limit)
+        return featured_posts, regular_posts
 
     def get_article(self, article_id: str) -> Optional[Blog]:
         """
