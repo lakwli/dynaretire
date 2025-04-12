@@ -982,3 +982,52 @@
         gap: 1rem;
     }
 }
+
+/* Reference Hover Card Styles */
+.reference-hover-card {
+    position: absolute;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    padding: 1rem;
+    width: 300px;
+    z-index: 100;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.reference-hover-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reference-preview {
+    max-height: 200px;
+    overflow: hidden;
+}
+
+.website-preview {
+    width: 100%;
+    height: 150px;
+    border: none;
+}
+
+.reference-citation {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #333;
+    margin-top: 0.5rem;
+}
+
+.reference-link {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: #3BA9A8;
+    text-decoration: none;
+}
+
+.reference-link:hover {
+    text-decoration: underline;
+}
