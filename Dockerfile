@@ -8,9 +8,13 @@ RUN pip install --user --no-cache-dir -r requirements.txt
 # Runtime stage
 FROM python:3.11-slim
 
+# Build arguments
+ARG ENABLE_CONSOLE_OUTPUT=false
+
 ENV PYTHONPATH=/app
 ENV FLASK_ENV=production
 ENV FLASK_APP=app.py
+ENV ENABLE_CONSOLE_OUTPUT=${ENABLE_CONSOLE_OUTPUT}
 
 # Create application directory and temp directory
 RUN mkdir -p /app/temp && chmod 777 /app/temp

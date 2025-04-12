@@ -9,8 +9,8 @@
 {% set featured_read_time = featured_blog.read_time|default('7 min read') %}
 {% set featured_date = featured_blog.date.strftime('%B %d, %Y') if featured_blog.date else '' %}
 
-<section class="featured-post priority-{{ get_priority_level(featured_blog.priority) }}">
-    <a href="{{ url_for('blog_post', blog_id=featured_blog.id) }}" class="featured-post-link">
+<div class="featured-post priority-{{ get_priority_level(featured_blog.priority) }}">
+    <a href="{{ url_for('blog_post', blog_id=featured_blog.url_slug or featured_blog.id) }}" class="featured-post-link">
         <div class="featured-post-grid">
             <div class="featured-image">
                 <img src="{{ featured_image }}" alt="{{ featured_title }}" loading="lazy">
@@ -29,4 +29,4 @@
             </div>
         </div>
     </a>
-</section>
+</div>

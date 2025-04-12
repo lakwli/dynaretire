@@ -7,9 +7,9 @@ This package provides tools to:
 3. Handle study metadata and results
 """
 
-from .model import StudyScenarios
-from .generator import StudyGenerator, generate_min_spend_study
-from .scenarios import TestScenarios
+from .request.model import StudyScenarios
+from .request.generator import StudyGenerator, generate_min_spend_study
+from .request.scenarios import TestScenarios
 
 __all__ = [
     'StudyScenarios',

@@ -144,4 +144,62 @@
     </script>
 
     {% block content_scripts %}{% endblock %}
+
+    <!-- Reference hover functionality -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Create hover card element
+        const hoverCard = document.createElement('div');
+        hoverCard.className = 'reference-hover-card';
+        document.body.appendChild(hoverCard);
+
+        let hideTimeout;
+        const hideDelay = 200; // ms
+
+        // Handle reference hover events
+        document.querySelectorAll('.reference').forEach(ref => {
+            ref.addEventListener('mouseenter', (e) => {
+                clearTimeout(hideTimeout);
+                const rect = e.target.getBoundingClientRect();
+                const url = e.target.dataset.refUrl;
+                const citation = e.target.dataset.refCitation;
+                
+                if (e.target.dataset.refType === 'article') {
+                    hoverCard.innerHTML = `
+                        <div class="reference-citation">${citation}</div>
+                        <div class="reference-note">Journal article reference</div>
+                    `;
+                } else {
+                    hoverCard.innerHTML = `
+                        <div class="reference-preview">
+                            <iframe class="website-preview" src="${url}" loading="lazy"></iframe>
+                        </div>
+                        <div class="reference-citation">${citation}</div>
+                        <a href="${url}" target="_blank" class="reference-link">View full reference</a>
+                    `;
+                }
+                
+                // Position card near reference
+                hoverCard.style.left = `${rect.left + window.scrollX}px`;
+                hoverCard.style.top = `${rect.bottom + window.scrollY + 5}px`;
+                hoverCard.classList.add('visible');
+            });
+
+            ref.addEventListener('mouseleave', () => {
+                hideTimeout = setTimeout(() => {
+                    hoverCard.classList.remove('visible');
+                }, hideDelay);
+            });
+
+            // Handle hover card events
+            hoverCard.addEventListener('mouseenter', () => {
+                clearTimeout(hideTimeout);
+            });
+
+            hoverCard.addEventListener('mouseleave', () => {
+                hoverCard.classList.remove('visible');
+            });
+        });
+    });
+    </script>
 {% endblock %}

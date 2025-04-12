@@ -3,11 +3,7 @@
 #######################################
 # DynaRetire Deployment Script
 #######################################
-# STEP 1: Set these environment variables first!
-#
-# Required:
-#   export DOCKER_USER=your_github_username    # Your GitHub username
-#   export DOCKER_TOKEN=your_github_token      # Your Personal Access Token
+# STEP 1: Set these environment variables if needed!
 #
 # Optional (shown with defaults):
 #   export DOCKER_PORT=5000       # App will be at localhost:5000
@@ -15,8 +11,6 @@
 #   export LOG_DIR=/var/log      # Where to store logs on your host machine
 #
 # Example deployment:
-#   export DOCKER_USER=laudev
-#   export DOCKER_TOKEN=ghp_1234567890abcdef
 #   export DOCKER_PORT=8080
 #   export DEPLOY_NAME=myapp
 #   export LOG_DIR=/opt/logs
@@ -30,20 +24,6 @@
 #    - You can read these logs directly with: tail -f /opt/logs/myapp/app.log
 #    - No need to enter the container to view logs
 #######################################
-
-# First, check required settings
-if [ -z "$DOCKER_USER" ]; then
-    echo "ERROR: DOCKER_USER environment variable is required"
-    echo "Please set it first:"
-    echo "  export DOCKER_USER=your_github_username"
-    exit 1
-fi
-if [ -z "$DOCKER_TOKEN" ]; then
-    echo "ERROR: DOCKER_TOKEN environment variable is required"
-    echo "Please set it first:"
-    echo "  export DOCKER_TOKEN=your_github_token"
-    exit 1
-fi
 
 # Settings
 IMAGE_NAME="ghcr.io/lakwli/dynaretire:latest"   # Fixed image path
@@ -61,15 +41,6 @@ else
     echo "Creating logs directory with sudo..."
     sudo mkdir -p $HOST_LOGS
     sudo chmod 777 $HOST_LOGS
-fi
-
-# Log in to registry
-echo "Logging in to ghcr.io..."
-echo "$DOCKER_TOKEN" | docker login ghcr.io --username $DOCKER_USER --password-stdin
-
-if [ $? -ne 0 ]; then
-  echo "Failed to log in to ghcr.io. Exiting."
-  exit 1
 fi
 
 # Clean up old container

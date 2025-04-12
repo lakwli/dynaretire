@@ -10,7 +10,7 @@
 {% set blog_date = blog.date.strftime('%B %d, %Y') if blog.date else '' %}
 
 <article class="blog-card priority-{{ get_priority_level(blog.priority) }}">
-    <a href="{{ url_for('blog_post', blog_id=blog.id) }}" class="blog-card-link">
+    <a href="{{ url_for('blog_post', blog_id=blog.url_slug or blog.id) }}" class="blog-card-link">
         <div class="blog-image">
             <img src="{{ blog_image }}" alt="{{ blog_title }}">
         </div>

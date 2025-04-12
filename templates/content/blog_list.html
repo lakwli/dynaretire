@@ -16,9 +16,13 @@
         <p>Expert insights and guides for planning your retirement journey</p>
     </header>
 
-    <!-- Featured Blog Post -->
-    {% if featured_blog %}
-        {% include "content/components/featured_blog.html" %}
+    <!-- Featured Blog Posts -->
+    {% if featured_blogs %}
+    <section class="featured-posts-grid">
+        {% for featured_blog in featured_blogs %}
+            {% include "content/components/featured_blog.html" %}
+        {% endfor %}
+    </section>
     {% endif %}
 
     <!-- Blog Posts Grid -->

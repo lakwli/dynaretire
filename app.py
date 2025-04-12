@@ -2,7 +2,6 @@
 #FLASK_DEBUG=1 FLASK_APP=app.py flask run --host=0.0.0.0 --port=5005
 #tail -f /logs/app.log 
 #git config --global --add safe.directory /workspaces/dynaretire 
-#cd /workspaces/dynaretire && rm -rf results/* && PYTHONPATH=/workspaces/dynaretire python tests/test_studies.py
 
 from flask import Flask, render_template, request, jsonify, send_file, Response, session, send_from_directory, redirect, url_for, abort, after_this_request
 from werkzeug.security import safe_join
@@ -47,9 +46,10 @@ def log_request():
 @app.route('/blog')
 def blog_list():
     logger.info("Accessing blog list page")
-    featured_blog, blog_posts = blog_manager.get_blog_list()
+    featured_limit = 2  # Show 2 featured posts
+    featured_blogs, blog_posts = blog_manager.get_blog_list(featured_limit=featured_limit)
     return render_template('content/blog_list.html',
-                          featured_blog=featured_blog,
+                          featured_blogs=featured_blogs,
                           blog_posts=blog_posts)
 
 @app.route('/blog/<string:blog_id>')

@@ -1,7 +1,14 @@
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Optional, List
+from typing import Optional, List, Literal
+from enum import Enum
 from .content import Content
+
+class BlogStatus(str, Enum):
+    """Status of a blog post"""
+    DRAFT = "draft"
+    STAGING = "staging"
+    PUBLISHED = "published"
 
 @dataclass
 class Blog(Content):
@@ -26,6 +33,8 @@ class Blog(Content):
     card_image: Optional[str] = None
     is_featured: bool = False
     priority: int = 0
+    status: BlogStatus = BlogStatus.DRAFT
+    url_slug: Optional[str] = None  # Custom URL slug, if None will use slugified title
 
     def to_dict(self) -> dict:
         """Convert the blog post to a dictionary."""
@@ -43,7 +52,9 @@ class Blog(Content):
             'is_featured': self.is_featured,
             'priority': self.priority,
             'custom_css_file': self.custom_css_file,
-            'custom_styles': self.custom_styles
+            'custom_styles': self.custom_styles,
+            'status': self.status.value,
+            'url_slug': self.url_slug
         }
 
     @classmethod
@@ -52,4 +63,7 @@ class Blog(Content):
         # Handle date conversion if it's a string
         if isinstance(data.get('date'), str):
             data['date'] = datetime.fromisoformat(data['date'])
+        # Convert status string to enum if present
+        if 'status' in data:
+            data['status'] = BlogStatus(data['status'])
         return cls(**data)

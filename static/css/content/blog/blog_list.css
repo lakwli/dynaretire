@@ -5,7 +5,22 @@
     padding: 2rem;
 }
 
-/* Featured Blog */
+/* Featured Blog Posts Grid */
+.featured-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin: 2rem auto;
+    max-width: 1200px;
+}
+
+@media (max-width: 768px) {
+    .featured-posts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Featured Blog Post */
 .featured-post {
     margin: 2rem auto;
     max-width: 900px;

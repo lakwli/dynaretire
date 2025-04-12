@@ -1,12 +1,12 @@
 import os
 from datetime import datetime
-from typing import List, Optional, Dict
+from typing import List, Optional, Dict, Set
 from pathlib import Path
 import json
 from bs4 import BeautifulSoup
 
 from .blog_repo import BlogRepository
-from ..models.blog import Blog
+from ..models.blog import Blog, BlogStatus
 from ..config import BlogConfig
 
 class BlogHtmlRepository(BlogRepository):
@@ -15,10 +15,10 @@ class BlogHtmlRepository(BlogRepository):
     Blog posts are stored as individual .html files with metadata in JSON format.
     Uses singleton pattern and class-level caching for optimal performance with Gunicorn workers.
     """
-    _instance = None  # Class-level singleton instance
-    _posts = []       # Class-level list of all posts
-    _featured_post = None  # Class-level featured post
-    _is_loaded = False    # Class-level loading flag
+    _instance = None    # Class-level singleton instance
+    _posts = []         # Class-level list of all posts
+    _featured_posts = [] # Class-level list of featured posts, ordered by date
+    _is_loaded = False  # Class-level loading flag
 
     def __new__(cls, *args, **kwargs):
         if cls._instance is None:
@@ -69,6 +69,10 @@ class BlogHtmlRepository(BlogRepository):
                 
             metadata = json.loads(meta_tag.string)
             
+            # Set default status to published for backward compatibility
+            if 'status' not in metadata:
+                metadata['status'] = 'published'
+            
             # Extract main content
             content_div = soup.find('div', {'class': 'post-content'})
             if not content_div:
@@ -85,6 +89,11 @@ class BlogHtmlRepository(BlogRepository):
                     date = date[:-1] + '+00:00'
                 date = datetime.fromisoformat(date)
             
+            # If no url_slug provided, use slugified title
+            url_slug = metadata.get('url_slug')
+            if not url_slug and metadata.get('title'):
+                url_slug = self._slugify(metadata.get('title'))
+                
             return Blog(
                 id=post_id,
                 title=metadata.get('title', ''),
@@ -98,7 +107,9 @@ class BlogHtmlRepository(BlogRepository):
                 card_image=metadata.get('card_image'),
                 is_featured=metadata.get('is_featured', False),
                 custom_css_file=metadata.get('custom_css_file'),
-                custom_styles=metadata.get('custom_styles')
+                custom_styles=metadata.get('custom_styles'),
+                status=metadata.get('status', 'published'),
+                url_slug=url_slug
             )
         except Exception as e:
             print(f"Error parsing HTML file {file_path}: {e}")
@@ -117,7 +128,9 @@ class BlogHtmlRepository(BlogRepository):
             'card_image': post.card_image,
             'is_featured': post.is_featured,
             'custom_css_file': post.custom_css_file,
-            'custom_styles': post.custom_styles
+            'custom_styles': post.custom_styles,
+            'status': post.status.value,
+            'url_slug': post.url_slug
         }
         
         html_template = f'''<!DOCTYPE html>
@@ -144,29 +157,82 @@ class BlogHtmlRepository(BlogRepository):
     def load_posts(self):
         """Load all posts into class-level cache"""
         posts = []
+        featured_posts = []
         for file_path in self.posts_dir.glob('*.html'):
             if post := self._parse_html_file(file_path):
                 posts.append(post)
                 if post.is_featured:
-                    self.__class__._featured_post = post
+                    featured_posts.append(post)
         
+        # Sort all posts and featured posts by date (newest first)
         self.__class__._posts = sorted(posts, key=lambda x: x.date, reverse=True)
+        self.__class__._featured_posts = sorted(featured_posts, key=lambda x: x.date, reverse=True)
 
-    def get_all(self) -> List[Blog]:
-        """Get all blog posts from cache."""
-        return self._posts
+    def get_all(self, include_drafts: bool = False, include_staging: bool = False) -> List[Blog]:
+        """
+        Get blog posts from cache.
+        
+        Args:
+            include_drafts: Whether to include draft posts
+            include_staging: Whether to include staging posts
+            
+        Returns:
+            List of blog posts filtered by status
+        """
+        statuses = {BlogStatus.PUBLISHED}
+        if include_drafts:
+            statuses.add(BlogStatus.DRAFT)
+        if include_staging:
+            statuses.add(BlogStatus.STAGING)
+        return [post for post in self._posts if post.status in statuses]
 
     def get_by_id(self, post_id: str) -> Optional[Blog]:
-        """Get a single blog post by ID from cache."""
-        return next((post for post in self._posts if post.id == post_id), None)
+        """
+        Get a single blog post by URL slug or ID from cache.
+        Args:
+            post_id: The URL slug or ID to look up
+        Returns:
+            The blog post if found and published, None otherwise
+        """
+        # First try to find by url_slug
+        post = next((post for post in self._posts 
+                    if post.url_slug == post_id), None)
+        
+        # If not found by url_slug and the post_id looks like a numeric ID, try finding by ID
+        if not post and post_id.isdigit():
+            post = next((post for post in self._posts if post.id == post_id), None)
+            
+        # If post exists and is published, return it
+        if post and post.status == BlogStatus.PUBLISHED:
+            return post
+        return None
 
-    def get_featured(self) -> Optional[Blog]:
-        """Get the featured blog post from cache."""
-        return self._featured_post
+    def get_featured(self, limit: int = 1) -> List[Blog]:
+        """
+        Get the N most recent featured published blog posts from cache.
+        Args:
+            limit: Number of featured posts to return (default: 1)
+        Returns:
+            List of the N most recent featured published posts
+        """
+        published_featured = [post for post in self._featured_posts 
+                            if post.status == BlogStatus.PUBLISHED]
+        return published_featured[:limit]
 
-    def get_regular_posts(self) -> List[Blog]:
-        """Get all non-featured blog posts from cache."""
-        return [post for post in self._posts if not post.is_featured]
+    def get_regular_posts(self, featured_limit: int = 1) -> List[Blog]:
+        """
+        Get regular published posts and any featured published posts that didn't make it into the featured section.
+        Args:
+            featured_limit: Number of featured posts being displayed in featured section (default: 1)
+        Returns:
+            List of regular posts and overflow featured posts
+        """
+        published_featured = [post for post in self._featured_posts 
+                            if post.status == BlogStatus.PUBLISHED]
+        featured_set = set(post.id for post in published_featured[:featured_limit])
+        return [post for post in self._posts 
+                if post.status == BlogStatus.PUBLISHED 
+                and not (post.is_featured and post.id in featured_set)]
 
     def create(self, post: Blog) -> Blog:
         """Create a new blog post and reload cache."""
