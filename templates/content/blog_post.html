@@ -44,20 +44,26 @@
 
         <!-- Bottom Social Share -->
         <div class="bottom-social-share">
+            <h4>Share this article:</h4>
             <ul class="social-share-list">
                 <li>
-                    <button class="social-share-button" onclick="shareTwitter()" title="Share on Twitter">
-                        <i class="fas fa-paper-plane"></i>
+                    <button class="social-share-button twitter" onclick="shareTwitter()" title="Share on Twitter">
+                        <i class="fab fa-twitter"></i> 
                     </button>
                 </li>
                 <li>
-                    <button class="social-share-button" onclick="shareFacebook()" title="Share on Facebook">
-                        <i class="fas fa-share-nodes"></i>
+                    <button class="social-share-button facebook" onclick="shareFacebook()" title="Share on Facebook">
+                        <i class="fab fa-facebook-f"></i> 
                     </button>
                 </li>
                 <li>
-                    <button class="social-share-button" onclick="shareLinkedIn()" title="Share on LinkedIn">
-                        <i class="fas fa-link"></i>
+                    <button class="social-share-button linkedin" onclick="shareLinkedIn()" title="Share on LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </button>
+                </li>
+                <li>
+                    <button class="social-share-button email" onclick="shareEmail()" title="Share via Email">
+                        <i class="fas fa-envelope"></i> 
                     </button>
                 </li>
             </ul>
@@ -67,20 +73,5 @@
 {% endblock %}
 
 {% block content_scripts %}
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Share functionality
-    window.shareTwitter = function() {
-        window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(document.title)}`, '_blank');
-    };
 
-    window.shareFacebook = function() {
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank');
-    };
-
-    window.shareLinkedIn = function() {
-        window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(window.location.href)}&title=${encodeURIComponent(document.title)}`, '_blank');
-    };
-});
-</script>
 {% endblock %}

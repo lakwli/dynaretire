@@ -202,4 +202,28 @@
         });
     });
     </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Share functionality
+        window.shareTwitter = function() {
+            const text = `${document.title}`;
+            window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(text)}`, '_blank');
+        };
+    
+        window.shareFacebook = function() {
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank');
+        };
+    
+        window.shareLinkedIn = function() {
+            window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(window.location.href)}&title=${encodeURIComponent(document.title)}`, '_blank');
+        };
+        
+        window.shareEmail = function() {
+            const subject = encodeURIComponent(document.title);
+            const body = encodeURIComponent(`I thought you might be interested in this article: ${document.title}\n\n${window.location.href}`);
+            window.location.href = `mailto:?subject=${subject}&body=${body}`;
+        };
+    });
+    </script>
 {% endblock %}
