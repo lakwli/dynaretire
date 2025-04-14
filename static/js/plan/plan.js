@@ -16,10 +16,19 @@ function downloadJsonData(jsonString, filename) {
 }
 
 $(document).ready(function() {
-    // Add event listener for load button
+    // Add event listener for load button with mobile handling
     $('#load-btn').click(function(e) {
         e.preventDefault();
-        $('#file-input').click();
+        // Force file selection mode on mobile
+        const fileInput = $('#file-input')[0];
+        fileInput.setAttribute('accept', '.json');  // Reinforce JSON only
+        fileInput.setAttribute('data-role', 'none'); // Prevent mobile UI enhancement
+        fileInput.click();
+    });
+
+    // Ensure mobile handles file selection properly
+    $('#file-input').on('touchstart click', function(e) {
+        e.stopPropagation(); // Prevent bubbling that might trigger unwanted mobile actions
     });
     
     // Function to reset steps to initial state
