@@ -79,20 +79,5 @@
 {% endblock %}
 
 {% block content_scripts %}
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Share functionality
-    window.shareTwitter = function() {
-        window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(document.title)}`, '_blank');
-    };
 
-    window.shareFacebook = function() {
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank');
-    };
-
-    window.shareLinkedIn = function() {
-        window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(window.location.href)}&title=${encodeURIComponent(document.title)}`, '_blank');
-    };
-});
-</script>
 {% endblock %}
