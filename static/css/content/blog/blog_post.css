@@ -34,3 +34,40 @@
  .blog-related-link:hover {
      color: var(--accent-color);
  }
+
+/* Personal Story Box - Simple Version */
+.personal-story {
+    background: rgba(73, 197, 196, 0.05);
+    border-left: 4px solid rgba(73, 197, 196, 0.4);
+    border-radius: 0 8px 8px 0;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.personal-story-content {
+    position: relative;
+    color: var(--text-color);
+    line-height: 1.7;
+}
+
+.personal-story-tag {
+    display: inline-block;
+    background: rgba(73, 197, 196, 0.15);
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: var(--primary-color);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .personal-story {
+        padding: 1.25rem;
+    }
+}
