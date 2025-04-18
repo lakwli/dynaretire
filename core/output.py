@@ -456,9 +456,9 @@ class Excel (Output):
         content1 = "1. #0 refer to current age."
         self.ws_sum.merge_range(6, extra_col, 7, extra_col + 2, content1, self.merge_format)
         
-        # Row 8: Return explanation
-        content2 = "2. means earning the same steady percentage each year. Example: 33% in 3 years = about 10% annualized return per year."
-        self.ws_sum.merge_range(8, extra_col, 8, extra_col + 2, content2, self.merge_format)
+        # Rows 8-9: Return explanation
+        content2 = "2. Annualized return means earning the same steady percentage each year. Example: 33.1% in 3 years = about 10% annualized return."
+        self.ws_sum.merge_range(8, extra_col, 9, extra_col + 2, content2, self.merge_format)
 
         # Expenses Note
         total_exp = len(self.expenses.expenses)
