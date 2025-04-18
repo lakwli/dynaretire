@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /home.html
+Disallow: /static/resources/files/
 
 Sitemap: https://dynaretire.app/sitemap.xml
-Disallow: /home.html
