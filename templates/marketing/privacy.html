@@ -1,5 +1,12 @@
-{% extends "base.html" %} {% set footer_type = 'minimal' %} {% block title
-%}Privacy Policy - DynaRetire{% endblock %} {% block content %}
+{% extends "base.html" %} {% set footer_type = 'minimal' %}
+
+{% block meta %}
+    <link rel="canonical" href="{{ request.url }}" />
+{% endblock %}
+
+{% block title %}Privacy Policy - DynaRetire{% endblock %}
+
+{% block content %}
 <div class="privacy-content">
   <h1>Privacy Policy</h1>
 
