@@ -92,7 +92,8 @@ class Excel (Output):
         super().__init__(isPaymentAtBegin, expenses, liq_accts, nonliq_accts)
         self.workbook = xlsxwriter.Workbook(name+'.xlsx')
         self.yearly_returns = []  # Store yearly returns for annualized calculation
-
+        self.final_annualized = None  # Store final annualized return value
+        
         self.workbook.set_properties(
             {
                 "title": "This is an excel generated from Retirement Fund Sustainability Calculator Program",
@@ -199,14 +200,12 @@ class Excel (Output):
                     annualized_row = row + 2
                     self.ws_sum.write(blank_row, 6, "", self.fmt_percent)  # Blank row
                     
-                    # Calculate annualized return
+                    # Store final annualized return
                     if len(self.yearly_returns) > 0:
                         compound_return = 1.0
                         for r in self.yearly_returns:
                             compound_return *= (1 + r)
-                        annualized = pow(compound_return, 1/len(self.yearly_returns)) - 1
-                        fmt = self.fmt_percent_pos_bold if annualized >= 0 else self.fmt_percent_neg_bold
-                        self.ws_sum.write(annualized_row, 6, annualized, fmt)
+                        self.final_annualized = pow(compound_return, 1/len(self.yearly_returns)) - 1
 
             if nonliq_accts != None:
                 self.ws_sum.write(row, 8 if self.isPaymentAtBegin else 6,  nonliq_accts.cal_total_income(
@@ -421,14 +420,47 @@ class Excel (Output):
                              nonliq_accts, year_num, calendar_year, age)
 
     def _touch_up_sheet(self):
-        # \n2. Money is withdrawed end of previous year for this year expenses
-        # Summary Note
-        content = "Note: \n1. #0 refer to current age. "
-        merge_col = (chr(ord('@')+(12)))+"2"+":"+(chr(ord('@')+(12)))+"5"
-        self.ws_sum.merge_range(merge_col, content, self.merge_format)
+        # Calculate column position
+        last_col = 8 if self.isPaymentAtBegin else 6
+        if self.nonliq_accts is not None:
+            last_col = 10 if self.isPaymentAtBegin else 8
+            
+        extra_col = last_col + 1  # One column after last data
+        
+        # Set width for three columns
+        self.ws_sum.set_column(extra_col, extra_col + 2, 20)
+        
+        # Format for annualized return header
+        label_fmt = self.workbook.add_format({
+            'align': 'center',
+            'valign': 'vcenter', 
+            'text_wrap': True,
+            'bold': True,
+            'font_color': 'blue'
+        })
+        
+        # Row 2: "Annualized Return" header  
+        self.ws_sum.merge_range(2, extra_col, 2, extra_col + 2, "Annualized Return", label_fmt)
+        
+        # Row 3: The actual annualized return value
+        if hasattr(self, 'final_annualized') and self.final_annualized is not None:
+            fmt = self.fmt_percent_pos_bold if self.final_annualized >= 0 else self.fmt_percent_neg_bold
+            self.ws_sum.write(3, extra_col, self.final_annualized, fmt)
+            
+        # Row 4: Blank gap
+        
+        # Row 5: "Note:" heading
+        self.ws_sum.merge_range(5, extra_col, 5, extra_col + 2, "Note:", self.merge_format)
+        
+        # Rows 6-7: Age explanation
+        content1 = "1. #0 refer to current age."
+        self.ws_sum.merge_range(6, extra_col, 7, extra_col + 2, content1, self.merge_format)
+        
+        # Row 8: Return explanation
+        content2 = "2. means earning the same steady percentage each year. Example: 33% in 3 years = about 10% annualized return per year."
+        self.ws_sum.merge_range(8, extra_col, 8, extra_col + 2, content2, self.merge_format)
 
-        # expenses Note
-
+        # Expenses Note
         total_exp = len(self.expenses.expenses)
         '''
         content="Note1: \n1. What is shown is to be withdrawed amount for coming year expenses \n2. This is to match the 'Next Year Expenses' in Summary Sheet"
