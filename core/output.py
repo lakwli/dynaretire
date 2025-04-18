@@ -45,6 +45,12 @@ class Excel (Output):
             {'num_format': '#,##0.00', 'font_color': 'blue'})
         self.fmt_rate_neg = self.workbook.add_format(
             {'num_format': '#,##0.00', 'font_color': 'red'})
+        self.fmt_percent = self.workbook.add_format({'num_format': '0.00%'})
+        self.fmt_percent_bold = self.workbook.add_format({'num_format': '0.00%', 'bold': True})
+        self.fmt_percent_pos = self.workbook.add_format({'num_format': '0.00%', 'font_color': 'blue'})
+        self.fmt_percent_neg = self.workbook.add_format({'num_format': '0.00%', 'font_color': 'red'})
+        self.fmt_percent_pos_bold = self.workbook.add_format({'num_format': '0.00%', 'font_color': 'blue', 'bold': True})
+        self.fmt_percent_neg_bold = self.workbook.add_format({'num_format': '0.00%', 'font_color': 'red', 'bold': True})
 
         self.fmt_currency_total = self.workbook.add_format(
             {'num_format': '#,##0', 'bg_color': 'C4D79B', 'bold': True, 'italic': True})
@@ -85,6 +91,7 @@ class Excel (Output):
     def __init__(self, name, isPaymentAtBegin: bool, expenses: mf.Expense, liq_accts: la.LiquidityAccounts, nonliq_accts: la.NonLiquidityAccounts):
         super().__init__(isPaymentAtBegin, expenses, liq_accts, nonliq_accts)
         self.workbook = xlsxwriter.Workbook(name+'.xlsx')
+        self.yearly_returns = []  # Store yearly returns for annualized calculation
 
         self.workbook.set_properties(
             {
@@ -126,10 +133,10 @@ class Excel (Output):
         if is_title:
             if (self.isPaymentAtBegin):
                 summary_titles = ["#", "Year", "Age", "BOY BAL",
-                                  "BOY Expenses", "BOY BAL AFTER EXPENSES", "P/L"]  # ,"EOY BAL"
+                                  "BOY Expenses", "BOY BAL AFTER EXPENSES", "Net Return %", "P/L"]  # ,"EOY BAL"
             else:
                 summary_titles = ["#", "Year", "Age", "BOY BAL",
-                                  "EOY P/L", "EOY Expenses"]  # ,"EOY BAL"
+                                  "P/L", "EOY Expenses"]  # ,"EOY BAL"
             if self.nonliq_accts != None:
                 summary_titles.append("Income")
                 if (not self.isPaymentAtBegin):
@@ -142,11 +149,13 @@ class Excel (Output):
 
             self.ws_sum.write_comment(
                 row, 3, "Beginning year of balance. Same as EOY BAL of previous year")
-            self.ws_sum.write_comment(row, 6 if self.isPaymentAtBegin else 4,
+            self.ws_sum.write_comment(row, 7 if self.isPaymentAtBegin else 4,
                                       "Profit and Loss based on investment return. Refer to Retirement Funds sheet for detail")
             if (self.isPaymentAtBegin):
                 self.ws_sum.write_comment(
                     row, 5, "BOY BAL AFTER BOY EXPENSES = BOY BAL deduct Expenses")
+                self.ws_sum.write_comment(
+                    row, 6, "Net Return % = P/L / BOY BAL AFTER EXPENSES\nBottom row shows annualized return calculated as ((1 + r₁)(1 + r₂)...(1 + rₙ))^(1/n) - 1\nwhere r₁...rₙ are the yearly returns and n is the number of years")
             if self.nonliq_accts != None:
                 self.ws_sum.write_comment(
                     row, 10 if self.isPaymentAtBegin else 8, "Net Deposit Withdraw = Expenses - Income")
@@ -169,22 +178,45 @@ class Excel (Output):
                         row, 4,  -expenses.get_yearly_total_amount(year_num+1), self.fmt_currency_liq_flow)
                     self.ws_sum.write(row, 5,  liq_accts.get_boy_afpay_balance(
                         year_num+1), self.fmt_currency_liq_bal)  # boy
-                self.ws_sum.write(row, 6 if self.isPaymentAtBegin else 4,  liq_accts.cal_total_pl(
+                self.ws_sum.write(row, 7 if self.isPaymentAtBegin else 4,  liq_accts.cal_total_pl(
                 ), self.fmt_currency_liq_flow)  # boy
             # self.ws_sum.write(row, 5,  liq_accts.cal_total_eoy_balance(),self.fmt_currency_liq_bal_net) #boy
             if not self.isPaymentAtBegin:
                 self.ws_sum.write(
                     # boy
                     row, 5,  -expenses.get_yearly_total_amount(year_num+1), self.fmt_currency_liq_flow)
+            if (self.isPaymentAtBegin):
+                # Calculate Net Return %
+                if (year_num != 0):
+                    net_return = liq_accts.cal_total_pl() / liq_accts.get_boy_afpay_balance(year_num+1)
+                    self.yearly_returns.append(net_return)
+                    fmt = self.fmt_percent_pos if net_return >= 0 else self.fmt_percent_neg
+                    self.ws_sum.write(row, 6, net_return, fmt)
+
+                # Add blank row and annualized return after last data row
+                if year_num == len(self.yearly_returns):
+                    blank_row = row + 1
+                    annualized_row = row + 2
+                    self.ws_sum.write(blank_row, 6, "", self.fmt_percent)  # Blank row
+                    
+                    # Calculate annualized return
+                    if len(self.yearly_returns) > 0:
+                        compound_return = 1.0
+                        for r in self.yearly_returns:
+                            compound_return *= (1 + r)
+                        annualized = pow(compound_return, 1/len(self.yearly_returns)) - 1
+                        fmt = self.fmt_percent_pos_bold if annualized >= 0 else self.fmt_percent_neg_bold
+                        self.ws_sum.write(annualized_row, 6, annualized, fmt)
+
             if nonliq_accts != None:
-                self.ws_sum.write(row, 7 if self.isPaymentAtBegin else 6,  nonliq_accts.cal_total_income(
+                self.ws_sum.write(row, 8 if self.isPaymentAtBegin else 6,  nonliq_accts.cal_total_income(
                 ), self.fmt_currency_liq_flow)  # boy
                 if (not self.isPaymentAtBegin):
                     self.ws_sum.write(row, 7,  liq_accts.cal_net_income_expense(
                     ), self.fmt_currency_liq_flow_net)  # boy
-                col = 8 if self.isPaymentAtBegin else 7
+                col = 9 if self.isPaymentAtBegin else 7
             else:
-                col = 7 if self.isPaymentAtBegin else 6
+                col = 8 if self.isPaymentAtBegin else 6
 
             self.ws_sum.write(
                 row, col,  liq_accts.cal_total_eoy_net_balance(), self.fmt_currency_liq_eoy_net)
