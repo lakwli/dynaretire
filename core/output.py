@@ -45,6 +45,12 @@ class Excel (Output):
             {'num_format': '#,##0.00', 'font_color': 'blue'})
         self.fmt_rate_neg = self.workbook.add_format(
             {'num_format': '#,##0.00', 'font_color': 'red'})
+        self.fmt_percent = self.workbook.add_format({'num_format': '0.00%'})
+        self.fmt_percent_bold = self.workbook.add_format({'num_format': '0.00%', 'bold': True})
+        self.fmt_percent_pos = self.workbook.add_format({'num_format': '0.00%', 'font_color': 'blue'})
+        self.fmt_percent_neg = self.workbook.add_format({'num_format': '0.00%', 'font_color': 'red'})
+        self.fmt_percent_pos_bold = self.workbook.add_format({'num_format': '0.00%', 'font_color': 'blue', 'bold': True})
+        self.fmt_percent_neg_bold = self.workbook.add_format({'num_format': '0.00%', 'font_color': 'red', 'bold': True})
 
         self.fmt_currency_total = self.workbook.add_format(
             {'num_format': '#,##0', 'bg_color': 'C4D79B', 'bold': True, 'italic': True})
@@ -85,7 +91,9 @@ class Excel (Output):
     def __init__(self, name, isPaymentAtBegin: bool, expenses: mf.Expense, liq_accts: la.LiquidityAccounts, nonliq_accts: la.NonLiquidityAccounts):
         super().__init__(isPaymentAtBegin, expenses, liq_accts, nonliq_accts)
         self.workbook = xlsxwriter.Workbook(name+'.xlsx')
-
+        self.yearly_returns = []  # Store yearly returns for annualized calculation
+        self.final_annualized = None  # Store final annualized return value
+        
         self.workbook.set_properties(
             {
                 "title": "This is an excel generated from Retirement Fund Sustainability Calculator Program",
@@ -126,10 +134,10 @@ class Excel (Output):
         if is_title:
             if (self.isPaymentAtBegin):
                 summary_titles = ["#", "Year", "Age", "BOY BAL",
-                                  "BOY Expenses", "BOY BAL AFTER EXPENSES", "P/L"]  # ,"EOY BAL"
+                                  "BOY Expenses", "BOY BAL AFTER EXPENSES", "Net Return %", "P/L"]  # ,"EOY BAL"
             else:
                 summary_titles = ["#", "Year", "Age", "BOY BAL",
-                                  "EOY P/L", "EOY Expenses"]  # ,"EOY BAL"
+                                  "P/L", "EOY Expenses"]  # ,"EOY BAL"
             if self.nonliq_accts != None:
                 summary_titles.append("Income")
                 if (not self.isPaymentAtBegin):
@@ -142,11 +150,13 @@ class Excel (Output):
 
             self.ws_sum.write_comment(
                 row, 3, "Beginning year of balance. Same as EOY BAL of previous year")
-            self.ws_sum.write_comment(row, 6 if self.isPaymentAtBegin else 4,
+            self.ws_sum.write_comment(row, 7 if self.isPaymentAtBegin else 4,
                                       "Profit and Loss based on investment return. Refer to Retirement Funds sheet for detail")
             if (self.isPaymentAtBegin):
                 self.ws_sum.write_comment(
                     row, 5, "BOY BAL AFTER BOY EXPENSES = BOY BAL deduct Expenses")
+                self.ws_sum.write_comment(
+                    row, 6, "Net Return % = P/L / BOY BAL AFTER EXPENSES\nBottom row shows annualized return calculated as ((1 + r₁)(1 + r₂)...(1 + rₙ))^(1/n) - 1\nwhere r₁...rₙ are the yearly returns and n is the number of years")
             if self.nonliq_accts != None:
                 self.ws_sum.write_comment(
                     row, 10 if self.isPaymentAtBegin else 8, "Net Deposit Withdraw = Expenses - Income")
@@ -169,22 +179,43 @@ class Excel (Output):
                         row, 4,  -expenses.get_yearly_total_amount(year_num+1), self.fmt_currency_liq_flow)
                     self.ws_sum.write(row, 5,  liq_accts.get_boy_afpay_balance(
                         year_num+1), self.fmt_currency_liq_bal)  # boy
-                self.ws_sum.write(row, 6 if self.isPaymentAtBegin else 4,  liq_accts.cal_total_pl(
+                self.ws_sum.write(row, 7 if self.isPaymentAtBegin else 4,  liq_accts.cal_total_pl(
                 ), self.fmt_currency_liq_flow)  # boy
             # self.ws_sum.write(row, 5,  liq_accts.cal_total_eoy_balance(),self.fmt_currency_liq_bal_net) #boy
             if not self.isPaymentAtBegin:
                 self.ws_sum.write(
                     # boy
                     row, 5,  -expenses.get_yearly_total_amount(year_num+1), self.fmt_currency_liq_flow)
+            if (self.isPaymentAtBegin):
+                # Calculate Net Return %
+                if (year_num != 0):
+                    net_return = liq_accts.cal_total_pl() / liq_accts.get_boy_afpay_balance(year_num+1)
+                    self.yearly_returns.append(net_return)
+                    fmt = self.fmt_percent_pos if net_return >= 0 else self.fmt_percent_neg
+                    self.ws_sum.write(row, 6, net_return, fmt)
+
+                # Add blank row and annualized return after last data row
+                if year_num == len(self.yearly_returns):
+                    blank_row = row + 1
+                    annualized_row = row + 2
+                    self.ws_sum.write(blank_row, 6, "", self.fmt_percent)  # Blank row
+                    
+                    # Store final annualized return
+                    if len(self.yearly_returns) > 0:
+                        compound_return = 1.0
+                        for r in self.yearly_returns:
+                            compound_return *= (1 + r)
+                        self.final_annualized = pow(compound_return, 1/len(self.yearly_returns)) - 1
+
             if nonliq_accts != None:
-                self.ws_sum.write(row, 7 if self.isPaymentAtBegin else 6,  nonliq_accts.cal_total_income(
+                self.ws_sum.write(row, 8 if self.isPaymentAtBegin else 6,  nonliq_accts.cal_total_income(
                 ), self.fmt_currency_liq_flow)  # boy
                 if (not self.isPaymentAtBegin):
                     self.ws_sum.write(row, 7,  liq_accts.cal_net_income_expense(
                     ), self.fmt_currency_liq_flow_net)  # boy
-                col = 8 if self.isPaymentAtBegin else 7
+                col = 9 if self.isPaymentAtBegin else 7
             else:
-                col = 7 if self.isPaymentAtBegin else 6
+                col = 8 if self.isPaymentAtBegin else 6
 
             self.ws_sum.write(
                 row, col,  liq_accts.cal_total_eoy_net_balance(), self.fmt_currency_liq_eoy_net)
@@ -389,14 +420,47 @@ class Excel (Output):
                              nonliq_accts, year_num, calendar_year, age)
 
     def _touch_up_sheet(self):
-        # \n2. Money is withdrawed end of previous year for this year expenses
-        # Summary Note
-        content = "Note: \n1. #0 refer to current age. "
-        merge_col = (chr(ord('@')+(12)))+"2"+":"+(chr(ord('@')+(12)))+"5"
-        self.ws_sum.merge_range(merge_col, content, self.merge_format)
+        # Calculate column position
+        last_col = 8 if self.isPaymentAtBegin else 6
+        if self.nonliq_accts is not None:
+            last_col = 10 if self.isPaymentAtBegin else 8
+            
+        extra_col = last_col + 1  # One column after last data
+        
+        # Set width for three columns
+        self.ws_sum.set_column(extra_col, extra_col + 2, 20)
+        
+        # Format for annualized return header
+        label_fmt = self.workbook.add_format({
+            'align': 'center',
+            'valign': 'vcenter', 
+            'text_wrap': True,
+            'bold': True,
+            'font_color': 'blue'
+        })
+        
+        # Row 2: "Annualized Return" header  
+        self.ws_sum.merge_range(2, extra_col, 2, extra_col + 2, "Annualized Return", label_fmt)
+        
+        # Row 3: The actual annualized return value
+        if hasattr(self, 'final_annualized') and self.final_annualized is not None:
+            fmt = self.fmt_percent_pos_bold if self.final_annualized >= 0 else self.fmt_percent_neg_bold
+            self.ws_sum.write(3, extra_col, self.final_annualized, fmt)
+            
+        # Row 4: Blank gap
+        
+        # Row 5: "Note:" heading
+        self.ws_sum.merge_range(5, extra_col, 5, extra_col + 2, "Note:", self.merge_format)
+        
+        # Rows 6-7: Age explanation
+        content1 = "1. #0 refer to current age."
+        self.ws_sum.merge_range(6, extra_col, 7, extra_col + 2, content1, self.merge_format)
+        
+        # Rows 8-9: Return explanation
+        content2 = "2. Annualized return means earning the same steady percentage each year. Example: 33.1% in 3 years = about 10% annualized return."
+        self.ws_sum.merge_range(8, extra_col, 9, extra_col + 2, content2, self.merge_format)
 
-        # expenses Note
-
+        # Expenses Note
         total_exp = len(self.expenses.expenses)
         '''
         content="Note1: \n1. What is shown is to be withdrawed amount for coming year expenses \n2. This is to match the 'Next Year Expenses' in Summary Sheet"

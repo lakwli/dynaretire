@@ -13,11 +13,13 @@ class Article(Content):
         type: Always 'article' to distinguish from blog posts
         updated_at: Last update timestamp
         image: Optional main image URL for the article
+        canonical_path: Optional canonical URL for SEO purposes
     """
     path: str
     type: str  # Always 'article'
     updated_at: datetime
     image: Optional[str] = None
+    canonical_path: Optional[str] = None
 
     def to_dict(self) -> dict:
         """Convert the article to a dictionary."""
@@ -29,7 +31,8 @@ class Article(Content):
             'type': self.type,
             'updated_at': self.updated_at,
             'keywords': self.keywords,
-            'image': self.image
+            'image': self.image,
+            'canonical_path': self.canonical_path
         }
 
     @classmethod
@@ -50,5 +53,6 @@ class Article(Content):
             content=content,
             type='article',
             updated_at=datetime.fromisoformat(frontmatter['updated_at']),
-            image=frontmatter.get('image')
+            image=frontmatter.get('image'),
+            canonical_path=frontmatter.get('canonical_path') # Add canonical path from frontmatter if exists
         )

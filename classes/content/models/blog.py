@@ -24,6 +24,7 @@ class Blog(Content):
         card_image: Optional image URL for card preview
         is_featured: Whether this is a featured post
         priority: Priority level of the blog post (0-100)
+        canonical_path: Optional canonical URL for SEO purposes
     """
     id: str
     category: str
@@ -35,6 +36,7 @@ class Blog(Content):
     priority: int = 0
     status: BlogStatus = BlogStatus.DRAFT
     url_slug: Optional[str] = None  # Custom URL slug, if None will use slugified title
+    canonical_path: Optional[str] = None
 
     def to_dict(self) -> dict:
         """Convert the blog post to a dictionary."""
@@ -54,7 +56,8 @@ class Blog(Content):
             'custom_css_file': self.custom_css_file,
             'custom_styles': self.custom_styles,
             'status': self.status.value,
-            'url_slug': self.url_slug
+            'url_slug': self.url_slug,
+            'canonical_path': self.canonical_path
         }
 
     @classmethod

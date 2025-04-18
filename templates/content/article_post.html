@@ -8,6 +8,7 @@
 {% block og_description %}{{ article.description }}{% endblock %}
 
 {% block additional_meta %}
+    <link rel="canonical" href="{{ article.canonical_path or request.url }}">
     <meta property="article:modified_time" content="{{ article.updated_at }}">
     {% for keyword in article.keywords %}
     <meta property="article:tag" content="{{ keyword }}">
