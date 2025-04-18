@@ -41,6 +41,10 @@ class ArticleHtmlRepository:
             content_div = soup.find('div', {'class': 'article-content'})
             if not content_div:
                 raise ValueError("No content div found in HTML file")
+
+            # Extract canonical URL from meta tag
+            canonical_tag = soup.find('meta', {'name': 'canonical-url'})
+            canonical_path = canonical_tag['content'] if canonical_tag and 'content' in canonical_tag.attrs else None
             
             # Get article path relative to content dir
             rel_path = str(file_path.relative_to(self.content_dir)).replace('.html', '')
@@ -63,7 +67,8 @@ class ArticleHtmlRepository:
                 keywords=metadata.get('keywords', []),
                 image=metadata.get('image'),
                 custom_css_file=metadata.get('custom_css_file'),
-                custom_styles=metadata.get('custom_styles')
+                custom_styles=metadata.get('custom_styles'),
+                canonical_path=canonical_path # Add the extracted canonical path
             )
         except Exception as e:
             print(f"Error parsing HTML file {file_path}: {e}")
@@ -80,13 +85,17 @@ class ArticleHtmlRepository:
             'image': article.image,
             'custom_css_file': article.custom_css_file,
             'custom_styles': article.custom_styles
+            # Note: canonical_path is not stored in JSON metadata, but directly in HTML meta tag
         }
+
+        canonical_meta_tag = f'<meta name="canonical-url" content="{article.canonical_path}">' if article.canonical_path else ''
         
         html_template = f'''<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {canonical_meta_tag}
     <title>{article.title}</title>
     <script id="article-metadata" type="application/json">
     {json.dumps(metadata, indent=2)}

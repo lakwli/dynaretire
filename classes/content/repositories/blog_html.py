@@ -77,6 +77,10 @@ class BlogHtmlRepository(BlogRepository):
             content_div = soup.find('div', {'class': 'post-content'})
             if not content_div:
                 raise ValueError("No content div found in HTML file")
+
+            # Extract canonical URL from meta tag
+            canonical_tag = soup.find('meta', {'name': 'canonical-url'})
+            canonical_path = canonical_tag['content'] if canonical_tag and 'content' in canonical_tag.attrs else None
             
             # Get post ID from filename (NNN-slug.html -> NNN)
             post_id = file_path.stem.split('-', 1)[0]
@@ -109,7 +113,8 @@ class BlogHtmlRepository(BlogRepository):
                 custom_css_file=metadata.get('custom_css_file'),
                 custom_styles=metadata.get('custom_styles'),
                 status=metadata.get('status', 'published'),
-                url_slug=url_slug
+                url_slug=url_slug,
+                canonical_path=canonical_path # Add the extracted canonical path
             )
         except Exception as e:
             print(f"Error parsing HTML file {file_path}: {e}")
@@ -131,13 +136,17 @@ class BlogHtmlRepository(BlogRepository):
             'custom_styles': post.custom_styles,
             'status': post.status.value,
             'url_slug': post.url_slug
+            # Note: canonical_path is not stored in JSON metadata, but directly in HTML meta tag
         }
+
+        canonical_meta_tag = f'<meta name="canonical-url" content="{post.canonical_path}">' if post.canonical_path else ''
         
         html_template = f'''<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {canonical_meta_tag}
     <title>{post.title}</title>
     <script id="post-metadata" type="application/json">
     {json.dumps(metadata, indent=2)}

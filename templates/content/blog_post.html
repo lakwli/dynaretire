@@ -8,6 +8,7 @@
 {% block og_description %}{{ blog.description }}{% endblock %}
 
 {% block additional_meta %}
+    <link rel="canonical" href="{{ blog.canonical_path or request.url }}">
     <meta property="article:published_time" content="{{ blog.date }}">
     <meta property="article:section" content="{{ blog.category }}">
     {% for keyword in blog.keywords %}
