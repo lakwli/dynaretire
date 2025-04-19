@@ -7,7 +7,7 @@
 #
 # Optional (shown with defaults):
 #   export DOCKER_PORT=5000       # App will be at localhost:5000
-#   export DEPLOY_NAME=dynaretire # Container name (affects log directory)
+#   export DEPLOY_NAME=numberwalk # Container name (affects log directory)
 #   export LOG_DIR=/var/log      # Where to store logs on your host machine
 #
 # Example deployment:
@@ -27,7 +27,7 @@
 
 # Settings
 IMAGE_NAME="ghcr.io/lakwli/dynaretire:latest"   # Fixed image path
-CONTAINER_NAME="${DEPLOY_NAME:-dynaretire}"      # Container name
+CONTAINER_NAME="${DEPLOY_NAME:-numberwalk}"      # Container name
 PORT="${DOCKER_PORT:-5000}"                      # Host port mapping
 LOG_ROOT="${LOG_DIR:-/var/log}"                 # Parent log directory
 HOST_LOGS="${LOG_ROOT}/${CONTAINER_NAME}"       # Container-specific logs
