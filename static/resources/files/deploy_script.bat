@@ -8,7 +8,7 @@ setlocal enabledelayedexpansion
 ::
 :: Optional (shown with defaults):
 ::   set DOCKER_PORT=5000       # App will be at localhost:5000
-::   set DEPLOY_NAME=dynaretire # Container name (affects log directory)
+::   set DEPLOY_NAME=numberwalk # Container name (affects log directory)
 ::   set LOG_DIR=C:\logs       # Where to store logs on your host machine
 ::
 :: Example deployment:
@@ -28,7 +28,7 @@ setlocal enabledelayedexpansion
 
 :: Settings
 set IMAGE_NAME=ghcr.io/lakwli/dynaretire:latest
-if "%DEPLOY_NAME%"=="" set DEPLOY_NAME=dynaretire
+if "%DEPLOY_NAME%"=="" set DEPLOY_NAME=numberwalk
 if "%DOCKER_PORT%"=="" set DOCKER_PORT=5000
 if "%LOG_DIR%"=="" set LOG_DIR=C:\logs
 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Will My Money Last Through Retirement?</title>
+    <script id="article-metadata" type="application/json">
+      {
+        "title": "Will My Money Last Through Retirement?",
+        "description": "Let's find out if your money will last through retirement with DynaRetire",
+        "type": "article",
+        "updated_at": "2025-04-18T10:00:00Z",
+
+        "card_image": "/content/articles/assets/images/tutorial/dynaretire-how-to-go-to-different-step.svg",
+        "custom_styles": ""
+      }
+    </script>
+  </head>
+  <body>
+    <article>
+      <div class="article-content">
+        <p>
+            Let's find out how long your money might last. 
+            Imagine you have 
+            <input type="number" id="money" value="500000" style="width: 100px;"> 
+            dollars saved, and plan to withdraw 
+            <input type="number" id="expenses" value="30000" style="width: 100px;"> 
+            per year to cover your living expenses. 
+          </p>
+          
+          <p>
+            Each year, your expenses grow due to inflation. 
+            Let's assume an annual inflation rate of 
+            <input type="number" id="inflation" value="3.0" step="0.1" style="width: 60px;">%.
+          </p>
+          
+          <p>
+            Based on this, your money will last approximately 
+            <strong id="result">?</strong> years.
+          </p>
+          
+          <button onclick="calculate()">Calculate</button>
+
+      </div>
+    </article>
+  </body>
+</html>

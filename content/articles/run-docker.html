@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>How-To Run DynaRetire Locally</title>
+    <title>How-To Run NumberWalk Locally</title>
     <script id="article-metadata" type="application/json">
       {
-        "title": "How-To Run DynaRetire Locally",
-        "description": "Learn how to run DynaRetire on your own computer using Docker. This step-by-step guide helps non-technical users set up and use DynaRetire locally for better privacy and offline access.",
+        "title": "How-To Run NumberWalk Locally",
+        "description": "Learn how to run NumberWalk on your own computer using Docker. This step-by-step guide helps non-technical users set up and use NumberWalk locally for better privacy and offline access.",
         "type": "article",
         "updated_at": "2025-04-10T10:00:00Z",
 
-        "card_image": "/content/articles/assets/images/tutorial/dynaretire-how-to-go-to-different-step.svg",
+        "card_image": "/content/articles/assets/images/tutorial/numberwalk-how-to-go-to-different-step.svg",
         "custom_styles": ""
       }
     </script>
@@ -20,10 +20,10 @@
     <article>
       <div class="article-content">
         
-        <p>Docker allows you to run DynaRetire locally on your own computer without needing to access the website. This guide will walk you through installing Docker and setting up DynaRetire on your personal machine.</p>
+        <p>Docker allows you to run NumberWalk locally on your own computer without needing to access the website. This guide will walk you through installing Docker and setting up NumberWalk on your personal machine.</p>
 
         <div class="key-info">
-          <p><strong>What you'll get:</strong> A private copy of DynaRetire running on your computer that works even without internet access and keeps your financial data completely private.</p>
+          <p><strong>What you'll get:</strong> A private copy of NumberWalk running on your computer that works even without internet access and keeps your financial data completely private.</p>
         </div>
 
         <h2 data-toc-text="Installing Docker">Part 1: Installing Docker on Your Computer</h2>
@@ -80,7 +80,7 @@
          
         <p>Visit the <a href="https://docs.docker.com/engine/install/" target="_blank">Docker's official installation guide for Linux</a> and select your distribution for specific instructions.</p>
 
-        <h2 data-toc-text="Running DynaRetire Locally">Part 2: Running DynaRetire Using Script</h2>
+        <h2 data-toc-text="Running NumberWalk Locally">Part 2: Running NumberWalk Using Script</h2>
         
         <p>The deployment script handles all technical details automatically. Here's how to use it:</p>
 
@@ -92,19 +92,19 @@
         </ul>
 
         <h3 data-toc-text="Optional Settings">Step 2: Optional Settings</h3>
-        <p>You can customize how DynaRetire runs on your computer by setting these optional environment variables:</p>
+        <p>You can customize how NumberWalk runs on your computer by setting these optional environment variables:</p>
 
         <h4 data-toc-skip>For Windows users:</h4>
         <div class="code-block">
           <pre><code class="language-batch">set DOCKER_PORT=5000       # App will run on localhost:5000
-set DEPLOY_NAME=dynaretire # Container name
+set DEPLOY_NAME=numberwalk # Container name
 set LOG_DIR=C:\logs       # Where to store logs</code></pre>
         </div>
 
         <h4 data-toc-skip>For Mac and Linux users:</h4>
         <div class="code-block">
           <pre><code class="language-bash">export DOCKER_PORT=5000      # App will run on localhost:5000
-export DEPLOY_NAME=dynaretire # Container name
+export DEPLOY_NAME=numberwalk # Container name
 export LOG_DIR=/var/log      # Where to store logs</code></pre>
         </div>
 
@@ -127,11 +127,11 @@ chmod +x deploy_script.sh
 ./deploy_script.sh</code></pre>
         </div>
 
-        <h3 data-toc-text="Accessing the App">Step 4: Access DynaRetire</h3>
+        <h3 data-toc-text="Accessing the App">Step 4: Access NumberWalk</h3>
         <ul>
           <li>Once the script completes successfully, open your web browser</li>
           <li>Go to: <strong>http://localhost:5000</strong> (or the port you specified)</li>
-          <li>You should now see DynaRetire running locally on your computer!</li>
+          <li>You should now see NumberWalk running locally on your computer!</li>
         </ul>
 
         <div class="key-info">
@@ -143,37 +143,37 @@ chmod +x deploy_script.sh
         <p>If you encounter issues, you can check the log files to see what happened:</p>
         
         <ul>
-          <li>For Windows: Look in <code>C:\logs\dynaretire\</code> (or the folder you specified with LOG_DIR environment variable)</li>
-          <li>For Mac/Linux: Look in <code>/var/log/dynaretire/</code> (or the folder you specified with LOG_DIR environment variable)</li>
+          <li>For Windows: Look in <code>C:\logs\numberwalk\</code> (or the folder you specified with LOG_DIR environment variable)</li>
+          <li>For Mac/Linux: Look in <code>/var/log/numberwalk/</code> (or the folder you specified with LOG_DIR environment variable)</li>
           <li>You can view the logs with any text editor or using these commands:</li>
         </ul>
         
         <h4 data-toc-skip>For Windows users:</h4>
         <div class="code-block">
-          <pre><code class="language-powershell">type C:\logs\dynaretire\app.log           # View application logs
-type C:\logs\dynaretire\error.log         # View error logs
-findstr "ERROR" "C:\logs\dynaretire\*.log" # Search for errors in all logs</code></pre>
+          <pre><code class="language-powershell">type C:\logs\numberwalk\app.log           # View application logs
+type C:\logs\numberwalk\error.log         # View error logs
+findstr "ERROR" "C:\logs\numberwalk\*.log" # Search for errors in all logs</code></pre>
         </div>
 
         <h4 data-toc-skip>For Mac and Linux users:</h4>
         <div class="code-block">
-          <pre><code class="language-bash">tail -f /var/log/dynaretire/app.log    # View live application logs
-less /var/log/dynaretire/error.log     # Browse error logs</code></pre>
+          <pre><code class="language-bash">tail -f /var/log/numberwalk/app.log    # View live application logs
+less /var/log/numberwalk/error.log     # Browse error logs</code></pre>
         </div>
 
-        <h2 data-toc-text="Managing DynaRetire">Stopping and Starting DynaRetire</h2>
+        <h2 data-toc-text="Managing NumberWalk">Stopping and Starting NumberWalk</h2>
         
-        <p>To stop DynaRetire:</p>
+        <p>To stop NumberWalk:</p>
         
         <h4 data-toc-skip>For all users:</h4>
         <div class="code-block">
-          <pre><code class="language-bash">docker stop dynaretire</code></pre>
+          <pre><code class="language-bash">docker stop numberwalk</code></pre>
         </div>
 
         <p>To restart it later:</p>
         
         <div class="code-block">
-          <pre><code class="language-bash">docker start dynaretire</code></pre>
+          <pre><code class="language-bash">docker start numberwalk</code></pre>
         </div>
 
         <h2 data-toc-text="Troubleshooting">Troubleshooting Common Issues</h2>
@@ -185,7 +185,7 @@ less /var/log/dynaretire/error.log     # Browse error logs</code></pre>
           <li>On Windows, you might need to enable virtualization in your BIOS settings</li>
         </ul>
 
-        <h3 data-toc-text="Access Problems">If you can't access DynaRetire at localhost:5000:</h3>
+        <h3 data-toc-text="Access Problems">If you can't access NumberWalk at localhost:5000:</h3>
         <ul>
           <li>Make sure Docker is running (look for the whale icon in your taskbar)</li>
           <li>Check if the script finished successfully without error messages</li>
@@ -199,16 +199,16 @@ less /var/log/dynaretire/error.log     # Browse error logs</code></pre>
         <p>If you continue to experience issues, please:</p>
         <ul>
           <li>Take a screenshot of any error messages</li>
-          <li>Contact support at support@dynaretire.com</li>
+          <li>Contact support at support@numberwalk.com</li>
           <li>Include the log files if possible</li>
         </ul>
 
-        <h2 data-toc-text="Benefits">Benefits of Running DynaRetire Locally</h2>
+        <h2 data-toc-text="Benefits">Benefits of Running NumberWalk Locally</h2>
         <ul>
           <li><strong>Privacy:</strong> Your financial data stays on your computer</li>
-          <li><strong>Offline Access:</strong> Use DynaRetire even without internet connection</li>
+          <li><strong>Offline Access:</strong> Use NumberWalk even without internet connection</li>
           <li><strong>Performance:</strong> Faster response times than the web version</li>
-          <li><strong>Availability:</strong> Use DynaRetire even when the website is undergoing maintenance</li>
+          <li><strong>Availability:</strong> Use NumberWalk even when the website is undergoing maintenance</li>
         </ul>
 
       </div>

@@ -3,4 +3,4 @@ Allow: /
 Disallow: /home.html
 Disallow: /static/resources/files/
 
-Sitemap: https://dynaretire.app/sitemap.xml
+Sitemap: https://numberwalk.com/sitemap.xml
