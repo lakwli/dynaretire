@@ -3,8 +3,8 @@
     /* Core Colors */
     --brand-color: #41B4B3;          /* Refined turquoise */
     --brand-color-hover: #3AA3A2;    /* Brand hover state */
-    --cta-color: #FF6B35;           /* Original orange */
-    --cta-color-hover: #FF7B4A;     /* CTA hover state */
+    --cta-color: #2D74C4;           /* Professional blue */
+    --cta-color-hover: #2666B0;     /* Blue hover state */
     --secondary-color: #424849;      /* Warmer gray */
     --accent-color: #293132;         /* Original dark accent */
     --background-light: #f8fafc;     /* Original background */
@@ -133,7 +133,7 @@ p {
 }
 
 .nav-cta:hover {
-    background: var(--brand-color-hover); /* Match primary button hover */
+    background: var(--cta-color-hover); /* Match primary button hover */
     transform: translateY(-2px);
 }
 
@@ -887,7 +887,7 @@ p {
 }
 
 .primary-button:hover {
-    background: var(--brand-color-hover);
+    background: var(--cta-color-hover);
     transform: translateY(-2px);
 }
 
@@ -1035,7 +1035,7 @@ p {
 
 .footer-cta:hover {
     transform: translateY(-2px); /* Match primary button hover */
-    background: var(--brand-color-hover); /* Match primary button hover */
+    background: var(--cta-color-hover); /* Match primary button hover */
     /* Removed box-shadow to match primary button hover */
 }
 
