@@ -1,4 +1,4 @@
-# DynaRetire
+# NumberWalk
 
 A dynamic retirement planning application that helps users plan and manage their retirement strategy.
 
@@ -27,7 +27,7 @@ Note: Node.js is only required during development for compiling SCSS files. The 
 1. Clone the repository:
 ```bash
 git clone <repository-url>
-cd dynaretire
+cd numberwalk
 ```
 
 2. Install Python dependencies:
@@ -75,7 +75,7 @@ docker-compose up --build
 ## Project Structure
 
 ```
-dynaretire/
+numberwalk/
 ├── app.py                 # Main application entry point
 ├── core/                  # Core business logic
 │   ├── account.py
@@ -99,7 +99,7 @@ The application uses a structured logging system that works in both development 
 
 ```
 Development:
-dynaretire/
+numberwalk/
   └── logs/
       ├── app.log      # General application logs (daily rotation)
       ├── error.log    # Error-specific logs (size-based rotation)
@@ -162,7 +162,7 @@ export DOCKER_TOKEN=your_github_token
 # Choose port number (default: 5000)
 export DOCKER_PORT=5001           # App will be available at localhost:5001
 
-# Choose container name (default: dynaretire)
+# Choose container name (default: numberwalk)
 export DEPLOY_NAME=myretireapp    # Container and log volume will use this name
 ```
 
@@ -174,15 +174,15 @@ export DEPLOY_NAME=myretireapp    # Container and log volume will use this name
 4. **Viewing Logs**:
 ```bash
 # If using default container name
-docker exec dynaretire tail -f logs/app.log     # Application logs
-docker exec dynaretire tail -f logs/error.log   # Error logs
+docker exec numberwalk tail -f logs/app.log     # Application logs
+docker exec numberwalk tail -f logs/error.log   # Error logs
 
 # If using custom container name
 docker exec myretireapp tail -f logs/app.log    # Replace with your DEPLOY_NAME
 ```
 
 The script will:
-- Pull the official image (`ghcr.io/lakwli/dynaretire:latest`)
+- Pull the official image (`ghcr.io/lakwli/numberwalk:latest`)
 - Create a dedicated log volume named `{DEPLOY_NAME}_logs`
 - Run container with your chosen name and port
 - Configure automatic log rotation and cleanup
