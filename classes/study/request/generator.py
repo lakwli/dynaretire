@@ -41,7 +41,7 @@ def generate_min_spend_study() -> Dict:
     return {
         "name": "min_spending_analysis",
         "description": "Testing impact of different minimum spending rates",
-        "base_input_file": "static/resources/files/martin.dynaretire.json",
+        "base_input_file": "static/resources/files/martin.numberwalk.json",
         "result_directory": "results/min_spend_study",
         "scenarios": [
             {

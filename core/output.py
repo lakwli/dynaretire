@@ -25,7 +25,7 @@ class Output():
 class Excel (Output):
     separate_sheets = True
     SEC_SUM = "Summary"
-    SEC_LIQ = "Retirement Funds"
+    SEC_LIQ = "Funds"
     SEC_EXP = "Expenses"
     SEC_INC = "Cash-in Incomes"
 
@@ -96,13 +96,13 @@ class Excel (Output):
         
         self.workbook.set_properties(
             {
-                "title": "This is an excel generated from Retirement Fund Sustainability Calculator Program",
-                "subject": "Retirement Fund Sustainability Calculator",
+                "title": "This is an excel generated from Funds Sustainability Calculator Program",
+                "subject": "Fund Sustainability Calculator",
                 "author": "Lau Kwai Ling",
                 "manager": "-",
                 "company": "-",
                 "category": "Calculator",
-                "keywords": "Retirement",
+                "keywords": "Financial Independence",
                 "comments": "For Personal Own Used Only",
                 "status": "Testing",
             }
@@ -151,7 +151,7 @@ class Excel (Output):
             self.ws_sum.write_comment(
                 row, 3, "Beginning year of balance. Same as EOY BAL of previous year")
             self.ws_sum.write_comment(row, 7 if self.isPaymentAtBegin else 4,
-                                      "Profit and Loss based on investment return. Refer to Retirement Funds sheet for detail")
+                                      "Profit and Loss based on investment return. Refer to Funds sheet for detail")
             if (self.isPaymentAtBegin):
                 self.ws_sum.write_comment(
                     row, 5, "BOY BAL AFTER BOY EXPENSES = BOY BAL deduct Expenses")
@@ -310,7 +310,7 @@ class Excel (Output):
                 self.ws_liq.write(start_row, col.next(),
                                   acct.rebal_amount, self.fmt_currency_liq_flow)
                 if (acct.rebal_pause_option != None):
-                    comment_text = "Rebalance paused because the personal annualized return since retirement year has fallen below the set threshold.  This pause was activated based on user-selected settings"
+                    comment_text = "Rebalance paused because the personal annualized return since target 'finanical independence' year has fallen below the set threshold.  This pause was activated based on user-selected settings"
                     self.ws_liq.write_comment(
                         start_row, col.value, comment_text, 
                         {'width': 150, 'height': 30, 'x_scale': 2, 'y_scale': 2})
@@ -351,7 +351,7 @@ class Excel (Output):
                 if expense.is_min_applied:
                     self.ws_exp.write(start_row, col, expense.get_yearly_amount(
                         year_num+1), self.fmt_currency_exp_min)  # +1  for next year
-                    comment_text = "Expense reduced to " + "{:,.0f}".format(expense.get_yearly_amount(year_num+1)) + " (which is " + str(expense.reduction_rate*100) + "% of the original amount: " + "{:,.0f}".format(expense.get_orig_yearly_amount(year_num+1)) + "). This reduction was triggered because personal investment annualized returns since retirement year have fallen below the minimum threshold setting."
+                    comment_text = "Expense reduced to " + "{:,.0f}".format(expense.get_yearly_amount(year_num+1)) + " (which is " + str(expense.reduction_rate*100) + "% of the original amount: " + "{:,.0f}".format(expense.get_orig_yearly_amount(year_num+1)) + "). This reduction was triggered because personal investment annualized returns since target 'financial independence' year have fallen below the minimum threshold setting."
                     self.ws_exp.write_comment(cell, comment_text, 
                         {'width': 160, 'height': 40, 'x_scale': 2, 'y_scale': 1.5})
                 else:
@@ -378,7 +378,7 @@ class Excel (Output):
                                       "["+name+"]", self.fmt_title_number)
                     if acc.deposit_account != None:
                         self.ws_inc.write_comment(
-                            row, col, "Deposit to "+acc.deposit_account.name+" Fund ONLY. Refer to EPF in Retirement Funds Sheet")
+                            row, col, "Deposit to "+acc.deposit_account.name+" Fund ONLY. Refer to Funds Sheet")
                     col += 1
                 self.ws_inc.write(row, col, "           Total",
                                   self.fmt_title_number)

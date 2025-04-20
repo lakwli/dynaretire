@@ -1,7 +1,7 @@
 # A very simple Flask Hello World app for you to get started with...
 #FLASK_DEBUG=1 FLASK_APP=app.py flask run --host=0.0.0.0 --port=5005
 #tail -f /logs/app.log 
-#git config --global --add safe.directory /workspaces/dynaretire 
+#git config --global --add safe.directory /workspaces/numberwalk 
 
 from flask import Flask, render_template, request, jsonify, send_file, Response, session, send_from_directory, redirect, url_for, abort, after_this_request
 from werkzeug.security import safe_join
@@ -108,7 +108,7 @@ def planSubmit():
         plan_data = j.Plan_Data.from_json(data)
 
         random_number = str(random.randint(1000, 9999))
-        fileGivenName=f"dynaretireResult{random_number}"
+        fileGivenName=f"numberwalkResult{random_number}"
 
         logger.debug("Processing input data...")
         i=ij.InputJson(plan_data)
@@ -188,5 +188,5 @@ def robots():
     return send_from_directory('static', 'robots.txt')
 
 if __name__ == '__main__':
-    logger.info("Starting DynaRetire application")
+    logger.info("Starting NumberWalk application")
     app.run(debug=True)
