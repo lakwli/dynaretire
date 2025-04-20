@@ -174,6 +174,11 @@ def strategic():
 def privacy():
     return render_template('marketing/privacy.html')
 
+@app.route('/<path:path>.html')
+def redirect_html_to_clean_url(path):
+    # Redirect to the same path without .html
+    return redirect(f'/{path}', code=301)
+
 @app.route('/sitemap.xml')
 def sitemap():
     return send_from_directory('static', 'sitemap.xml', mimetype='application/xml')
