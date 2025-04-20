@@ -19,7 +19,7 @@ class InMemoryBlogRepository(BlogRepository):
                 content='''
                     <h2>Understanding Early Retirement Reality</h2>
                     
-                    <p>Many people believe that early retirement is only possible for the wealthy elite or requires extreme frugality. However, the reality is much different. With proper planning, strategic investing, and smart lifestyle choices, early retirement can be achievable for many individuals. The key lies in understanding your expenses, building multiple income streams, and making informed decisions about your investments. Using tools like DynaRetire can help you visualize and plan your path to early retirement while maintaining a comfortable lifestyle.</p>
+                    <p>Many people believe that early retirement is only possible for the wealthy elite or requires extreme frugality. However, the reality is much different. With proper planning, strategic investing, and smart lifestyle choices, early retirement can be achievable for many individuals. The key lies in understanding your expenses, building multiple income streams, and making informed decisions about your investments. Using tools like NumberWalk can help you visualize and plan your path to early retirement while maintaining a comfortable lifestyle.</p>
                 ''',
                 category="Early Retirement",
                 date=datetime(2025, 3, 16),

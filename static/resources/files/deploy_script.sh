@@ -26,7 +26,7 @@
 #######################################
 
 # Settings
-IMAGE_NAME="ghcr.io/lakwli/dynaretire:latest"   # Fixed image path
+IMAGE_NAME="ghcr.io/lakwli/numberwalk:latest"   # Fixed image path
 CONTAINER_NAME="${DEPLOY_NAME:-numberwalk}"      # Container name
 PORT="${DOCKER_PORT:-5000}"                      # Host port mapping
 LOG_ROOT="${LOG_DIR:-/var/log}"                 # Parent log directory

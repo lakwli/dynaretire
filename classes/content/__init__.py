@@ -1,5 +1,5 @@
 """
-Blog management package for DynaRetire.
+Blog management package for NumberWalk.
 Provides a clean interface for managing blog posts and articles.
 """
 

@@ -1,4 +1,4 @@
-#cd /workspaces/dynaretire && rm -rf results/* && ENABLE_CONSOLE_OUTPUT=true PYTHONPATH=/workspaces/dynaretire python tests/test_request.py
+#cd /workspaces/numberwalk && rm -rf results/* && ENABLE_CONSOLE_OUTPUT=true PYTHONPATH=/workspaces/numberwalk python tests/test_request.py
 """Integration tests for retirement plan study functionality"""
 from classes.study.request.generator import StudyGenerator, generate_min_spend_study
 

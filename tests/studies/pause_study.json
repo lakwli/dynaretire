@@ -1,7 +1,7 @@
 {
   "name": "pause_strategy_analysis",
   "description": "Analyzing different pause strategies to understand their impact on portfolio sustainability",
-  "base_input_file": "static/resources/files/martin.dynaretire.json",
+  "base_input_file": "static/resources/files/martin.numberwalk.json",
   "result_directory": "results/pause_strategies",
   "scenarios": [
     {

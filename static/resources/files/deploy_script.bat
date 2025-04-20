@@ -27,7 +27,7 @@ setlocal enabledelayedexpansion
 ::######################################
 
 :: Settings
-set IMAGE_NAME=ghcr.io/lakwli/dynaretire:latest
+set IMAGE_NAME=ghcr.io/lakwli/numberwalk:latest
 if "%DEPLOY_NAME%"=="" set DEPLOY_NAME=numberwalk
 if "%DOCKER_PORT%"=="" set DOCKER_PORT=5000
 if "%LOG_DIR%"=="" set LOG_DIR=C:\logs
