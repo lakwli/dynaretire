@@ -74,7 +74,7 @@ p {
 }
 
 .logo-img {
-    height: 60px;
+    height: 38px;
     width: auto;
 }
 
@@ -129,6 +129,7 @@ p {
     text-decoration: none;
     border-radius: 6px;
     font-weight: 500;
+    font-size: 0.9rem; /* Explicitly set */
     transition: all 0.3s ease;
 }
 
@@ -155,9 +156,17 @@ p {
 .hero h1 {
     font-size: 3.5rem;
     margin-bottom: 1.5rem;
-    max-width: 800px;
+    max-width: 800px; /* Standard content block width */
     margin-left: auto;
     margin-right: auto;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem; /* Standardized */
+    color: var(--secondary-color);
+    max-width: 800px; /* Standardized width */
+    margin: 0 auto 3rem;
+    line-height: 1.6;
 }
 
 .hero-cta {
@@ -189,20 +198,20 @@ p {
 }
 
 .benefit-item h3 {
-    font-size: 2rem;
+    font-size: 1.5rem; /* Standardized card title */
     color: var(--accent-color);
     margin-bottom: 0.5rem;
 }
 
 .benefit-item p {
-    min-height: 60px;
     display: flex;
     align-items: center;
     color: var(--text-color);
     opacity: 0.85;
-  }
+    font-size: 0.95rem; /* Standardized card description */
+}
 
-  .phase-label {
+.phase-label {
     font-size: 0.5rem;
     color: var(--brand-color);
     text-transform: uppercase;
@@ -210,7 +219,7 @@ p {
     margin-bottom: 0.5rem;
     font-weight: 600;
     display: block;
-  }
+}
 
 /* Expenses Section */
 .features-section {
@@ -220,19 +229,53 @@ p {
     overflow: hidden;
 }
 
-.features-section::before {
-    content: '';
-    position: absolute;
-    top: 200px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--background-light);
-    z-index: -1;
-}
-
 .features-section .feature-item {
     background: white;
+}
+
+/* Data Control Section */
+.data-control-section {
+  padding: 8rem 0 6rem;
+  background: white;
+  position: relative;
+}
+
+/* Advanced Features Section */
+.advanced-features {
+    padding: 8rem 0 6rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Footer Styles */
+.footer {
+    padding: 80px 24px 120px;
+    background: white; /* Ensure white background */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Mission Section */
+.mission-section {
+  padding: 8rem 0 6rem;
+  background: white; /* Ensure white background */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Grouped ::before selector */
+.features-section::before,
+.why-section::before, /* Added */
+.comparison-section::before, /* Added */
+.advanced-features::before {
+  content: '';
+  position: absolute;
+  top: 200px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--background-light);
+  z-index: -1;
 }
 
 .features-section .container {
@@ -254,9 +297,9 @@ p {
 }
 
 .hero-subtitle {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     color: var(--secondary-color);
-    max-width: 700px;
+    max-width: 800px; /* Standardized width */
     margin: 0 auto 3rem;
     line-height: 1.6;
 }
@@ -266,7 +309,6 @@ p {
     color: var(--secondary-color);
     line-height: 1.5;
     opacity: 0.9;
-    max-width: 700px; /* Standardized */
     margin: 0 auto 3rem; /* Standardized */
     font-size: 1.1rem; /* Standardized */
     line-height: 1.6; /* Standardized */
@@ -280,7 +322,7 @@ p {
     color: var(--secondary-color);
     line-height: 1.6; /* Standardized */
     opacity: 0.9; /* Keep subtle fade */
-    max-width: 700px; /* Standardized */
+    max-width: 800px; /* Standardized width */
     margin: 0 auto 3rem; /* Standardized bottom margin */
     text-align: center; /* Ensure centered */
 }
@@ -679,17 +721,6 @@ p {
   position: relative;
 }
 
-.data-control-section::before {
-  content: '';
-  position: absolute;
-  top: 200px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--background-light);
-  z-index: -1;
-}
-
 /* Add this to match the why-section h2 styling */
 .data-control-section h2 {
   text-align: center;
@@ -699,7 +730,7 @@ p {
 }
 
 .data-control-infographic {
-  max-width: 900px;
+  
   margin: 3rem auto 4rem;
   text-align: center;
   background: white;
@@ -728,7 +759,7 @@ p {
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   text-align: center;
   border-top: 4px solid var(--brand-color);
-  max-width: 800px;
+  max-width: 800px; /* Standard content block width */
   margin-left: auto;
   margin-right: auto;
 }
@@ -736,7 +767,7 @@ p {
 .data-control-highlight h3 {
   margin-bottom: 1rem;
   color: var(--accent-color);
-  font-size: 1.5rem;
+  font-size: 1.5rem; /* Standardized card title */
 }
 
 .data-control-highlight p {
@@ -762,7 +793,9 @@ p {
 /* Why Section */
 .why-section { /* Corrected typo */
     padding: 8rem 0 6rem;
-    background: white;
+    /* background: white; */ /* Removed */
+    position: relative; /* Added for z-index context */
+    z-index: 1; /* Added for stacking context */
 }
 
 .why-section h2 { /* Corrected typo */
@@ -801,13 +834,19 @@ p {
 
 .why-card h3 {
     margin-bottom: 1rem;
-    font-size: 1.5rem;
+    font-size: 1.5rem; /* Standardized card title */
+}
+
+.why-card p {
+    font-size: 0.95rem; /* Standardized card description */
+    color: var(--secondary-color); /* Ensure color consistency */
+    line-height: 1.6; /* Ensure line-height consistency */
 }
 
 /* comparison-section Section */
 .comparison-section {
     padding: 8rem 0 6rem;
-    background: white;
+    /* background: white; */ /* Removed */
     position: relative;
     z-index: 1;
 }
@@ -902,17 +941,6 @@ p {
     overflow: hidden;
 }
 
-.advanced-features::before {
-    content: '';
-    position: absolute;
-    top: 200px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--background-light);
-    z-index: -1;
-}
-
 .advanced-features h2 {
     text-align: center;
     font-size: 2.5rem;
@@ -943,7 +971,13 @@ p {
 
 .advanced-card h3 {
     margin-bottom: 1rem;
-    font-size: 1.25rem;
+    font-size: 1.5rem; /* Standardized card title */
+}
+
+.advanced-card p {
+    font-size: 0.95rem; /* Standardized card description */
+    color: var(--secondary-color); /* Ensure color consistency */
+    line-height: 1.6; /* Ensure line-height consistency */
 }
 
 /* CTA Section */
@@ -993,19 +1027,9 @@ p {
 /* Footer Styles */
 .footer {
     padding: 80px 24px 120px;
+    background: white; /* Ensure white background */
     position: relative;
     overflow: hidden;
-}
-
-.footer::before {
-    content: '';
-    position: absolute;
-    top: 200px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--background-light);
-    z-index: -1;
 }
 
 .footer-wrapper {
@@ -1286,28 +1310,18 @@ p {
     font-size: 0.95rem;
     line-height: 1.6;
     margin: 2rem auto 0;
-    max-width: 800px;
+    max-width: 800px; /* Standard content block width */
   }
 /* Mission Section */
 .mission-section {
   padding: 8rem 0 6rem;
+  background: white; /* Ensure white background */
   position: relative;
   overflow: hidden;
 }
 
-.mission-section::before {
-  content: '';
-  position: absolute;
-  top: 200px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--background-light);
-  z-index: -1;
-}
-
 .mission-content {
-  max-width: 1000px;
+  
   margin: 0 auto;
   text-align: center;
   position: relative;
@@ -1364,7 +1378,7 @@ p {
 }
 
 .mission-point h3 {
-  font-size: 1.5rem;
+  font-size: 1.5rem; /* Standardized card title */
   margin-bottom: 1rem;
   color: var(--accent-color);
 }
@@ -1372,14 +1386,14 @@ p {
 .mission-point p {
   color: var(--secondary-color);
   line-height: 1.6;
-  font-size: 0.95rem;
+  font-size: 0.95rem; /* Standardized card description */
 }
 
 .mission-disclaimer {
   font-size: 0.95rem;
   font-style: italic;
   color: var(--secondary-color);
-  max-width: 800px;
+  max-width: 800px; /* Standard content block width */
   margin: 2rem auto 0;
   padding: 1.5rem;
   border-radius: 8px;

@@ -16,88 +16,63 @@
 {% block content_content %}
 <div class="layout-container">
     <div class="blog-list-container">
-        <!-- Blog Header Section -->
-        <header class="blog-header">
-            <div class="header-content">
-                <h1>NumberWalk Blogs</h1>
-                <p>Reflections, Research, and Honest Sharing on Finanical Independence</p>
-            </div>
-            {% if categories %}
-            <div class="blog-categories">
-                <a href="{{ url_for('blog') }}" class="category-pill {% if not selected_category %}active{% endif %}">All</a>
-                {% for category in categories %}
-                <a href="{{ url_for('blog_category', category=category.slug) }}" class="category-pill {% if selected_category == category.slug %}active{% endif %}">{{ category.name }}</a>
-                {% endfor %}
-            </div>
-            {% endif %}
-        </header>
+        <!-- Blog Header -->
+    <header class="blog-header">
+        <h1>NumberWalk Blog</h1>
+        <p>Reflections, Research, and Honest Sharing on Finanical Independence</p>
+    </header>
 
-        <!-- Featured Blog Posts -->
-        {% if featured_blogs %}
-        <section class="featured-section">
-            <h2 class="section-title">Featured Blogs</h2>
-            <div class="featured-posts-grid {% if featured_blogs|length == 1 %}single-feature{% elif featured_blogs|length == 2 %}dual-feature{% else %}multi-feature{% endif %}">
-                {% for featured_blog in featured_blogs %}
-                    {% include "content/components/featured_blog.html" %}
-                {% endfor %}
-            </div>
-        </section>
-        {% endif %}
+    <!-- Featured Blog Posts -->
+    {% if featured_blogs %}
+    <section class="featured-posts-grid">
+        {% for featured_blog in featured_blogs %}
+            {% include "content/components/featured_blog.html" %}
+        {% endfor %}
+    </section>
+    {% endif %}
 
-        <!-- Regular Blog Posts Grid -->
-        {% if blog_posts %}
-        <section class="blog-section">
-            <h2 class="section-title">Latest Blogs</h2>
-            <div class="blog-grid">
-                {% for blog in blog_posts %}
-                    {% include "content/components/blog_card.html" %}
-                {% endfor %}
-            </div>
+    <!-- Blog Posts Grid -->
+    {% if blog_posts %}
+        <section class="blog-grid">
+            {% for blog in blog_posts %}
+                {% include "content/components/blog_card.html" %}
+            {% endfor %}
         </section>
-        {% else %}
+    {% else %}
         <div class="no-posts">
             <p>No blog posts available at the moment. Check back soon for updates!</p>
         </div>
-        {% endif %}
+    {% endif %}
 
-        <!-- Enhanced Pagination -->
-        {% if pagination %}
-        <nav class="pagination" aria-label="Blog pagination">
-            <div class="pagination-container">
-                {% if pagination.has_prev %}
+    <!-- Pagination (if needed) -->
+    {% if pagination %}
+    <nav class="pagination" aria-label="Blog pagination">
+        <div class="pagination-container">
+            {% if pagination.has_prev %}
                 <a href="{{ url_for('blog', page=pagination.prev_num) }}" class="pagination-link prev" aria-label="Previous page">
-                    <i class="fas fa-chevron-left"></i> Previous
+                    ← Previous
                 </a>
-                {% endif %}
-                
-                <div class="pagination-numbers">
-                    {% if pagination.pages > 1 %}
-                        {% for page_num in range(1, pagination.pages + 1) %}
-                            {% if page_num == pagination.page %}
-                            <span class="pagination-current">{{ page_num }}</span>
-                            {% else %}
-                            <a href="{{ url_for('blog', page=page_num) }}" class="pagination-number">{{ page_num }}</a>
-                            {% endif %}
-                        {% endfor %}
-                    {% endif %}
-                </div>
-                
-                {% if pagination.has_next %}
+            {% endif %}
+            
+            <span class="pagination-info">Page {{ pagination.page }} of {{ pagination.pages }}</span>
+            
+            {% if pagination.has_next %}
                 <a href="{{ url_for('blog', page=pagination.next_num) }}" class="pagination-link next" aria-label="Next page">
-                    Next <i class="fas fa-chevron-right"></i>
+                    Next →
                 </a>
-                {% endif %}
-            </div>
-        </nav>
-        {% endif %}
+            {% endif %}
+        </div>
+    </nav>
+    {% endif %}
     </div>
 </div>
 {% endblock %}
 
 {% block content_scripts %}
 <script>
+    // Add any blog-specific JavaScript here
     document.addEventListener('DOMContentLoaded', function() {
-        // Lazy load images
+        // Lazy load images if needed
         const lazyImages = document.querySelectorAll('img[loading="lazy"]');
         if ('loading' in HTMLImageElement.prototype) {
             lazyImages.forEach(img => {
@@ -107,28 +82,6 @@
             // Fallback for browsers that don't support lazy loading
             // Could add a lazy loading library here if needed
         }
-        
-        // Add animation for blog cards
-        const blogElements = document.querySelectorAll('.blog-card, .featured-post');
-        
-        function checkVisibility() {
-            blogElements.forEach((element, index) => {
-                const position = element.getBoundingClientRect();
-                // Check if element is in viewport
-                if(position.top < window.innerHeight && position.bottom >= 0) {
-                    // Add delay based on index for staggered animation
-                    setTimeout(() => {
-                        element.classList.add('visible');
-                    }, index * 100);
-                }
-            });
-        }
-        
-        // Initial check
-        checkVisibility();
-        
-        // Check on scroll
-        window.addEventListener('scroll', checkVisibility);
     });
 </script>
 {% endblock %}
