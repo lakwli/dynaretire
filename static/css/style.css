@@ -129,6 +129,7 @@ p {
     text-decoration: none;
     border-radius: 6px;
     font-weight: 500;
+    font-size: 0.9rem; /* Explicitly set */
     transition: all 0.3s ease;
 }
 
@@ -155,9 +156,17 @@ p {
 .hero h1 {
     font-size: 3.5rem;
     margin-bottom: 1.5rem;
-    max-width: 800px;
+    max-width: 800px; /* Standard content block width */
     margin-left: auto;
     margin-right: auto;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem; /* Standardized */
+    color: var(--secondary-color);
+    max-width: 800px; /* Standardized width */
+    margin: 0 auto 3rem;
+    line-height: 1.6;
 }
 
 .hero-cta {
@@ -189,20 +198,20 @@ p {
 }
 
 .benefit-item h3 {
-    font-size: 2rem;
+    font-size: 1.5rem; /* Standardized card title */
     color: var(--accent-color);
     margin-bottom: 0.5rem;
 }
 
 .benefit-item p {
-    min-height: 60px;
     display: flex;
     align-items: center;
     color: var(--text-color);
     opacity: 0.85;
-  }
+    font-size: 0.95rem; /* Standardized card description */
+}
 
-  .phase-label {
+.phase-label {
     font-size: 0.5rem;
     color: var(--brand-color);
     text-transform: uppercase;
@@ -210,7 +219,7 @@ p {
     margin-bottom: 0.5rem;
     font-weight: 600;
     display: block;
-  }
+}
 
 /* Expenses Section */
 .features-section {
@@ -287,9 +296,9 @@ p {
 }
 
 .hero-subtitle {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     color: var(--secondary-color);
-    max-width: 700px;
+    max-width: 800px; /* Standardized width */
     margin: 0 auto 3rem;
     line-height: 1.6;
 }
@@ -299,7 +308,6 @@ p {
     color: var(--secondary-color);
     line-height: 1.5;
     opacity: 0.9;
-    max-width: 700px; /* Standardized */
     margin: 0 auto 3rem; /* Standardized */
     font-size: 1.1rem; /* Standardized */
     line-height: 1.6; /* Standardized */
@@ -313,7 +321,7 @@ p {
     color: var(--secondary-color);
     line-height: 1.6; /* Standardized */
     opacity: 0.9; /* Keep subtle fade */
-    max-width: 700px; /* Standardized */
+    max-width: 800px; /* Standardized width */
     margin: 0 auto 3rem; /* Standardized bottom margin */
     text-align: center; /* Ensure centered */
 }
@@ -750,7 +758,7 @@ p {
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   text-align: center;
   border-top: 4px solid var(--brand-color);
-  max-width: 800px;
+  max-width: 800px; /* Standard content block width */
   margin-left: auto;
   margin-right: auto;
 }
@@ -758,7 +766,7 @@ p {
 .data-control-highlight h3 {
   margin-bottom: 1rem;
   color: var(--accent-color);
-  font-size: 1.5rem;
+  font-size: 1.5rem; /* Standardized card title */
 }
 
 .data-control-highlight p {
@@ -823,7 +831,13 @@ p {
 
 .why-card h3 {
     margin-bottom: 1rem;
-    font-size: 1.5rem;
+    font-size: 1.5rem; /* Standardized card title */
+}
+
+.why-card p {
+    font-size: 0.95rem; /* Standardized card description */
+    color: var(--secondary-color); /* Ensure color consistency */
+    line-height: 1.6; /* Ensure line-height consistency */
 }
 
 /* comparison-section Section */
@@ -954,7 +968,13 @@ p {
 
 .advanced-card h3 {
     margin-bottom: 1rem;
-    font-size: 1.25rem;
+    font-size: 1.5rem; /* Standardized card title */
+}
+
+.advanced-card p {
+    font-size: 0.95rem; /* Standardized card description */
+    color: var(--secondary-color); /* Ensure color consistency */
+    line-height: 1.6; /* Ensure line-height consistency */
 }
 
 /* CTA Section */
@@ -1286,7 +1306,7 @@ p {
     font-size: 0.95rem;
     line-height: 1.6;
     margin: 2rem auto 0;
-    max-width: 800px;
+    max-width: 800px; /* Standard content block width */
   }
 /* Mission Section */
 .mission-section {
@@ -1353,7 +1373,7 @@ p {
 }
 
 .mission-point h3 {
-  font-size: 1.5rem;
+  font-size: 1.5rem; /* Standardized card title */
   margin-bottom: 1rem;
   color: var(--accent-color);
 }
@@ -1361,14 +1381,14 @@ p {
 .mission-point p {
   color: var(--secondary-color);
   line-height: 1.6;
-  font-size: 0.95rem;
+  font-size: 0.95rem; /* Standardized card description */
 }
 
 .mission-disclaimer {
   font-size: 0.95rem;
   font-style: italic;
   color: var(--secondary-color);
-  max-width: 800px;
+  max-width: 800px; /* Standard content block width */
   margin: 2rem auto 0;
   padding: 1.5rem;
   border-radius: 8px;
