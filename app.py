@@ -21,6 +21,17 @@ from classes.logging_config import initialize_logger
 logger = initialize_logger()
 
 app = Flask(__name__, static_url_path='/static', static_folder='static')
+
+# Template filter to generate absolute canonical URL
+@app.template_filter('canonical_url')
+def canonical_url_filter(path):
+    """Generates an absolute canonical URL."""
+    base_url = "https://numberwalk.com"
+    # Ensure the path starts with a slash
+    if not path.startswith('/'):
+        path = '/' + path
+    return base_url + path
+
 app.config["DEBUG"] = True
 app.config["SECRET_KEY"] = "lkmaslkdsldsamdlsdmaseewe2ldsmkdd"
 app.config["TEMPLATES_AUTO_RELOAD"] = True
