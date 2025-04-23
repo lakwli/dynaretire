@@ -250,6 +250,7 @@ p {
 /* Footer Styles */
 .footer {
     padding: 80px 24px 120px;
+    background: white; /* Ensure white background */
     position: relative;
     overflow: hidden;
 }
@@ -257,16 +258,16 @@ p {
 /* Mission Section */
 .mission-section {
   padding: 8rem 0 6rem;
+  background: white; /* Ensure white background */
   position: relative;
   overflow: hidden;
 }
 
 /* Grouped ::before selector */
 .features-section::before,
-.data-control-section::before,
-.advanced-features::before,
-.mission-section::before,
-.footer::before {
+.why-section::before, /* Added */
+.comparison-section::before, /* Added */
+.advanced-features::before {
   content: '';
   position: absolute;
   top: 200px;
@@ -792,7 +793,9 @@ p {
 /* Why Section */
 .why-section { /* Corrected typo */
     padding: 8rem 0 6rem;
-    background: white;
+    /* background: white; */ /* Removed */
+    position: relative; /* Added for z-index context */
+    z-index: 1; /* Added for stacking context */
 }
 
 .why-section h2 { /* Corrected typo */
@@ -843,7 +846,7 @@ p {
 /* comparison-section Section */
 .comparison-section {
     padding: 8rem 0 6rem;
-    background: white;
+    /* background: white; */ /* Removed */
     position: relative;
     z-index: 1;
 }
@@ -1024,6 +1027,7 @@ p {
 /* Footer Styles */
 .footer {
     padding: 80px 24px 120px;
+    background: white; /* Ensure white background */
     position: relative;
     overflow: hidden;
 }
@@ -1311,6 +1315,7 @@ p {
 /* Mission Section */
 .mission-section {
   padding: 8rem 0 6rem;
+  background: white; /* Ensure white background */
   position: relative;
   overflow: hidden;
 }
