@@ -220,19 +220,52 @@ p {
     overflow: hidden;
 }
 
-.features-section::before {
-    content: '';
-    position: absolute;
-    top: 200px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--background-light);
-    z-index: -1;
-}
-
 .features-section .feature-item {
     background: white;
+}
+
+/* Data Control Section */
+.data-control-section {
+  padding: 8rem 0 6rem;
+  background: white;
+  position: relative;
+}
+
+/* Advanced Features Section */
+.advanced-features {
+    padding: 8rem 0 6rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Footer Styles */
+.footer {
+    padding: 80px 24px 120px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Mission Section */
+.mission-section {
+  padding: 8rem 0 6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Grouped ::before selector */
+.features-section::before,
+.data-control-section::before,
+.advanced-features::before,
+.mission-section::before,
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 200px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--background-light);
+  z-index: -1;
 }
 
 .features-section .container {
@@ -679,17 +712,6 @@ p {
   position: relative;
 }
 
-.data-control-section::before {
-  content: '';
-  position: absolute;
-  top: 200px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--background-light);
-  z-index: -1;
-}
-
 /* Add this to match the why-section h2 styling */
 .data-control-section h2 {
   text-align: center;
@@ -902,17 +924,6 @@ p {
     overflow: hidden;
 }
 
-.advanced-features::before {
-    content: '';
-    position: absolute;
-    top: 200px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--background-light);
-    z-index: -1;
-}
-
 .advanced-features h2 {
     text-align: center;
     font-size: 2.5rem;
@@ -995,17 +1006,6 @@ p {
     padding: 80px 24px 120px;
     position: relative;
     overflow: hidden;
-}
-
-.footer::before {
-    content: '';
-    position: absolute;
-    top: 200px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--background-light);
-    z-index: -1;
 }
 
 .footer-wrapper {
@@ -1293,17 +1293,6 @@ p {
   padding: 8rem 0 6rem;
   position: relative;
   overflow: hidden;
-}
-
-.mission-section::before {
-  content: '';
-  position: absolute;
-  top: 200px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--background-light);
-  z-index: -1;
 }
 
 .mission-content {
