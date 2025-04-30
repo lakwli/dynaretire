@@ -55,13 +55,62 @@ def log_request():
 
 # Blog routes
 @app.route('/blog')
-def blog_list():
+@app.route('/blog/category/<string:category>')
+def blog_list(category=None):
     logger.info("Accessing blog list page")
     featured_limit = 2  # Show 2 featured posts
-    featured_blogs, blog_posts = blog_manager.get_blog_list(featured_limit=featured_limit)
-    return render_template('content/blog_list.html',
-                          featured_blogs=featured_blogs,
-                          blog_posts=blog_posts)
+    
+    try:
+        # Get all blog posts to extract categories
+        all_posts = blog_manager.get_all_blog_posts()
+        
+        # Extract unique categories and sort alphabetically
+        categories = []
+        seen_categories = set()
+        
+        for post in all_posts:
+            if post.category and post.category not in seen_categories:
+                seen_categories.add(post.category)
+                categories.append({
+                    'name': post.category,
+                    'slug': post.category.lower().replace(' ', '-')
+                })
+        
+        categories.sort(key=lambda x: x['name'])
+        
+        # Filter posts by category if specified
+        if category:
+            # Get featured and regular posts filtered by category
+            featured_blogs = []
+            blog_posts = []
+            
+            # Get all posts and filter by category
+            for post in all_posts:
+                if post.category and post.category.lower().replace(' ', '-') == category:
+                    if post.is_featured:
+                        featured_blogs.append(post)
+                    else:
+                        blog_posts.append(post)
+                        
+            # Sort by date
+            featured_blogs = sorted(featured_blogs, key=lambda x: x.date, reverse=True)
+            blog_posts = sorted(blog_posts, key=lambda x: x.date, reverse=True)
+        else:
+            # Get all featured and regular posts
+            featured_blogs, blog_posts = blog_manager.get_blog_list(featured_limit=featured_limit)
+        
+        return render_template('content/blog_list.html',
+                            featured_blogs=featured_blogs,
+                            blog_posts=blog_posts,
+                            categories=categories,
+                            selected_category=category)
+    except Exception as e:
+        logger.error(f"Error in blog_list: {str(e)}", exc_info=True)
+        return render_template('content/blog_list.html',
+                            featured_blogs=[],
+                            blog_posts=[],
+                            categories=[],
+                            selected_category=None)
 
 @app.route('/blog/<string:blog_id>')
 def blog_post(blog_id):
