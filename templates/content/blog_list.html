@@ -17,53 +17,113 @@
 <div class="layout-container">
     <div class="blog-list-container">
         <!-- Blog Header -->
-    <header class="blog-header">
-        <h1>NumberWalk Blog</h1>
-        <p>Reflections, Research, and Honest Sharing on Finanical Independence</p>
-    </header>
+        <header class="blog-header">
+            <h1>NumberWalk Blog</h1>
+            <p>Reflections, Research, and Honest Sharing on Financial Independence</p>
+        </header>
 
-    <!-- Featured Blog Posts -->
-    {% if featured_blogs %}
-    <section class="featured-posts-grid">
-        {% for featured_blog in featured_blogs %}
-            {% include "content/components/featured_blog.html" %}
-        {% endfor %}
-    </section>
-    {% endif %}
-
-    <!-- Blog Posts Grid -->
-    {% if blog_posts %}
-        <section class="blog-grid">
-            {% for blog in blog_posts %}
-                {% include "content/components/blog_card.html" %}
-            {% endfor %}
-        </section>
-    {% else %}
-        <div class="no-posts">
-            <p>No blog posts available at the moment. Check back soon for updates!</p>
+        <!-- Category Navigation -->
+        {% if categories %}
+        <div class="blog-categories">
+            <div class="category-filters">
+                <a href="{{ url_for('blog_list') }}" class="category-filter {% if not selected_category %}active{% endif %}">All</a>
+                {% for category in categories %}
+                    <a href="{{ url_for('blog_list', category=category.slug) }}" class="category-filter {% if selected_category == category.slug %}active{% endif %}">{{ category.name }}</a>
+                {% endfor %}
+            </div>
         </div>
-    {% endif %}
+        {% endif %}
 
-    <!-- Pagination (if needed) -->
-    {% if pagination %}
-    <nav class="pagination" aria-label="Blog pagination">
-        <div class="pagination-container">
-            {% if pagination.has_prev %}
-                <a href="{{ url_for('blog', page=pagination.prev_num) }}" class="pagination-link prev" aria-label="Previous page">
-                    ← Previous
+        <!-- Hero Featured Blog Post -->
+        {% if featured_blogs and featured_blogs|length > 0 %}
+            {% set hero_blog = featured_blogs[0] %}
+            <div class="featured-hero">
+                <a href="{{ url_for('blog_post', blog_id=hero_blog.url_slug or hero_blog.id) }}" class="hero-blog-link">
+                    <div class="hero-blog-content">
+                        <div class="hero-blog-meta">
+                            <span class="hero-category-tag">{{ hero_blog.category|default('Featured') }}</span>
+                            <time datetime="{{ hero_blog.date.isoformat() if hero_blog.date else '' }}">{{ hero_blog.date.strftime('%b %d, %Y') if hero_blog.date else '' }}</time>
+                        </div>
+                        <h2 class="hero-blog-title">{{ hero_blog.title|default('Featured Blog Post') }}</h2>
+                        <p class="hero-blog-description">{{ hero_blog.description|default('Featured blog post description') }}</p>
+                        <div class="hero-blog-author">
+                            {% if hero_blog.author_image %}
+                            <img src="{{ hero_blog.author_image }}" alt="{{ hero_blog.author }}" class="author-image">
+                            {% endif %}
+                            <span class="author-name">{{ hero_blog.author|default('NumberWalk Team') }}</span>
+                        </div>
+                    </div>
+                    <div class="hero-blog-image">
+                        <img src="{{ hero_blog.image|default(url_for('static', filename='images/default-featured.jpg')) }}" alt="{{ hero_blog.title|default('Featured Blog Post') }}" loading="lazy">
+                    </div>
                 </a>
+            </div>
+        
+            <!-- Secondary Featured Blog Posts -->
+            {% if featured_blogs|length > 1 %}
+                <section class="secondary-featured-grid">
+                    {% for featured_blog in featured_blogs[1:3] %}
+                        <div class="secondary-featured-post">
+                            <a href="{{ url_for('blog_post', blog_id=featured_blog.url_slug or featured_blog.id) }}" class="secondary-featured-link">
+                                <div class="secondary-featured-image">
+                                    <img src="{{ featured_blog.image|default(url_for('static', filename='images/default-featured.jpg')) }}" alt="{{ featured_blog.title }}" loading="lazy">
+                                </div>
+                                <div class="secondary-featured-content">
+                                    <div class="secondary-featured-meta">
+                                        <span class="category-tag">{{ featured_blog.category|default('Featured') }}</span>
+                                        <time datetime="{{ featured_blog.date.isoformat() if featured_blog.date else '' }}">{{ featured_blog.date.strftime('%b %d, %Y') if featured_blog.date else '' }}</time>
+                                    </div>
+                                    <h3 class="secondary-featured-title">{{ featured_blog.title }}</h3>
+                                    <p class="secondary-featured-description">{{ featured_blog.description }}</p>
+                                    <div class="author-info">
+                                        <span class="author-name">{{ featured_blog.author|default('NumberWalk Team') }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </section>
             {% endif %}
+        {% endif %}
+
+        <!-- Recent Articles Section -->
+        <div class="recent-articles-section">
+            <h2 class="section-title">Recent Articles</h2>
             
-            <span class="pagination-info">Page {{ pagination.page }} of {{ pagination.pages }}</span>
-            
-            {% if pagination.has_next %}
-                <a href="{{ url_for('blog', page=pagination.next_num) }}" class="pagination-link next" aria-label="Next page">
-                    Next →
-                </a>
+            <!-- Blog Posts Grid -->
+            {% if blog_posts %}
+                <section class="blog-grid">
+                    {% for blog in blog_posts %}
+                        {% include "content/components/blog_card.html" %}
+                    {% endfor %}
+                </section>
+            {% else %}
+                <div class="no-posts">
+                    <p>No blog posts available at the moment. Check back soon for updates!</p>
+                </div>
             {% endif %}
         </div>
-    </nav>
-    {% endif %}
+
+        <!-- Pagination (if needed) -->
+        {% if pagination %}
+        <nav class="pagination" aria-label="Blog pagination">
+            <div class="pagination-container">
+                {% if pagination.has_prev %}
+                    <a href="{{ url_for('blog_list', page=pagination.prev_num) }}" class="pagination-link prev" aria-label="Previous page">
+                        ← Previous
+                    </a>
+                {% endif %}
+                
+                <span class="pagination-info">Page {{ pagination.page }} of {{ pagination.pages }}</span>
+                
+                {% if pagination.has_next %}
+                    <a href="{{ url_for('blog_list', page=pagination.next_num) }}" class="pagination-link next" aria-label="Next page">
+                        Next →
+                    </a>
+                {% endif %}
+            </div>
+        </nav>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

@@ -29,6 +29,30 @@ class ContentManager:
         regular_posts = self._blog_repository.get_regular_posts(featured_limit=featured_limit)
         return featured_posts, regular_posts
 
+    def get_featured(self, limit: int = 1) -> List[Blog]:
+        """
+        Get the N most recent featured published blog posts.
+        
+        Args:
+            limit: Number of featured posts to return (default: 1)
+            
+        Returns:
+            List of the N most recent featured published posts
+        """
+        return self._blog_repository.get_featured(limit=limit)
+
+    def get_regular_posts(self, featured_limit: int = 1) -> List[Blog]:
+        """
+        Get regular published posts and any featured published posts that didn't make it into the featured section.
+        
+        Args:
+            featured_limit: Number of featured posts being displayed in featured section (default: 1)
+            
+        Returns:
+            List of regular posts and overflow featured posts
+        """
+        return self._blog_repository.get_regular_posts(featured_limit=featured_limit)
+
     def get_article(self, article_id: str) -> Optional[Blog]:
         """
         Get a single blog post by its ID.
