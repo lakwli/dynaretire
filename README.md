@@ -4,13 +4,64 @@ A dynamic retirement planning application that helps users plan and manage their
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+## Table of Contents
+- [Features](#features)
+- [Quick Start](#quick-start)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+  - [Production Setup](#production-setup)
+  - [Development Setup](#development-setup)
+- [Running the Application](#running-the-application)
+  - [Local Development](#local-development)
+  - [Using Docker](#using-docker)
+- [Project Structure](#project-structure)
+- [Configuration](#configuration)
+- [Logging System](#logging-system)
+- [Production Deployment](#production-deployment)
+- [Development](#development)
+
 ## Features
 
-- Expense tracking and management
-- Investment fund management
-- Income planning
-- Strategic retirement planning
-- Interactive web interface
+- **Expense Planning**
+  - Ongoing financial commitments tracking
+  - Healthcare costs projection with age-adjusted inflation
+  - Irregular and one-time expense planning
+  - Dynamic expense management across different life stages
+
+- **Retirement Fund Management**
+  - Exit-age/retirement fund projection
+  - Multiple funding sources with customizable allocation
+  - Strategic retirement planning with adaptive models
+
+- **Investment Strategy**
+  - Expected returns modeling and historical back-testing
+  - Spending control during market downturns
+  - Age-based asset allocation adjustment
+  - Portfolio rebalancing options
+
+- **Income Planning**
+  - Post-exit income projection (rentals, part-time work)
+  - FIRE transition strategy for early retirement
+  - Pension fund withdrawal handling
+
+- **Interactive Experience**
+  - Web-based interface with responsive design
+  - Privacy-focused with local data storage
+  - Comprehensive visualization of financial scenarios
+
+## Quick Start
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd numberwalk
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the application
+python app.py
+```
 
 ## Prerequisites
 
@@ -67,7 +118,7 @@ python app.py
 
 ### Using Docker
 
-1. Build and run using Docker Compose:
+Build and run using Docker Compose:
 ```bash
 docker-compose up --build
 ```
@@ -76,128 +127,72 @@ docker-compose up --build
 
 ```
 numberwalk/
-├── app.py                 # Main application entry point
-├── core/                  # Core business logic
-│   ├── account.py
-│   ├── expenses.py
-│   ├── invest.py
-│   └── plan.py
+├── app.py                # Main application entry point
+├── core/                 # Core business logic
+│   ├── account.py        # Account management functionality
+│   ├── expenses.py       # Expense tracking and management
+│   ├── invest.py         # Investment strategies and calculations
+│   └── plan.py           # Retirement planning logic
 ├── classes/              # Helper classes and utilities
-├── static/              # Frontend assets
-│   ├── css/
-│   ├── js/
-│   └── images/
-├── templates/           # HTML templates
-└── docker-compose.yml  # Docker configuration
+│   └── logging_config.py # Logging configuration
+├── static/               # Frontend assets
+│   ├── css/              # Compiled CSS files
+│   ├── js/               # JavaScript files
+│   └── images/           # Image assets
+├── templates/            # HTML templates
+├── logs/                 # Application logs (auto-generated)
+└── docker-compose.yml    # Docker configuration
 ```
-
-## Logging System
-
-The application uses a structured logging system that works in both development and production environments.
-
-### Log Structure
-
-```
-Development:
-numberwalk/
-  └── logs/
-      ├── app.log      # General application logs (daily rotation)
-      ├── error.log    # Error-specific logs (size-based rotation)
-      ├── access.log   # Access logs (daily rotation)
-      └── archived/    # Archived logs
-```
-
-### Log Format
-
-Logs are stored in JSON format for easy parsing:
-```json
-{
-    "timestamp": "2025-04-02T11:58:37.123456",
-    "level": "INFO",
-    "worker_id": "0",
-    "message": "Action completed",
-    "module": "app",
-    "function": "home",
-    "line": 123,
-    "exception": null
-}
-```
-
-### Log Management
-
-- **Rotation**:
-  - app.log: Daily rotation, 30-day retention
-  - error.log: 100MB size limit, 10 backups
-  - access.log: Daily rotation, 30-day retention
-- **Archive**: Rotated logs are compressed and stored in the archived directory
-- **Cleanup**: Logs older than 30 days are automatically removed
-
-### Usage in Code
-
-```python
-from classes.logging_config import initialize_logger
-
-logger = initialize_logger()
-
-# Log levels
-logger.debug("Debug message")
-logger.info("Info message")
-logger.warning("Warning message")
-logger.error("Error message", exc_info=True)  # Include stack trace
-```
-
-### Production Deployment
-
-The deployment script (`deploy_script.sh`) handles container deployment and log management:
-
-1. **First-time Setup**:
-```bash
-# Required: GitHub credentials for accessing the container image
-export DOCKER_USER=your_github_username
-export DOCKER_TOKEN=your_github_token
-```
-
-2. **Optional Configuration**:
-```bash
-# Choose port number (default: 5000)
-export DOCKER_PORT=5001           # App will be available at localhost:5001
-
-# Choose container name (default: numberwalk)
-export DEPLOY_NAME=myretireapp    # Container and log volume will use this name
-```
-
-3. **Deployment**:
-```bash
-./deploy_script.sh
-```
-
-4. **Viewing Logs**:
-```bash
-# If using default container name
-docker exec numberwalk tail -f logs/app.log     # Application logs
-docker exec numberwalk tail -f logs/error.log   # Error logs
-
-# If using custom container name
-docker exec myretireapp tail -f logs/app.log    # Replace with your DEPLOY_NAME
-```
-
-The script will:
-- Pull the official image (`ghcr.io/lakwli/numberwalk:latest`)
-- Create a dedicated log volume named `{DEPLOY_NAME}_logs`
-- Run container with your chosen name and port
-- Configure automatic log rotation and cleanup
-
-### Security Notes
-
-- Log files are automatically added to .gitignore
-- No sensitive information in logs (automatically sanitized)
-- Deployment credentials are managed via environment variables
-- Log directory permissions are properly set
 
 ## Configuration
 
 - Environment variables can be set in `.env` file
 - Application settings can be modified in the respective configuration files
+
+## Logging System
+
+The application uses a structured logging system with JSON format for easy parsing.
+
+### Log Types and Rotation
+
+| Log File    | Content                  | Rotation Policy       | Retention    |
+|-------------|--------------------------|----------------------|--------------|
+| app.log     | General application logs | Daily                | 30 days      |
+| error.log   | Error-specific logs      | Size-based (100MB)   | 10 backups   |
+| access.log  | Access logs              | Daily                | 30 days      |
+
+### Usage Example
+
+```python
+from classes.logging_config import initialize_logger
+
+logger = initialize_logger()
+logger.info("User action completed")
+logger.error("Error occurred", exc_info=True)  # Include stack trace
+```
+
+## Production Deployment
+
+The application can be deployed using Docker with our deployment script:
+
+```bash
+# Required: Set GitHub credentials
+export DOCKER_USER=your_github_username
+export DOCKER_TOKEN=your_github_token
+
+# Optional: Configure deployment
+export DOCKER_PORT=5001       # Default: 5000
+export DEPLOY_NAME=myretireapp  # Default: numberwalk
+
+# Run deployment
+./deploy_script.sh
+```
+
+### Viewing Logs in Production
+
+```bash
+docker exec <container-name> tail -f logs/app.log
+```
 
 ## Development
 
@@ -206,3 +201,52 @@ The application uses:
 - Flask web framework
 - JavaScript for frontend interactivity
 - Bulma CSS framework for styling
+- SCSS (Sassy CSS) for style preprocessing
+
+### What is SCSS?
+
+SCSS (Sassy CSS) is a CSS preprocessor that extends CSS with features like:
+- Variables for reusable values
+- Nesting for clearer hierarchical selectors
+- Mixins for reusable style blocks
+- Functions and calculations
+- Inheritance between style rules
+
+These features help maintain cleaner, more manageable stylesheets that compile to standard CSS.
+
+### Development Workflow
+
+1. Make code changes
+2. Update styles with `npm run sass` if modifying SCSS
+3. Test locally with `python app.py`
+4. Build with Docker to verify production setup
+
+### Development in Container
+
+For a consistent development environment, this project includes a preconfigured Dev Container setup (`.devcontainer`):
+
+- **Benefits:**
+  - Consistent development environment for all contributors
+  - All dependencies pre-installed (Git, Node.js, npm, eslint, Python, pip)
+  - No need to install development dependencies on your local machine
+  
+- **Requirements:**
+  - [VS Code](https://code.visualstudio.com/)
+  - [Docker](https://www.docker.com/products/docker-desktop)
+  - [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+
+- **Getting Started:**
+  1. Open VS Code
+  2. Open the Command Palette (`F1` or `Ctrl+Shift+P`)
+  3. Select "Dev Containers: Open Folder in Container..."
+  4. Navigate to the cloned NumberWalk repository
+  5. VS Code will build and start the container, then open the project
+
+The Dev Container includes all necessary tools for development:
+- Git for version control
+- Node.js, npm, and eslint for frontend development
+- Python3 and pip3 with language extensions for backend development
+
+### Online Version
+
+NumberWalk is available online at [https://numberwalk.com](https://numberwalk.com)
